@@ -1265,7 +1265,7 @@
 					}] }]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [7,5],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1285,7 +1285,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [9,5],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1305,7 +1305,7 @@
 					]
 				},
 				{
-					"__identifier": "stairs",
+					"__identifier": "staircase",
 					"__grid": [15,5],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1339,7 +1339,7 @@
 					}] }]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [9,3],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1359,7 +1359,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [12,3],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1379,7 +1379,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [12,7],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1399,7 +1399,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [11,9],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1419,7 +1419,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [11,1],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1439,7 +1439,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [11,5],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1459,7 +1459,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [12,5],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1479,7 +1479,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [13,4],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1499,7 +1499,7 @@
 					]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [13,6],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1519,7 +1519,7 @@
 					]
 				},
 				{
-					"__identifier": "keys_and_doors",
+					"__identifier": "key_and_door",
 					"__grid": [13,5],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1536,7 +1536,7 @@
 					}] }]
 				},
 				{
-					"__identifier": "keys_and_doors",
+					"__identifier": "key_and_door",
 					"__grid": [14,5],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -1553,7 +1553,7 @@
 					}] }]
 				},
 				{
-					"__identifier": "enemies",
+					"__identifier": "enemy",
 					"__grid": [9,7],
 					"__pivot": [0,0],
 					"__tags": [],

@@ -977,9 +977,9 @@
 				}
 			}
 		],
-		"enemies": [
+		"enemy": [
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "53ce75d0-1460-11ee-bd8c-114b1628210f",
 				"layer": "entities",
 				"x": 112,
@@ -993,7 +993,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "54b46900-1460-11ee-bd8c-edfa850654ce",
 				"layer": "entities",
 				"x": 144,
@@ -1007,7 +1007,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "1cf13e70-1460-11ee-bd8c-3dcec65eff54",
 				"layer": "entities",
 				"x": 144,
@@ -1021,7 +1021,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "20e730c0-1460-11ee-bd8c-49b8bb4db734",
 				"layer": "entities",
 				"x": 192,
@@ -1035,7 +1035,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "24b8d230-1460-11ee-bd8c-958f553e2601",
 				"layer": "entities",
 				"x": 192,
@@ -1049,7 +1049,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "27d4b830-1460-11ee-bd8c-431ea74ec768",
 				"layer": "entities",
 				"x": 176,
@@ -1063,7 +1063,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "2d74ff20-1460-11ee-bd8c-f52478547a59",
 				"layer": "entities",
 				"x": 176,
@@ -1077,7 +1077,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "3407e370-1460-11ee-bd8c-3f5ea25048bb",
 				"layer": "entities",
 				"x": 176,
@@ -1091,7 +1091,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "35c83110-1460-11ee-bd8c-a1511ba07d8f",
 				"layer": "entities",
 				"x": 192,
@@ -1105,7 +1105,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "39a20fe0-1460-11ee-bd8c-939c6fd9ad84",
 				"layer": "entities",
 				"x": 208,
@@ -1119,7 +1119,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "3b3c37e0-1460-11ee-bd8c-7ddae52c99ef",
 				"layer": "entities",
 				"x": 208,
@@ -1133,7 +1133,7 @@
 				}
 			},
 			{
-				"id": "enemies",
+				"id": "enemy",
 				"iid": "4f781e90-1460-11ee-bd8c-f708f8ec5f7e",
 				"layer": "entities",
 				"x": 144,
@@ -1147,9 +1147,9 @@
 				}
 			}
 		],
-		"stairs": [
+		"staircase": [
 			{
-				"id": "stairs",
+				"id": "staircase",
 				"iid": "a4511df0-1460-11ee-bd8c-0fbdf16dffcb",
 				"layer": "entities",
 				"x": 240,
@@ -1162,9 +1162,9 @@
 				}
 			}
 		],
-		"keys_and_doors": [
+		"key_and_door": [
 			{
-				"id": "keys_and_doors",
+				"id": "key_and_door",
 				"iid": "438caab0-1460-11ee-bd8c-575ee0040e18",
 				"layer": "entities",
 				"x": 208,
@@ -1177,7 +1177,7 @@
 				}
 			},
 			{
-				"id": "keys_and_doors",
+				"id": "key_and_door",
 				"iid": "45b3d070-1460-11ee-bd8c-0d0a3692c25c",
 				"layer": "entities",
 				"x": 224,

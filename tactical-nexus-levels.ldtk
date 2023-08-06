@@ -71,7 +71,7 @@
 		}
 	], "entities": [
 		{
-			"identifier": "enemies",
+			"identifier": "enemy",
 			"uid": 9,
 			"tags": [],
 			"exportToToc": false,
@@ -241,7 +241,7 @@
 			]
 		},
 		{
-			"identifier": "keys_and_doors",
+			"identifier": "key_and_door",
 			"uid": 13,
 			"tags": [],
 			"exportToToc": false,
@@ -342,7 +342,7 @@
 			"fieldDefs": []
 		},
 		{
-			"identifier": "stairs",
+			"identifier": "staircase",
 			"uid": 16,
 			"tags": [],
 			"exportToToc": false,

@@ -1,0 +1,361 @@
+{
+    "sheets": [
+        {
+            "name": "Enemy",
+            "description": "",
+            "displayColumn": "id",
+            "guid": "94f26063-d083-4796-a6ed-0a2dc57a6687",
+            "columns": [
+                {
+                    "typeStr": "enum",
+                    "guid": "f81d9ece-43ad-440e-9f4a-666f6175c39c",
+                    "name": "Type",
+                    "description": "new enum field",
+                    "options": "fighter, ranger",
+                    "defaultValue": "",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "88daa3c8-4045-4005-87c6-40d5384d2672",
+                    "description": "int field",
+                    "name": "Level",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "b80552ac-e2d0-4049-bd72-2c22376852a6",
+                    "description": "int field",
+                    "name": "HP",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "4062e566-9277-42a1-98e2-7c70f64f0fc9",
+                    "description": "int field",
+                    "name": "ATK",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "a4e91c66-02e4-4a6b-aaa4-0e52794babf4",
+                    "description": "int field",
+                    "name": "DEF",
+                    "min": 0,
+                    "max": 10000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "f9320c7c-6a23-424d-9399-45169142af4c",
+                    "description": "int field",
+                    "name": "EXP",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "enum",
+                    "guid": "7c150855-8fec-443a-bf61-ebdc19f4ee39",
+                    "name": "Drop",
+                    "description": "new enum field",
+                    "options": "guard_piece, red_potion",
+                    "defaultValue": "",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "6ab4e062-8e99-4f4f-bec4-13cc17e47ef1",
+                    "id": "0",
+                    "HP": 120,
+                    "ATK": 55,
+                    "DEF": 25,
+                    "EXP": 2,
+                    "Drop": "guard_piece",
+                    "Type": "fighter",
+                    "Level": 1
+                },
+                {
+                    "guid": "bbddbb9c-a3fe-4887-ab4f-c2333179af4a",
+                    "id": "1",
+                    "HP": 320,
+                    "ATK": 110,
+                    "DEF": 40,
+                    "EXP": 5,
+                    "Drop": "guard_piece",
+                    "Type": "fighter",
+                    "Level": 3
+                },
+                {
+                    "guid": "22b2e9ce-07f4-4f81-970a-984d5ea442c1",
+                    "id": "2",
+                    "HP": 200,
+                    "ATK": 200,
+                    "DEF": 10,
+                    "EXP": 4,
+                    "Drop": "red_potion",
+                    "Type": "ranger",
+                    "Level": 2
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Item",
+            "description": "description of what the sheet is",
+            "displayColumn": "id",
+            "guid": "75528e66-3c47-4c12-823c-987bdeca845b",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "3f910497-7d5b-4449-9e20-ce60da4d05cd",
+                    "name": "Name",
+                    "description": "text field",
+                    "defaultValue": "",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "d0ffb607-ef50-4173-b692-130dcfe0911c",
+                    "description": "int field",
+                    "name": "ATK",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "3a5620ba-e66b-493c-8159-09e6215596ad",
+                    "description": "int field",
+                    "name": "DEF",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "881089af-1ab6-446a-a067-5e61d2bda140",
+                    "description": "int field",
+                    "name": "HP",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "55267f5e-3555-418e-9f6a-7d7599d54c44",
+                    "id": "0",
+                    "Name": "power_piece",
+                    "ATK": 1,
+                    "DEF": 0,
+                    "HP": 0
+                },
+                {
+                    "guid": "ebfe8b68-edc6-4c17-9d6c-8d44974d2b84",
+                    "id": "1",
+                    "Name": "power_gem",
+                    "ATK": 2,
+                    "DEF": 0,
+                    "HP": 0
+                },
+                {
+                    "guid": "f1025ca2-d369-4697-88a8-f515d8b92198",
+                    "id": "2",
+                    "Name": "guard_piece",
+                    "ATK": 0,
+                    "DEF": 1,
+                    "HP": 0
+                },
+                {
+                    "guid": "377b8204-1d50-4003-a1b7-11bac192a0d1",
+                    "id": "3",
+                    "Name": "guard_gem",
+                    "ATK": 0,
+                    "DEF": 2,
+                    "HP": 0
+                },
+                {
+                    "guid": "b032fbae-89b7-4a00-a714-f01f2c474042",
+                    "id": "4",
+                    "Name": "blue_potion",
+                    "ATK": 0,
+                    "DEF": 0,
+                    "HP": 800
+                },
+                {
+                    "guid": "926d55a2-2d2a-4b22-8c27-237e1ad885d3",
+                    "id": "5",
+                    "Name": "red_potion",
+                    "ATK": 0,
+                    "DEF": 0,
+                    "HP": 200
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Attributes",
+            "description": "props@75528e66-3c47-4c12-823c-987bdeca845b",
+            "displayColumn": "id",
+            "guid": "b9897bc5-7998-414d-b392-8928531d4739",
+            "columns": [
+                {
+                    "typeStr": "int",
+                    "guid": "96319a2c-a55d-4b07-a670-b767d4fbd88a",
+                    "description": "int field",
+                    "name": "ATK",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "026d3755-ae44-4f9b-be39-af4d8ee0ccd5",
+                    "description": "int field",
+                    "name": "DEF",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                }
+            ],
+            "lines": [],
+            "hidden": true,
+            "isProps": true,
+            "parentSheetGUID": "75528e66-3c47-4c12-823c-987bdeca845b",
+            "columnGUID": "dc21bfb3-28b3-414c-8239-0abbf4993d9b"
+        }
+    ]
+}

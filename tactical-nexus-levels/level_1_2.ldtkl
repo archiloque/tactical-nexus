@@ -2153,7 +2153,7 @@
 					"fieldInstances": []
 				},
 				{
-					"__identifier": "stairs",
+					"__identifier": "staircase",
 					"__grid": [1,8],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -2170,7 +2170,7 @@
 					}] }]
 				},
 				{
-					"__identifier": "stairs",
+					"__identifier": "staircase",
 					"__grid": [15,8],
 					"__pivot": [0,0],
 					"__tags": [],

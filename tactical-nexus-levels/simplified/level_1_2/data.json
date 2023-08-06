@@ -1667,9 +1667,9 @@
 				"customFields" : {}
 			}
 		],
-		"stairs": [
+		"staircase": [
 			{
-				"id": "stairs",
+				"id": "staircase",
 				"iid": "14635800-1460-11ee-bd8c-67a8eea79407",
 				"layer": "entities",
 				"x": 16,
@@ -1682,7 +1682,7 @@
 				}
 			},
 			{
-				"id": "stairs",
+				"id": "staircase",
 				"iid": "16708d20-1460-11ee-bd8c-c52f3b2e72c9",
 				"layer": "entities",
 				"x": 240,

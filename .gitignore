@@ -1,6 +1,12 @@
 tactical-nexus-solver/target/
 tactical-nexus-solver/.mvn
+
+tactical-nexus-data-preparation/target/
+tactical-nexus-data-preparation/.mvn/
+
 tactical-nexus-levels/**/*.png
+
+
 ### IntelliJ IDEA ###
 tactical-nexus-solver/.idea/*
 
