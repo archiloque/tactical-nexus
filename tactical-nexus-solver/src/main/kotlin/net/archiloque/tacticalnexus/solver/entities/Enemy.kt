@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.solver
+package net.archiloque.tacticalnexus.solver.entities
 
 enum class EnemyType() {
     fighter,
@@ -10,7 +10,7 @@ data class Enemy(
     val def: Int,
     val exp: Int,
     val drop: Item,
-)
+) : Entity
 
 data class EnemyId(
     val type: EnemyType,

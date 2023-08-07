@@ -19,7 +19,7 @@ class Solver(val enemies: List<Enemy>, val items: List<Item>, levels: List<Level
     }
 
     private fun generateItems() {
-        val itemClass = ClassName("net.archiloque.tacticalnexus.solver", "Item")
+        val itemClass = ClassName("net.archiloque.tacticalnexus.solver.entities", "Item")
 
         val itemsCompanion = TypeSpec
             .companionObjectBuilder()
@@ -42,7 +42,7 @@ class Solver(val enemies: List<Enemy>, val items: List<Item>, levels: List<Level
         val itemsArrayCode = CodeBlock.Builder().add("%M(", arrayOf)
         for (item in items) {
             itemsArrayCode.add(
-                "${item.identifier} , ",
+                "${item.identifier}, ",
             )
         }
         itemsArrayCode.add(")")
@@ -71,7 +71,7 @@ class Solver(val enemies: List<Enemy>, val items: List<Item>, levels: List<Level
     }
 
     private fun generateEnemies() {
-        val enemyClass = ClassName("net.archiloque.tacticalnexus.solver", "Enemy")
+        val enemyClass = ClassName("net.archiloque.tacticalnexus.solver.entities", "Enemy")
 
         val file = FileSpec
             .builder("net.archiloque.tacticalnexus.solver.input", "Enemies")

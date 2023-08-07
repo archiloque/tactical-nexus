@@ -3,7 +3,7 @@ package net.archiloque.tacticalnexus.solver.input
 import javax.`annotation`.processing.Generated
 import kotlin.Array
 import kotlin.arrayOf
-import net.archiloque.tacticalnexus.solver.Item
+import net.archiloque.tacticalnexus.solver.entities.Item
 
 @Generated
 public class Items {
@@ -30,8 +30,8 @@ public class Items {
 
     public val red_potion: Item = Item("red_potion", 0, 0, 200)
 
-    public val items: Array<Item> = arrayOf(power_piece , power_gem , guard_piece , guard_gem ,
-        blue_potion , red_potion , heavenly_potion , guard_potion , life_potion , power_potion ,
-        power_card , )
+    public val items: Array<Item> = arrayOf(power_piece, power_gem, guard_piece, guard_gem,
+        blue_potion, red_potion, heavenly_potion, guard_potion, life_potion, power_potion,
+        power_card, )
   }
 }

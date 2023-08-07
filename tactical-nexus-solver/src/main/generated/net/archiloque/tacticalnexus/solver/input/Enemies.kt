@@ -3,7 +3,7 @@ package net.archiloque.tacticalnexus.solver.input
 import javax.`annotation`.processing.Generated
 import kotlin.Array
 import kotlin.arrayOf
-import net.archiloque.tacticalnexus.solver.Enemy
+import net.archiloque.tacticalnexus.solver.entities.Enemy
 
 @Generated
 public class Enemies {
