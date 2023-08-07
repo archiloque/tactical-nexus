@@ -1,9 +1,9 @@
-package net.archiloque.tacticalnexussataprepartion.formats.input.entities
+package net.archiloque.tacticalnexus.datapreparation.input.entities
 
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import net.archiloque.tacticalnexussataprepartion.EnemyType
+import net.archiloque.tacticalnexus.datapreparation.EnemyType
 
 @Serializable
 @SerialName("Enemy")

@@ -1,9 +1,9 @@
-package net.archiloque.tacticalnexussataprepartion.formats.input.level
+package net.archiloque.tacticalnexus.datapreparation.input.level
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class KeyAndDoor(
+data class Wall(
     override val x: Int,
     override val y: Int,
 ) : Entity

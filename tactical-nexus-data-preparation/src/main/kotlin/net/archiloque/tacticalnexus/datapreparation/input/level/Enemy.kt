@@ -1,16 +1,23 @@
-package net.archiloque.tacticalnexussataprepartion.formats.input.level
+package net.archiloque.tacticalnexus.datapreparation.input.level
 
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import net.archiloque.tacticalnexussataprepartion.EnemyType
+import net.archiloque.tacticalnexus.datapreparation.EnemyType
 
 @Serializable
-class Enemy(
+data class Enemy(
     override val x: Int,
     override val y: Int,
     @SerialName("customFields") @Required val enemyCustomFields: EnemyCustomFields,
-) : Entity
+) : Entity {
+    fun level(): Int {
+        return enemyCustomFields.level
+    }
+    fun type(): EnemyType {
+        return enemyCustomFields.type
+    }
+}
 
 
 @Serializable

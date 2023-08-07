@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexussataprepartion.formats.input.level
+package net.archiloque.tacticalnexus.datapreparation.input.level
 
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName

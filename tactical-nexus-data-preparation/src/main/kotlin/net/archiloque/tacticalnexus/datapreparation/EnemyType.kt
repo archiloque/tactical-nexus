@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexussataprepartion
+package net.archiloque.tacticalnexus.datapreparation
 
 import kotlinx.serialization.Serializable
 

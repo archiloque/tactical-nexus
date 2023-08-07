@@ -8,7 +8,8 @@ tactical-nexus-levels/**/*.png
 
 
 ### IntelliJ IDEA ###
-tactical-nexus-solver/.idea/*
+**/.idea/*
+**/*.iml
 
 ### VS Code ###
 .vscode/
