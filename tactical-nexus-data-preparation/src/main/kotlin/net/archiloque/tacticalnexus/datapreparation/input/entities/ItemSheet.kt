@@ -13,6 +13,7 @@ data class ItemSheet(
 
 @Serializable
 data class Item(
+    @Required @SerialName("Identifier") val identifier: String,
     @Required @SerialName("Name") val name: String,
     @Required @SerialName("ATK") val atk: Int,
     @Required @SerialName("DEF") val def: Int,

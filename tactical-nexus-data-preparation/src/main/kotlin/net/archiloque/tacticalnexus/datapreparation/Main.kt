@@ -35,16 +35,16 @@ fun main(args: Array<String>) {
     val enemies = (entities.sheets.find { it.name == "Enemy" } as? EnemySheet)!!.enemies
     val enemiesIds = enemies.map { EnemyId(it.type, it.level) }
     val items = (entities.sheets.find { it.name == "Item" } as? ItemSheet)!!.items
-    val itemsNames = items.map { it.name }
+    val itemsIdentifiers = items.map { it.identifier }
 
-    validateItems(items, itemsNames)
-    validateEnemies(enemies, enemiesIds, itemsNames)
-    validateLevels(levels, itemsNames, enemiesIds)
+    validateItems(items, itemsIdentifiers)
+    validateEnemies(enemies, enemiesIds, itemsIdentifiers)
+    validateLevels(levels, itemsIdentifiers, enemiesIds)
 
     Solver(enemies, items, levels).generate()
 }
 
-private fun validateLevels(levels: List<Level>, itemsNames: List<String>, enemiesIds: List<EnemyId>) {
+private fun validateLevels(levels: List<Level>, itemsIdentifiers: List<String>, enemiesIds: List<EnemyId>) {
     println("Validating levels")
     levels.forEach { level ->
         level.entities.enemy?.forEach { enemy ->
@@ -54,17 +54,17 @@ private fun validateLevels(levels: List<Level>, itemsNames: List<String>, enemie
             }
         }
         level.entities.item?.forEach { item ->
-            val itemName = item.name()
-            if (!itemsNames.contains(itemName)) {
-                throw RuntimeException("Unknown item [${item}] in level [${level.identifier}] at (${item.x}, ${item.y})")
+            val itemIdentifier = item.identifier()
+            if (!itemsIdentifiers.contains(itemIdentifier)) {
+                throw RuntimeException("Unknown item [${itemIdentifier}] in level [${level.identifier}] at (${item.x}, ${item.y})")
             }
         }
     }
 }
 
-private fun validateItems(items: List<Item>, itemsNames: List<String>) {
+private fun validateItems(items: List<Item>, itemsIdentifiers: List<String>) {
     println("Validating items")
-    checkDuplicates(itemsNames.groupBy { it })
+    checkDuplicates(itemsIdentifiers.groupBy { it })
     items.forEach {
         if (it.atk < 0) {
             throw RuntimeException("Bad atk [${it}]")
@@ -77,7 +77,7 @@ private fun validateItems(items: List<Item>, itemsNames: List<String>) {
     println("${items.size} items are OK")
 }
 
-private fun validateEnemies(enemies: List<Enemy>, enemiesIds: List<EnemyId>, itemsNames: List<String>) {
+private fun validateEnemies(enemies: List<Enemy>, enemiesIds: List<EnemyId>, itemsIdentifiers: List<String>) {
     println("Validating enemies")
     enemies.forEach {
         if (it.atk <= 0) {
@@ -90,7 +90,7 @@ private fun validateEnemies(enemies: List<Enemy>, enemiesIds: List<EnemyId>, ite
             throw RuntimeException("Bad exp [${it}]")
         } else if (it.level <= 0) {
             throw RuntimeException("Bad level [${it}]")
-        } else if (!itemsNames.contains(it.drop)) {
+        } else if (!itemsIdentifiers.contains(it.drop)) {
             throw RuntimeException("Unknown item [${it}]")
         }
     }

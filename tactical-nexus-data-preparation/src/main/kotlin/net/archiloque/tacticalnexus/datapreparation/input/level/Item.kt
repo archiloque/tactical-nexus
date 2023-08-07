@@ -11,7 +11,7 @@ data class Item(
     override val y: Int,
     @SerialName("customFields") @Required val itemCustomFields: ItemCustomFields,
 ) : Entity {
-    fun name(): String {
+    fun identifier(): String {
         return itemCustomFields.item
     }
 }

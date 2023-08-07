@@ -193,7 +193,7 @@
                 {
                     "typeStr": "text",
                     "guid": "3f910497-7d5b-4449-9e20-ce60da4d05cd",
-                    "name": "Name",
+                    "name": "Identifier",
                     "description": "text field",
                     "defaultValue": "",
                     "iconName": "newText",
@@ -253,96 +253,120 @@
                         "max": "int",
                         "defaultValue": "int"
                     }
+                },
+                {
+                    "typeStr": "text",
+                    "guid": "77a99962-7617-4e14-92db-116b3d7ed8f1",
+                    "name": "Name",
+                    "description": "text field",
+                    "defaultValue": "",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
                 }
             ],
             "lines": [
                 {
                     "guid": "55267f5e-3555-418e-9f6a-7d7599d54c44",
                     "id": "0",
-                    "Name": "power_piece",
                     "ATK": 1,
                     "DEF": 0,
-                    "HP": 0
+                    "HP": 0,
+                    "Identifier": "power_piece",
+                    "Name": "Power piece"
                 },
                 {
                     "guid": "ebfe8b68-edc6-4c17-9d6c-8d44974d2b84",
                     "id": "1",
-                    "Name": "power_gem",
                     "ATK": 2,
                     "DEF": 0,
-                    "HP": 0
+                    "HP": 0,
+                    "Identifier": "power_gem",
+                    "Name": "Power gem"
                 },
                 {
                     "guid": "f1025ca2-d369-4697-88a8-f515d8b92198",
                     "id": "2",
-                    "Name": "guard_piece",
                     "ATK": 0,
                     "DEF": 1,
-                    "HP": 0
+                    "HP": 0,
+                    "Identifier": "guard_piece",
+                    "Name": "Guard piece"
                 },
                 {
                     "guid": "377b8204-1d50-4003-a1b7-11bac192a0d1",
                     "id": "3",
-                    "Name": "guard_gem",
                     "ATK": 0,
                     "DEF": 2,
-                    "HP": 0
+                    "HP": 0,
+                    "Identifier": "guard_gem",
+                    "Name": "Guard gem"
                 },
                 {
                     "guid": "b032fbae-89b7-4a00-a714-f01f2c474042",
                     "id": "4",
-                    "Name": "blue_potion",
                     "ATK": 0,
                     "DEF": 0,
-                    "HP": 800
+                    "HP": 800,
+                    "Identifier": "blue_potion",
+                    "Name": "Blue potion"
                 },
                 {
                     "guid": "926d55a2-2d2a-4b22-8c27-237e1ad885d3",
                     "id": "5",
-                    "Name": "red_potion",
                     "ATK": 0,
                     "DEF": 0,
-                    "HP": 200
+                    "HP": 200,
+                    "Identifier": "red_potion",
+                    "Name": "Red potion"
                 },
                 {
                     "guid": "ee70053d-69a9-4bb6-8df5-0116e837e935",
                     "id": "6",
-                    "Name": "heavenly_potion",
                     "ATK": 0,
                     "DEF": 3,
-                    "HP": 3000
+                    "HP": 3000,
+                    "Identifier": "heavenly_potion",
+                    "Name": "Heavenly potion"
                 },
                 {
                     "guid": "b9ed314f-4f45-4814-a02e-bc1bf59509d9",
                     "id": "7",
-                    "Name": "guard_potion",
                     "ATK": 0,
                     "DEF": 3,
-                    "HP": 300
+                    "HP": 300,
+                    "Identifier": "guard_potion",
+                    "Name": "Guard potion"
                 },
                 {
                     "guid": "415035e0-f6a5-4548-9f53-fc08ce3ccfeb",
                     "id": "8",
-                    "Name": "life_potion",
                     "ATK": 3,
                     "DEF": 0,
-                    "HP": 300
+                    "HP": 300,
+                    "Identifier": "life_potion",
+                    "Name": "Life potion"
                 },
                 {
                     "guid": "5debcd88-b5e3-449c-a4ac-19501ed4eb1b",
                     "id": "9",
-                    "Name": "power_potion",
                     "ATK": 2,
                     "DEF": 0,
-                    "HP": 0
+                    "HP": 0,
+                    "Identifier": "power_potion",
+                    "Name": "Power potion"
                 },
                 {
                     "guid": "f57813a8-906c-4c30-828b-41f6b487ccfc",
                     "id": "10",
-                    "Name": "power_card",
                     "ATK": 5,
                     "DEF": 0,
-                    "HP": 0
+                    "HP": 0,
+                    "Identifier": "power_card",
+                    "Name": "Power card"
                 }
             ],
             "hidden": false,

@@ -9,7 +9,7 @@ data class Enemy(
     val atk: Int,
     val def: Int,
     val exp: Int,
-    val drop: String,
+    val drop: Item,
 )
 
 data class EnemyId(
