@@ -1415,7 +1415,7 @@
 							"id": "V_String",
 							"params": ["ranger"]
 						}] },
-						{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 22, "realEditorValues": [] }
+						{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }
 					]
 				},
 				{

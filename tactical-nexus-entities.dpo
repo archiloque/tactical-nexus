@@ -155,6 +155,17 @@
                     "Drop": "red_potion",
                     "Type": "ranger",
                     "Level": 2
+                },
+                {
+                    "guid": "2eb4de97-8b04-4796-8eea-3e675ea84ef1",
+                    "id": "3",
+                    "Type": "ranger",
+                    "Level": 4,
+                    "HP": 200,
+                    "ATK": 350,
+                    "DEF": 20,
+                    "EXP": 16,
+                    "Drop": "red_potion"
                 }
             ],
             "hidden": false,
@@ -292,6 +303,46 @@
                     "ATK": 0,
                     "DEF": 0,
                     "HP": 200
+                },
+                {
+                    "guid": "ee70053d-69a9-4bb6-8df5-0116e837e935",
+                    "id": "6",
+                    "Name": "heavenly_potion",
+                    "ATK": 0,
+                    "DEF": 3,
+                    "HP": 3000
+                },
+                {
+                    "guid": "b9ed314f-4f45-4814-a02e-bc1bf59509d9",
+                    "id": "7",
+                    "Name": "guard_potion",
+                    "ATK": 0,
+                    "DEF": 3,
+                    "HP": 300
+                },
+                {
+                    "guid": "415035e0-f6a5-4548-9f53-fc08ce3ccfeb",
+                    "id": "8",
+                    "Name": "life_potion",
+                    "ATK": 3,
+                    "DEF": 0,
+                    "HP": 300
+                },
+                {
+                    "guid": "5debcd88-b5e3-449c-a4ac-19501ed4eb1b",
+                    "id": "9",
+                    "Name": "power_potion",
+                    "ATK": 2,
+                    "DEF": 0,
+                    "HP": 0
+                },
+                {
+                    "guid": "f57813a8-906c-4c30-828b-41f6b487ccfc",
+                    "id": "10",
+                    "Name": "power_card",
+                    "ATK": 5,
+                    "DEF": 0,
+                    "HP": 0
                 }
             ],
             "hidden": false,

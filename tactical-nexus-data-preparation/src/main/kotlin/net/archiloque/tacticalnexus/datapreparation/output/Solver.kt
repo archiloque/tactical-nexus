@@ -20,11 +20,16 @@ class Solver(val enemies: List<Enemy>, items: List<Item>, levels: List<Level>) {
                 TypeSpec
                     .classBuilder("Enemies")
                     .addAnnotation(Generated::class)
-                    .addProperty(
-                        enemyBuilder(arrayOf, enemyClass, "fighters", EnemyType.fighter)
-                    )
-                    .addProperty(
-                        enemyBuilder(arrayOf, enemyClass, "rangers", EnemyType.ranger)
+                    .addType(
+                      TypeSpec
+                          .companionObjectBuilder()
+                          .addProperty(
+                              enemyBuilder(arrayOf, enemyClass, "fighters", EnemyType.fighter)
+                          )
+                          .addProperty(
+                              enemyBuilder(arrayOf, enemyClass, "rangers", EnemyType.ranger)
+                          )
+                          .build()
                     )
                     .build()
             )
