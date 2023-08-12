@@ -36,7 +36,7 @@ class Levels {
                     println("Generating levels for level ${level}")
                     val level =
                         levels.find { (it.levelCustomFields.tower == tower) && (it.levelCustomFields.level == level) }!!
-                    val entities = mutableMapOf<Position, Entity>()
+                    val entities = mutableListOf<Entity>()
                     addEntities(level.entities.door, entities)
                     addEntities(level.entities.enemy, entities)
                     addEntities(level.entities.item, entities)
@@ -45,36 +45,65 @@ class Levels {
                     addEntities(level.entities.playerStartPosition, entities)
                     addEntities(level.entities.wall, entities)
 
-                    val maxX = entities.keys.maxBy { it.x }.x
-                    val maxY = entities.keys.maxBy { it.y }.y
-                    println("Level is ${maxX} x ${maxY}")
-                    levelsArrayCode.add("Level(${maxX}, ${maxY}, %M(", Solver.arrayOf)
-                    for (x in 0..maxX) {
+                    val maxX = entities.maxBy { it.x }.x
+                    val maxY = entities.maxBy { it.y }.y
+                    val maxLine = maxY / 16
+                    val maxColumn = maxX / 16
+
+                    val entitiesByPosition = mutableMapOf<Position, Entity>()
+                    for (entity in entities) {
+                        entitiesByPosition[Position(entity.y / 16, entity.x / 16)] = entity
+                    }
+
+                    println("Level is ${maxLine} x ${maxColumn}")
+                    levelsArrayCode.add("Level(${maxLine}, ${maxColumn}, %M(", Solver.arrayOf)
+                    for (line in 0..maxLine) {
                         levelsArrayCode.add("%M(", Solver.arrayOf)
-                        for (y in 0..maxY) {
-                            val currentEntity = entities[Position(x, y)]
-                            if(currentEntity == null) {
+                        for (column in 0..maxColumn) {
+                            val currentEntity = entitiesByPosition[Position(line, column)]
+                            if (currentEntity == null) {
                                 levelsArrayCode.add("null")
                             } else {
                                 when (currentEntity) {
                                     is Door -> {
-                                        levelsArrayCode.add("%T(%T.${currentEntity.keyOrDoorCustomFields.color})", doorClass, keyOrDoorColorClass)
+                                        levelsArrayCode.add(
+                                            "%T(%T.${currentEntity.keyOrDoorCustomFields.color})",
+                                            doorClass,
+                                            keyOrDoorColorClass
+                                        )
                                     }
+
                                     is Enemy -> {
-                                        levelsArrayCode.add("%T.${currentEntity.enemyCustomFields.type}s[${currentEntity.enemyCustomFields.level}]", enemiesClass)
+                                        levelsArrayCode.add(
+                                            "%T.${currentEntity.enemyCustomFields.type}s[${currentEntity.enemyCustomFields.level}]",
+                                            enemiesClass
+                                        )
                                     }
+
                                     is Item -> {
                                         levelsArrayCode.add("%T.${currentEntity.itemCustomFields.item}", itemsClass)
                                     }
+
                                     is Key -> {
-                                            levelsArrayCode.add("%T(%T.${currentEntity.keyOrDoorCustomFields.color})", keyClass, keyOrDoorColorClass)
+                                        levelsArrayCode.add(
+                                            "%T(%T.${currentEntity.keyOrDoorCustomFields.color})",
+                                            keyClass,
+                                            keyOrDoorColorClass
+                                        )
                                     }
+
                                     is PlayerStartPosition -> {
                                         levelsArrayCode.add("%T.instance", playerStartPositionClass)
                                     }
+
                                     is Staircase -> {
-                                        levelsArrayCode.add("%T(%T.StaircaseDirection.${currentEntity.staircaseCustomFields.direction})", staircaseClass, staircaseClass)
+                                        levelsArrayCode.add(
+                                            "%T(%T.StaircaseDirection.${currentEntity.staircaseCustomFields.direction})",
+                                            staircaseClass,
+                                            staircaseClass
+                                        )
                                     }
+
                                     is Wall -> {
                                         levelsArrayCode.add("%T.instance", wallClass)
                                     }
@@ -120,17 +149,17 @@ class Levels {
             }
         }
 
-        private fun addEntities(entities: List<Entity>?, positions: MutableMap<Position, Entity>) {
+        private fun addEntities(entities: List<Entity>?, targetList: MutableList<Entity>) {
             if (entities != null) {
                 for (entity in entities) {
-                    positions[Position(entity.x / 16, entity.y / 16)] = entity
+                    targetList.addAll(entities)
                 }
             }
         }
 
         private data class Position(
-            val x: Int,
-            val y: Int,
+            val line: Int,
+            val column: Int,
         )
 
     }

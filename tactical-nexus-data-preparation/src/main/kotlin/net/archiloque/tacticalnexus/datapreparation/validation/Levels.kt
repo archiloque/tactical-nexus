@@ -10,7 +10,8 @@ class Levels {
             println("Validating levels")
             val towerList = levels.map { it.levelCustomFields.tower }.toSet().sorted()
             for (tower in towerList) {
-                val levelsIndexForTower = levels.filter { it.levelCustomFields.tower == tower }.map { it.levelCustomFields.level }.sorted()
+                val levelsIndexForTower =
+                    levels.filter { it.levelCustomFields.tower == tower }.map { it.levelCustomFields.level }.sorted()
                 var theoricalIndex = 1
                 for (levelIndex in levelsIndexForTower) {
                     if (levelIndex != theoricalIndex) {
