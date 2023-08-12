@@ -26,7 +26,10 @@
 	"__smartColor": "#ADADB5",
 	"__bgPos": null,
 	"externalRelPath": null,
-	"fieldInstances": [],
+	"fieldInstances": [
+		{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+		{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] }
+	],
 	"layerInstances": [
 		{
 			"__identifier": "entities",
@@ -1519,40 +1522,6 @@
 					]
 				},
 				{
-					"__identifier": "key_and_door",
-					"__grid": [13,5],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#FFFFFF",
-					"iid": "438caab0-1460-11ee-bd8c-575ee0040e18",
-					"width": 16,
-					"height": 16,
-					"defUid": 13,
-					"px": [208,80],
-					"fieldInstances": [{ "__identifier": "keys_and_doors", "__type": "LocalEnum.keys_and_doors", "__value": "yellow_key", "__tile": null, "defUid": 14, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["yellow_key"]
-					}] }]
-				},
-				{
-					"__identifier": "key_and_door",
-					"__grid": [14,5],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#FFFFFF",
-					"iid": "45b3d070-1460-11ee-bd8c-0d0a3692c25c",
-					"width": 16,
-					"height": 16,
-					"defUid": 13,
-					"px": [224,80],
-					"fieldInstances": [{ "__identifier": "keys_and_doors", "__type": "LocalEnum.keys_and_doors", "__value": "yellow_door", "__tile": null, "defUid": 14, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["yellow_door"]
-					}] }]
-				},
-				{
 					"__identifier": "enemy",
 					"__grid": [9,7],
 					"__pivot": [0,0],
@@ -1571,6 +1540,40 @@
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 3, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }
 					]
+				},
+				{
+					"__identifier": "key",
+					"__grid": [13,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#EAD4AA",
+					"iid": "602c8d50-1460-11ee-8d86-91b587064d2b",
+					"width": 16,
+					"height": 16,
+					"defUid": 27,
+					"px": [208,80],
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "yellow", "__tile": null, "defUid": 28, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["yellow"]
+					}] }]
+				},
+				{
+					"__identifier": "door",
+					"__grid": [14,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E4A672",
+					"iid": "a6fd0fc0-1460-11ee-8d86-6f3d5d272697",
+					"width": 16,
+					"height": 16,
+					"defUid": 29,
+					"px": [224,80],
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "yellow", "__tile": null, "defUid": 30, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["yellow"]
+					}] }]
 				}
 			]
 		}

@@ -5,4 +5,8 @@ data class Item(
     val atk: Int,
     val def: Int,
     val hp: Int,
-) : Entity
+) : Entity {
+    override fun getType(): Entity.EntityType {
+        return Entity.EntityType.Item
+    }
+}

@@ -12,7 +12,10 @@
 			"dir": "w"
 		}
 	],
-	"customFields" : {},
+	"customFields": {
+		"tower": 1,
+		"level": 2
+	},
 	"layers": [],
 	"entities": {
 		"wall": [

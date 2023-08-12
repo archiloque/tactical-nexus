@@ -12,7 +12,10 @@
 			"dir": "e"
 		}
 	],
-	"customFields" : {},
+	"customFields": {
+		"tower": 1,
+		"level": 1
+	},
 	"layers": [],
 	"entities": {
 		"player_start_position": [
@@ -1162,31 +1165,33 @@
 				}
 			}
 		],
-		"key_and_door": [
+		"key": [
 			{
-				"id": "key_and_door",
-				"iid": "438caab0-1460-11ee-bd8c-575ee0040e18",
+				"id": "key",
+				"iid": "602c8d50-1460-11ee-8d86-91b587064d2b",
 				"layer": "entities",
 				"x": 208,
 				"y": 80,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 15389866,
 				"customFields": {
-					"keys_and_doors": "yellow_key"
+					"key_or_door_color": "yellow"
 				}
-			},
+			}
+		],
+		"door": [
 			{
-				"id": "key_and_door",
-				"iid": "45b3d070-1460-11ee-bd8c-0d0a3692c25c",
+				"id": "door",
+				"iid": "a6fd0fc0-1460-11ee-8d86-6f3d5d272697",
 				"layer": "entities",
 				"x": 224,
 				"y": 80,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 14984818,
 				"customFields": {
-					"keys_and_doors": "yellow_door"
+					"key_or_door_color": "yellow"
 				}
 			}
 		]

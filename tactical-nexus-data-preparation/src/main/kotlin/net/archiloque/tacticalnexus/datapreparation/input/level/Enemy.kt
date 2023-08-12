@@ -14,6 +14,7 @@ data class Enemy(
     fun level(): Int {
         return enemyCustomFields.level
     }
+
     fun type(): EnemyType {
         return enemyCustomFields.type
     }

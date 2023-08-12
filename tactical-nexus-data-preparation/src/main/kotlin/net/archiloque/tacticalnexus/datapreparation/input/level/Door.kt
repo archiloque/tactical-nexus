@@ -5,18 +5,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Item(
+data class Door(
     override val x: Int,
     override val y: Int,
-    @SerialName("customFields") @Required val itemCustomFields: ItemCustomFields,
-) : Entity {
-    fun identifier(): String {
-        return itemCustomFields.item
+    @SerialName("customFields") @Required val keyOrDoorCustomFields: KeyOrDoorCustomFields,
+) : Entity, KeyOrDoor {
+    override fun color(): String {
+        return keyOrDoorCustomFields.color
     }
 }
-
-
-@Serializable
-data class ItemCustomFields(
-    @Required val item: String,
-)
