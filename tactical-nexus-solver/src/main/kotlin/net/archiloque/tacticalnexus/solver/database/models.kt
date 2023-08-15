@@ -12,8 +12,8 @@ public enum class PositionStatus(val value: String) {
 
 public object Positions : Table<Nothing>("positions") {
     val id = int("id").primaryKey()
-    val visitedEntities = registerColumn("visited_entities", Mappings.BitSetSqlType)
-    val reachableEntities = registerColumn("reachable_entities", Mappings.BitSetSqlType)
-    val moves = registerColumn("moves", Mappings.IntArraySqlType)
+    val visitedEntities = bitSet("visited_entities")
+    val reachableEntities = bitSet("reachable_entities")
+    val moves = intArray("moves")
     val status = enum<PositionStatus>("status")
 }

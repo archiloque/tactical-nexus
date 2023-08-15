@@ -8,36 +8,24 @@ import java.sql.ResultSet
 import java.sql.Types
 import java.util.*
 
-/**
- * Represent values of PostgreSQL `Int[]` SQL type.
- */
-typealias IntArray = Array<Int?>
-
 class Mappings {
 
 
     /**
-     * Define a column typed [IntArraySqlType].
-     */
-    fun BaseTable<*>.intArray(name: String): Column<IntArray> {
-        return registerColumn(name, IntArraySqlType)
-    }
-
-    /**
      * [SqlType] implementation represents PostgreSQL `int[]` type.
      */
-    object IntArraySqlType : SqlType<IntArray>(Types.ARRAY, "int[]") {
+    object IntArraySqlType : SqlType<Array<Int>>(Types.ARRAY, "int[]") {
 
-        override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: IntArray) {
+        override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: Array<Int>) {
             ps.setObject(index, parameter)
         }
 
         @Suppress("UNCHECKED_CAST")
-        override fun doGetResult(rs: ResultSet, index: Int): IntArray? {
+        override fun doGetResult(rs: ResultSet, index: Int): Array<Int>? {
             val sqlArray = rs.getArray(index) ?: return null
             try {
-                val objectArray = sqlArray.array as Array<Any?>?
-                return objectArray?.map { it as Int? }?.toTypedArray()
+                val objectArray = sqlArray.array as Array<Any>?
+                return objectArray?.map { it as Int }?.toTypedArray()
             } finally {
                 sqlArray.free()
             }
@@ -58,7 +46,7 @@ class Mappings {
             ps.setObject(index, representation, Types.OTHER)
         }
 
-        override fun doGetResult(rs: ResultSet, index: Int): BitSet? {
+        override fun doGetResult(rs: ResultSet, index: Int): BitSet {
             val stringValue = rs.getString(index)
             val result = BitSet(stringValue.length)
             stringValue.forEachIndexed { i, c ->
@@ -69,4 +57,12 @@ class Mappings {
             return result
         }
     }
+}
+
+fun BaseTable<*>.intArray(name: String): Column<Array<Int>> {
+    return registerColumn(name, Mappings.IntArraySqlType)
+}
+
+fun BaseTable<*>.bitSet(name: String): Column<BitSet> {
+    return registerColumn(name, Mappings.BitSetSqlType)
 }
