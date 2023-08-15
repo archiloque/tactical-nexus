@@ -18,6 +18,30 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <properties>
+        <ktorm.version>3.6.0</ktorm.version>
+        <postgresql.driver.version>42.6.0</postgresql.driver.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.ktorm</groupId>
+            <artifactId>ktorm-core</artifactId>
+            <version>${ktorm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.driver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ktorm</groupId>
+            <artifactId>ktorm-support-postgresql</artifactId>
+            <version>${ktorm.version}</version>
+        </dependency>
+    </dependencies>
+
 
     <build>
         <plugins>
