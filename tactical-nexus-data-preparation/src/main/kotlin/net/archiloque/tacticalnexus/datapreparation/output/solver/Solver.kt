@@ -8,7 +8,7 @@ import java.nio.file.Paths
 
 
 class Solver(val enemies: List<Enemy>, val items: List<Item>, val levels: List<Level>) {
-    private val generatedPath = Paths.get("../tactical-nexus-solver/src/main/generated")
+    private val generatedPath = Paths.get("../tactical-nexus-solver/src/main/kotlin")
 
     companion object {
         val arrayOf = MemberName("kotlin", "arrayOf")

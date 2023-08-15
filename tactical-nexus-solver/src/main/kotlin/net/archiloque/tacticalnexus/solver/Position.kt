@@ -1,6 +1,7 @@
 package net.archiloque.tacticalnexus.solver
 
-sealed interface Position {
-    val x: Int
-    val y: Int
-}
+data class Position(
+    val level: Int,
+    val line: Int,
+    val column: Int,
+)

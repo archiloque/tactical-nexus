@@ -33,7 +33,6 @@ class Levels {
 
                 val levelsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
                 for (level in levelsIndexForTower) {
-                    println("Generating levels for level ${level}")
                     val level =
                         levels.find { (it.levelCustomFields.tower == tower) && (it.levelCustomFields.level == level) }!!
                     val entities = mutableListOf<Entity>()
@@ -55,8 +54,7 @@ class Levels {
                         entitiesByPosition[Position(entity.y / 16, entity.x / 16)] = entity
                     }
 
-                    println("Level is ${maxLine} x ${maxColumn}")
-                    levelsArrayCode.add("Level(${maxLine}, ${maxColumn}, %M(", Solver.arrayOf)
+                    levelsArrayCode.add("Level(${maxLine + 1}, ${maxColumn + 1}, %M(", Solver.arrayOf)
                     for (line in 0..maxLine) {
                         levelsArrayCode.add("%M(", Solver.arrayOf)
                         for (column in 0..maxColumn) {
