@@ -9,13 +9,14 @@ data class Tower(
     val data: Array<Level>,
     val positionedEntities: Array<PositionedEntity>,
     val entitiesIndexByPosition: Map<Position, Int>,
+    val startingPosition: Int,
     val reachableEntities: Array<Array<Int>>,
 ) {
 
     companion object {
         public fun prepare(data: Array<Level>): Tower {
             val positionedEntitiesList = mutableListOf<PositionedEntity>()
-            var startingPosition: PositionedEntity
+            var startingPosition: Int = -1
             data.forEachIndexed { levelIndex, level ->
                 for (column in 0..<level.columns) {
                     for (line in 0..<level.lines) {
@@ -23,7 +24,7 @@ data class Tower(
                         if ((entity != null) && (entity.getType() != Entity.EntityType.Wall)) {
                             val positionedEntity = PositionedEntity(entity, levelIndex, line, column)
                             if (entity.getType() == Entity.EntityType.PlayerStartPosition) {
-                                startingPosition = positionedEntity
+                                startingPosition = positionedEntitiesList.size
                             }
                             positionedEntitiesList.add(positionedEntity)
                         }
@@ -43,18 +44,22 @@ data class Tower(
                 findReacheableEntities(
                     positionedEntity,
                     data,
-                    entitiesIndexByPosition,
-                    positionedEntities
+                    entitiesIndexByPosition
                 )
             }.toTypedArray()
-            return Tower(data, positionedEntities, entitiesIndexByPosition, reachableEntities)
+            return Tower(
+                data,
+                positionedEntities,
+                entitiesIndexByPosition,
+                startingPosition,
+                reachableEntities,
+            )
         }
 
         private fun findReacheableEntities(
             entity: PositionedEntity,
             data: Array<Level>,
             entitiesIndexByPosition: MutableMap<Position, Int>,
-            positionedEntities: Array<PositionedEntity>,
         ): Array<Int> {
             var positionsToCheck = mutableSetOf<Position>()
             val exploredPositions = mutableSetOf<Position>()
