@@ -1,5 +1,10 @@
 package net.archiloque.tacticalnexus.datapreparation
 
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.util.stream.Collectors
+import kotlin.io.path.readText
 import kotlinx.serialization.json.Json
 import net.archiloque.tacticalnexus.datapreparation.input.entities.EnemySheet
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Entities
@@ -9,11 +14,6 @@ import net.archiloque.tacticalnexus.datapreparation.output.solver.Solver
 import net.archiloque.tacticalnexus.datapreparation.validation.Enemies
 import net.archiloque.tacticalnexus.datapreparation.validation.Items
 import net.archiloque.tacticalnexus.datapreparation.validation.Levels
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
-import java.util.stream.Collectors
-import kotlin.io.path.readText
 
 private val json = Json { ignoreUnknownKeys = true }
 

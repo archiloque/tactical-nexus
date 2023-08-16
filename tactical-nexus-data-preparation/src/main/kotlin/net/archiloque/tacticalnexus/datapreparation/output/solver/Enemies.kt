@@ -1,12 +1,17 @@
 package net.archiloque.tacticalnexus.datapreparation.output.solver;
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asClassName
+import java.nio.file.Path
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.datapreparation.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
-import java.nio.file.Path
-import javax.annotation.processing.Generated
 
 class Enemies {
 

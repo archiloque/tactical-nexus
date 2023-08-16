@@ -1574,6 +1574,40 @@
 						"id": "V_String",
 						"params": ["yellow"]
 					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [5,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E43B44",
+					"iid": "b262c5b0-3b70-11ee-99b8-d5447c441b35",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [80,80],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "life_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["life_potion"]
+					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [4,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E43B44",
+					"iid": "bab5d090-3b70-11ee-99b8-dd29c40d40b1",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [64,80],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_gem", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["power_gem"]
+					}] }]
 				}
 			]
 		}

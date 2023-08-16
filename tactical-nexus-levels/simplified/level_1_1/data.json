@@ -978,6 +978,32 @@
 				"customFields": {
 					"item": "power_gem"
 				}
+			},
+			{
+				"id": "item",
+				"iid": "b262c5b0-3b70-11ee-99b8-d5447c441b35",
+				"layer": "entities",
+				"x": 80,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "life_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "bab5d090-3b70-11ee-99b8-dd29c40d40b1",
+				"layer": "entities",
+				"x": 64,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "power_gem"
+				}
 			}
 		],
 		"enemy": [

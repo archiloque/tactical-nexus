@@ -1,19 +1,15 @@
 package net.archiloque.tacticalnexus.solver.database
 
-import org.ktorm.schema.BaseTable
-import org.ktorm.schema.Column
-import org.ktorm.schema.SqlType
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.Types
-import java.util.*
+import java.util.BitSet
+import org.ktorm.schema.BaseTable
+import org.ktorm.schema.Column
+import org.ktorm.schema.SqlType
 
 class Mappings {
 
-
-    /**
-     * [SqlType] implementation represents PostgreSQL `int[]` type.
-     */
     object IntArraySqlType : SqlType<Array<Int>>(Types.ARRAY, "int[]") {
 
         override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: Array<Int>) {

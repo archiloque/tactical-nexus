@@ -7,6 +7,7 @@ import net.archiloque.tacticalnexus.solver.entities.Wall
 
 data class Tower(
     val data: Array<Level>,
+    val entitiesNumber: Int,
     val positionedEntities: Array<PositionedEntity>,
     val entitiesIndexByPosition: Map<Position, Int>,
     val startingPosition: Int,
@@ -18,8 +19,8 @@ data class Tower(
             val positionedEntitiesList = mutableListOf<PositionedEntity>()
             var startingPosition: Int = -1
             data.forEachIndexed { levelIndex, level ->
+                for (line in 0..<level.lines) {
                 for (column in 0..<level.columns) {
-                    for (line in 0..<level.lines) {
                         val entity = level.entities[line][column]
                         if ((entity != null) && (entity.getType() != Entity.EntityType.Wall)) {
                             val positionedEntity = PositionedEntity(entity, levelIndex, line, column)
@@ -49,6 +50,7 @@ data class Tower(
             }.toTypedArray()
             return Tower(
                 data,
+                positionedEntities.size,
                 positionedEntities,
                 entitiesIndexByPosition,
                 startingPosition,

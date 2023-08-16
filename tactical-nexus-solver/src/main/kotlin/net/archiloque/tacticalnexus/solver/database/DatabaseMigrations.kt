@@ -20,30 +20,31 @@ class DatabaseMigrations {
         }
 
         private fun runMigration(database: Database, migration: String) {
+            println("Running SQL migration [${migration}]")
             database.useConnection { conn ->
-                val migrationPath = "/migrations/${migration}.sql"
-                println("Running SQL migration [${migrationPath}]")
-                val migrationContent = database.javaClass.getResource(migrationPath).readText()
-                conn.prepareStatement(migrationContent).use { statement ->
-                    statement.execute()
+                database.useTransaction {
+                    conn.prepareStatement(readSqlFile("migrations/${migration}.sql")).use { statement ->
+                        statement.execute()
+                    }
                 }
             }
         }
 
         private fun clearDatabase(database: Database) {
             database.useConnection { conn ->
-                val sql = "SELECT count(*) FROM pg_catalog.pg_tables where schemaname = ?"
-                conn.prepareStatement(sql).use { statement ->
+                conn.prepareStatement(readSqlFile("migrations/count_tables.sql")).use { statement ->
                     statement.setString(1, "public")
                     val resultSet = statement.executeQuery()
                     resultSet.next()
                     val tablesCount = resultSet.getInt(1)
                     if (tablesCount != 0) {
                         println("Clearing database")
-                        val clearQueries = database.javaClass.getResource("/migrations/clear.sql").readText()
+                        val clearQueries = readSqlFile("migrations/clear.sql")
                         clearQueries.split("\n").forEach { clearQuery ->
-                            conn.prepareStatement(clearQuery).use { statement ->
-                                statement.execute()
+                            database.useTransaction {
+                                conn.prepareStatement(clearQuery).use { statement ->
+                                    statement.execute()
+                                }
                             }
                         }
                     }

@@ -1,10 +1,23 @@
 package net.archiloque.tacticalnexus.datapreparation.output.solver
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import net.archiloque.tacticalnexus.datapreparation.input.level.*
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asClassName
 import java.nio.file.Path
 import javax.annotation.processing.Generated
+import net.archiloque.tacticalnexus.datapreparation.input.level.Door
+import net.archiloque.tacticalnexus.datapreparation.input.level.Enemy
+import net.archiloque.tacticalnexus.datapreparation.input.level.Entity
+import net.archiloque.tacticalnexus.datapreparation.input.level.Item
+import net.archiloque.tacticalnexus.datapreparation.input.level.Key
+import net.archiloque.tacticalnexus.datapreparation.input.level.Level
+import net.archiloque.tacticalnexus.datapreparation.input.level.PlayerStartPosition
+import net.archiloque.tacticalnexus.datapreparation.input.level.Staircase
+import net.archiloque.tacticalnexus.datapreparation.input.level.Wall
 
 class Levels {
     companion object {
