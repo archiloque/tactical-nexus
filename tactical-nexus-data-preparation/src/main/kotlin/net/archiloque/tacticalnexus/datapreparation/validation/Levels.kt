@@ -1,12 +1,18 @@
 package net.archiloque.tacticalnexus.datapreparation.validation;
 
 import net.archiloque.tacticalnexus.datapreparation.EnemyId
+import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.level.Level
 
 class Levels {
 
     companion object {
-        fun validate(levels: List<Level>, itemsIdentifiers: List<String>, enemiesIds: List<EnemyId>) {
+        fun validate(
+            levels: List<Level>,
+            itemsIdentifiers: List<String>,
+            enemies: List<Enemy>,
+            statsIds: List<Int>,
+        ) {
             println("Validating levels")
             val towerList = levels.map { it.levelCustomFields.tower }.toSet().sorted()
             for (tower in towerList) {
@@ -19,9 +25,14 @@ class Levels {
                     }
                     theoricalIndex++
                 }
+                if (!statsIds.contains(tower)) {
+                    throw RuntimeException("Stats not found for tower [${tower}]")
+                }
             }
 
             levels.forEach { level ->
+                val enemiesIds =
+                    enemies.filter { it.tower == level.levelCustomFields.tower }.map { EnemyId.fromEnemy(it) }
                 level.entities.enemy?.forEach { enemy ->
                     val enemyId = EnemyId(enemy.type(), enemy.level())
                     if (!enemiesIds.contains(enemyId)) {

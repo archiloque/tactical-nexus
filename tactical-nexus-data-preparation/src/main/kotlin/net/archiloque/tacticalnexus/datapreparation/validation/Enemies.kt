@@ -7,7 +7,7 @@ import net.archiloque.tacticalnexus.datapreparation.validation.Validator.Compani
 class Enemies {
 
     companion object {
-        fun validate(enemies: List<Enemy>, enemiesIds: List<EnemyId>, itemsIdentifiers: List<String>) {
+        fun validate(enemies: List<Enemy>, itemsIdentifiers: List<String>) {
             println("Validating enemies")
             enemies.forEach {
                 if (it.atk <= 0) {
@@ -20,11 +20,17 @@ class Enemies {
                     throw RuntimeException("Bad exp [${it}]")
                 } else if (it.level <= 0) {
                     throw RuntimeException("Bad level [${it}]")
+                } else if (it.tower <= 0) {
+                    throw RuntimeException("Bad tower  [${it}]")
                 } else if (!itemsIdentifiers.contains(it.drop)) {
                     throw RuntimeException("Unknown item [${it}]")
                 }
             }
-            checkDuplicates(enemiesIds.groupBy { it })
+            val towers = enemies.map { it.tower }.toSet()
+            for (tower in towers) {
+                val towerEnemiesIds = enemies.filter { it.tower == tower }.map { EnemyId.fromEnemy(it) }
+                checkDuplicates(towerEnemiesIds.groupBy { it })
+            }
             println("${enemies.size} enemies are OK")
         }
 

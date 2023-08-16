@@ -11,11 +11,10 @@ data class Enemy(
         return Entity.EntityType.Enemy
     }
 
-    enum class EnemyType() {
-        fighter,
-        ranger
+    enum class EnemyType(val value: Int) {
+        fighter(0),
+        ranger(1)
     }
-
 
     data class EnemyId(
         val type: EnemyType,

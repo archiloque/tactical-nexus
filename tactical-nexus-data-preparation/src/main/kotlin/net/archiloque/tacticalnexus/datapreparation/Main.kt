@@ -6,21 +6,30 @@ import java.nio.file.Paths
 import java.util.stream.Collectors
 import kotlin.io.path.readText
 import kotlinx.serialization.json.Json
+import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.entities.EnemySheet
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Entities
 import net.archiloque.tacticalnexus.datapreparation.input.entities.ItemSheet
+import net.archiloque.tacticalnexus.datapreparation.input.entities.StatSheet
 import net.archiloque.tacticalnexus.datapreparation.input.level.Level
 import net.archiloque.tacticalnexus.datapreparation.output.solver.Solver
 import net.archiloque.tacticalnexus.datapreparation.validation.Enemies
 import net.archiloque.tacticalnexus.datapreparation.validation.Items
 import net.archiloque.tacticalnexus.datapreparation.validation.Levels
+import net.archiloque.tacticalnexus.datapreparation.validation.Stats
 
 private val json = Json { ignoreUnknownKeys = true }
 
 data class EnemyId(
     val type: EnemyType,
     val level: Int,
-)
+) {
+    companion object {
+        fun fromEnemy(enemy: Enemy): EnemyId {
+            return EnemyId(enemy.type, enemy.level)
+        }
+    }
+}
 
 fun main(args: Array<String>) {
     println("Looking for levels in [${Paths.get("../tactical-nexus-levels")}]")
@@ -37,13 +46,15 @@ fun main(args: Array<String>) {
     val entities = json.decodeFromString<Entities>(entitiesPath.readText())
 
     val enemies = (entities.sheets.find { it.name == "Enemy" } as? EnemySheet)!!.enemies
-    val enemiesIds = enemies.map { EnemyId(it.type, it.level) }
     val items = (entities.sheets.find { it.name == "Item" } as? ItemSheet)!!.items
     val itemsIdentifiers = items.map { it.identifier }
+    val stats = (entities.sheets.find { it.name == "Stat" } as? StatSheet)!!.stats
+    val statsIds = stats.map { it.tower }
 
     Items.validate(items, itemsIdentifiers)
-    Enemies.validate(enemies, enemiesIds, itemsIdentifiers)
-    Levels.validate(levels, itemsIdentifiers, enemiesIds)
+    Enemies.validate(enemies, itemsIdentifiers)
+    Stats.validate(stats)
+    Levels.validate(levels, itemsIdentifiers, enemies, statsIds)
 
-    Solver(enemies, items, levels).generate()
+    Solver(enemies, items, levels, stats).generate()
 }

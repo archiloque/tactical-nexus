@@ -3,10 +3,8 @@ package net.archiloque.tacticalnexus.datapreparation.output.solver;
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.asClassName
 import java.nio.file.Path
 import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
@@ -44,7 +42,7 @@ class Items {
             }
             itemsArrayCode.add(")")
             val itemsProperty = PropertySpec
-                .builder("items", Array::class.asClassName().parameterizedBy(itemClass))
+                .builder("items", Solver.arrayOf(itemClass))
                 .initializer(itemsArrayCode.build())
                 .build()
 

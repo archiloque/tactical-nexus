@@ -15,12 +15,12 @@ data class Tower(
 ) {
 
     companion object {
-        public fun prepare(data: Array<Level>): Tower {
+        public fun prepare(tower: net.archiloque.tacticalnexus.solver.entities.Tower): Tower {
             val positionedEntitiesList = mutableListOf<PositionedEntity>()
             var startingPosition: Int = -1
-            data.forEachIndexed { levelIndex, level ->
+            tower.levels().forEachIndexed { levelIndex, level ->
                 for (line in 0..<level.lines) {
-                for (column in 0..<level.columns) {
+                    for (column in 0..<level.columns) {
                         val entity = level.entities[line][column]
                         if ((entity != null) && (entity.getType() != Entity.EntityType.Wall)) {
                             val positionedEntity = PositionedEntity(entity, levelIndex, line, column)
@@ -44,12 +44,12 @@ data class Tower(
             val reachableEntities = positionedEntities.mapIndexed { index, positionedEntity ->
                 findReacheableEntities(
                     positionedEntity,
-                    data,
+                    tower.levels(),
                     entitiesIndexByPosition
                 )
             }.toTypedArray()
             return Tower(
-                data,
+                tower.levels(),
                 positionedEntities.size,
                 positionedEntities,
                 entitiesIndexByPosition,

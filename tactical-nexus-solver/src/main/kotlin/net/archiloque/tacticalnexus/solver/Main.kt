@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
 
     DatabaseMigrations.run(database)
 
-    val tower = Tower.prepare(Tower_1.levels)
+    val tower = Tower.prepare(Tower_1().levels())
     val visitedEntities = BitSet(tower.entitiesNumber)
     visitedEntities.set(tower.startingPosition)
     val reachableEntities = BitSet(tower.entitiesNumber)
