@@ -10,7 +10,7 @@ class DatabaseMigrations {
             "002",
             "003",
             "004",
-            )
+        )
 
         fun run(database: Database) {
             clearDatabase(database)

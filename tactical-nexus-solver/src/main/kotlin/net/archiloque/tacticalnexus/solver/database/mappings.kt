@@ -32,8 +32,8 @@ class Mappings {
 
         override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: BitSet) {
             val representation: String?
-            representation = (0..< parameter.length()).map {value ->
-                if(parameter.get(value)) {
+            representation = (0..<parameter.length()).map { value ->
+                if (parameter.get(value)) {
                     '1'
                 } else {
                     '0'

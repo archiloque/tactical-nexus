@@ -1,11 +1,19 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-class PlayerStartPosition() : Entity {
+import net.archiloque.tacticalnexus.solver.code.PositionSaver
+import net.archiloque.tacticalnexus.solver.code.Tower
+import net.archiloque.tacticalnexus.solver.database.Position
+
+class PlayerStartPosition() : Entity() {
     companion object {
         val instance = PlayerStartPosition()
     }
 
-    override fun getType(): Entity.EntityType {
-        return Entity.EntityType.PlayerStartPosition
+    override fun getType(): EntityType {
+        return EntityType.PlayerStartPosition
+    }
+
+    override fun play(entityIndex: Int, position: Position, tower: Tower, positionSaver: PositionSaver) {
+        throw IllegalStateException("Should not happen")
     }
 }

@@ -145,7 +145,7 @@ class Levels {
                     name,
                 )
                     .addModifiers(KModifier.OVERRIDE)
-                    .returns(ClassName("java.util","Int"))
+                    .returns(ClassName("kotlin","Int"))
                     .addCode("return %L", value)
                     .build()
             )

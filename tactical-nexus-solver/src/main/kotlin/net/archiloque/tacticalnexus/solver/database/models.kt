@@ -16,26 +16,67 @@ enum class PositionStatus(val value: String) {
 }
 
 data class Position(
-    val id: Int,
-    val visitedEntities: BitSet,
-    val reachableEntities: BitSet,
-    val moves: Array<Int>,
-    val status: PositionStatus,
+    var id: Int,
+
+    var status: PositionStatus,
+
+    var visitedEntities: BitSet,
+    var reachableEntities: BitSet,
+
+    var atk: Int,
+    var def: Int,
+    var hp: Int,
+
+    var blue_keys: Int,
+    var crimson_keys: Int,
+    var platinum_keys: Int,
+    var violet_keys: Int,
+    var yellow_keys: Int,
+
+    var moves: Array<Int>,
 )
 
 object Positions : BaseTable<Position>("positions") {
     val id = int("id").primaryKey()
-    val visitedEntities = bitSet("visited_entities")
-    val reachableEntities = bitSet("reachable_entities")
-    val moves = intArray("moves")
+
     val status = enum<PositionStatus>("status")
+
+    val visitedEntities = bitSet("visited_entities")
+
+    val reachableEntities = bitSet("reachable_entities")
+
+    val moves = intArray("moves")
+
+    val atk = int("atk")
+    val def = int("def")
+    val hp = int("hp")
+
+    val blue_keys = int("blue_keys")
+    val crimson_keys = int("crimson_keys")
+    val platinum_keys = int("platinum_keys")
+    val violet_keys = int("violet_keys")
+    val yellow_keys = int("yellow_keys")
+
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Position {
         return Position(
-            id = row[id] ?: 0,
-            visitedEntities = row[visitedEntities] ?: BitSet(),
-            reachableEntities = row[reachableEntities] ?: BitSet(),
-            moves = row[moves] ?: arrayOf(),
-            status = row[status] ?: PositionStatus.new,
+            id = row[id]!!,
+
+            status = row[status]!!,
+
+            visitedEntities = row[visitedEntities]!!,
+            reachableEntities = row[reachableEntities]!!,
+
+            moves = row[moves]!!,
+
+            atk = row[atk]!!,
+            def = row[def]!!,
+            hp = row[hp]!!,
+
+            blue_keys = row[blue_keys]!!,
+            crimson_keys = row[crimson_keys]!!,
+            platinum_keys = row[platinum_keys]!!,
+            violet_keys = row[violet_keys]!!,
+            yellow_keys = row[yellow_keys]!!,
         )
     }
 }
@@ -57,10 +98,21 @@ public fun findNextPosition(database: Database): Position? {
                 if (result.next()) {
                     return Position(
                         result.getInt(1),
+                        PositionStatus.in_progress,
                         Mappings.BitSetSqlType.getResult(result, 2)!!,
                         Mappings.BitSetSqlType.getResult(result, 3)!!,
-                        Mappings.IntArraySqlType.getResult(result, 4)!!,
-                        PositionStatus.in_progress
+
+                        result.getInt(4),
+                        result.getInt(5),
+                        result.getInt(6),
+
+                        result.getInt(7),
+                        result.getInt(8),
+                        result.getInt(9),
+                        result.getInt(10),
+                        result.getInt(11),
+
+                        Mappings.IntArraySqlType.getResult(result, 12)!!,
                     )
                 } else {
                     return null

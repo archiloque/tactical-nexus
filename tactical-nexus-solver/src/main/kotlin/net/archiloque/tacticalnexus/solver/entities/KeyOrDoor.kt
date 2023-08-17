@@ -5,5 +5,9 @@ interface KeyOrDoor {
 }
 
 enum class KeyOrDoorColor() {
+    blue,
+    crimson,
+    platinum,
+    violet,
     yellow,
 }
