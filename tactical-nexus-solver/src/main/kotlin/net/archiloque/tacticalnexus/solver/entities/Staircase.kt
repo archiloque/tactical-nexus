@@ -17,13 +17,13 @@ data class Staircase(val direction: StaircaseDirection) : Entity() {
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
         when(direction) {
             StaircaseDirection.up -> {
+                val newState = newState(entityIndex, state)
                 val matchingDownStaircase = playableTower.stairs[entityIndex]!!
-                val newPosition = newState(entityIndex, state)
-                newPosition.visitedEntities.set(matchingDownStaircase)
+                newState.visitedEntities.set(matchingDownStaircase)
                 for(entityReachableOnNextLevel in playableTower.reachableEntities[matchingDownStaircase]) {
-                    newPosition.reachableEntities.set(entityReachableOnNextLevel)
+                    newState.reachableEntities.set(entityReachableOnNextLevel)
                 }
-                addNewPositions(entityIndex, newPosition, playableTower, stateSaver)
+                stateSaver.save(newState)
             }
             StaircaseDirection.down -> {
                 throw IllegalStateException("Should not happen")

@@ -8,10 +8,13 @@ import net.archiloque.tacticalnexus.solver.code.Player
 import net.archiloque.tacticalnexus.solver.database.DatabaseMigrations
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.States
+import net.archiloque.tacticalnexus.solver.database.States.id
 import net.archiloque.tacticalnexus.solver.database.findNextState
 import net.archiloque.tacticalnexus.solver.input.towers.Tower_1
 import org.ktorm.database.Database
+import org.ktorm.dsl.eq
 import org.ktorm.dsl.insert
+import org.ktorm.dsl.update
 import org.ktorm.logging.ConsoleLogger
 import org.ktorm.logging.LogLevel
 import org.ktorm.support.postgresql.PostgreSqlDialect
@@ -61,6 +64,14 @@ fun main(args: Array<String>) {
         val state = findNextState(database)
         if (state != null) {
             Player.play(state, playableTower, stateSaver)
+            database.useTransaction {
+                database.update(States) {
+                    set(it.status, StateStatus.processed)
+                    where {
+                        id eq state.id
+                    }
+                }
+            }
         } else {
             exitProcess(0)
         }

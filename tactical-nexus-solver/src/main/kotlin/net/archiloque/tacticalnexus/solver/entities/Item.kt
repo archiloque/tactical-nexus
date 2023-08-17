@@ -1,7 +1,7 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
+import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.database.State
 
 data class Item(
@@ -21,13 +21,14 @@ data class Item(
     }
 
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
-        val newPosition = newState(entityIndex, state)
-        collect(newPosition)
-        addNewPositions(
+        val newState = newState(entityIndex, state)
+        collect(newState)
+        addNewReachablePositions(
             entityIndex,
-            newPosition,
+            newState,
             playableTower,
             stateSaver
         )
+        stateSaver.save(newState)
     }
 }

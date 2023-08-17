@@ -16,19 +16,20 @@ data class Enemy(
     }
 
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
-        val newPosition = newState(entityIndex, state)
+        val newState = newState(entityIndex, state)
         val fightResult = fight(
-            state.atk,
-            state.def,
-            state.hp,
+            newState.atk,
+            newState.def,
+            newState.hp,
             atk,
             def,
             hp
         )
         if (fightResult != null) {
-            newPosition.hp = fightResult
-            drop.collect(newPosition)
-            addNewPositions(entityIndex, newPosition, playableTower, stateSaver)
+            newState.hp = fightResult
+            drop.collect(newState)
+            addNewReachablePositions(entityIndex, newState, playableTower, stateSaver)
+            stateSaver.save(newState)
         }
     }
 

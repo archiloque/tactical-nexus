@@ -91,7 +91,6 @@ val findNextStateQuery: String = readSqlFile("find_next_state.sql")
 
 fun findNextState(database: Database): State? {
     database.useConnection { conn ->
-        database.useTransaction {
             conn.prepareStatement(findNextStateQuery).use { statement ->
                 statement.setObject(1, StateStatus.in_progress.name, Types.OTHER)
                 statement.setObject(2, StateStatus.new.name, Types.OTHER)
@@ -119,6 +118,5 @@ fun findNextState(database: Database): State? {
                     return null
                 }
             }
-        }
     }
 }
