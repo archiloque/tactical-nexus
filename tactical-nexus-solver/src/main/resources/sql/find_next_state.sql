@@ -1,8 +1,8 @@
-UPDATE positions
+UPDATE states
 SET status = ?
 WHERE id =
 		(SELECT id
-			FROM positions
+			FROM states
 			WHERE status = ?
 			LIMIT 1
 			FOR UPDATE SKIP LOCKED) RETURNING id,

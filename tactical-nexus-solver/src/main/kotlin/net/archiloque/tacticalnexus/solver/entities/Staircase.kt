@@ -1,8 +1,8 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-import net.archiloque.tacticalnexus.solver.code.PositionSaver
-import net.archiloque.tacticalnexus.solver.code.Tower
-import net.archiloque.tacticalnexus.solver.database.Position
+import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.PlayableTower
+import net.archiloque.tacticalnexus.solver.database.State
 
 data class Staircase(val direction: StaircaseDirection) : Entity() {
     companion object {
@@ -14,7 +14,7 @@ data class Staircase(val direction: StaircaseDirection) : Entity() {
         return EntityType.Staircase
     }
 
-    override fun play(entityIndex: Int, position: Position, tower: Tower, positionSaver: PositionSaver) {
+    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
         TODO("Not yet implemented")
     }
 

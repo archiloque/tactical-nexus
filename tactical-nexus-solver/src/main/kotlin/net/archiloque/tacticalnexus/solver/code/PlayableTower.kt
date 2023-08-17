@@ -5,8 +5,7 @@ import net.archiloque.tacticalnexus.solver.entities.Entity
 import net.archiloque.tacticalnexus.solver.entities.Level
 import net.archiloque.tacticalnexus.solver.entities.Wall
 
-data class Tower(
-    val data: Array<Level>,
+class PlayableTower(
     val entitiesNumber: Int,
     val positionedEntities: Array<PositionedEntity>,
     val entitiesIndexByPosition: Map<Position, Int>,
@@ -15,7 +14,7 @@ data class Tower(
 ) {
 
     companion object {
-        public fun prepare(tower: net.archiloque.tacticalnexus.solver.entities.Tower): Tower {
+        fun prepare(tower: net.archiloque.tacticalnexus.solver.entities.Tower): PlayableTower {
             val positionedEntitiesList = mutableListOf<PositionedEntity>()
             var startingPosition: Int = -1
             tower.levels().forEachIndexed { levelIndex, level ->
@@ -48,8 +47,7 @@ data class Tower(
                     entitiesIndexByPosition
                 )
             }.toTypedArray()
-            return Tower(
-                tower.levels(),
+            return PlayableTower(
                 positionedEntities.size,
                 positionedEntities,
                 entitiesIndexByPosition,

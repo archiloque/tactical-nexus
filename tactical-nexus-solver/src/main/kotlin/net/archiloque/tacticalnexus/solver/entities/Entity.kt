@@ -1,15 +1,15 @@
 package net.archiloque.tacticalnexus.solver.entities
 
 import java.util.BitSet
-import net.archiloque.tacticalnexus.solver.code.PositionSaver
-import net.archiloque.tacticalnexus.solver.code.Tower
-import net.archiloque.tacticalnexus.solver.database.Position
-import net.archiloque.tacticalnexus.solver.database.PositionStatus
+import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.PlayableTower
+import net.archiloque.tacticalnexus.solver.database.StateStatus
+import net.archiloque.tacticalnexus.solver.database.State
 
 abstract class Entity {
     abstract fun getType(): EntityType
 
-    abstract fun play(entityIndex: Int, position: Position, tower: Tower, positionSaver: PositionSaver)
+    abstract fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver)
 
     enum class EntityType() {
         Door,
@@ -21,39 +21,39 @@ abstract class Entity {
         Wall,
     }
 
-    protected fun newPosition(entityIndex: Int, position: Position): Position {
-        val visitedEntities = position.visitedEntities.clone() as BitSet
+    protected fun newState(entityIndex: Int, state: State): State {
+        val visitedEntities = state.visitedEntities.clone() as BitSet
         visitedEntities.set(entityIndex)
-        val reachableEntities = position.reachableEntities.clone() as BitSet
+        val reachableEntities = state.reachableEntities.clone() as BitSet
         reachableEntities.set(entityIndex, false)
-        return Position(
-            -1,
-            PositionStatus.new,
+        return State(
+            -1, // Ensure it can't be saved
+            StateStatus.new,
 
             visitedEntities,
             reachableEntities,
-            position.atk,
-            position.def,
-            position.hp,
+            state.atk,
+            state.def,
+            state.hp,
 
-            position.blue_keys,
-            position.crimson_keys,
-            position.platinum_keys,
-            position.violet_keys,
-            position.yellow_keys,
+            state.blue_keys,
+            state.crimson_keys,
+            state.platinum_keys,
+            state.violet_keys,
+            state.yellow_keys,
 
-            position.moves.plus(entityIndex),
+            state.moves.plus(entityIndex),
         )
     }
 
 
-    protected fun addNewPositions(entityIndex: Int, position: Position, tower: Tower, positionSaver: PositionSaver) {
-        position.reachableEntities.set(entityIndex, false)
-        for (reachableEntity in tower.reachableEntities[entityIndex]) {
-            if ((!position.visitedEntities.get(reachableEntity)) && (!position.reachableEntities.get(reachableEntity))) {
-                position.reachableEntities.set(reachableEntity)
+    protected fun addNewPositions(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+        state.reachableEntities.set(entityIndex, false)
+        for (reachableEntity in playableTower.reachableEntities[entityIndex]) {
+            if ((!state.visitedEntities.get(reachableEntity)) && (!state.reachableEntities.get(reachableEntity))) {
+                state.reachableEntities.set(reachableEntity)
             }
         }
-        positionSaver.save(position)
+        stateSaver.save(state)
     }
 }

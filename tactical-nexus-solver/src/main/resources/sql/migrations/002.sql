@@ -1,8 +1,8 @@
-CREATE TABLE positions
+CREATE TABLE states
 (
     id BIGSERIAL NOT NULL,
 
-    status POSITION_STATUS NOT NULL,
+    status STATE_STATUS NOT NULL,
 
     visited_entities BIT VARYING(2048) NOT NULL,
     reachable_entities BIT VARYING(2048) NOT NULL,

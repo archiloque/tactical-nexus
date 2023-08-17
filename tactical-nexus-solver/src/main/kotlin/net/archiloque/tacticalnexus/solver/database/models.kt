@@ -9,16 +9,16 @@ import org.ktorm.schema.BaseTable
 import org.ktorm.schema.enum
 import org.ktorm.schema.int
 
-enum class PositionStatus(val value: String) {
+enum class StateStatus(val value: String) {
     new("new"),
     in_progress("in_progress"),
     processed("processed"),
 }
 
-data class Position(
+data class State(
     var id: Int,
 
-    var status: PositionStatus,
+    var status: StateStatus,
 
     var visitedEntities: BitSet,
     var reachableEntities: BitSet,
@@ -36,10 +36,10 @@ data class Position(
     var moves: Array<Int>,
 )
 
-object Positions : BaseTable<Position>("positions") {
+object States : BaseTable<State>("states") {
     val id = int("id").primaryKey()
 
-    val status = enum<PositionStatus>("status")
+    val status = enum<StateStatus>("status")
 
     val visitedEntities = bitSet("visited_entities")
 
@@ -57,8 +57,8 @@ object Positions : BaseTable<Position>("positions") {
     val violet_keys = int("violet_keys")
     val yellow_keys = int("yellow_keys")
 
-    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): Position {
-        return Position(
+    override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): State {
+        return State(
             id = row[id]!!,
 
             status = row[status]!!,
@@ -81,24 +81,25 @@ object Positions : BaseTable<Position>("positions") {
     }
 }
 
-public fun readSqlFile(path: String): String {
+fun readSqlFile(path: String): String {
     return Database.javaClass.getResource("/sql/${path}").readText()
 }
 
-val Database.positions get() = this.sequenceOf(Positions)
+val Database.positions get() = this.sequenceOf(States)
 
-val findNextPositionQuery: String = readSqlFile("find_next_position.sql")
-public fun findNextPosition(database: Database): Position? {
+val findNextStateQuery: String = readSqlFile("find_next_state.sql")
+
+fun findNextState(database: Database): State? {
     database.useConnection { conn ->
         database.useTransaction {
-            conn.prepareStatement(findNextPositionQuery).use { statement ->
-                statement.setObject(1, PositionStatus.in_progress.name, Types.OTHER)
-                statement.setObject(2, PositionStatus.new.name, Types.OTHER)
+            conn.prepareStatement(findNextStateQuery).use { statement ->
+                statement.setObject(1, StateStatus.in_progress.name, Types.OTHER)
+                statement.setObject(2, StateStatus.new.name, Types.OTHER)
                 val result = statement.executeQuery()
                 if (result.next()) {
-                    return Position(
+                    return State(
                         result.getInt(1),
-                        PositionStatus.in_progress,
+                        StateStatus.in_progress,
                         Mappings.BitSetSqlType.getResult(result, 2)!!,
                         Mappings.BitSetSqlType.getResult(result, 3)!!,
 

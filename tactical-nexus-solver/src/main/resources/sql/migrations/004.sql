@@ -1,5 +1,5 @@
-CREATE UNIQUE INDEX positions_duplicates
-    ON positions USING btree (
+CREATE UNIQUE INDEX states_duplicates
+    ON states USING btree (
     visited_entities,
     reachable_entities,
 

@@ -2,13 +2,13 @@ package net.archiloque.tacticalnexus.solver
 
 import java.util.BitSet
 import kotlin.system.exitProcess
-import net.archiloque.tacticalnexus.solver.code.DefaultPositionSaver
+import net.archiloque.tacticalnexus.solver.code.DefaultStateSaver
+import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.Player
-import net.archiloque.tacticalnexus.solver.code.Tower
 import net.archiloque.tacticalnexus.solver.database.DatabaseMigrations
-import net.archiloque.tacticalnexus.solver.database.PositionStatus
-import net.archiloque.tacticalnexus.solver.database.Positions
-import net.archiloque.tacticalnexus.solver.database.findNextPosition
+import net.archiloque.tacticalnexus.solver.database.StateStatus
+import net.archiloque.tacticalnexus.solver.database.States
+import net.archiloque.tacticalnexus.solver.database.findNextState
 import net.archiloque.tacticalnexus.solver.input.towers.Tower_1
 import org.ktorm.database.Database
 import org.ktorm.dsl.insert
@@ -29,18 +29,18 @@ fun main(args: Array<String>) {
     DatabaseMigrations.run(database)
 
     val inputTower = Tower_1()
-    val tower = Tower.prepare(inputTower)
-    val visitedEntities = BitSet(tower.entitiesNumber)
-    visitedEntities.set(tower.startingPosition)
-    val reachableEntities = BitSet(tower.entitiesNumber)
-    tower.reachableEntities[tower.startingPosition].forEach {
+    val playableTower = PlayableTower.prepare(inputTower)
+    val visitedEntities = BitSet(playableTower.entitiesNumber)
+    visitedEntities.set(playableTower.startingPosition)
+    val reachableEntities = BitSet(playableTower.entitiesNumber)
+    playableTower.reachableEntities[playableTower.startingPosition].forEach {
         reachableEntities.set(it)
     }
 
-    database.insert(Positions) {
+    database.insert(States) {
         set(it.moves, arrayOf())
 
-        set(it.status, PositionStatus.new)
+        set(it.status, StateStatus.new)
 
         set(it.visitedEntities, visitedEntities)
         set(it.reachableEntities, reachableEntities)
@@ -55,12 +55,12 @@ fun main(args: Array<String>) {
         set(it.yellow_keys, 0)
     }
 
-    val positionSaver = DefaultPositionSaver(database)
+    val stateSaver = DefaultStateSaver(database)
 
     while (true) {
-        val position = findNextPosition(database)
-        if (position != null) {
-            Player.playPosition(position, tower, positionSaver)
+        val state = findNextState(database)
+        if (state != null) {
+            Player.play(state, playableTower, stateSaver)
         } else {
             exitProcess(0)
         }

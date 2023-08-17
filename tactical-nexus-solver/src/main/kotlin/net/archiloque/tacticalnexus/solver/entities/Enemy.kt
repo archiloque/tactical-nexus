@@ -1,8 +1,8 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-import net.archiloque.tacticalnexus.solver.code.PositionSaver
-import net.archiloque.tacticalnexus.solver.code.Tower
-import net.archiloque.tacticalnexus.solver.database.Position
+import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.PlayableTower
+import net.archiloque.tacticalnexus.solver.database.State
 
 data class Enemy(
     val hp: Int,
@@ -15,9 +15,9 @@ data class Enemy(
         return EntityType.Enemy
     }
 
-    override fun play(entityIndex: Int, position: Position, tower: Tower, positionSaver: PositionSaver) {
-        val newPosition = newPosition(entityIndex, position)
+    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+        val newPosition = newState(entityIndex, state)
         drop.collect(newPosition)
-        addNewPositions(entityIndex, newPosition, tower, positionSaver)
+        addNewPositions(entityIndex, newPosition, playableTower, stateSaver)
     }
 }

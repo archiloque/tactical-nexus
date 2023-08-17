@@ -1,8 +1,8 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-import net.archiloque.tacticalnexus.solver.code.PositionSaver
-import net.archiloque.tacticalnexus.solver.code.Tower
-import net.archiloque.tacticalnexus.solver.database.Position
+import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.PlayableTower
+import net.archiloque.tacticalnexus.solver.database.State
 
 data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
 
@@ -10,8 +10,8 @@ data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         return EntityType.Key
     }
 
-    override fun play(entityIndex: Int, position: Position, tower: Tower, positionSaver: PositionSaver) {
-        val newPosition = newPosition(entityIndex, position)
+    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+        val newPosition = newState(entityIndex, state)
         when (color) {
             KeyOrDoorColor.blue -> newPosition.blue_keys += 1
             KeyOrDoorColor.crimson -> newPosition.crimson_keys += 1
@@ -22,8 +22,8 @@ data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         addNewPositions(
             entityIndex,
             newPosition,
-            tower,
-            positionSaver
+            playableTower,
+            stateSaver
         )
     }
 
