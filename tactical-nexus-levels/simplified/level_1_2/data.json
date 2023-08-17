@@ -1673,19 +1673,6 @@
 		"staircase": [
 			{
 				"id": "staircase",
-				"iid": "14635800-1460-11ee-bd8c-67a8eea79407",
-				"layer": "entities",
-				"x": 16,
-				"y": 128,
-				"width": 16,
-				"height": 16,
-				"color": 16690740,
-				"customFields": {
-					"direction": "up"
-				}
-			},
-			{
-				"id": "staircase",
 				"iid": "16708d20-1460-11ee-bd8c-c52f3b2e72c9",
 				"layer": "entities",
 				"x": 240,
@@ -1711,6 +1698,19 @@
 				"customFields": {
 					"item": "power_card"
 				}
+			}
+		],
+		"exit": [
+			{
+				"id": "exit",
+				"iid": "a4cd7180-3b70-11ee-861d-bf90dc688dff",
+				"layer": "entities",
+				"x": 16,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields" : {}
 			}
 		]
 	}

@@ -1,10 +1,10 @@
 package net.archiloque.tacticalnexus.solver.entities
 
 import java.util.BitSet
-import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
-import net.archiloque.tacticalnexus.solver.database.StateStatus
+import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.database.StateStatus
 
 abstract class Entity {
     abstract fun getType(): EntityType
@@ -14,6 +14,7 @@ abstract class Entity {
     enum class EntityType() {
         Door,
         Enemy,
+        Exit,
         Item,
         Key,
         PlayerStartPosition,

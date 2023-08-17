@@ -1,8 +1,12 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.annotation.processing.Generated
+import javax.`annotation`.processing.Generated
+import kotlin.Array
+import kotlin.Int
+import kotlin.arrayOf
 import net.archiloque.tacticalnexus.solver.entities.Door
 import net.archiloque.tacticalnexus.solver.entities.Enemy
+import net.archiloque.tacticalnexus.solver.entities.Exit
 import net.archiloque.tacticalnexus.solver.entities.Key
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Level
@@ -125,22 +129,23 @@ public class Tower_1 : Tower {
                     Wall.instance, null, Wall.instance, Wall.instance,
                 ),
                 arrayOf(
+                    Wall.instance, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null,
+                    Staircase(Staircase.StaircaseDirection.down), Wall.instance,
+                ),
+                arrayOf(
                     Wall.instance,
-                    Staircase(Staircase.StaircaseDirection.up), null, null, null, null, null, null, null, null,
-                    null, null, null, null, null, Staircase(Staircase.StaircaseDirection.down), Wall.instance,
+                    Wall.instance, Wall.instance, null, null, Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance, null, Wall.instance, Wall.instance, Wall.instance, Wall.instance, null,
+                    Wall.instance, Wall.instance,
                 ),
                 arrayOf(
-                    Wall.instance, Wall.instance, Wall.instance, null, null, Wall.instance, Wall.instance,
-                    Wall.instance, Wall.instance, null, Wall.instance, Wall.instance, Wall.instance,
-                    Wall.instance, null, Wall.instance, Wall.instance,
+                    Wall.instance, null, null, null, null, Wall.instance,
+                    null, null, Wall.instance, null, Wall.instance, null, null, Wall.instance, null,
+                    Wall.instance, Wall.instance,
                 ),
                 arrayOf(
-                    Wall.instance, null, null, null,
-                    null, Wall.instance, null, null, Wall.instance, null, Wall.instance, null, null,
-                    Wall.instance, null, Wall.instance, Wall.instance,
-                ),
-                arrayOf(
-                    Wall.instance, null, null, null,
+                    Wall.instance, Exit.instance, null, null,
                     Wall.instance, Wall.instance, null, null, null, null, Wall.instance, null, null,
                     Wall.instance, null, Wall.instance, Wall.instance,
                 ),

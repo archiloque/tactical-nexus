@@ -3,6 +3,7 @@ package net.archiloque.tacticalnexus.datapreparation.validation;
 import net.archiloque.tacticalnexus.datapreparation.EnemyId
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.level.Level
+import net.archiloque.tacticalnexus.datapreparation.input.level.StaircaseDirection
 
 class Levels {
 
@@ -16,8 +17,8 @@ class Levels {
             println("Validating levels")
             val towerList = levels.map { it.levelCustomFields.tower }.toSet().sorted()
             for (tower in towerList) {
-                val levelsIndexForTower =
-                    levels.filter { it.levelCustomFields.tower == tower }.map { it.levelCustomFields.level }.sorted()
+                val levelsForTower = levels.filter { it.levelCustomFields.tower == tower }
+                val levelsIndexForTower = levelsForTower.map { it.levelCustomFields.level }.sorted()
                 var theoricalIndex = 1
                 for (levelIndex in levelsIndexForTower) {
                     if (levelIndex != theoricalIndex) {
@@ -27,6 +28,36 @@ class Levels {
                 }
                 if (!statsIds.contains(tower)) {
                     throw RuntimeException("Stats not found for tower [${tower}]")
+                }
+                levelsForTower.forEach{ level ->
+                    val levelLevel = level.levelCustomFields.level
+
+                    val downStaircases = level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.down }.count()
+                    if(
+                        ((levelLevel == 1) && (downStaircases != 0) ) ||
+                        ((levelLevel != 1) && (downStaircases != 1))
+                    ) {
+                        throw RuntimeException("Bad number of down stair cases ${downStaircases} for level ${level}")
+                    }
+
+                    val upStaircases = level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.up }.count()
+                    if(
+                        ((levelLevel == levelsIndexForTower.size) && (upStaircases != 0) ) ||
+                        ((levelLevel != levelsIndexForTower.size) && (upStaircases != 1))
+                    ) {
+                        throw RuntimeException("Bad number of up stair cases ${upStaircases} for level ${level}")
+                    }
+
+                    val exits = level.entities.exit
+                    if(levelLevel == levelsIndexForTower.size) {
+                        if((exits == null) || (exits.count() != 1)) {
+                            throw RuntimeException("Bad number of exists for level ${level} ${exits}")
+                        }
+                    }else {
+                        if(exits != null) {
+                            throw RuntimeException("Found an exit for level ${level} ${exits}")
+                        }
+                    }
                 }
             }
 

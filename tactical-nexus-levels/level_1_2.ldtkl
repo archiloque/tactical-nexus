@@ -2157,23 +2157,6 @@
 				},
 				{
 					"__identifier": "staircase",
-					"__grid": [1,8],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 160, "y": 48, "w": 16, "h": 16 },
-					"__smartColor": "#FEAE34",
-					"iid": "14635800-1460-11ee-bd8c-67a8eea79407",
-					"width": 16,
-					"height": 16,
-					"defUid": 16,
-					"px": [16,128],
-					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["up"]
-					}] }]
-				},
-				{
-					"__identifier": "staircase",
 					"__grid": [15,8],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -2205,6 +2188,20 @@
 						"id": "V_String",
 						"params": ["power_card"]
 					}] }]
+				},
+				{
+					"__identifier": "exit",
+					"__grid": [1,11],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 240, "w": 16, "h": 16 },
+					"__smartColor": "#733E39",
+					"iid": "a4cd7180-3b70-11ee-861d-bf90dc688dff",
+					"width": 16,
+					"height": 16,
+					"defUid": 32,
+					"px": [16,176],
+					"fieldInstances": []
 				}
 			]
 		}

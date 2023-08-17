@@ -14,6 +14,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.Door
 import net.archiloque.tacticalnexus.datapreparation.input.level.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.level.Entity
+import net.archiloque.tacticalnexus.datapreparation.input.level.Exit
 import net.archiloque.tacticalnexus.datapreparation.input.level.Item
 import net.archiloque.tacticalnexus.datapreparation.input.level.Key
 import net.archiloque.tacticalnexus.datapreparation.input.level.Level
@@ -25,6 +26,7 @@ class Levels {
     companion object {
         val doorClass = ClassName(Solver.ENTITIES_PACKAGE, "Door")
         val enemyClass = ClassName(Solver.ENTITIES_PACKAGE, "Enemy")
+        val exitClass = ClassName(Solver.ENTITIES_PACKAGE, "Exit")
         val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
         val keyClass = ClassName(Solver.ENTITIES_PACKAGE, "Key")
         val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
@@ -49,7 +51,6 @@ class Levels {
             for (tower in towersList) {
                 println("Generating levels for tower ${tower}")
 
-                val towerEnemies = enemies.filter { it.tower == tower }
                 val towerStat = stats.find { it.tower == tower }!!
 
                 val className = "Tower_${tower}"
@@ -111,6 +112,7 @@ class Levels {
                 val entities = mutableListOf<Entity>()
                 addEntities(level.entities.door, entities)
                 addEntities(level.entities.enemy, entities)
+                addEntities(level.entities.exit, entities)
                 addEntities(level.entities.item, entities)
                 addEntities(level.entities.key, entities)
                 addEntities(level.entities.staircase, entities)
@@ -183,6 +185,10 @@ class Levels {
                                 levelsArrayCode.add(
                                     "${currentEntity.enemyCustomFields.type}s[${currentEntity.enemyCustomFields.level}]"
                                 )
+                            }
+
+                            is Exit -> {
+                                levelsArrayCode.add("%T.instance", exitClass)
                             }
 
                             is Item -> {
