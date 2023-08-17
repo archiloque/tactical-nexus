@@ -3,6 +3,7 @@ package net.archiloque.tacticalnexus.solver.code
 import net.archiloque.tacticalnexus.solver.Position
 import net.archiloque.tacticalnexus.solver.entities.Entity
 import net.archiloque.tacticalnexus.solver.entities.Level
+import net.archiloque.tacticalnexus.solver.entities.Tower
 import net.archiloque.tacticalnexus.solver.entities.Wall
 
 class PlayableTower(
@@ -14,7 +15,7 @@ class PlayableTower(
 ) {
 
     companion object {
-        fun prepare(tower: net.archiloque.tacticalnexus.solver.entities.Tower): PlayableTower {
+        fun prepare(tower: Tower): PlayableTower {
             val positionedEntitiesList = mutableListOf<PositionedEntity>()
             var startingPosition: Int = -1
             tower.levels().forEachIndexed { levelIndex, level ->
