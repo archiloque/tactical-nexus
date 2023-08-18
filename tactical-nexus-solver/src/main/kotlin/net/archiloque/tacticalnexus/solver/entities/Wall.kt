@@ -1,10 +1,10 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
+import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.database.State
 
-class Wall() : Entity() {
+class Wall private constructor() : Entity() {
     companion object {
         val instance = Wall()
     }

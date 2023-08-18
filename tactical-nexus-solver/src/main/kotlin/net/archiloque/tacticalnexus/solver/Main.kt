@@ -5,7 +5,7 @@ import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.code.DefaultStateSaver
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.Player
-import net.archiloque.tacticalnexus.solver.database.DatabaseMigrations
+import net.archiloque.tacticalnexus.solver.database.Migrations
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.States
 import net.archiloque.tacticalnexus.solver.database.States.id
@@ -29,7 +29,7 @@ fun main(args: Array<String>) {
         logger = ConsoleLogger(LogLevel.DEBUG)
     )
 
-    DatabaseMigrations.run(database)
+    Migrations.run(database)
 
     val inputTower = Tower_1()
     val playableTower = PlayableTower.prepare(inputTower)

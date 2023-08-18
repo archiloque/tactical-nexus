@@ -209,8 +209,7 @@ class Levels {
 
                             is Staircase -> {
                                 levelsArrayCode.add(
-                                    "%T(%T.StaircaseDirection.${currentEntity.staircaseCustomFields.direction})",
-                                    staircaseClass,
+                                    "%T.${currentEntity.staircaseCustomFields.direction}",
                                     staircaseClass
                                 )
                             }

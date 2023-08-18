@@ -4,7 +4,7 @@ import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.database.State
 
-data class Staircase(val direction: StaircaseDirection) : Entity() {
+data class Staircase private constructor(val direction: StaircaseDirection) : Entity() {
     companion object {
         val up = Staircase(StaircaseDirection.up)
         val down = Staircase(StaircaseDirection.down)
@@ -18,14 +18,12 @@ data class Staircase(val direction: StaircaseDirection) : Entity() {
         when(direction) {
             StaircaseDirection.up -> {
                 val newState = newState(entityIndex, state)
-                val matchingDownStaircase = playableTower.stairs[entityIndex]!!
-                newState.visited.set(matchingDownStaircase)
-                for(entityReachableOnNextLevel in playableTower.reachable[matchingDownStaircase]) {
-                    if(newState.reachable.get(entityReachableOnNextLevel) || newState.visited.get(entityReachableOnNextLevel)) {
-                        throw IllegalStateException("Should not happen")
-                    }
-                    newState.reachable.set(entityReachableOnNextLevel)
-                }
+                addNewReachablePositions(
+                    entityIndex,
+                    newState,
+                    playableTower,
+                    stateSaver
+                )
                 stateSaver.save(newState)
             }
             StaircaseDirection.down -> {

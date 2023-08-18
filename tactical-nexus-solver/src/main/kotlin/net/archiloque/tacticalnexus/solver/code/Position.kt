@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.solver
+package net.archiloque.tacticalnexus.solver.code
 
 data class Position(
     val level: Int,

@@ -2,10 +2,10 @@ package net.archiloque.tacticalnexus.solver.database
 
 import org.ktorm.database.Database
 
-class DatabaseMigrations {
+class Migrations {
 
     companion object {
-        val migrations = arrayOf(
+        private val migrations = arrayOf(
             "001",
             "002",
             "003",

@@ -1,8 +1,9 @@
 package net.archiloque.tacticalnexus.solver.code
 
 import kotlin.test.assertEquals
-import net.archiloque.tacticalnexus.solver.Position
+import net.archiloque.tacticalnexus.solver.entities.Exit
 import net.archiloque.tacticalnexus.solver.entities.Level
+import net.archiloque.tacticalnexus.solver.entities.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.Staircase
 import net.archiloque.tacticalnexus.solver.entities.Wall
 import net.archiloque.tacticalnexus.solver.input.Items
@@ -22,26 +23,40 @@ class PlayableTowerTest {
                             5,
                             arrayOf(
                                 arrayOf(
-                                    Staircase.up, null, Items.blue_potion, null, Staircase.down
+                                    PlayerStartPosition.instance,
+                                    null,
+                                    Items.blue_potion,
+                                    null,
+                                    Staircase.up,
+                                )
+                            )
+                        ),
+                        Level(
+                            1,
+                            2,
+                            arrayOf(
+                                arrayOf(
+                                    Staircase.down,
+                                    Exit.instance,
                                 )
                             )
                         )
                     ), 0, 0, 0
                 )
             )
-            
-        assertEquals(playableTower.positionedEntities.size, 3)
+
         assertArrayEquals(
             playableTower.positionedEntities,
             arrayOf(
-                PlayableTower.PositionedEntity(Staircase.up, 0, 0, 0),
-                PlayableTower.PositionedEntity(Items.blue_potion, 0, 0, 2),
-                PlayableTower.PositionedEntity(Staircase.down, 0, 0, 4),
+                PositionedEntity(PlayerStartPosition.instance, Position(0, 0, 0)),
+                PositionedEntity(Items.blue_potion, Position(0, 0, 2)),
+                PositionedEntity(Staircase.up, Position(0, 0, 4)),
+                PositionedEntity(Exit.instance, Position(1, 0, 1)),
             )
         )
         assertEquals(
             playableTower.entitiesIndexByPosition.size,
-            3
+            4
         )
         assertEquals(
             playableTower.entitiesIndexByPosition[Position(0, 0, 0)],
@@ -56,20 +71,17 @@ class PlayableTowerTest {
             2
         )
         assertEquals(
-            playableTower.reachable.size,
+            playableTower.entitiesIndexByPosition[Position(1, 0, 1)],
             3
         )
         assertArrayEquals(
-            playableTower.reachable[0],
-            arrayOf(1)
-        )
-        assertArrayEquals(
-            playableTower.reachable[1],
-            arrayOf(0, 2)
-        )
-        assertArrayEquals(
-            playableTower.reachable[2],
-            arrayOf(1)
+            playableTower.reachable,
+            arrayOf(
+                arrayOf(1),
+                arrayOf(0, 2),
+                arrayOf(3),
+                arrayOf(),
+            )
         )
     }
 
@@ -83,28 +95,41 @@ class PlayableTowerTest {
                             5,
                             1,
                             arrayOf(
-                                arrayOf(Staircase.up),
+                                arrayOf(PlayerStartPosition.instance),
                                 arrayOf(null),
                                 arrayOf(Items.blue_potion),
                                 arrayOf(null),
-                                arrayOf(Staircase.down),
+                                arrayOf(Staircase.up),
+                            )
+                        ),
+                        Level(
+                            2,
+                            1,
+                            arrayOf(
+                                arrayOf(
+                                    Staircase.down,
+                                ),
+                                arrayOf(
+                                    Exit.instance,
+                                )
                             )
                         )
                     ), 0, 0, 0
                 )
             )
-        assertEquals(playableTower.positionedEntities.size, 3)
+        assertEquals(playableTower.positionedEntities.size, 4)
         assertArrayEquals(
             playableTower.positionedEntities,
             arrayOf(
-                PlayableTower.PositionedEntity(Staircase.up, 0, 0, 0),
-                PlayableTower.PositionedEntity(Items.blue_potion, 0, 2, 0),
-                PlayableTower.PositionedEntity(Staircase.down, 0, 4, 0),
+                PositionedEntity(PlayerStartPosition.instance, Position(0, 0, 0)),
+                PositionedEntity(Items.blue_potion, Position(0, 2, 0)),
+                PositionedEntity(Staircase.up, Position(0, 4, 0)),
+                PositionedEntity(Exit.instance, Position(1, 1, 0)),
             )
         )
         assertEquals(
             playableTower.entitiesIndexByPosition.size,
-            3
+            4
         )
         assertEquals(
             playableTower.entitiesIndexByPosition[Position(0, 0, 0)],
@@ -119,20 +144,18 @@ class PlayableTowerTest {
             2
         )
         assertEquals(
-            playableTower.reachable.size,
+            playableTower.entitiesIndexByPosition[Position(1, 1, 0)],
             3
         )
+
         assertArrayEquals(
-            playableTower.reachable[0],
-            arrayOf(1)
-        )
-        assertArrayEquals(
-            playableTower.reachable[1],
-            arrayOf(0, 2)
-        )
-        assertArrayEquals(
-            playableTower.reachable[2],
-            arrayOf(1)
+            playableTower.reachable,
+            arrayOf(
+                arrayOf(1),
+                arrayOf(0, 2),
+                arrayOf(3),
+                arrayOf(),
+            )
         )
     }
 
@@ -140,9 +163,9 @@ class PlayableTowerTest {
     fun prepareComplex() {
         // This is the tower:
         // wwwww
-        // ws ww
-        // w pww
-        // ww Sw
+        // wX ww
+        // w Bww
+        // wwRSw
         // wwwww
         val playableTower =
             PlayableTower.prepare(
@@ -153,27 +176,41 @@ class PlayableTowerTest {
                             5,
                             arrayOf(
                                 arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
-                                arrayOf(Wall.instance, Staircase.up, null, Wall.instance, Wall.instance),
+                                arrayOf(
+                                    Wall.instance,
+                                    PlayerStartPosition.instance,
+                                    null,
+                                    Wall.instance,
+                                    Wall.instance
+                                ),
                                 arrayOf(Wall.instance, null, Items.blue_potion, Wall.instance, Wall.instance),
-                                arrayOf(Wall.instance, Wall.instance, null, Staircase.down, Wall.instance),
+                                arrayOf(Wall.instance, Wall.instance, Items.red_potion, Staircase.up, Wall.instance),
                                 arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+                            )
+                        ),
+                        Level(
+                            1,
+                            2,
+                            arrayOf(
+                                arrayOf(Staircase.down, Exit.instance),
                             )
                         )
                     ), 0, 0, 0
                 )
             )
-        assertEquals(playableTower.positionedEntities.size, 3)
         assertArrayEquals(
             playableTower.positionedEntities,
             arrayOf(
-                PlayableTower.PositionedEntity(Staircase.up, 0, 1, 1),
-                PlayableTower.PositionedEntity(Items.blue_potion, 0, 2, 2),
-                PlayableTower.PositionedEntity(Staircase.down, 0, 3, 3),
+                PositionedEntity(PlayerStartPosition.instance, Position(0, 1, 1)),
+                PositionedEntity(Items.blue_potion, Position(0, 2, 2)),
+                PositionedEntity(Items.red_potion, Position(0, 3, 2)),
+                PositionedEntity(Staircase.up, Position(0, 3, 3)),
+                PositionedEntity(Exit.instance, Position(1, 0, 1)),
             )
         )
         assertEquals(
             playableTower.entitiesIndexByPosition.size,
-            3
+            5
         )
         assertEquals(
             playableTower.entitiesIndexByPosition[Position(0, 1, 1)],
@@ -184,24 +221,26 @@ class PlayableTowerTest {
             1
         )
         assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 3, 3)],
+            playableTower.entitiesIndexByPosition[Position(0, 3, 2)],
             2
         )
         assertEquals(
-            playableTower.reachable.size,
+            playableTower.entitiesIndexByPosition[Position(0, 3, 3)],
             3
         )
-        assertArrayEquals(
-            playableTower.reachable[0],
-            arrayOf(1)
+        assertEquals(
+            playableTower.entitiesIndexByPosition[Position(1, 0, 1)],
+            4
         )
         assertArrayEquals(
-            playableTower.reachable[1],
-            arrayOf(0, 2)
-        )
-        assertArrayEquals(
-            playableTower.reachable[2],
-            arrayOf(1)
+            playableTower.reachable,
+            arrayOf(
+                arrayOf(1),
+                arrayOf(0, 2),
+                arrayOf(1, 3),
+                arrayOf(4),
+                arrayOf(),
+            )
         )
     }
 }

@@ -1,6 +1,5 @@
 package net.archiloque.tacticalnexus.solver.code
 
-import net.archiloque.tacticalnexus.solver.Position
 import net.archiloque.tacticalnexus.solver.entities.Entity
 import net.archiloque.tacticalnexus.solver.entities.Level
 import net.archiloque.tacticalnexus.solver.entities.Staircase
@@ -13,32 +12,32 @@ class PlayableTower(
     val entitiesIndexByPosition: Map<Position, Int>,
     val startingPosition: Int,
     val reachable: Array<Array<Int>>,
-    val stairs: Map<Int, Int>,
 ) {
 
     companion object {
         fun prepare(tower: Tower): PlayableTower {
-            val positionedEntitiesList = mutableListOf<PositionedEntity>()
+            val entities = mutableListOf<PositionedEntity>()
             var startingPosition: Int = -1
-            val upStaircases = mutableMapOf<Int, Int>()
-            val downStaircases = mutableMapOf<Int, Int>()
+            val upStaircasesIndexByLevel = mutableMapOf<Int, Int>()
+            val downStaircasesPositionByLevel = mutableMapOf<Int, Position>()
 
             tower.levels().forEachIndexed { levelIndex, level ->
                 for (line in 0..<level.lines) {
                     for (column in 0..<level.columns) {
                         val entity = level.entities[line][column]
                         if ((entity != null) && (entity.getType() != Entity.EntityType.Wall)) {
-                            val positionedEntity = PositionedEntity(entity, levelIndex, line, column)
-                            val currentEntityIndex = positionedEntitiesList.size
+                            val entityPosition = Position(levelIndex, line, column)
+                            val positionedEntity = PositionedEntity(entity, entityPosition)
+                            val currentEntityIndex = entities.size
 
                             if (entity.getType() == Entity.EntityType.Staircase) {
                                 when ((entity as Staircase).direction) {
                                     Staircase.StaircaseDirection.up -> {
-                                        upStaircases[levelIndex] = currentEntityIndex
+                                        upStaircasesIndexByLevel[levelIndex] = currentEntityIndex
                                     }
 
                                     Staircase.StaircaseDirection.down -> {
-                                        downStaircases[levelIndex] = currentEntityIndex
+                                        downStaircasesPositionByLevel[levelIndex] = entityPosition
                                     }
                                 }
                             }
@@ -46,31 +45,30 @@ class PlayableTower(
                             if (entity.getType() == Entity.EntityType.PlayerStartPosition) {
                                 startingPosition = currentEntityIndex
                             }
-                            positionedEntitiesList.add(positionedEntity)
+                            if((entity.getType() != Entity.EntityType.Staircase) || ((entity as Staircase).direction != Staircase.StaircaseDirection.down)) {
+                                entities.add(positionedEntity)
+                            }
                         }
                     }
                 }
             }
-            val positionedEntities = positionedEntitiesList.toTypedArray()
+            val positionedEntities = entities.toTypedArray()
             val entitiesIndexByPosition = mutableMapOf<Position, Int>()
             positionedEntities.forEachIndexed { index, positionedEntity ->
-                entitiesIndexByPosition[Position(
-                    positionedEntity.level,
-                    positionedEntity.line,
-                    positionedEntity.column
-                )] = index
+                entitiesIndexByPosition[positionedEntity.position] = index
             }
             val reachableEntities = positionedEntities.map { positionedEntity ->
                 findReacheableEntities(
-                    positionedEntity,
+                    positionedEntity.position,
                     tower.levels(),
                     entitiesIndexByPosition
                 )
             }.toTypedArray()
 
-            val stairs = mutableMapOf<Int, Int>()
-            upStaircases.forEach { (levelIndex, entityIndex) ->
-                stairs[entityIndex] = downStaircases[levelIndex + 1]!!
+            upStaircasesIndexByLevel.forEach { (levelIndex, upStaircaseIndex) ->
+                val downStaircasePosition = downStaircasesPositionByLevel[levelIndex + 1]!!
+                val reachableByDownStaircase= findReacheableEntities(downStaircasePosition, tower.levels(), entitiesIndexByPosition)
+                reachableEntities[upStaircaseIndex] = reachableByDownStaircase
             }
 
             return PlayableTower(
@@ -79,19 +77,18 @@ class PlayableTower(
                 entitiesIndexByPosition,
                 startingPosition,
                 reachableEntities,
-                stairs,
             )
         }
 
         private fun findReacheableEntities(
-            entity: PositionedEntity,
+            entityPosition: Position,
             data: Array<Level>,
             entitiesIndexByPosition: MutableMap<Position, Int>,
         ): Array<Int> {
             var positionsToCheck = mutableSetOf<Position>()
             val exploredPositions = mutableSetOf<Position>()
-            positionsToCheck.add(entity.getPosition())
-            exploredPositions.add(entity.getPosition())
+            positionsToCheck.add(entityPosition)
+            exploredPositions.add(entityPosition)
             val reachableEntities = mutableSetOf<Int>()
             while (positionsToCheck.isNotEmpty()) {
                 val newPositionsToCheck = mutableSetOf<Position>()
@@ -154,7 +151,12 @@ class PlayableTower(
                 val entity = data[position.level].entities[position.line][position.column]
                 if (entity == null) {
                     positionsToCheck.add(position)
-                } else if (entity != Wall.instance) {
+                } else if (
+                    !(
+                    // Can't reach walls or down staircase
+                        (entity == Wall.instance) ||
+                        ((entity.getType() == Entity.EntityType.Staircase) && ((entity as Staircase).direction == Staircase.StaircaseDirection.down))))
+                {
                     val entityIndex = entitiesIndexByPosition[position]!!
                     reachableEntities.add(entityIndex)
                 }
@@ -162,14 +164,4 @@ class PlayableTower(
         }
     }
 
-    data class PositionedEntity(
-        val entity: Entity,
-        val level: Int,
-        val line: Int,
-        val column: Int,
-    ) {
-        fun getPosition(): Position {
-            return Position(level, line, column)
-        }
-    }
 }

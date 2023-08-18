@@ -1,9 +1,6 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.`annotation`.processing.Generated
-import kotlin.Array
-import kotlin.Int
-import kotlin.arrayOf
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.Door
 import net.archiloque.tacticalnexus.solver.entities.Enemy
 import net.archiloque.tacticalnexus.solver.entities.Exit
@@ -60,78 +57,82 @@ public class Tower_1 : Tower {
                     Wall.instance, null, PlayerStartPosition.instance, null, Items.power_gem,
                     Items.life_potion, null, fighters[1], Items.blue_potion, fighters[1], Items.heavenly_potion,
                     fighters[1], fighters[3], Key(KeyOrDoorColor.yellow), Door(KeyOrDoorColor.yellow),
-                    Staircase(Staircase.StaircaseDirection.up), Wall.instance,
+                    Staircase.up, Wall.instance,
                 ),
                 arrayOf(
-                    Wall.instance,
-                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                    Items.guard_piece, Wall.instance, Items.blue_potion, Wall.instance, null, Wall.instance,
-                    rangers[4], Wall.instance, Wall.instance, null,
+                    Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Items.guard_piece, Wall.instance,
+                    Items.blue_potion, Wall.instance, null, Wall.instance, rangers[4], Wall.instance,
+                    Wall.instance, null,
                 ),
                 arrayOf(
-                    null, null, null, null, null,
-                    Wall.instance, Items.guard_piece, Items.guard_gem, Items.guard_piece, fighters[3], null,
-                    Items.power_gem, fighters[1], Items.life_potion, Items.red_potion, Wall.instance, null,
+                    null, null, null, null, null, Wall.instance,
+                    Items.guard_piece, Items.guard_gem, Items.guard_piece, fighters[3], null, Items.power_gem,
+                    fighters[1], Items.life_potion, Items.red_potion, Wall.instance, null,
                 ),
                 arrayOf(
-                    null, null, null, null, null, null, Wall.instance, Items.guard_piece, Wall.instance,
-                    null, Wall.instance, null, Wall.instance, Items.red_potion, Wall.instance, null, null,
+                    null, null,
+                    null, null, null, null, Wall.instance, Items.guard_piece, Wall.instance, null, Wall.instance,
+                    null, Wall.instance, Items.red_potion, Wall.instance, null, null,
                 ),
                 arrayOf(
-                    null, null, null, null, null, null, null, Wall.instance, null, Items.power_potion,
-                    null, rangers[2], null, Wall.instance, null, null, null,
+                    null, null, null,
+                    null, null, null, null, Wall.instance, null, Items.power_potion, null, rangers[2], null,
+                    Wall.instance, null, null, null,
                 ),
                 arrayOf(
-                    null, null, null, null,
-                    null, null, null, null, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                    Wall.instance, null, null, null, null,
+                    null, null, null, null, null, null, null, null,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, null, null, null,
+                    null,
                 ),
             )
         ),
         Level(
             17, 17, arrayOf(
                 arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, null, Wall.instance, null, null, null,
+                    null, null, null, null, null, null, null, null, null, Items.power_card, Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, null, Wall.instance, null, null, null, Wall.instance, Wall.instance,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance, Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, null, Wall.instance,
+                    null, null, null, null, null, null, null, null, null, null, null, null, Wall.instance,
                     Wall.instance,
-                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                    Wall.instance, Wall.instance, Wall.instance, Wall.instance,
                 ),
                 arrayOf(
-                    Wall.instance, null,
-                    Wall.instance, null, null, null, null, null, null, null, null, null, null, null, null,
-                    Items.power_card, Wall.instance,
-                ),
-                arrayOf(
-                    Wall.instance, null, Wall.instance, null, null,
-                    null, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                ),
-                arrayOf(
-                    Wall.instance, null, Wall.instance, null, null, null, null, null, null, null, null,
-                    null, null, null, null, Wall.instance, Wall.instance,
-                ),
-                arrayOf(
-                    Wall.instance, null, null,
-                    null, null, Wall.instance, null, Wall.instance, Wall.instance, null, Wall.instance,
-                    Wall.instance, Wall.instance, Wall.instance, null, Wall.instance, Wall.instance,
-                ),
-                arrayOf(
-                    Wall.instance, null, null, null, Wall.instance, Wall.instance, null, null,
-                    Wall.instance, null, null, null, null, Wall.instance, null, Wall.instance, Wall.instance,
-                ),
-                arrayOf(
-                    Wall.instance, null, null, null, null, Wall.instance, null, null, Wall.instance, null,
-                    Wall.instance, null, null, Wall.instance, null, Wall.instance, Wall.instance,
-                ),
-                arrayOf(
-                    Wall.instance, Wall.instance, Wall.instance, null, null, Wall.instance, Wall.instance,
+                    Wall.instance, null, null, null, null, Wall.instance, null,
                     Wall.instance, Wall.instance, null, Wall.instance, Wall.instance, Wall.instance,
                     Wall.instance, null, Wall.instance, Wall.instance,
                 ),
                 arrayOf(
                     Wall.instance, null, null, null,
-                    null, null, null, null, null, null, null, null, null, null, null,
-                    Staircase(Staircase.StaircaseDirection.down), Wall.instance,
+                    Wall.instance, Wall.instance, null, null, Wall.instance, null, null, null, null,
+                    Wall.instance, null, Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, null, null, null,
+                    null, Wall.instance, null, null, Wall.instance, null, Wall.instance, null, null,
+                    Wall.instance, null, Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance,
+                    Wall.instance, null, null, Wall.instance, Wall.instance, Wall.instance, Wall.instance, null,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, null, Wall.instance,
+                    Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null, Staircase.down, Wall.instance,
                 ),
                 arrayOf(
                     Wall.instance,
