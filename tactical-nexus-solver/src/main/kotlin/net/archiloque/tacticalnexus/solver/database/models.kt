@@ -20,8 +20,8 @@ data class State(
 
     var status: StateStatus,
 
-    var visitedEntities: BitSet,
-    var reachableEntities: BitSet,
+    var visited: BitSet,
+    var reachable: BitSet,
 
     var atk: Int,
     var def: Int,
@@ -41,9 +41,9 @@ object States : BaseTable<State>("states") {
 
     val status = enum<StateStatus>("status")
 
-    val visitedEntities = bitSet("visited_entities")
+    val visited = bitSet("visited")
 
-    val reachableEntities = bitSet("reachable_entities")
+    val reachable = bitSet("reachable")
 
     val moves = intArray("moves")
 
@@ -63,8 +63,8 @@ object States : BaseTable<State>("states") {
 
             status = row[status]!!,
 
-            visitedEntities = row[visitedEntities]!!,
-            reachableEntities = row[reachableEntities]!!,
+            visited = row[visited]!!,
+            reachable = row[reachable]!!,
 
             moves = row[moves]!!,
 

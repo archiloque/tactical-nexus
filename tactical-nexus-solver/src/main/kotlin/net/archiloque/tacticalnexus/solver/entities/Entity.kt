@@ -23,9 +23,9 @@ abstract class Entity {
     }
 
     protected fun newState(entityIndex: Int, state: State): State {
-        val visitedEntities = state.visitedEntities.clone() as BitSet
+        val visitedEntities = state.visited.clone() as BitSet
         visitedEntities.set(entityIndex)
-        val reachableEntities = state.reachableEntities.clone() as BitSet
+        val reachableEntities = state.reachable.clone() as BitSet
         reachableEntities.set(entityIndex, false)
         return State(
             -1, // Ensure it can't be saved
@@ -49,9 +49,9 @@ abstract class Entity {
 
 
     protected fun addNewReachablePositions(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
-        for (reachableEntity in playableTower.reachableEntities[entityIndex]) {
-            if ((!state.visitedEntities.get(reachableEntity)) && (!state.reachableEntities.get(reachableEntity))) {
-                state.reachableEntities.set(reachableEntity)
+        for (reachableEntity in playableTower.reachable[entityIndex]) {
+            if ((!state.visited.get(reachableEntity)) && (!state.reachable.get(reachableEntity))) {
+                state.reachable.set(reachableEntity)
             }
         }
     }

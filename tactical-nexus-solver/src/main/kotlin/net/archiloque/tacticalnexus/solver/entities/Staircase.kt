@@ -19,9 +19,12 @@ data class Staircase(val direction: StaircaseDirection) : Entity() {
             StaircaseDirection.up -> {
                 val newState = newState(entityIndex, state)
                 val matchingDownStaircase = playableTower.stairs[entityIndex]!!
-                newState.visitedEntities.set(matchingDownStaircase)
-                for(entityReachableOnNextLevel in playableTower.reachableEntities[matchingDownStaircase]) {
-                    newState.reachableEntities.set(entityReachableOnNextLevel)
+                newState.visited.set(matchingDownStaircase)
+                for(entityReachableOnNextLevel in playableTower.reachable[matchingDownStaircase]) {
+                    if(newState.reachable.get(entityReachableOnNextLevel) || newState.visited.get(entityReachableOnNextLevel)) {
+                        throw IllegalStateException("Should not happen")
+                    }
+                    newState.reachable.set(entityReachableOnNextLevel)
                 }
                 stateSaver.save(newState)
             }

@@ -6,8 +6,8 @@ WHERE id =
 			WHERE status = ?
 			LIMIT 1
 			FOR UPDATE SKIP LOCKED) RETURNING id,
-    visited_entities,
-    reachable_entities,
+    visited,
+    reachable,
 
     atk,
     def,

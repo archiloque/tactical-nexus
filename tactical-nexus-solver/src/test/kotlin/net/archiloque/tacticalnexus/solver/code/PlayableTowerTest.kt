@@ -1,5 +1,6 @@
 package net.archiloque.tacticalnexus.solver.code
 
+import kotlin.test.assertEquals
 import net.archiloque.tacticalnexus.solver.Position
 import net.archiloque.tacticalnexus.solver.entities.Level
 import net.archiloque.tacticalnexus.solver.entities.Staircase
@@ -7,7 +8,6 @@ import net.archiloque.tacticalnexus.solver.entities.Wall
 import net.archiloque.tacticalnexus.solver.input.Items
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class PlayableTowerTest {
 
@@ -15,18 +15,21 @@ class PlayableTowerTest {
     fun prepareHorizontal() {
         val playableTower =
             PlayableTower.prepare(
-                arrayOf(
-                    Level(
-                        1,
-                        5,
-                        arrayOf(
+                TowerForTest(
+                    arrayOf(
+                        Level(
+                            1,
+                            5,
                             arrayOf(
-                                Staircase.up, null, Items.blue_potion, null, Staircase.down
+                                arrayOf(
+                                    Staircase.up, null, Items.blue_potion, null, Staircase.down
+                                )
                             )
                         )
-                    )
+                    ), 0, 0, 0
                 )
             )
+            
         assertEquals(playableTower.positionedEntities.size, 3)
         assertArrayEquals(
             playableTower.positionedEntities,
@@ -53,19 +56,19 @@ class PlayableTowerTest {
             2
         )
         assertEquals(
-            playableTower.reachableEntities.size,
+            playableTower.reachable.size,
             3
         )
         assertArrayEquals(
-            playableTower.reachableEntities[0],
+            playableTower.reachable[0],
             arrayOf(1)
         )
         assertArrayEquals(
-            playableTower.reachableEntities[1],
+            playableTower.reachable[1],
             arrayOf(0, 2)
         )
         assertArrayEquals(
-            playableTower.reachableEntities[2],
+            playableTower.reachable[2],
             arrayOf(1)
         )
     }
@@ -74,18 +77,20 @@ class PlayableTowerTest {
     fun prepareVertical() {
         val playableTower =
             PlayableTower.prepare(
-                arrayOf(
-                    Level(
-                        5,
-                        1,
-                        arrayOf(
-                            arrayOf(Staircase.up),
-                            arrayOf(null),
-                            arrayOf(Items.blue_potion),
-                            arrayOf(null),
-                            arrayOf(Staircase.down),
+                TowerForTest(
+                    arrayOf(
+                        Level(
+                            5,
+                            1,
+                            arrayOf(
+                                arrayOf(Staircase.up),
+                                arrayOf(null),
+                                arrayOf(Items.blue_potion),
+                                arrayOf(null),
+                                arrayOf(Staircase.down),
+                            )
                         )
-                    )
+                    ), 0, 0, 0
                 )
             )
         assertEquals(playableTower.positionedEntities.size, 3)
@@ -114,19 +119,19 @@ class PlayableTowerTest {
             2
         )
         assertEquals(
-            playableTower.reachableEntities.size,
+            playableTower.reachable.size,
             3
         )
         assertArrayEquals(
-            playableTower.reachableEntities[0],
+            playableTower.reachable[0],
             arrayOf(1)
         )
         assertArrayEquals(
-            playableTower.reachableEntities[1],
+            playableTower.reachable[1],
             arrayOf(0, 2)
         )
         assertArrayEquals(
-            playableTower.reachableEntities[2],
+            playableTower.reachable[2],
             arrayOf(1)
         )
     }
@@ -141,18 +146,20 @@ class PlayableTowerTest {
         // wwwww
         val playableTower =
             PlayableTower.prepare(
-                arrayOf(
-                    Level(
-                        5,
-                        5,
-                        arrayOf(
-                            arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,),
-                            arrayOf(Wall.instance, Staircase.up, null, Wall.instance, Wall.instance,),
-                            arrayOf(Wall.instance, null, Items.blue_potion, Wall.instance, Wall.instance,),
-                            arrayOf(Wall.instance, Wall.instance, null, Staircase.down, Wall.instance,),
-                            arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+                TowerForTest(
+                    arrayOf(
+                        Level(
+                            5,
+                            5,
+                            arrayOf(
+                                arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+                                arrayOf(Wall.instance, Staircase.up, null, Wall.instance, Wall.instance),
+                                arrayOf(Wall.instance, null, Items.blue_potion, Wall.instance, Wall.instance),
+                                arrayOf(Wall.instance, Wall.instance, null, Staircase.down, Wall.instance),
+                                arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+                            )
                         )
-                    )
+                    ), 0, 0, 0
                 )
             )
         assertEquals(playableTower.positionedEntities.size, 3)
@@ -181,19 +188,19 @@ class PlayableTowerTest {
             2
         )
         assertEquals(
-            playableTower.reachableEntities.size,
+            playableTower.reachable.size,
             3
         )
         assertArrayEquals(
-            playableTower.reachableEntities[0],
+            playableTower.reachable[0],
             arrayOf(1)
         )
         assertArrayEquals(
-            playableTower.reachableEntities[1],
+            playableTower.reachable[1],
             arrayOf(0, 2)
         )
         assertArrayEquals(
-            playableTower.reachableEntities[2],
+            playableTower.reachable[2],
             arrayOf(1)
         )
     }

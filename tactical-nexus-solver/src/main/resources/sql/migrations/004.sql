@@ -1,7 +1,7 @@
 CREATE UNIQUE INDEX states_duplicates
     ON states USING btree (
-    visited_entities,
-    reachable_entities,
+    visited,
+    reachable,
 
     atk,
     def,

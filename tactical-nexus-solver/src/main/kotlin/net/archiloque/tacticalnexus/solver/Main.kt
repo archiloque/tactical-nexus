@@ -33,11 +33,11 @@ fun main(args: Array<String>) {
 
     val inputTower = Tower_1()
     val playableTower = PlayableTower.prepare(inputTower)
-    val visitedEntities = BitSet(playableTower.entitiesNumber)
-    visitedEntities.set(playableTower.startingPosition)
-    val reachableEntities = BitSet(playableTower.entitiesNumber)
-    playableTower.reachableEntities[playableTower.startingPosition].forEach {
-        reachableEntities.set(it)
+    val visited = BitSet(playableTower.entitiesNumber)
+    visited.set(playableTower.startingPosition)
+    val reachable = BitSet(playableTower.entitiesNumber)
+    playableTower.reachable[playableTower.startingPosition].forEach {
+        reachable.set(it)
     }
 
     database.insert(States) {
@@ -45,8 +45,8 @@ fun main(args: Array<String>) {
 
         set(it.status, StateStatus.new)
 
-        set(it.visitedEntities, visitedEntities)
-        set(it.reachableEntities, reachableEntities)
+        set(it.visited, visited)
+        set(it.reachable, reachable)
 
         set(it.atk, inputTower.atk())
         set(it.def, inputTower.def())

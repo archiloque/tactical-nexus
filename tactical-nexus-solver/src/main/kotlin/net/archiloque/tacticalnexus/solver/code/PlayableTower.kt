@@ -12,7 +12,7 @@ class PlayableTower(
     val positionedEntities: Array<PositionedEntity>,
     val entitiesIndexByPosition: Map<Position, Int>,
     val startingPosition: Int,
-    val reachableEntities: Array<Array<Int>>,
+    val reachable: Array<Array<Int>>,
     val stairs: Map<Int, Int>,
 ) {
 
@@ -36,6 +36,7 @@ class PlayableTower(
                                     Staircase.StaircaseDirection.up -> {
                                         upStaircases[levelIndex] = currentEntityIndex
                                     }
+
                                     Staircase.StaircaseDirection.down -> {
                                         downStaircases[levelIndex] = currentEntityIndex
                                     }
@@ -59,17 +60,19 @@ class PlayableTower(
                     positionedEntity.column
                 )] = index
             }
-            val reachableEntities = positionedEntities.mapIndexed { index, positionedEntity ->
+            val reachableEntities = positionedEntities.map { positionedEntity ->
                 findReacheableEntities(
                     positionedEntity,
                     tower.levels(),
                     entitiesIndexByPosition
                 )
             }.toTypedArray()
+
             val stairs = mutableMapOf<Int, Int>()
-            upStaircases.forEach { levelIndex, entityIndex ->
+            upStaircases.forEach { (levelIndex, entityIndex) ->
                 stairs[entityIndex] = downStaircases[levelIndex + 1]!!
             }
+
             return PlayableTower(
                 positionedEntities.size,
                 positionedEntities,

@@ -13,8 +13,8 @@ class DefaultStateSaver(val database: Database) : StateSaver {
             item {
                 set(it.status, StateStatus.new)
 
-                set(it.visitedEntities, state.visitedEntities)
-                set(it.reachableEntities, state.reachableEntities)
+                set(it.visited, state.visited)
+                set(it.reachable, state.reachable)
 
                 set(it.atk, state.atk)
                 set(it.def, state.def)
@@ -29,8 +29,8 @@ class DefaultStateSaver(val database: Database) : StateSaver {
                 set(it.moves, state.moves)
             }
             onConflict(
-                States.visitedEntities,
-                States.reachableEntities,
+                States.visited,
+                States.reachable,
 
                 States.atk,
                 States.def,
