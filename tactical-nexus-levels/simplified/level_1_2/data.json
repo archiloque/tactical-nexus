@@ -974,6 +974,19 @@
 				"customFields": {
 					"direction": "down"
 				}
+			},
+			{
+				"id": "staircase",
+				"iid": "6a6e63a0-3b70-11ee-b2da-db5acca07786",
+				"layer": "entities",
+				"x": 0,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 16690740,
+				"customFields": {
+					"direction": "up"
+				}
 			}
 		],
 		"item": [
@@ -1717,19 +1730,6 @@
 				"customFields": {
 					"item": "guard_card"
 				}
-			}
-		],
-		"exit": [
-			{
-				"id": "exit",
-				"iid": "a4cd7180-3b70-11ee-861d-bf90dc688dff",
-				"layer": "entities",
-				"x": 0,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 7552569,
-				"customFields" : {}
 			}
 		],
 		"enemy": [

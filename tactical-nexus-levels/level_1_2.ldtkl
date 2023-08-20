@@ -1294,20 +1294,6 @@
 					}] }]
 				},
 				{
-					"__identifier": "exit",
-					"__grid": [0,7],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 48, "y": 240, "w": 16, "h": 16 },
-					"__smartColor": "#733E39",
-					"iid": "a4cd7180-3b70-11ee-861d-bf90dc688dff",
-					"width": 16,
-					"height": 16,
-					"defUid": 32,
-					"px": [0,112],
-					"fieldInstances": []
-				},
-				{
 					"__identifier": "item",
 					"__grid": [13,7],
 					"__pivot": [0,0],
@@ -2873,6 +2859,23 @@
 					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_card", "__tile": null, "defUid": 12, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["guard_card"]
+					}] }]
+				},
+				{
+					"__identifier": "staircase",
+					"__grid": [0,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 160, "y": 48, "w": 16, "h": 16 },
+					"__smartColor": "#FEAE34",
+					"iid": "6a6e63a0-3b70-11ee-b2da-db5acca07786",
+					"width": 16,
+					"height": 16,
+					"defUid": 16,
+					"px": [0,112],
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["up"]
 					}] }]
 				}
 			]

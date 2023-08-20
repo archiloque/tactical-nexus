@@ -16,7 +16,7 @@ class Player {
         private fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
             val positionedEntity = playableTower.positionedEntities[entityIndex]
             val entity = positionedEntity.entity
-            println(positionedEntity)
+            // println(positionedEntity)
             entity.play(entityIndex, state, playableTower, stateSaver)
         }
     }
