@@ -5,7 +5,7 @@ CREATE UNIQUE INDEX states_duplicates
 
     atk,
     def,
-    exp
+    exp,
     hp,
 
     exp_bonus,

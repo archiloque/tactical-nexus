@@ -18,7 +18,11 @@ class DefaultStateSaver(val database: Database) : StateSaver {
 
                 set(it.atk, state.atk)
                 set(it.def, state.def)
+                set(it.exp, state.exp)
                 set(it.hp, state.hp)
+
+                set(it.expBonus, state.expBonus)
+                set(it.hpBonus, state.hpBonus)
 
                 set(it.blue_keys, state.blueKeys)
                 set(it.crimson_keys, state.crimsonKeys)
@@ -34,7 +38,11 @@ class DefaultStateSaver(val database: Database) : StateSaver {
 
                 States.atk,
                 States.def,
+                States.exp,
                 States.hp,
+
+                States.expBonus,
+                States.hpBonus,
 
                 States.blue_keys,
                 States.crimson_keys,

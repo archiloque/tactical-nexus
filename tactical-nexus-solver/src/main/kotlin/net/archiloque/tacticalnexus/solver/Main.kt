@@ -48,7 +48,12 @@ fun main(args: Array<String>) {
 
         set(it.atk, inputTower.atk())
         set(it.def, inputTower.def())
+        set(it.exp, 0)
         set(it.hp, inputTower.hp())
+
+        set(it.expBonus, 0)
+        set(it.hpBonus, 0)
+
         set(it.blue_keys, 0)
         set(it.crimson_keys, 0)
         set(it.platinum_keys, 0)
