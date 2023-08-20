@@ -1,9 +1,6 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.`annotation`.processing.Generated
-import kotlin.Array
-import kotlin.Int
-import kotlin.arrayOf
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.Door
 import net.archiloque.tacticalnexus.solver.entities.Enemy
 import net.archiloque.tacticalnexus.solver.entities.Exit
@@ -26,7 +23,12 @@ public class Tower_1 : Tower {
             Items.guard_gem
         ),
         null, null, Enemy(1000, 260, 85, 18, Items.guard_gem), null, null, null,
-        Enemy(2000, 440, 120, 30, Items.guard_potion),
+        Enemy(2000, 440, 120, 30, Items.guard_potion), null, null,
+        Enemy(
+            3500, 590, 170, 47,
+            Items.guard_potion
+        ),
+        null, null, null, Enemy(5500, 1120, 445, 70, Items.guard_card),
     )
 
     private val rangers: Array<Enemy?> = arrayOf(
@@ -37,8 +39,16 @@ public class Tower_1 : Tower {
             Items.blue_potion
         ),
         null, null, Enemy(800, 540, 60, 64, Items.blue_potion), null, null,
-        Enemy(800, 1050, 80, 100, Items.blue_potion), null, null, null, null, null, null, null, null,
-        Enemy(3000, 2350, 360, 256, Items.heavenly_potion),
+        Enemy(800, 1050, 80, 100, Items.blue_potion), null, null,
+        Enemy(
+            2000, 1100, 120, 140,
+            Items.life_potion
+        ),
+        null, null, null, null, null,
+        Enemy(
+            3000, 2350, 360, 256,
+            Items.heavenly_potion
+        ),
     )
 
     private val levels: Array<Level> = arrayOf(
@@ -134,7 +144,7 @@ public class Tower_1 : Tower {
                     Wall.instance, Wall.instance, Wall.instance, null, Wall.instance,
                 ),
                 arrayOf(
-                    Exit.instance,
+                    Staircase.up,
                     Items.drop_of_dream_ocean, fighters[5], null, fighters[3], Items.power_gem, null, null,
                     fighters[3], null, Items.life_potion, rangers[2], null, Items.heavenly_potion, Staircase.down,
                 ),
@@ -178,9 +188,96 @@ public class Tower_1 : Tower {
                 ),
             )
         ),
+        Level(
+            15, 15, arrayOf(
+                arrayOf(
+                    Items.life_crown,
+                    Items.golden_feather, Door(KeyOrDoorColor.violet), Items.heavenly_potion, Wall.instance,
+                    Key(KeyOrDoorColor.yellow), fighters[8], Door(KeyOrDoorColor.yellow), Items.power_gem,
+                    Key(KeyOrDoorColor.crimson), Wall.instance, Items.guard_potion, Items.power_potion,
+                    Items.guard_potion, Items.power_potion,
+                ),
+                arrayOf(
+                    Items.drop_of_dream_ocean, Wall.instance,
+                    Items.power_potion, fighters[5], Wall.instance, fighters[8], Items.power_gem, rangers[16],
+                    Items.power_gem, Items.power_gem, Wall.instance, Items.power_potion, Items.guard_potion,
+                    Items.power_potion, Items.guard_potion,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance,
+                    Wall.instance, fighters[5], Wall.instance, Items.power_gem, Items.power_potion,
+                    Items.power_gem, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                    Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.yellow),
+                ),
+                arrayOf(
+                    Items.golden_feather,
+                    Wall.instance, Items.life_potion, Items.life_potion, Wall.instance, null, Items.power_gem,
+                    rangers[10], fighters[5], Items.heavenly_potion, Wall.instance, null, null,
+                    Items.power_potion, rangers[13],
+                ),
+                arrayOf(
+                    Door(KeyOrDoorColor.crimson), Wall.instance,
+                    fighters[5], Wall.instance, Wall.instance, Wall.instance, Door(KeyOrDoorColor.yellow), null,
+                    null, fighters[5], Wall.instance, rangers[7], Items.blue_potion, Items.heavenly_potion,
+                    Items.blue_potion,
+                ),
+                arrayOf(
+                    Items.heavenly_potion, fighters[8], fighters[5], null,
+                    Wall.instance, Items.power_gem, null, Wall.instance, null, null, Wall.instance,
+                    Door(KeyOrDoorColor.yellow), null, Items.guard_potion, null,
+                ),
+                arrayOf(
+                    Wall.instance,
+                    Wall.instance, Wall.instance, Items.power_potion, Wall.instance, Items.power_potion,
+                    Items.power_gem, Wall.instance, rangers[10], Door(KeyOrDoorColor.yellow), null,
+                    Items.life_potion, Wall.instance, rangers[13], rangers[7],
+                ),
+                arrayOf(
+                    Staircase.down, null,
+                    null, null, Items.power_potion, null, null, fighters[12], null, rangers[7], Items.life_potion,
+                    fighters[8], Exit.instance, Wall.instance, rangers[10],
+                ),
+                arrayOf(
+                    Wall.instance,
+                    Wall.instance, Wall.instance, rangers[10], Wall.instance, rangers[4], fighters[3],
+                    Wall.instance, Items.power_card, null, rangers[7], null, Wall.instance, fighters[12],
+                    fighters[8],
+                ),
+                arrayOf(
+                    rangers[7], null, Items.power_gem, Items.heavenly_potion,
+                    Wall.instance, fighters[3], rangers[4], Wall.instance, null, fighters[8], null,
+                    Door(KeyOrDoorColor.yellow), Items.power_potion, Items.guard_potion, Items.power_potion,
+                ),
+                arrayOf(
+                    Items.power_gem, rangers[7], null, Items.power_gem, Wall.instance, rangers[4],
+                    fighters[3], null, fighters[5], Items.heavenly_potion, fighters[8], fighters[12],
+                    Items.blue_potion, Items.life_potion, Items.blue_potion,
+                ),
+                arrayOf(
+                    rangers[7],
+                    Items.power_gem, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                    null, null, fighters[5], null, Wall.instance, Items.blue_potion, Items.heavenly_potion,
+                    Items.blue_potion,
+                ),
+                arrayOf(
+                    Items.power_gem, rangers[7], Items.power_gem, rangers[7],
+                    Wall.instance, rangers[4], Items.power_gem, fighters[5], rangers[4], null, null,
+                    Wall.instance, Items.power_potion, Items.guard_potion, Items.power_potion,
+                ),
+                arrayOf(
+                    rangers[7], Items.power_gem, rangers[7], Items.power_gem, Wall.instance,
+                    Items.power_potion, rangers[4], Items.power_gem, fighters[5], Wall.instance, Wall.instance,
+                    Wall.instance, Wall.instance, Wall.instance, Door(KeyOrDoorColor.blue),
+                ),
+                arrayOf(
+                    Key(KeyOrDoorColor.yellow), rangers[7], Items.power_gem, rangers[7],
+                    Door(KeyOrDoorColor.blue), Key(KeyOrDoorColor.yellow), Items.power_potion, rangers[4],
+                    Items.power_gem, fighters[15], Items.golden_feather, Wall.instance,
+                    Key(KeyOrDoorColor.yellow), Items.life_crown, fighters[19],
+                ),
+            )
+        ),
     )
-
-    public val enemies: Array<Array<Enemy>> = arrayOf()
 
     override fun levels(): Array<Level> = levels
 

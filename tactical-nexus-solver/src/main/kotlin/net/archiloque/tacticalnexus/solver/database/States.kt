@@ -49,11 +49,11 @@ object States : BaseTable<State>("states") {
             expBonus = row[expBonus]!!,
             hpBonus = row[hpBonus]!!,
 
-            blue_keys = row[blue_keys]!!,
-            crimson_keys = row[crimson_keys]!!,
-            platinum_keys = row[platinum_keys]!!,
-            violet_keys = row[violet_keys]!!,
-            yellow_keys = row[yellow_keys]!!,
+            blueKeys = row[blue_keys]!!,
+            crimsonKeys = row[crimson_keys]!!,
+            platinumKeys = row[platinum_keys]!!,
+            violetKeys = row[violet_keys]!!,
+            yellowKeys = row[yellow_keys]!!,
         )
     }
 }

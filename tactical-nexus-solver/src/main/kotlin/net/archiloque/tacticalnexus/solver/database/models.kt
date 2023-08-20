@@ -25,14 +25,18 @@ fun findNextState(database: Database): State? {
                     result.getInt(4),
                     result.getInt(5),
                     result.getInt(6),
-
                     result.getInt(7),
+
                     result.getInt(8),
                     result.getInt(9),
+
                     result.getInt(10),
                     result.getInt(11),
+                    result.getInt(12),
+                    result.getInt(13),
+                    result.getInt(14),
 
-                    Mappings.IntArraySqlType.getResult(result, 12)!!,
+                    Mappings.IntArraySqlType.getResult(result, 15)!!,
                 )
             } else {
                 return null

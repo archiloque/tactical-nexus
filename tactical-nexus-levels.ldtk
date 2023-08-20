@@ -595,7 +595,7 @@
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "key_or_door_color", "uid": 25, "values": [
 			{ "id": "blue", "tileRect": null, "tileId": -1, "color": 39387, "__tileSrcRect": null },
-			{ "id": "red", "tileRect": null, "tileId": -1, "color": 12470831, "__tileSrcRect": null },
+			{ "id": "crimson", "tileRect": null, "tileId": -1, "color": 12470831, "__tileSrcRect": null },
 			{ "id": "violet", "tileRect": null, "tileId": -1, "color": 14120515, "__tileSrcRect": null },
 			{ "id": "yellow", "tileRect": null, "tileId": -1, "color": 16705377, "__tileSrcRect": null }
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }

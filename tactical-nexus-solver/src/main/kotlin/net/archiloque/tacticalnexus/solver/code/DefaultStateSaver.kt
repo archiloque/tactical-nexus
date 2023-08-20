@@ -20,11 +20,11 @@ class DefaultStateSaver(val database: Database) : StateSaver {
                 set(it.def, state.def)
                 set(it.hp, state.hp)
 
-                set(it.blue_keys, state.blue_keys)
-                set(it.crimson_keys, state.crimson_keys)
-                set(it.platinum_keys, state.platinum_keys)
-                set(it.violet_keys, state.violet_keys)
-                set(it.yellow_keys, state.yellow_keys)
+                set(it.blue_keys, state.blueKeys)
+                set(it.crimson_keys, state.crimsonKeys)
+                set(it.platinum_keys, state.platinumKeys)
+                set(it.violet_keys, state.violetKeys)
+                set(it.yellow_keys, state.yellowKeys)
 
                 set(it.moves, state.moves)
             }

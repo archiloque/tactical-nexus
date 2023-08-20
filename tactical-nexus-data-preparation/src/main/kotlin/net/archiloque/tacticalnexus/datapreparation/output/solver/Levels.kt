@@ -24,17 +24,17 @@ import net.archiloque.tacticalnexus.datapreparation.input.level.Wall
 
 class Levels {
     companion object {
-        val doorClass = ClassName(Solver.ENTITIES_PACKAGE, "Door")
-        val enemyClass = ClassName(Solver.ENTITIES_PACKAGE, "Enemy")
-        val exitClass = ClassName(Solver.ENTITIES_PACKAGE, "Exit")
-        val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
-        val keyClass = ClassName(Solver.ENTITIES_PACKAGE, "Key")
-        val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
-        val levelClass = ClassName(Solver.ENTITIES_PACKAGE, "Level")
-        val playerStartPositionClass = ClassName(Solver.ENTITIES_PACKAGE, "PlayerStartPosition")
-        val staircaseClass = ClassName(Solver.ENTITIES_PACKAGE, "Staircase")
-        val wallClass = ClassName(Solver.ENTITIES_PACKAGE, "Wall")
-        val towerInterfaceClass = ClassName(Solver.ENTITIES_PACKAGE, "Tower")
+        private val doorClass = ClassName(Solver.ENTITIES_PACKAGE, "Door")
+        private val enemyClass = ClassName(Solver.ENTITIES_PACKAGE, "Enemy")
+        private val exitClass = ClassName(Solver.ENTITIES_PACKAGE, "Exit")
+        private val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
+        private val keyClass = ClassName(Solver.ENTITIES_PACKAGE, "Key")
+        private val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
+        private val levelClass = ClassName(Solver.ENTITIES_PACKAGE, "Level")
+        private val playerStartPositionClass = ClassName(Solver.ENTITIES_PACKAGE, "PlayerStartPosition")
+        private val staircaseClass = ClassName(Solver.ENTITIES_PACKAGE, "Staircase")
+        private val wallClass = ClassName(Solver.ENTITIES_PACKAGE, "Wall")
+        private val towerInterfaceClass = ClassName(Solver.ENTITIES_PACKAGE, "Tower")
 
         fun generate(
             levels: List<Level>,
@@ -60,10 +60,10 @@ class Levels {
                     .addAnnotation(Generated::class)
                     .addSuperinterface(towerInterfaceClass)
                     .addProperty(
-                        enemyBuilder(enemies, items, enemyClass, EnemyType.fighter)
+                        enemyBuilder(enemies, items, EnemyType.fighter)
                     )
                     .addProperty(
-                        enemyBuilder(enemies, items, enemyClass, EnemyType.ranger)
+                        enemyBuilder(enemies, items, EnemyType.ranger)
                     )
 
 
@@ -83,8 +83,6 @@ class Levels {
                         .addCode("return levels")
                         .build()
                 )
-
-                towerSpec.addProperty(createEnemies(enemies))
 
                 addStatFunction(towerSpec, "atk", towerStat.atk)
                 addStatFunction(towerSpec, "def", towerStat.def)
@@ -106,9 +104,9 @@ class Levels {
             tower: Int,
         ): PropertySpec {
             val levelsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
-            for (level in levelsIndexForTower) {
+            for (levelIndex in levelsIndexForTower) {
                 val level =
-                    levels.find { (it.levelCustomFields.tower == tower) && (it.levelCustomFields.level == level) }!!
+                    levels.find { (it.levelCustomFields.tower == tower) && (it.levelCustomFields.level == levelIndex) }!!
                 val entities = mutableListOf<Entity>()
                 addEntities(level.entities.door, entities)
                 addEntities(level.entities.enemy, entities)
@@ -226,18 +224,9 @@ class Levels {
             levelsArrayCode.add(")), ")
         }
 
-        private fun createEnemies(enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>): PropertySpec {
-            val result = PropertySpec.builder("enemies", Solver.arrayOf(Solver.arrayOf(enemyClass)))
-            val enemiesArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
-            enemiesArrayCode.add(")")
-            result.initializer(enemiesArrayCode.build())
-            return result.build()
-        }
-
         private fun enemyBuilder(
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             items: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Item>,
-            enemyClass: ClassName,
             enemyType: EnemyType,
         ): PropertySpec {
             val enemiesArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)

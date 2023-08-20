@@ -36,8 +36,3 @@ data class Item(
         stateSaver.save(newState)
     }
 }
-
-enum class ItemPropertyType {
-    Points,
-    Percents
-}

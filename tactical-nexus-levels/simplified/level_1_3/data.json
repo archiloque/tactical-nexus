@@ -1569,7 +1569,7 @@
 				"height": 16,
 				"color": 14984818,
 				"customFields": {
-					"key_or_door_color": "red"
+					"key_or_door_color": "crimson"
 				}
 			},
 			{
@@ -1727,7 +1727,7 @@
 				"height": 16,
 				"color": 15389866,
 				"customFields": {
-					"key_or_door_color": "red"
+					"key_or_door_color": "crimson"
 				}
 			},
 			{
@@ -2047,7 +2047,7 @@
 				"height": 16,
 				"color": 1578021,
 				"customFields": {
-					"type": "ranger",
+					"type": "fighter",
 					"level": 8
 				}
 			},
@@ -2173,7 +2173,7 @@
 				"height": 16,
 				"color": 1578021,
 				"customFields": {
-					"type": "ranger",
+					"type": "fighter",
 					"level": 12
 				}
 			},
@@ -2341,7 +2341,7 @@
 				"height": 16,
 				"color": 1578021,
 				"customFields": {
-					"type": "fighter",
+					"type": "ranger",
 					"level": 4
 				}
 			},

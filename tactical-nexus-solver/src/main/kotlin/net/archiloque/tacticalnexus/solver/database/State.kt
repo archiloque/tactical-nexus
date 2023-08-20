@@ -18,11 +18,11 @@ data class State(
     var expBonus: Int,
     var hpBonus: Int,
 
-    var blue_keys: Int,
-    var crimson_keys: Int,
-    var platinum_keys: Int,
-    var violet_keys: Int,
-    var yellow_keys: Int,
+    var blueKeys: Int,
+    var crimsonKeys: Int,
+    var platinumKeys: Int,
+    var violetKeys: Int,
+    var yellowKeys: Int,
 
     var moves: Array<Int>,
 )

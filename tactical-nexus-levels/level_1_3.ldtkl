@@ -871,9 +871,9 @@
 					"height": 16,
 					"defUid": 29,
 					"px": [0,64],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "red", "__tile": null, "defUid": 30, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "crimson", "__tile": null, "defUid": 30, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["red"]
+						"params": ["crimson"]
 					}] }]
 				},
 				{
@@ -1075,9 +1075,9 @@
 					"height": 16,
 					"defUid": 27,
 					"px": [144,0],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "red", "__tile": null, "defUid": 28, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "crimson", "__tile": null, "defUid": 28, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["red"]
+						"params": ["crimson"]
 					}] }]
 				},
 				{
@@ -2708,9 +2708,9 @@
 					"defUid": 9,
 					"px": [176,112],
 					"fieldInstances": [
-						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["ranger"]
+							"params": ["fighter"]
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 8, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [8] }] }
 					]
@@ -2888,9 +2888,9 @@
 					"defUid": 9,
 					"px": [112,112],
 					"fieldInstances": [
-						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["ranger"]
+							"params": ["fighter"]
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 12, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [12] }] }
 					]
@@ -3128,9 +3128,9 @@
 					"defUid": 9,
 					"px": [112,224],
 					"fieldInstances": [
-						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["fighter"]
+							"params": ["ranger"]
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 4, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 					]

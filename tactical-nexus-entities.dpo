@@ -128,7 +128,7 @@
                     "guid": "7c150855-8fec-443a-bf61-ebdc19f4ee39",
                     "name": "Drop",
                     "description": "new enum field",
-                    "options": "guard_piece, red_potion, guard_gem, heavenly_potion, guard_gem, guard_potion, blue_potion",
+                    "options": "blue_potion, guard_card, guard_gem, guard_gem, guard_piece, guard_potion, heavenly_potion, life_potion, red_potion",
                     "defaultValue": "",
                     "iconName": "newEnum",
                     "configurable": {
@@ -271,6 +271,42 @@
                     "DEF": 80,
                     "EXP": 100,
                     "Drop": "blue_potion"
+                },
+                {
+                    "guid": "5c3d0fca-4e4a-4afb-a3da-32ee8dfc7606",
+                    "id": "11",
+                    "Tower": 1,
+                    "Type": "ranger",
+                    "Level": 16,
+                    "HP": 2000,
+                    "ATK": 1100,
+                    "DEF": 120,
+                    "EXP": 140,
+                    "Drop": "life_potion"
+                },
+                {
+                    "guid": "f7d0828c-d4af-42c0-bc99-5df3d4d550c4",
+                    "id": "12",
+                    "Tower": 1,
+                    "Type": "fighter",
+                    "Level": 19,
+                    "HP": 5500,
+                    "ATK": 1120,
+                    "DEF": 445,
+                    "EXP": 70,
+                    "Drop": "guard_card"
+                },
+                {
+                    "guid": "56d886d1-4401-4f10-a649-44f01777cf8c",
+                    "id": "14",
+                    "Tower": 1,
+                    "Type": "fighter",
+                    "Level": 15,
+                    "HP": 3500,
+                    "ATK": 590,
+                    "DEF": 170,
+                    "EXP": 47,
+                    "Drop": "guard_potion"
                 }
             ],
             "hidden": false,
@@ -572,6 +608,17 @@
                     "Name": "Guard card",
                     "HP Bonus": 0,
                     "EXP Bonus": 0
+                },
+                {
+                    "guid": "dbf872d3-09c9-40e5-9ed4-7e232a6a5c7e",
+                    "id": "15",
+                    "Identifier": "golden_feather",
+                    "ATK": 0,
+                    "DEF": 0,
+                    "HP": 0,
+                    "Name": "Golden feather",
+                    "HP Bonus": 0,
+                    "EXP Bonus": 30
                 }
             ],
             "hidden": false,

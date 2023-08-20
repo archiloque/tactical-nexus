@@ -35,13 +35,17 @@ abstract class Entity {
             reachableEntities,
             state.atk,
             state.def,
+            state.exp,
             state.hp,
 
-            state.blue_keys,
-            state.crimson_keys,
-            state.platinum_keys,
-            state.violet_keys,
-            state.yellow_keys,
+            state.expBonus,
+            state.hpBonus,
+
+            state.blueKeys,
+            state.crimsonKeys,
+            state.platinumKeys,
+            state.violetKeys,
+            state.yellowKeys,
 
             state.moves.plus(entityIndex),
         )

@@ -13,31 +13,31 @@ data class Door(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
         when (color) {
             KeyOrDoorColor.blue -> {
-                if (state.blue_keys < 1) {
+                if (state.blueKeys < 1) {
                     return
                 }
             }
 
             KeyOrDoorColor.crimson -> {
-                if (state.crimson_keys < 1) {
+                if (state.crimsonKeys < 1) {
                     return
                 }
             }
 
             KeyOrDoorColor.platinum -> {
-                if (state.platinum_keys < 1) {
+                if (state.platinumKeys < 1) {
                     return
                 }
             }
 
             KeyOrDoorColor.violet -> {
-                if (state.violet_keys < 1) {
+                if (state.violetKeys < 1) {
                     return
                 }
             }
 
             KeyOrDoorColor.yellow -> {
-                if (state.yellow_keys < 1) {
+                if (state.yellowKeys < 1) {
                     return
                 }
             }
@@ -46,23 +46,23 @@ data class Door(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         val newState = newState(entityIndex, state)
         when (color) {
             KeyOrDoorColor.blue -> {
-                newState.blue_keys -= 1
+                newState.blueKeys -= 1
             }
 
             KeyOrDoorColor.crimson -> {
-                newState.crimson_keys -= 1
+                newState.crimsonKeys -= 1
             }
 
             KeyOrDoorColor.platinum -> {
-                newState.platinum_keys -= 1
+                newState.platinumKeys -= 1
             }
 
             KeyOrDoorColor.violet -> {
-                newState.violet_keys -= 1
+                newState.violetKeys -= 1
             }
 
             KeyOrDoorColor.yellow -> {
-                newState.yellow_keys -= 1
+                newState.yellowKeys -= 1
             }
         }
         addNewReachablePositions(
