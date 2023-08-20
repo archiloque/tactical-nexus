@@ -12,7 +12,11 @@ data class State(
 
     var atk: Int,
     var def: Int,
+    var exp: Int,
     var hp: Int,
+
+    var expBonus: Int,
+    var hpBonus: Int,
 
     var blue_keys: Int,
     var crimson_keys: Int,

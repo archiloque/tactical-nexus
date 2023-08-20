@@ -12,7 +12,11 @@ WHERE id =
 
     atk,
     def,
+    exp,
     hp,
+
+    exp_bonus,
+    hp_bonus,
 
     blue_keys,
     crimson_keys,

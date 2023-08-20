@@ -13,8 +13,12 @@ class Items {
                     throw RuntimeException("Bad atk [${it}]")
                 } else if (it.def < 0) {
                     throw RuntimeException("Bad def [${it}]")
+                } else if (it.expBonus < 0) {
+                    throw RuntimeException("Bad exp bonus [${it}]")
                 } else if (it.hp < 0) {
                     throw RuntimeException("Bad hp [${it}]")
+                } else if (it.hpBonus < 0) {
+                    throw RuntimeException("Bad hp bonus [${it}]")
                 }
             }
             println("${items.size} items are OK")

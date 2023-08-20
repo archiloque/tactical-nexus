@@ -5,8 +5,12 @@ CREATE UNIQUE INDEX states_duplicates
 
     atk,
     def,
-
+    exp
     hp,
+
+    exp_bonus,
+    hp_bonus,
+
     blue_keys,
     crimson_keys,
     platinum_keys,

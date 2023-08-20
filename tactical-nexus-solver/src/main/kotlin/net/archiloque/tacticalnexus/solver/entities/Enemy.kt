@@ -27,6 +27,7 @@ data class Enemy(
         )
         if (fightResult != null) {
             newState.hp = fightResult
+            newState.exp += (exp * (100 + state.expBonus)) / 100
             drop.collect(newState)
             addNewReachablePositions(entityIndex, newState, playableTower, stateSaver)
             stateSaver.save(newState)
@@ -35,8 +36,8 @@ data class Enemy(
 
     companion object {
         fun fight(playerAtk: Int, playerDef: Int, playerHp: Int, enemyAtk: Int, enemyDef: Int, enemyHp: Int): Int? {
-            var damagesToEnemy = Math.max(playerAtk - enemyDef, 0)
-            var damagesToPlayer = Math.max(enemyAtk - playerDef, 0)
+            val damagesToEnemy = Math.max(playerAtk - enemyDef, 0)
+            val damagesToPlayer = Math.max(enemyAtk - playerDef, 0)
             if ((damagesToPlayer == 0) && (damagesToEnemy > 0)) {
                 // Enemy can't hurt player but player can hurt enemy
                 return playerHp

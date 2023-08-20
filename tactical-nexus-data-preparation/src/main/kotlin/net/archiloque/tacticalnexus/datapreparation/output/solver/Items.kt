@@ -23,7 +23,7 @@ class Items {
                 val initializerCode = CodeBlock.Builder().add(
                     "%T(%S, ${item.atk}, %T.${item.atkType}, ${item.def}, %T.${item.defType}, ${item.hp}, %T.${item.hpType},)",
                     itemClass,
-                    item.identifier,
+                    item.name,
                     itemPropertyClass,
                     itemPropertyClass,
                     itemPropertyClass,

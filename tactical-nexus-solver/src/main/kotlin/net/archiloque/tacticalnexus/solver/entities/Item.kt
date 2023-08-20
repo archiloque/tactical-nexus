@@ -7,36 +7,21 @@ import net.archiloque.tacticalnexus.solver.database.State
 data class Item(
     val name: String,
     val atk: Int,
-    val atkType: ItemPropertyType,
     val def: Int,
-    val defType: ItemPropertyType,
+    val expBonus: Int,
     val hp: Int,
-    val hpType: ItemPropertyType,
+    val hpBonus: Int,
 ) : Entity() {
     override fun getType(): EntityType {
         return EntityType.Item
     }
 
     fun collect(state: State) {
-        state.atk = newValue(state.atk, atk, atkType)
-        state.def += newValue(state.def, def, defType)
-        state.hp += newValue(state.hp, hp, hpType)
-    }
-
-    private fun newValue(initialValue: Int, valueToAdd: Int, valueType: ItemPropertyType): Int {
-        return if (valueToAdd == 0) {
-            initialValue
-        } else {
-            when (valueType) {
-                ItemPropertyType.Points -> {
-                    initialValue + valueToAdd
-                }
-
-                ItemPropertyType.Percents -> {
-                    initialValue * (1 + valueToAdd)
-                }
-            }
-        }
+        state.atk = atk
+        state.def += def
+        state.expBonus += expBonus
+        state.hp += (hp * (100 + hpBonus)) / 100
+        state.hpBonus += hpBonus
     }
 
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {

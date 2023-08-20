@@ -9,7 +9,11 @@ CREATE TABLE states
 
     atk INTEGER NOT NULL,
     def INTEGER NOT NULL,
+    exp INTEGER NOT NULL,
     hp INTEGER NOT NULL,
+
+    exp_bonus: INTEGER NOT NULL,
+    hp_bonus: INTEGER NOT NULL,
 
     blue_keys INTEGER NOT NULL,
     crimson_keys INTEGER NOT NULL,

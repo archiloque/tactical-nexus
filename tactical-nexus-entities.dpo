@@ -326,21 +326,6 @@
                     }
                 },
                 {
-                    "typeStr": "enum",
-                    "guid": "ffd7a743-8e01-4b5c-9c20-7669a6965886",
-                    "name": "ATK Type",
-                    "description": "new enum field",
-                    "options": "Pt, %",
-                    "defaultValue": "Pt",
-                    "iconName": "newEnum",
-                    "configurable": {
-                        "name": "text",
-                        "description": "text",
-                        "defaultValue": "text",
-                        "options": "text"
-                    }
-                },
-                {
                     "typeStr": "int",
                     "guid": "3a5620ba-e66b-493c-8159-09e6215596ad",
                     "description": "",
@@ -355,21 +340,6 @@
                         "min": "int",
                         "max": "int",
                         "defaultValue": "int"
-                    }
-                },
-                {
-                    "typeStr": "enum",
-                    "guid": "4baa5e10-b8e0-46a3-a25b-10a8eb1a3368",
-                    "name": "DEF Type",
-                    "description": "new enum field",
-                    "options": "Pt, %",
-                    "defaultValue": "Pt",
-                    "iconName": "newEnum",
-                    "configurable": {
-                        "name": "text",
-                        "description": "text",
-                        "defaultValue": "text",
-                        "options": "text"
                     }
                 },
                 {
@@ -390,21 +360,6 @@
                     }
                 },
                 {
-                    "typeStr": "enum",
-                    "guid": "8941486c-1e4d-483b-9660-d1a6f44fc39e",
-                    "name": "HP Type",
-                    "description": "",
-                    "options": "Pt, %",
-                    "defaultValue": "Pt",
-                    "iconName": "newEnum",
-                    "configurable": {
-                        "name": "text",
-                        "description": "text",
-                        "defaultValue": "text",
-                        "options": "text"
-                    }
-                },
-                {
                     "typeStr": "text",
                     "guid": "77a99962-7617-4e14-92db-116b3d7ed8f1",
                     "name": "Name",
@@ -415,6 +370,40 @@
                         "name": "text",
                         "description": "text",
                         "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "9eccaeda-988c-436d-a89e-319f2b991ee5",
+                    "description": "",
+                    "name": "HP Bonus",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "7e62ed5d-0a16-49d7-adb0-70f172b7b588",
+                    "description": "",
+                    "name": "EXP Bonus",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
                     }
                 }
             ],
@@ -427,9 +416,8 @@
                     "HP": 0,
                     "Identifier": "power_piece",
                     "Name": "Power piece",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "ebfe8b68-edc6-4c17-9d6c-8d44974d2b84",
@@ -439,9 +427,8 @@
                     "HP": 0,
                     "Identifier": "power_gem",
                     "Name": "Power gem",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "f1025ca2-d369-4697-88a8-f515d8b92198",
@@ -451,9 +438,8 @@
                     "HP": 0,
                     "Identifier": "guard_piece",
                     "Name": "Guard piece",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "377b8204-1d50-4003-a1b7-11bac192a0d1",
@@ -463,9 +449,8 @@
                     "HP": 0,
                     "Identifier": "guard_gem",
                     "Name": "Guard gem",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "b032fbae-89b7-4a00-a714-f01f2c474042",
@@ -475,9 +460,8 @@
                     "HP": 800,
                     "Identifier": "blue_potion",
                     "Name": "Blue potion",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "926d55a2-2d2a-4b22-8c27-237e1ad885d3",
@@ -487,9 +471,8 @@
                     "HP": 200,
                     "Identifier": "red_potion",
                     "Name": "Red potion",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "ee70053d-69a9-4bb6-8df5-0116e837e935",
@@ -499,9 +482,8 @@
                     "HP": 3000,
                     "Identifier": "heavenly_potion",
                     "Name": "Heavenly potion",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "b9ed314f-4f45-4814-a02e-bc1bf59509d9",
@@ -511,9 +493,8 @@
                     "HP": 300,
                     "Identifier": "guard_potion",
                     "Name": "Guard potion",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "415035e0-f6a5-4548-9f53-fc08ce3ccfeb",
@@ -523,9 +504,8 @@
                     "HP": 300,
                     "Identifier": "life_potion",
                     "Name": "Life potion",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "5debcd88-b5e3-449c-a4ac-19501ed4eb1b",
@@ -535,9 +515,8 @@
                     "HP": 0,
                     "Identifier": "power_potion",
                     "Name": "Power potion",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "f57813a8-906c-4c30-828b-41f6b487ccfc",
@@ -547,9 +526,8 @@
                     "HP": 0,
                     "Identifier": "power_card",
                     "Name": "Power card",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "68ca6040-dcb3-49f2-b3cf-e79dfdd1c099",
@@ -559,9 +537,8 @@
                     "DEF": 15,
                     "HP": 0,
                     "Name": "Guard deck",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "27f10bf3-e801-48c7-8e70-d700cb5df0ec",
@@ -571,9 +548,8 @@
                     "DEF": 5,
                     "HP": 9999,
                     "Name": "Drop of dream ocean",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "Pt"
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "55a25ed7-1ffb-41ef-8e01-8f3a888176fb",
@@ -583,21 +559,19 @@
                     "DEF": 0,
                     "HP": 30,
                     "Name": "Life Crown",
-                    "ATK Type": "Pt",
-                    "DEF Type": "Pt",
-                    "HP Type": "%"
+                    "HP Bonus": 30,
+                    "EXP Bonus": 0
                 },
                 {
                     "guid": "138d928b-3a26-4f14-9bc7-3e1e26690b2a",
                     "id": "14",
                     "Identifier": "guard_card",
                     "ATK": 0,
-                    "ATK Type": "Pt",
                     "DEF": 5,
-                    "DEF Type": "Pt",
                     "HP": 0,
-                    "HP Type": "Pt",
-                    "Name": "Gu"
+                    "Name": "Guard card",
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 }
             ],
             "hidden": false,

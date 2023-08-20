@@ -18,7 +18,11 @@ object States : BaseTable<State>("states") {
 
     val atk = int("atk")
     val def = int("def")
+    val exp = int("exp")
     val hp = int("hp")
+
+    val expBonus = int("exp_bonus")
+    val hpBonus = int("hp_bonus")
 
     val blue_keys = int("blue_keys")
     val crimson_keys = int("crimson_keys")
@@ -39,7 +43,11 @@ object States : BaseTable<State>("states") {
 
             atk = row[atk]!!,
             def = row[def]!!,
+            exp = row[exp]!!,
             hp = row[hp]!!,
+
+            expBonus = row[expBonus]!!,
+            hpBonus = row[hpBonus]!!,
 
             blue_keys = row[blue_keys]!!,
             crimson_keys = row[crimson_keys]!!,
