@@ -15,14 +15,18 @@ class Items {
         fun generate(items: List<Item>, generatedPath: Path) {
             println("Generating items")
             val itemClass = ClassName(Solver.ENTITIES_PACKAGE, "Item")
+            val itemPropertyClass = ClassName(Solver.ENTITIES_PACKAGE, "ItemPropertyType")
 
             val itemsCompanion = TypeSpec
                 .companionObjectBuilder()
             for (item in items.sortedBy { it.identifier }) {
                 val initializerCode = CodeBlock.Builder().add(
-                    "%T(%S, ${item.atk}, ${item.def}, ${item.hp})",
+                    "%T(%S, ${item.atk}, %T.${item.atkType}, ${item.def}, %T.${item.defType}, ${item.hp}, %T.${item.hpType},)",
                     itemClass,
-                    item.identifier
+                    item.identifier,
+                    itemPropertyClass,
+                    itemPropertyClass,
+                    itemPropertyClass,
                 ).build()
                 itemsCompanion.addProperty(
                     PropertySpec

@@ -7,14 +7,17 @@ import net.archiloque.tacticalnexus.solver.database.State
 data class Item(
     val name: String,
     val atk: Int,
+    val atkType: ItemPropertyType,
     val def: Int,
+    val defType: ItemPropertyType,
     val hp: Int,
+    val hpType: ItemPropertyType,
 ) : Entity() {
     override fun getType(): EntityType {
         return EntityType.Item
     }
 
-    public fun collect(state: State) {
+    fun collect(state: State) {
         state.atk += atk
         state.def += def
         state.hp += hp
@@ -31,4 +34,9 @@ data class Item(
         )
         stateSaver.save(newState)
     }
+}
+
+enum class ItemPropertyType {
+    Points,
+    Percents
 }
