@@ -15,8 +15,6 @@ import org.ktorm.database.Database
 import org.ktorm.dsl.eq
 import org.ktorm.dsl.insert
 import org.ktorm.dsl.update
-import org.ktorm.logging.ConsoleLogger
-import org.ktorm.logging.LogLevel
 import org.ktorm.support.postgresql.PostgreSqlDialect
 
 
@@ -26,7 +24,7 @@ fun main(args: Array<String>) {
         "jdbc:postgresql://localhost:5432/tactical-nexus-solver",
         user = "tactical-nexus-solver",
         dialect = PostgreSqlDialect(),
-        logger = ConsoleLogger(LogLevel.DEBUG)
+        //logger = ConsoleLogger(LogLevel.DEBUG)
     )
 
     Migrations.run(database)

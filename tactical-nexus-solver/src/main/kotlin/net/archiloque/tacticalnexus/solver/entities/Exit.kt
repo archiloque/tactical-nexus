@@ -17,6 +17,10 @@ class Exit private constructor() : Entity() {
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
         println("Win !")
         println(state)
+        for(move in state.moves) {
+            val entity = playableTower.positionedEntities[move]
+            println(entity)
+        }
         exitProcess(0)
     }
 }

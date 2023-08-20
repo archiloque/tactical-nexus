@@ -4,10 +4,8 @@ import java.sql.Types
 import org.ktorm.database.Database
 
 fun readSqlFile(path: String): String {
-    return Database.javaClass.getResource("/sql/${path}").readText()
+    return Database::class.java.getResource("/sql/${path}")!!.readText()
 }
-
-//val Database.states get() = this.sequenceOf(States)
 
 val findNextStateQuery: String = readSqlFile("find_next_state.sql")
 
