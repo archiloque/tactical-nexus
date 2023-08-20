@@ -111,7 +111,7 @@
                     "guid": "7c150855-8fec-443a-bf61-ebdc19f4ee39",
                     "name": "Drop",
                     "description": "new enum field",
-                    "options": "guard_piece, red_potion",
+                    "options": "guard_piece, red_potion, guard_gem, heavenly_potion",
                     "defaultValue": "",
                     "iconName": "newEnum",
                     "configurable": {
@@ -123,8 +123,8 @@
                 },
                 {
                     "typeStr": "int",
-                    "guid": "db863223-277c-49f2-924e-421892149695",
-                    "description": "int field",
+                    "guid": "f354558d-8fd4-4dae-87ba-90558400d53a",
+                    "description": "",
                     "name": "Tower",
                     "min": 1,
                     "max": 100000,
@@ -186,6 +186,30 @@
                     "DEF": 20,
                     "EXP": 16,
                     "Drop": "red_potion",
+                    "Tower": 1
+                },
+                {
+                    "guid": "70bf63ab-69f8-432e-92f8-f0e877b21e4e",
+                    "id": "4",
+                    "Type": "fighter",
+                    "Level": 8,
+                    "HP": 1000,
+                    "ATK": 260,
+                    "DEF": 85,
+                    "EXP": 18,
+                    "Drop": "guard_gem",
+                    "Tower": 1
+                },
+                {
+                    "guid": "937ee52b-2683-4156-a400-837dad935fe2",
+                    "id": "5",
+                    "Type": "ranger",
+                    "Level": 22,
+                    "HP": 3000,
+                    "ATK": 2350,
+                    "DEF": 360,
+                    "EXP": 256,
+                    "Drop": "heavenly_potion",
                     "Tower": 1
                 }
             ],
@@ -388,6 +412,15 @@
                     "HP": 0,
                     "Identifier": "power_card",
                     "Name": "Power card"
+                },
+                {
+                    "guid": "68ca6040-dcb3-49f2-b3cf-e79dfdd1c099",
+                    "id": "11",
+                    "Identifier": "guard_deck",
+                    "ATK": 0,
+                    "DEF": 15,
+                    "HP": 0,
+                    "Name": "Guard deck"
                 }
             ],
             "hidden": false,

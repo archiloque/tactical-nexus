@@ -157,7 +157,7 @@
 					"editorTextPrefix": null,
 					"useForSmartColor": false,
 					"min": 1,
-					"max": 12,
+					"max": 1000,
 					"regex": null,
 					"acceptFileTypes": null,
 					"defaultOverride": null,
@@ -573,10 +573,14 @@
 		], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "item", "uid": 7, "values": [
 			{ "id": "blue_potion", "tileRect": null, "tileId": -1, "color": 16705377, "__tileSrcRect": null },
+			{ "id": "drop_of_dream_ocean", "tileRect": null, "tileId": -1, "color": 2943221, "__tileSrcRect": null },
+			{ "id": "guard_card", "tileRect": null, "tileId": -1, "color": 12635100, "__tileSrcRect": null },
+			{ "id": "guard_deck", "tileRect": null, "tileId": -1, "color": 39387, "__tileSrcRect": null },
 			{ "id": "guard_gem", "tileRect": null, "tileId": -1, "color": 14984818, "__tileSrcRect": null },
 			{ "id": "guard_piece", "tileRect": null, "tileId": -1, "color": 15389866, "__tileSrcRect": null },
 			{ "id": "guard_potion", "tileRect": null, "tileId": -1, "color": 7552569, "__tileSrcRect": null },
 			{ "id": "heavenly_potion", "tileRect": null, "tileId": -1, "color": 4098376, "__tileSrcRect": null },
+			{ "id": "life_crown", "tileRect": null, "tileId": -1, "color": 16777215, "__tileSrcRect": null },
 			{ "id": "life_potion", "tileRect": null, "tileId": -1, "color": 16690740, "__tileSrcRect": null },
 			{ "id": "power_card", "tileRect": null, "tileId": -1, "color": 1199753, "__tileSrcRect": null },
 			{ "id": "power_gem", "tileRect": null, "tileId": -1, "color": 14120515, "__tileSrcRect": null },
@@ -674,11 +678,11 @@
 			"identifier": "level_1_1",
 			"iid": "b601dd90-1460-11ee-90d5-bbabcfbe407d",
 			"uid": 0,
-			"worldX": 0,
-			"worldY": 32,
+			"worldX": 16,
+			"worldY": 48,
 			"worldDepth": 0,
-			"pxWid": 272,
-			"pxHei": 176,
+			"pxWid": 240,
+			"pxHei": 144,
 			"__bgColor": "#696A79",
 			"bgColor": null,
 			"useAutoIdentifier": false,
@@ -694,17 +698,17 @@
 				{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] }
 			],
 			"layerInstances": null,
-			"__neighbours": [{ "levelIid": "6fe11600-1460-11ee-bd8c-4f8d5296e643", "dir": "e" }]
+			"__neighbours": []
 		},
 		{
 			"identifier": "level_1_2",
 			"iid": "6fe11600-1460-11ee-bd8c-4f8d5296e643",
 			"uid": 21,
-			"worldX": 272,
-			"worldY": 32,
+			"worldX": 288,
+			"worldY": 48,
 			"worldDepth": 0,
-			"pxWid": 272,
-			"pxHei": 272,
+			"pxWid": 240,
+			"pxHei": 240,
 			"__bgColor": "#696A79",
 			"bgColor": null,
 			"useAutoIdentifier": false,
@@ -720,7 +724,7 @@
 				{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }
 			],
 			"layerInstances": null,
-			"__neighbours": [{ "levelIid": "b601dd90-1460-11ee-90d5-bbabcfbe407d", "dir": "w" }]
+			"__neighbours": []
 		}
 	] }],
 	"dummyWorldIid": "b601b681-1460-11ee-90d5-f10b4f3389f3"
