@@ -4,6 +4,7 @@ WHERE id =
 		(SELECT id
 			FROM states
 			WHERE status = ?
+			ORDER BY id DESC
 			LIMIT 1
 			FOR UPDATE SKIP LOCKED) RETURNING id,
     visited,
