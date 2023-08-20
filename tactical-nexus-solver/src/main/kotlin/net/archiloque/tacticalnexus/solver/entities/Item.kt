@@ -4,7 +4,8 @@ import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateSaver
 import net.archiloque.tacticalnexus.solver.database.State
 
-data class Item(
+data class
+Item(
     val name: String,
     val atk: Int,
     val def: Int,
@@ -17,7 +18,7 @@ data class Item(
     }
 
     fun collect(state: State) {
-        state.atk = atk
+        state.atk += atk
         state.def += def
         state.expBonus += expBonus
         state.hp += (hp * (100 + hpBonus)) / 100
