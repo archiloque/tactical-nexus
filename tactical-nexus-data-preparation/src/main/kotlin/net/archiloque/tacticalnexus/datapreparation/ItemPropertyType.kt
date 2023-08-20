@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 enum class ItemPropertyType {
     @SerialName("Pt")
     Points,
+
     @SerialName("%")
     Percents
 }

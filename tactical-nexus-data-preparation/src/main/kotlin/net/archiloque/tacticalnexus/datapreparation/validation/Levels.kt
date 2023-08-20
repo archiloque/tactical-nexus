@@ -29,32 +29,36 @@ class Levels {
                 if (!statsIds.contains(tower)) {
                     throw RuntimeException("Stats not found for tower [${tower}]")
                 }
-                levelsForTower.forEach{ level ->
+                levelsForTower.forEach { level ->
                     val levelLevel = level.levelCustomFields.level
 
-                    val downStaircases = level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.down }.count()
-                    if(
-                        ((levelLevel == 1) && (downStaircases != 0) ) ||
+                    val downStaircases =
+                        level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.down }
+                            .count()
+                    if (
+                        ((levelLevel == 1) && (downStaircases != 0)) ||
                         ((levelLevel != 1) && (downStaircases != 1))
                     ) {
                         throw RuntimeException("Bad number of down stair cases ${downStaircases} for level ${level}")
                     }
 
-                    val upStaircases = level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.up }.count()
-                    if(
-                        ((levelLevel == levelsIndexForTower.size) && (upStaircases != 0) ) ||
+                    val upStaircases =
+                        level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.up }
+                            .count()
+                    if (
+                        ((levelLevel == levelsIndexForTower.size) && (upStaircases != 0)) ||
                         ((levelLevel != levelsIndexForTower.size) && (upStaircases != 1))
                     ) {
                         throw RuntimeException("Bad number of up stair cases ${upStaircases} for level ${level}")
                     }
 
                     val exits = level.entities.exit
-                    if(levelLevel == levelsIndexForTower.size) {
-                        if((exits == null) || (exits.count() != 1)) {
+                    if (levelLevel == levelsIndexForTower.size) {
+                        if ((exits == null) || (exits.count() != 1)) {
                             throw RuntimeException("Bad number of exists for level ${level} ${exits}")
                         }
-                    }else {
-                        if(exits != null) {
+                    } else {
+                        if (exits != null) {
                             throw RuntimeException("Found an exit for level ${level} ${exits}")
                         }
                     }

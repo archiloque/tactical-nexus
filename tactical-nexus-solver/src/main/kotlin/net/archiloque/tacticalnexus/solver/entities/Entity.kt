@@ -48,7 +48,12 @@ abstract class Entity {
     }
 
 
-    protected fun addNewReachablePositions(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+    protected fun addNewReachablePositions(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateSaver: StateSaver,
+    ) {
         for (reachableEntity in playableTower.reachable[entityIndex]) {
             if ((!state.visited.get(reachableEntity)) && (!state.reachable.get(reachableEntity))) {
                 state.reachable.set(reachableEntity)

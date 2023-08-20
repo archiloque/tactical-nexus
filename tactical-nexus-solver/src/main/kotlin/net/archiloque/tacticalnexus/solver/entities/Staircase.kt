@@ -15,7 +15,7 @@ data class Staircase private constructor(val direction: StaircaseDirection) : En
     }
 
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
-        when(direction) {
+        when (direction) {
             StaircaseDirection.up -> {
                 val newState = newState(entityIndex, state)
                 addNewReachablePositions(
@@ -26,6 +26,7 @@ data class Staircase private constructor(val direction: StaircaseDirection) : En
                 )
                 stateSaver.save(newState)
             }
+
             StaircaseDirection.down -> {
                 throw IllegalStateException("Should not happen")
             }

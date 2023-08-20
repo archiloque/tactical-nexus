@@ -18,9 +18,25 @@ data class Item(
     }
 
     fun collect(state: State) {
-        state.atk += atk
-        state.def += def
-        state.hp += hp
+        state.atk = newValue(state.atk, atk, atkType)
+        state.def += newValue(state.def, def, defType)
+        state.hp += newValue(state.hp, hp, hpType)
+    }
+
+    private fun newValue(initialValue: Int, valueToAdd: Int, valueType: ItemPropertyType): Int {
+        return if (valueToAdd == 0) {
+            initialValue
+        } else {
+            when (valueType) {
+                ItemPropertyType.Points -> {
+                    initialValue + valueToAdd
+                }
+
+                ItemPropertyType.Percents -> {
+                    initialValue * (1 + valueToAdd)
+                }
+            }
+        }
     }
 
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {

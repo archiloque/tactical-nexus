@@ -147,7 +147,7 @@ class Levels {
                     name,
                 )
                     .addModifiers(KModifier.OVERRIDE)
-                    .returns(ClassName("kotlin","Int"))
+                    .returns(ClassName("kotlin", "Int"))
                     .addCode("return %L", value)
                     .build()
             )
@@ -226,7 +226,7 @@ class Levels {
             levelsArrayCode.add(")), ")
         }
 
-        private fun createEnemies(enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>) : PropertySpec {
+        private fun createEnemies(enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>): PropertySpec {
             val result = PropertySpec.builder("enemies", Solver.arrayOf(Solver.arrayOf(enemyClass)))
             val enemiesArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
             enemiesArrayCode.add(")")

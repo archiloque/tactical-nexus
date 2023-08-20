@@ -22,9 +22,9 @@ class Migrations {
         private fun runMigration(database: Database, migration: String) {
             println("Running SQL migration [${migration}]")
             database.useConnection { conn ->
-                    conn.prepareStatement(readSqlFile("migrations/${migration}.sql")).use { statement ->
-                        statement.execute()
-                    }
+                conn.prepareStatement(readSqlFile("migrations/${migration}.sql")).use { statement ->
+                    statement.execute()
+                }
             }
         }
 

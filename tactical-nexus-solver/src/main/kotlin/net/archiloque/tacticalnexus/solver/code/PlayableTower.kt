@@ -45,7 +45,7 @@ class PlayableTower(
                             if (entity.getType() == Entity.EntityType.PlayerStartPosition) {
                                 startingPosition = currentEntityIndex
                             }
-                            if((entity.getType() != Entity.EntityType.Staircase) || ((entity as Staircase).direction != Staircase.StaircaseDirection.down)) {
+                            if ((entity.getType() != Entity.EntityType.Staircase) || ((entity as Staircase).direction != Staircase.StaircaseDirection.down)) {
                                 entities.add(positionedEntity)
                             }
                         }
@@ -67,7 +67,8 @@ class PlayableTower(
 
             upStaircasesIndexByLevel.forEach { (levelIndex, upStaircaseIndex) ->
                 val downStaircasePosition = downStaircasesPositionByLevel[levelIndex + 1]!!
-                val reachableByDownStaircase= findReacheableEntities(downStaircasePosition, tower.levels(), entitiesIndexByPosition)
+                val reachableByDownStaircase =
+                    findReacheableEntities(downStaircasePosition, tower.levels(), entitiesIndexByPosition)
                 reachableEntities[upStaircaseIndex] = reachableByDownStaircase
             }
 
@@ -153,10 +154,10 @@ class PlayableTower(
                     positionsToCheck.add(position)
                 } else if (
                     !(
-                    // Can't reach walls or down staircase
-                        (entity == Wall.instance) ||
-                        ((entity.getType() == Entity.EntityType.Staircase) && ((entity as Staircase).direction == Staircase.StaircaseDirection.down))))
-                {
+                            // Can't reach walls or down staircase
+                            (entity == Wall.instance) ||
+                                    ((entity.getType() == Entity.EntityType.Staircase) && ((entity as Staircase).direction == Staircase.StaircaseDirection.down)))
+                ) {
                     val entityIndex = entitiesIndexByPosition[position]!!
                     reachableEntities.add(entityIndex)
                 }
