@@ -34,22 +34,6 @@ class Items {
                 )
             }
 
-            val itemsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
-            for (item in items) {
-                itemsArrayCode.add(
-                    "${item.identifier}, ",
-                )
-            }
-            itemsArrayCode.add(")")
-            val itemsProperty = PropertySpec
-                .builder("items", Solver.arrayOf(itemClass))
-                .initializer(itemsArrayCode.build())
-                .build()
-
-            itemsCompanion.addProperty(
-                itemsProperty
-            )
-
             val file = FileSpec
                 .builder(Solver.INPUT_PACKAGE, "Items")
                 .addType(

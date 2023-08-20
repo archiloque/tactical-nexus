@@ -7,6 +7,23 @@
             "guid": "94f26063-d083-4796-a6ed-0a2dc57a6687",
             "columns": [
                 {
+                    "typeStr": "int",
+                    "guid": "f354558d-8fd4-4dae-87ba-90558400d53a",
+                    "description": "",
+                    "name": "Tower",
+                    "min": 1,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
                     "typeStr": "enum",
                     "guid": "f81d9ece-43ad-440e-9f4a-666f6175c39c",
                     "name": "Type",
@@ -24,7 +41,7 @@
                 {
                     "typeStr": "int",
                     "guid": "88daa3c8-4045-4005-87c6-40d5384d2672",
-                    "description": "int field",
+                    "description": "",
                     "name": "Level",
                     "min": 0,
                     "max": 100000,
@@ -41,7 +58,7 @@
                 {
                     "typeStr": "int",
                     "guid": "b80552ac-e2d0-4049-bd72-2c22376852a6",
-                    "description": "int field",
+                    "description": "",
                     "name": "HP",
                     "min": 0,
                     "max": 100000,
@@ -58,7 +75,7 @@
                 {
                     "typeStr": "int",
                     "guid": "4062e566-9277-42a1-98e2-7c70f64f0fc9",
-                    "description": "int field",
+                    "description": "",
                     "name": "ATK",
                     "min": 0,
                     "max": 100000,
@@ -75,7 +92,7 @@
                 {
                     "typeStr": "int",
                     "guid": "a4e91c66-02e4-4a6b-aaa4-0e52794babf4",
-                    "description": "int field",
+                    "description": "",
                     "name": "DEF",
                     "min": 0,
                     "max": 10000,
@@ -92,7 +109,7 @@
                 {
                     "typeStr": "int",
                     "guid": "f9320c7c-6a23-424d-9399-45169142af4c",
-                    "description": "int field",
+                    "description": "",
                     "name": "EXP",
                     "min": 0,
                     "max": 100000,
@@ -111,7 +128,7 @@
                     "guid": "7c150855-8fec-443a-bf61-ebdc19f4ee39",
                     "name": "Drop",
                     "description": "new enum field",
-                    "options": "guard_piece, red_potion, guard_gem, heavenly_potion",
+                    "options": "guard_piece, red_potion, guard_gem, heavenly_potion, guard_gem, guard_potion, blue_potion",
                     "defaultValue": "",
                     "iconName": "newEnum",
                     "configurable": {
@@ -119,23 +136,6 @@
                         "description": "text",
                         "defaultValue": "text",
                         "options": "text"
-                    }
-                },
-                {
-                    "typeStr": "int",
-                    "guid": "f354558d-8fd4-4dae-87ba-90558400d53a",
-                    "description": "",
-                    "name": "Tower",
-                    "min": 1,
-                    "max": 100000,
-                    "defaultValue": 0,
-                    "iconName": "newInt",
-                    "configurable": {
-                        "name": "text",
-                        "description": "text",
-                        "min": "int",
-                        "max": "int",
-                        "defaultValue": "int"
                     }
                 }
             ],
@@ -211,6 +211,66 @@
                     "EXP": 256,
                     "Drop": "heavenly_potion",
                     "Tower": 1
+                },
+                {
+                    "guid": "e3fdb294-e5c6-446f-a6dc-1dba99b70f3b",
+                    "id": "6",
+                    "Tower": 1,
+                    "Type": "fighter",
+                    "Level": 5,
+                    "HP": 600,
+                    "ATK": 145,
+                    "DEF": 65,
+                    "EXP": 10,
+                    "Drop": "guard_gem"
+                },
+                {
+                    "guid": "06f8d151-a4d8-406b-aaea-bcf9599ef806",
+                    "id": "7",
+                    "Tower": 1,
+                    "Type": "fighter",
+                    "Level": 12,
+                    "HP": 2000,
+                    "ATK": 440,
+                    "DEF": 120,
+                    "EXP": 30,
+                    "Drop": "guard_potion"
+                },
+                {
+                    "guid": "2c79bd75-7a43-49bd-ac26-507ba3bee1c8",
+                    "id": "8",
+                    "Tower": 1,
+                    "Type": "ranger",
+                    "Level": 7,
+                    "HP": 800,
+                    "ATK": 280,
+                    "DEF": 40,
+                    "EXP": 36,
+                    "Drop": "blue_potion"
+                },
+                {
+                    "guid": "0b125f81-c80b-4b4d-96a4-9d4afc7e11d6",
+                    "id": "9",
+                    "Tower": 1,
+                    "Type": "ranger",
+                    "Level": 10,
+                    "HP": 800,
+                    "ATK": 540,
+                    "DEF": 60,
+                    "EXP": 64,
+                    "Drop": "blue_potion"
+                },
+                {
+                    "guid": "8a894b59-fdca-4327-a93e-f77e44141350",
+                    "id": "10",
+                    "Tower": 1,
+                    "Type": "ranger",
+                    "Level": 13,
+                    "HP": 800,
+                    "ATK": 1050,
+                    "DEF": 80,
+                    "EXP": 100,
+                    "Drop": "blue_potion"
                 }
             ],
             "hidden": false,
@@ -251,7 +311,7 @@
                 {
                     "typeStr": "int",
                     "guid": "d0ffb607-ef50-4173-b692-130dcfe0911c",
-                    "description": "int field",
+                    "description": "",
                     "name": "ATK",
                     "min": 0,
                     "max": 100000,
@@ -266,9 +326,24 @@
                     }
                 },
                 {
+                    "typeStr": "enum",
+                    "guid": "ffd7a743-8e01-4b5c-9c20-7669a6965886",
+                    "name": "ATK Type",
+                    "description": "new enum field",
+                    "options": "Pt, %",
+                    "defaultValue": "Pt",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
                     "typeStr": "int",
                     "guid": "3a5620ba-e66b-493c-8159-09e6215596ad",
-                    "description": "int field",
+                    "description": "",
                     "name": "DEF",
                     "min": -10000,
                     "max": 100000,
@@ -283,9 +358,24 @@
                     }
                 },
                 {
+                    "typeStr": "enum",
+                    "guid": "4baa5e10-b8e0-46a3-a25b-10a8eb1a3368",
+                    "name": "DEF Type",
+                    "description": "new enum field",
+                    "options": "Pt, %",
+                    "defaultValue": "Pt",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
+                    }
+                },
+                {
                     "typeStr": "int",
                     "guid": "881089af-1ab6-446a-a067-5e61d2bda140",
-                    "description": "int field",
+                    "description": "",
                     "name": "HP",
                     "min": 0,
                     "max": 100000,
@@ -297,6 +387,21 @@
                         "min": "int",
                         "max": "int",
                         "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "enum",
+                    "guid": "8941486c-1e4d-483b-9660-d1a6f44fc39e",
+                    "name": "HP Type",
+                    "description": "",
+                    "options": "Pt, %",
+                    "defaultValue": "Pt",
+                    "iconName": "newEnum",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text",
+                        "options": "text"
                     }
                 },
                 {
@@ -321,7 +426,10 @@
                     "DEF": 0,
                     "HP": 0,
                     "Identifier": "power_piece",
-                    "Name": "Power piece"
+                    "Name": "Power piece",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "ebfe8b68-edc6-4c17-9d6c-8d44974d2b84",
@@ -330,7 +438,10 @@
                     "DEF": 0,
                     "HP": 0,
                     "Identifier": "power_gem",
-                    "Name": "Power gem"
+                    "Name": "Power gem",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "f1025ca2-d369-4697-88a8-f515d8b92198",
@@ -339,7 +450,10 @@
                     "DEF": 1,
                     "HP": 0,
                     "Identifier": "guard_piece",
-                    "Name": "Guard piece"
+                    "Name": "Guard piece",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "377b8204-1d50-4003-a1b7-11bac192a0d1",
@@ -348,7 +462,10 @@
                     "DEF": 2,
                     "HP": 0,
                     "Identifier": "guard_gem",
-                    "Name": "Guard gem"
+                    "Name": "Guard gem",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "b032fbae-89b7-4a00-a714-f01f2c474042",
@@ -357,7 +474,10 @@
                     "DEF": 0,
                     "HP": 800,
                     "Identifier": "blue_potion",
-                    "Name": "Blue potion"
+                    "Name": "Blue potion",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "926d55a2-2d2a-4b22-8c27-237e1ad885d3",
@@ -366,7 +486,10 @@
                     "DEF": 0,
                     "HP": 200,
                     "Identifier": "red_potion",
-                    "Name": "Red potion"
+                    "Name": "Red potion",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "ee70053d-69a9-4bb6-8df5-0116e837e935",
@@ -375,7 +498,10 @@
                     "DEF": 3,
                     "HP": 3000,
                     "Identifier": "heavenly_potion",
-                    "Name": "Heavenly potion"
+                    "Name": "Heavenly potion",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "b9ed314f-4f45-4814-a02e-bc1bf59509d9",
@@ -384,7 +510,10 @@
                     "DEF": 3,
                     "HP": 300,
                     "Identifier": "guard_potion",
-                    "Name": "Guard potion"
+                    "Name": "Guard potion",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "415035e0-f6a5-4548-9f53-fc08ce3ccfeb",
@@ -393,7 +522,10 @@
                     "DEF": 0,
                     "HP": 300,
                     "Identifier": "life_potion",
-                    "Name": "Life potion"
+                    "Name": "Life potion",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "5debcd88-b5e3-449c-a4ac-19501ed4eb1b",
@@ -402,7 +534,10 @@
                     "DEF": 0,
                     "HP": 0,
                     "Identifier": "power_potion",
-                    "Name": "Power potion"
+                    "Name": "Power potion",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "f57813a8-906c-4c30-828b-41f6b487ccfc",
@@ -411,7 +546,10 @@
                     "DEF": 0,
                     "HP": 0,
                     "Identifier": "power_card",
-                    "Name": "Power card"
+                    "Name": "Power card",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
                 },
                 {
                     "guid": "68ca6040-dcb3-49f2-b3cf-e79dfdd1c099",
@@ -420,7 +558,46 @@
                     "ATK": 0,
                     "DEF": 15,
                     "HP": 0,
-                    "Name": "Guard deck"
+                    "Name": "Guard deck",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
+                },
+                {
+                    "guid": "27f10bf3-e801-48c7-8e70-d700cb5df0ec",
+                    "id": "12",
+                    "Identifier": "drop_of_dream_ocean",
+                    "ATK": 5,
+                    "DEF": 5,
+                    "HP": 9999,
+                    "Name": "Drop of dream ocean",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "Pt"
+                },
+                {
+                    "guid": "55a25ed7-1ffb-41ef-8e01-8f3a888176fb",
+                    "id": "13",
+                    "Identifier": "life_crown",
+                    "ATK": 0,
+                    "DEF": 0,
+                    "HP": 30,
+                    "Name": "Life Crown",
+                    "ATK Type": "Pt",
+                    "DEF Type": "Pt",
+                    "HP Type": "%"
+                },
+                {
+                    "guid": "138d928b-3a26-4f14-9bc7-3e1e26690b2a",
+                    "id": "14",
+                    "Identifier": "guard_card",
+                    "ATK": 0,
+                    "ATK Type": "Pt",
+                    "DEF": 5,
+                    "DEF Type": "Pt",
+                    "HP": 0,
+                    "HP Type": "Pt",
+                    "Name": "Gu"
                 }
             ],
             "hidden": false,
@@ -448,7 +625,7 @@
                 {
                     "typeStr": "int",
                     "guid": "96319a2c-a55d-4b07-a670-b767d4fbd88a",
-                    "description": "int field",
+                    "description": "",
                     "name": "ATK",
                     "min": 0,
                     "max": 100000,
@@ -465,7 +642,7 @@
                 {
                     "typeStr": "int",
                     "guid": "026d3755-ae44-4f9b-be39-af4d8ee0ccd5",
-                    "description": "int field",
+                    "description": "",
                     "name": "DEF",
                     "min": 0,
                     "max": 100000,
@@ -495,7 +672,7 @@
                 {
                     "typeStr": "int",
                     "guid": "97eb2c15-4c62-4383-a813-b3afb251d6c2",
-                    "description": "int field",
+                    "description": "",
                     "name": "Tower",
                     "min": 1,
                     "max": 100000,
@@ -512,7 +689,7 @@
                 {
                     "typeStr": "int",
                     "guid": "97e64c72-d439-428b-b956-eb9661c42e67",
-                    "description": "int field",
+                    "description": "",
                     "name": "HP",
                     "min": 0,
                     "max": 100000,
@@ -529,7 +706,7 @@
                 {
                     "typeStr": "int",
                     "guid": "01a90559-8ae6-4d80-a346-c47ff52f2a9d",
-                    "description": "int field",
+                    "description": "",
                     "name": "ATK",
                     "min": 0,
                     "max": 100000,
@@ -546,7 +723,7 @@
                 {
                     "typeStr": "int",
                     "guid": "a91a555f-7db3-4730-93fd-7f98949731fd",
-                    "description": "int field",
+                    "description": "",
                     "name": "DEF",
                     "min": 0,
                     "max": 100000,
