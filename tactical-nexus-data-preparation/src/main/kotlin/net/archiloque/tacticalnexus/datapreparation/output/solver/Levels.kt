@@ -26,6 +26,7 @@ class Levels {
     companion object {
         private val doorClass = ClassName(Solver.ENTITIES_PACKAGE, "Door")
         private val enemyClass = ClassName(Solver.ENTITIES_PACKAGE, "Enemy")
+        private val enemyTypeClass = ClassName(Solver.ENTITIES_PACKAGE, "EnemyType")
         private val exitClass = ClassName(Solver.ENTITIES_PACKAGE, "Exit")
         private val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
         private val keyClass = ClassName(Solver.ENTITIES_PACKAGE, "Key")
@@ -236,10 +237,10 @@ class Levels {
                 if (enemy == null) {
                     enemiesArrayCode.add("null, ")
                 } else {
-                    val itemIndex = items.indexOfFirst { it.identifier == enemy.drop }
                     enemiesArrayCode.add(
-                        "%T(${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, Items.${enemy.drop}), ",
-                        enemyClass
+                        "%T(%T.${enemyType.name}, ${level}, ${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, Items.${enemy.drop}), ",
+                        enemyClass,
+                        enemyTypeClass
                     )
                 }
             }

@@ -2,14 +2,14 @@ package net.archiloque.tacticalnexus.solver.entities
 
 import java.util.BitSet
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
-import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 
 abstract class Entity {
     abstract fun getType(): EntityType
 
-    abstract fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver)
+    abstract fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager)
 
     enum class EntityType() {
         Door,
@@ -27,27 +27,12 @@ abstract class Entity {
         visitedEntities.set(entityIndex)
         val reachableEntities = state.reachable.clone() as BitSet
         reachableEntities.set(entityIndex, false)
-        return State(
-            -1, // Ensure it can't be saved
-            StateStatus.new,
-
-            visitedEntities,
-            reachableEntities,
-            state.atk,
-            state.def,
-            state.exp,
-            state.hp,
-
-            state.expBonus,
-            state.hpBonus,
-
-            state.blueKeys,
-            state.crimsonKeys,
-            state.platinumKeys,
-            state.violetKeys,
-            state.yellowKeys,
-
-            state.moves.plus(entityIndex),
+        return state.copy(
+            id = -1,
+            status = StateStatus.new,
+            visited = visitedEntities,
+            reachable = reachableEntities,
+            moves = state.moves.plus(entityIndex)
         )
     }
 
@@ -56,7 +41,7 @@ abstract class Entity {
         entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
-        stateSaver: StateSaver,
+        stateManager: StateManager,
     ) {
         for (reachableEntity in playableTower.reachable[entityIndex]) {
             if ((!state.visited.get(reachableEntity)) && (!state.reachable.get(reachableEntity))) {

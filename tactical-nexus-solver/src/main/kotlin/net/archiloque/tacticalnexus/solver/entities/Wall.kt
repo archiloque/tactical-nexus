@@ -1,7 +1,7 @@
 package net.archiloque.tacticalnexus.solver.entities
 
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
-import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
 class Wall private constructor() : Entity() {
@@ -13,7 +13,7 @@ class Wall private constructor() : Entity() {
         return EntityType.Wall
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
         throw IllegalStateException("Should not happen")
     }
 }

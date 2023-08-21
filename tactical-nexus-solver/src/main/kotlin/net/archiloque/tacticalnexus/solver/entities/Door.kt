@@ -1,7 +1,7 @@
 package net.archiloque.tacticalnexus.solver.entities
 
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
-import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
 data class Door(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
@@ -10,7 +10,7 @@ data class Door(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         return EntityType.Door
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
         when (color) {
             KeyOrDoorColor.blue -> {
                 if (state.blueKeys < 1) {
@@ -44,34 +44,38 @@ data class Door(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         }
 
         val newState = newState(entityIndex, state)
-        when (color) {
-            KeyOrDoorColor.blue -> {
-                newState.blueKeys -= 1
-            }
-
-            KeyOrDoorColor.crimson -> {
-                newState.crimsonKeys -= 1
-            }
-
-            KeyOrDoorColor.platinum -> {
-                newState.platinumKeys -= 1
-            }
-
-            KeyOrDoorColor.violet -> {
-                newState.violetKeys -= 1
-            }
-
-            KeyOrDoorColor.yellow -> {
-                newState.yellowKeys -= 1
-            }
-        }
+        apply(newState)
         addNewReachablePositions(
             entityIndex,
             newState,
             playableTower,
-            stateSaver
+            stateManager
         )
-        stateSaver.save(newState)
+        stateManager.save(newState)
+    }
+
+    fun apply(state: State) {
+        when (color) {
+            KeyOrDoorColor.blue -> {
+                state.blueKeys -= 1
+            }
+
+            KeyOrDoorColor.crimson -> {
+                state.crimsonKeys -= 1
+            }
+
+            KeyOrDoorColor.platinum -> {
+                state.platinumKeys -= 1
+            }
+
+            KeyOrDoorColor.violet -> {
+                state.violetKeys -= 1
+            }
+
+            KeyOrDoorColor.yellow -> {
+                state.yellowKeys -= 1
+            }
+        }
     }
 
     override fun color(): KeyOrDoorColor {

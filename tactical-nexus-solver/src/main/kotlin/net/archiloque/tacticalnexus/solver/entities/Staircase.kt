@@ -1,7 +1,7 @@
 package net.archiloque.tacticalnexus.solver.entities
 
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
-import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
 data class Staircase private constructor(val direction: StaircaseDirection) : Entity() {
@@ -14,7 +14,7 @@ data class Staircase private constructor(val direction: StaircaseDirection) : En
         return EntityType.Staircase
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
         when (direction) {
             StaircaseDirection.up -> {
                 val newState = newState(entityIndex, state)
@@ -22,9 +22,9 @@ data class Staircase private constructor(val direction: StaircaseDirection) : En
                     entityIndex,
                     newState,
                     playableTower,
-                    stateSaver
+                    stateManager
                 )
-                stateSaver.save(newState)
+                stateManager.save(newState)
             }
 
             StaircaseDirection.down -> {

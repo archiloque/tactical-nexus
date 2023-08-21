@@ -1,10 +1,12 @@
 package net.archiloque.tacticalnexus.solver.entities
 
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
-import net.archiloque.tacticalnexus.solver.code.StateSaver
+import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
 data class Enemy(
+    val type: EnemyType,
+    val level: Int,
     val hp: Int,
     val atk: Int,
     val def: Int,
@@ -15,50 +17,55 @@ data class Enemy(
         return EntityType.Enemy
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateSaver: StateSaver) {
+    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
         val newState = newState(entityIndex, state)
-        val fightResult = fight(
-            newState.atk,
-            newState.def,
-            newState.hp,
-            atk,
-            def,
-            hp
+        val fightResult = apply(
+            newState
         )
         if (fightResult != null) {
-            newState.hp = fightResult
-            newState.exp += (exp * (100 + state.expBonus)) / 100
-            drop.collect(newState)
-            addNewReachablePositions(entityIndex, newState, playableTower, stateSaver)
-            stateSaver.save(newState)
+            addNewReachablePositions(entityIndex, newState, playableTower, stateManager)
+            stateManager.save(newState)
         }
     }
 
-    companion object {
-        fun fight(playerAtk: Int, playerDef: Int, playerHp: Int, enemyAtk: Int, enemyDef: Int, enemyHp: Int): Int? {
-            val damagesToEnemy = Math.max(playerAtk - enemyDef, 0)
-            val damagesToPlayer = Math.max(enemyAtk - playerDef, 0)
-            if ((damagesToPlayer == 0) && (damagesToEnemy > 0)) {
-                // Enemy can't hurt player but player can hurt enemy
-                return playerHp
-            } else if (damagesToEnemy == 0) {
-                // Can't hurt enemy
-                return null
-            } else {
-                var playerCurrentHp = playerHp
-                var enemyCurrentHp = enemyHp
-                for (turn in 0..1000) {
-                    enemyCurrentHp -= damagesToEnemy
-                    if (enemyCurrentHp <= 0) {
-                        return playerCurrentHp
-                    }
-                    playerCurrentHp -= damagesToPlayer
-                    if (playerCurrentHp <= 0) {
-                        return null
-                    }
+    fun apply(state: State): Int ? {
+        val result = calculate(state)
+        if(result != null) {
+            state.hp = result
+            state.exp += (exp * (100 + state.expBonus)) / 100
+            drop.apply(state)
+        }
+        return result
+    }
+
+    fun calculate(state: State): Int? {
+        val damagesToEnemy = Math.max(state.atk - def, 0)
+        val damagesToPlayer = Math.max(atk - state.def, 0)
+        if ((damagesToPlayer == 0) && (damagesToEnemy > 0)) {
+            // Enemy can't hurt player but player can hurt enemy
+            return state.hp
+        } else if (damagesToEnemy == 0) {
+            // Can't hurt enemy
+            return null
+        } else {
+            var playerCurrentHp = state.hp
+            var enemyCurrentHp = hp
+            for (turn in 0..1000) {
+                enemyCurrentHp -= damagesToEnemy
+                if (enemyCurrentHp <= 0) {
+                    return playerCurrentHp
                 }
-                throw RuntimeException("Too many turns: ${playerAtk} ${playerDef} ${playerHp} ${enemyAtk} ${enemyDef} ${enemyHp}")
+                playerCurrentHp -= damagesToPlayer
+                if (playerCurrentHp <= 0) {
+                    return null
+                }
             }
+            throw RuntimeException("Too many turns: ${state.atk} ${state.def} ${state.hp} ${atk} ${def} ${hp}")
         }
     }
+}
+
+enum class EnemyType() {
+    fighter,
+    ranger
 }

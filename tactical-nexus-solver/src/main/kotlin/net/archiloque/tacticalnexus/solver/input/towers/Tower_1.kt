@@ -3,6 +3,7 @@ package net.archiloque.tacticalnexus.solver.input.towers
 import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.Door
 import net.archiloque.tacticalnexus.solver.entities.Enemy
+import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.Exit
 import net.archiloque.tacticalnexus.solver.entities.Key
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
@@ -16,39 +17,31 @@ import net.archiloque.tacticalnexus.solver.input.Items
 @Generated
 public class Tower_1 : Tower {
     private val fighters: Array<Enemy?> = arrayOf(
-        null, Enemy(120, 55, 25, 2, Items.guard_piece),
-        null, Enemy(320, 110, 40, 5, Items.guard_piece), null,
+        null,
         Enemy(
-            600, 145, 65, 10,
-            Items.guard_gem
+            EnemyType.fighter, 1, 120, 55, 25, 2,
+            Items.guard_piece
         ),
-        null, null, Enemy(1000, 260, 85, 18, Items.guard_gem), null, null, null,
-        Enemy(2000, 440, 120, 30, Items.guard_potion), null, null,
-        Enemy(
-            3500, 590, 170, 47,
-            Items.guard_potion
-        ),
-        null, null, null, Enemy(5500, 1120, 445, 70, Items.guard_card),
+        null, Enemy(EnemyType.fighter, 3, 320, 110, 40, 5, Items.guard_piece),
+        null, Enemy(EnemyType.fighter, 5, 600, 145, 65, 10, Items.guard_gem), null, null,
+        Enemy(EnemyType.fighter, 8, 1000, 260, 85, 18, Items.guard_gem), null, null, null,
+        Enemy(EnemyType.fighter, 12, 2000, 440, 120, 30, Items.guard_potion), null, null,
+        Enemy(EnemyType.fighter, 15, 3500, 590, 170, 47, Items.guard_potion), null, null, null,
+        Enemy(EnemyType.fighter, 19, 5500, 1120, 445, 70, Items.guard_card),
     )
 
     private val rangers: Array<Enemy?> = arrayOf(
-        null, null, Enemy(200, 200, 10, 4, Items.red_potion),
-        null, Enemy(200, 350, 20, 16, Items.red_potion), null, null,
+        null, null,
         Enemy(
-            800, 280, 40, 36,
-            Items.blue_potion
+            EnemyType.ranger, 2, 200, 200, 10,
+            4, Items.red_potion
         ),
-        null, null, Enemy(800, 540, 60, 64, Items.blue_potion), null, null,
-        Enemy(800, 1050, 80, 100, Items.blue_potion), null, null,
-        Enemy(
-            2000, 1100, 120, 140,
-            Items.life_potion
-        ),
-        null, null, null, null, null,
-        Enemy(
-            3000, 2350, 360, 256,
-            Items.heavenly_potion
-        ),
+        null, Enemy(EnemyType.ranger, 4, 200, 350, 20, 16, Items.red_potion),
+        null, null, Enemy(EnemyType.ranger, 7, 800, 280, 40, 36, Items.blue_potion), null, null,
+        Enemy(EnemyType.ranger, 10, 800, 540, 60, 64, Items.blue_potion), null, null,
+        Enemy(EnemyType.ranger, 13, 800, 1050, 80, 100, Items.blue_potion), null, null,
+        Enemy(EnemyType.ranger, 16, 2000, 1100, 120, 140, Items.life_potion), null, null, null, null,
+        null, Enemy(EnemyType.ranger, 22, 3000, 2350, 360, 256, Items.heavenly_potion),
     )
 
     private val levels: Array<Level> = arrayOf(
