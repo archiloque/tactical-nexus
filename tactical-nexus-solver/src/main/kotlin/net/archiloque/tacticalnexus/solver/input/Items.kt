@@ -22,7 +22,7 @@ public class Items {
 
         public val guard_potion: Item = Item("Guard potion", 0, 3, 0, 300, 0)
 
-        public val heavenly_potion: Item = Item("Heavenly potion", 0, 3, 0, 3000, 0)
+        public val heavenly_potion: Item = Item("Heavenly potion", 3, 3, 0, 3000, 0)
 
         public val life_crown: Item = Item("Life Crown", 0, 0, 0, 30, 30)
 
