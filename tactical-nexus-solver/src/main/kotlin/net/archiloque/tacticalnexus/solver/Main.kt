@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
     val inputTower = Tower_1()
     val playableTower = PlayableTower.prepare(inputTower)
     val initialState = createInitialState(inputTower, playableTower)
-    val stateManager = DefaultStateManager(database, playableTower, initialState)
+    val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
     stateManager.save(initialState)
 
     while (true) {

@@ -28,9 +28,9 @@ data class Enemy(
         }
     }
 
-    fun apply(state: State): Int ? {
+    fun apply(state: State): Int? {
         val result = calculate(state)
-        if(result != null) {
+        if (result != null) {
             state.hp = result
             state.exp += (exp * (100 + state.expBonus)) / 100
             drop.apply(state)

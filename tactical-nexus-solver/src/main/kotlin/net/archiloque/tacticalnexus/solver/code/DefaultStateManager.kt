@@ -8,10 +8,16 @@ import net.archiloque.tacticalnexus.solver.entities.Enemy
 import net.archiloque.tacticalnexus.solver.entities.Entity
 import net.archiloque.tacticalnexus.solver.entities.Item
 import net.archiloque.tacticalnexus.solver.entities.Key
+import net.archiloque.tacticalnexus.solver.entities.Tower
 import org.ktorm.database.Database
 import org.ktorm.support.postgresql.bulkInsertOrUpdate
 
-class DefaultStateManager(val database: Database, val playableTower: PlayableTower, val initialState: State) :
+class DefaultStateManager(
+    val database: Database,
+    val tower: Tower,
+    val playableTower: PlayableTower,
+    val initialState: State,
+) :
     StateManager {
 
     override fun save(state: State) {
@@ -72,16 +78,19 @@ class DefaultStateManager(val database: Database, val playableTower: PlayableTow
         val columnLength = positionedEntities.map { it.position.column }.max().toString().length
         val lineLength = positionedEntities.map { it.position.line }.max().toString().length
         var index = 1
+        val initialPosition = playableTower.positionedEntities[playableTower.startingPosition].position
         print(
             0,
             moveIndexLength,
-            playableTower.positionedEntities[playableTower.startingPosition].position,
+            initialPosition,
+            initialPosition,
             levelLength,
             lineLength,
             columnLength,
             "Starting",
             currentState
         )
+        var lastPosition: Position = initialPosition
         for (positionedEntity in positionedEntities) {
             val entity = positionedEntity.entity
             val position = positionedEntity.position
@@ -91,6 +100,7 @@ class DefaultStateManager(val database: Database, val playableTower: PlayableTow
                     index,
                     moveIndexLength,
                     position,
+                    lastPosition,
                     levelLength,
                     lineLength,
                     columnLength,
@@ -98,6 +108,7 @@ class DefaultStateManager(val database: Database, val playableTower: PlayableTow
                     currentState
                 )
                 index++
+                lastPosition = position
             }
         }
     }
@@ -105,7 +116,8 @@ class DefaultStateManager(val database: Database, val playableTower: PlayableTow
     private fun print(
         index: Int,
         moveIndexLength: Int,
-        position: Position,
+        currentPosition: Position,
+        previousPosition: Position,
         levelLength: Int,
         lineLength: Int,
         columnLength: Int,
@@ -114,11 +126,16 @@ class DefaultStateManager(val database: Database, val playableTower: PlayableTow
     ) {
         println(
             "${index.toString().padStart(moveIndexLength)} (${
-                position.level.toString().padStart(levelLength)
-            }, ${position.line.toString().padStart(lineLength)}, ${
-                position.column.toString().padStart(columnLength)
-            }) ${description.padEnd(25)}Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${currentState.exp}, Hp: ${currentState.hp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
+                currentPosition.level.toString().padStart(levelLength)
+            }, ${currentPosition.line.toString().padStart(lineLength)}, ${
+                currentPosition.column.toString().padStart(columnLength)
+            }) ${description}"
         )
+        println(
+            "Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${currentState.exp}, Hp: ${currentState.hp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
+        )
+        printMove(currentPosition, previousPosition, tower)
+        println()
     }
 
     private fun description(
@@ -165,6 +182,23 @@ class DefaultStateManager(val database: Database, val playableTower: PlayableTow
             Entity.EntityType.Wall -> {
                 throw IllegalStateException("Should not happen")
             }
+        }
+    }
+
+    private fun printMove(currentPosition: Position, previousPosition: Position, tower: Tower) {
+        val level = tower.levels()[currentPosition.level]
+        for ((lineIndex, line) in level.entities.withIndex()) {
+            println(line.mapIndexed { columnIndex, entity ->
+                if ((lineIndex == currentPosition.line) && (columnIndex == currentPosition.column)) {
+                    'X'
+                } else if ((currentPosition.level == previousPosition.level) && (lineIndex == previousPosition.line) && (columnIndex == previousPosition.column)) {
+                    '□'
+                } else if ((entity != null) && (entity.getType() == Entity.EntityType.Wall)) {
+                    '#'
+                } else {
+                    ' '
+                }
+            }.joinToString(""))
         }
     }
 }
