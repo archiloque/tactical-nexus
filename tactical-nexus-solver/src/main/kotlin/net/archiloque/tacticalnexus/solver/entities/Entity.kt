@@ -5,6 +5,7 @@ import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
+import net.archiloque.tacticalnexus.solver.input.Items
 
 abstract class Entity {
     abstract fun getType(): EntityType
@@ -41,11 +42,46 @@ abstract class Entity {
         entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
-        stateManager: StateManager,
     ) {
-        for (reachableEntity in playableTower.reachable[entityIndex]) {
-            if ((!state.visited.get(reachableEntity)) && (!state.reachable.get(reachableEntity))) {
-                state.reachable.set(reachableEntity)
+        val positionsToAdd = playableTower.reachable[entityIndex].toMutableList()
+        while (positionsToAdd.isNotEmpty()) {
+            val positionToAdd = positionsToAdd.removeLast()
+            val elementToAdd = playableTower.positionedEntities[positionToAdd]
+            if ((!state.visited.get(positionToAdd)) && (!state.reachable.get(positionToAdd))) {
+                when (elementToAdd.entity.getType()) {
+                    EntityType.Staircase -> {
+                        // If a staircase becomes reachable we immediately treat it as being taken
+                        state.visited.set(positionToAdd)
+                        state.moves = state.moves.plus(positionToAdd)
+                        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
+                    }
+                    EntityType.Key -> {
+                        val key = elementToAdd.entity as Key
+                        // If a staircase becomes reachable we immediately treat it as being taken
+                        key.apply(state)
+                        state.visited.set(positionToAdd)
+                        state.moves = state.moves.plus(positionToAdd)
+                        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
+                    }
+
+                    EntityType.Item -> {
+                        val item = elementToAdd.entity as Item
+                        if ((item == Items.golden_feather) || (item == Items.life_crown)) {
+                            // Items that gives a bonus should be taken immediately
+                            state.visited.set(positionToAdd)
+                            state.moves = state.moves.plus(positionToAdd)
+                            item.apply(state)
+                            positionsToAdd.addAll(playableTower.reachable[positionToAdd])
+
+                        } else {
+                            state.reachable.set(positionToAdd)
+                        }
+                    }
+
+                    else -> {
+                        state.reachable.set(positionToAdd)
+                    }
+                }
             }
         }
     }

@@ -16,8 +16,7 @@ data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         addNewReachablePositions(
             entityIndex,
             newState,
-            playableTower,
-            stateManager
+            playableTower
         )
         stateManager.save(newState)
     }

@@ -31,8 +31,7 @@ Item(
         addNewReachablePositions(
             entityIndex,
             newState,
-            playableTower,
-            stateManager
+            playableTower
         )
         stateManager.save(newState)
     }

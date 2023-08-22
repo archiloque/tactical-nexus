@@ -2,6 +2,7 @@ package net.archiloque.tacticalnexus.solver.code
 
 import net.archiloque.tacticalnexus.solver.entities.Entity
 import net.archiloque.tacticalnexus.solver.entities.Level
+import net.archiloque.tacticalnexus.solver.entities.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.Staircase
 import net.archiloque.tacticalnexus.solver.entities.Tower
 import net.archiloque.tacticalnexus.solver.entities.Wall
@@ -154,8 +155,11 @@ class PlayableTower(
                     positionsToCheck.add(position)
                 } else if (
                     !(
-                            // Can't reach walls or down staircase
-                            (entity == Wall.instance) ||
+                            // Can't reach:
+                            // - walls
+                            // - starting position
+                            // - down staircase
+                            (entity == Wall.instance) || (entity == PlayerStartPosition.instance) ||
                                     ((entity.getType() == Entity.EntityType.Staircase) && ((entity as Staircase).direction == Staircase.StaircaseDirection.down)))
                 ) {
                     val entityIndex = entitiesIndexByPosition[position]!!

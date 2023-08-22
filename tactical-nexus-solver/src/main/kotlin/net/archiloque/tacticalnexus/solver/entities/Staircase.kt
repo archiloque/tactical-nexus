@@ -21,8 +21,7 @@ data class Staircase private constructor(val direction: StaircaseDirection) : En
                 addNewReachablePositions(
                     entityIndex,
                     newState,
-                    playableTower,
-                    stateManager
+                    playableTower
                 )
                 stateManager.save(newState)
             }

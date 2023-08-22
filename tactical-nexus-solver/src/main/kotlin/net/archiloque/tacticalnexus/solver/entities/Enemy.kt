@@ -23,7 +23,7 @@ data class Enemy(
             newState
         )
         if (fightResult != null) {
-            addNewReachablePositions(entityIndex, newState, playableTower, stateManager)
+            addNewReachablePositions(entityIndex, newState, playableTower)
             stateManager.save(newState)
         }
     }
