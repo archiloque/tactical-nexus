@@ -26,7 +26,7 @@ public class Items {
 
         public val life_crown: Item = Item("Life Crown", 0, 0, 0, 30, 30)
 
-        public val life_potion: Item = Item("Life potion", 3, 0, 0, 300, 0)
+        public val life_potion: Item = Item("Life potion", 0, 0, 0, 2000, 0)
 
         public val power_card: Item = Item("Power card", 5, 0, 0, 0, 0)
 
