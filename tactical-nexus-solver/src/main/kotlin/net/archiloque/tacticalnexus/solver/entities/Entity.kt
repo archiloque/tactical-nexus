@@ -55,6 +55,7 @@ abstract class Entity {
                         state.moves = state.moves.plus(positionToAdd)
                         positionsToAdd.addAll(playableTower.reachable[positionToAdd])
                     }
+
                     EntityType.Key -> {
                         val key = elementToAdd.entity as Key
                         // If a staircase becomes reachable we immediately treat it as being taken

@@ -30,11 +30,13 @@ public class Items {
 
         public val power_card: Item = Item("Power card", 5, 0, 0, 0, 0)
 
+        public val power_deck: Item = Item("Power deck", 15, 0, 0, 0, 0)
+
         public val power_gem: Item = Item("Power gem", 2, 0, 0, 0, 0)
 
         public val power_piece: Item = Item("Power piece", 1, 0, 0, 0, 0)
 
-        public val power_potion: Item = Item("Power potion", 2, 0, 0, 0, 0)
+        public val power_potion: Item = Item("Power potion", 3, 0, 0, 300, 0)
 
         public val red_potion: Item = Item("Red potion", 0, 0, 0, 200, 0)
     }

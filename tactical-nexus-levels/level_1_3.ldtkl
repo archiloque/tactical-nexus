@@ -11,8 +11,8 @@
 	"identifier": "level_1_3",
 	"iid": "318f8550-3b70-11ee-b2da-d900cb187319",
 	"uid": 33,
-	"worldX": 560,
-	"worldY": 48,
+	"worldX": 528,
+	"worldY": 32,
 	"worldDepth": 0,
 	"pxWid": 240,
 	"pxHei": 240,
@@ -71,20 +71,6 @@
 						"id": "V_String",
 						"params": ["down"]
 					}] }]
-				},
-				{
-					"__identifier": "exit",
-					"__grid": [12,7],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 48, "y": 240, "w": 16, "h": 16 },
-					"__smartColor": "#733E39",
-					"iid": "90ef1bf0-3b70-11ee-b2da-377b67cbe0fb",
-					"width": 16,
-					"height": 16,
-					"defUid": 32,
-					"px": [192,112],
-					"fieldInstances": []
 				},
 				{
 					"__identifier": "wall",
@@ -3354,6 +3340,23 @@
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 7, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [7] }] }
 					]
+				},
+				{
+					"__identifier": "staircase",
+					"__grid": [12,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 160, "y": 48, "w": 16, "h": 16 },
+					"__smartColor": "#FEAE34",
+					"iid": "6efe6af0-3b70-11ee-b839-7d45b90b4132",
+					"width": 16,
+					"height": 16,
+					"defUid": 16,
+					"px": [192,112],
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["up"]
+					}] }]
 				}
 			]
 		}

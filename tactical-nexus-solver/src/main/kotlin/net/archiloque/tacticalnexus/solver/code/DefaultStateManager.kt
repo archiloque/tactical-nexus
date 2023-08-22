@@ -132,7 +132,7 @@ class DefaultStateManager(
             }) ${description}"
         )
         println(
-            "Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${currentState.exp}, Hp: ${currentState.hp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
+            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${currentState.exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
         )
         printMove(currentPosition, previousPosition, tower)
         println()

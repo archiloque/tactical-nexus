@@ -298,7 +298,7 @@
                 },
                 {
                     "guid": "56d886d1-4401-4f10-a649-44f01777cf8c",
-                    "id": "14",
+                    "id": "13",
                     "Tower": 1,
                     "Type": "fighter",
                     "Level": 15,
@@ -307,6 +307,30 @@
                     "DEF": 170,
                     "EXP": 47,
                     "Drop": "guard_potion"
+                },
+                {
+                    "guid": "843cc778-d79a-4bf1-aca0-1cb840c9a154",
+                    "id": "14",
+                    "Tower": 1,
+                    "Type": "ranger",
+                    "Level": 18,
+                    "HP": 2000,
+                    "ATK": 1660,
+                    "DEF": 240,
+                    "EXP": 196,
+                    "Drop": "life_potion"
+                },
+                {
+                    "guid": "f70ebb69-a984-45f0-83f9-e2d7d4cc8a7e",
+                    "id": "15",
+                    "Tower": 1,
+                    "Type": "ranger",
+                    "Level": 26,
+                    "HP": 3000,
+                    "ATK": 3740,
+                    "DEF": 720,
+                    "EXP": 324,
+                    "Drop": "heavenly_potion"
                 }
             ],
             "hidden": false,
@@ -546,9 +570,9 @@
                 {
                     "guid": "5debcd88-b5e3-449c-a4ac-19501ed4eb1b",
                     "id": "9",
-                    "ATK": 2,
+                    "ATK": 3,
                     "DEF": 0,
-                    "HP": 0,
+                    "HP": 300,
                     "Identifier": "power_potion",
                     "Name": "Power potion",
                     "HP Bonus": 0,
@@ -619,6 +643,17 @@
                     "Name": "Golden feather",
                     "HP Bonus": 0,
                     "EXP Bonus": 30
+                },
+                {
+                    "guid": "759932c1-d0c2-45dc-b3ac-dcc1b63879df",
+                    "id": "16",
+                    "Identifier": "power_deck",
+                    "ATK": 15,
+                    "DEF": 0,
+                    "HP": 0,
+                    "Name": "Power deck",
+                    "HP Bonus": 0,
+                    "EXP Bonus": 0
                 }
             ],
             "hidden": false,

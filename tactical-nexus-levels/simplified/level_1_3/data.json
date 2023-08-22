@@ -1,8 +1,8 @@
 {
 	"identifier": "level_1_3",
 	"uniqueIdentifer": "318f8550-3b70-11ee-b2da-d900cb187319",
-	"x": 560,
-	"y": 48,
+	"x": 528,
+	"y": 32,
 	"width": 240,
 	"height": 240,
 	"bgColor": "#696A79",
@@ -26,19 +26,19 @@
 				"customFields": {
 					"direction": "down"
 				}
-			}
-		],
-		"exit": [
+			},
 			{
-				"id": "exit",
-				"iid": "90ef1bf0-3b70-11ee-b2da-377b67cbe0fb",
+				"id": "staircase",
+				"iid": "6efe6af0-3b70-11ee-b839-7d45b90b4132",
 				"layer": "entities",
 				"x": 192,
 				"y": 112,
 				"width": 16,
 				"height": 16,
-				"color": 7552569,
-				"customFields" : {}
+				"color": 16690740,
+				"customFields": {
+					"direction": "up"
+				}
 			}
 		],
 		"wall": [
