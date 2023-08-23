@@ -5,7 +5,6 @@ Code related to the [Tactical Nexus](https://store.steampowered.com/app/1141290/
 # Used softwares
 
 - The `.ldtk` levels are edited with [LDtk](https://ldtk.io)
-- Thhe `tactical-nexus-entities.dpo` entities are edited with [Depot](https://github.com/afterschoolstudio/Depot/blob/master/README.md).
 
 # License
 
