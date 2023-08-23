@@ -1,5 +1,7 @@
 package net.archiloque.tacticalnexus.solver
 
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
 import java.util.BitSet
 import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.code.DefaultStateManager
@@ -20,10 +22,16 @@ import org.ktorm.support.postgresql.PostgreSqlDialect
 
 
 fun main(args: Array<String>) {
+    val config = HikariConfig().apply {
+        jdbcUrl = "jdbc:postgresql://localhost:5432/tactical-nexus-solver"
+        username = "tactical-nexus-solver"
+        addDataSourceProperty("cachePrepStmts", "true")
+        addDataSourceProperty("prepStmtCacheSize", "250")
+        addDataSourceProperty("prepStmtCacheSqlLimit", "2048")
+    }
 
     val database = Database.connect(
-        "jdbc:postgresql://localhost:5432/tactical-nexus-solver",
-        user = "tactical-nexus-solver",
+        HikariDataSource(config),
         dialect = PostgreSqlDialect(),
         //logger = ConsoleLogger(LogLevel.DEBUG)
     )
@@ -36,7 +44,7 @@ fun main(args: Array<String>) {
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
     stateManager.save(initialState)
 
-    while (true) {
+    if (System.getenv("SINGLE") == "true") {
         val state = findNextState(database)
         if (state != null) {
             Player.play(state, playableTower, stateManager)
@@ -51,8 +59,33 @@ fun main(args: Array<String>) {
         } else {
             exitProcess(0)
         }
+    } else {
+        val availableProcessors = Runtime.getRuntime().availableProcessors()
+        for (i in 0..<(availableProcessors - 1)) {
+            Thread {
+                println("Staring thread ${i}")
+                while (true) {
+                    val state = findNextState(database)
+                    if (state != null) {
+                        Player.play(state, playableTower, stateManager)
+                        database.useTransaction {
+                            database.update(States) {
+                                set(it.status, StateStatus.processed)
+                                where {
+                                    id eq state.id
+                                }
+                            }
+                        }
+                    } else {
+                        Thread.sleep(1000)
+                    }
+                }
+            }.start()
+        }
+        Thread.sleep(Long.MAX_VALUE)
     }
 }
+
 
 fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
     val visited = BitSet(playableTower.entitiesNumber)

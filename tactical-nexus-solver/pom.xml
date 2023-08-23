@@ -21,6 +21,7 @@
     <properties>
         <ktorm.version>3.6.0</ktorm.version>
         <postgresql.driver.version>42.6.0</postgresql.driver.version>
+        <hikaricp.version>5.0.1</hikaricp.version>
     </properties>
 
 
@@ -39,6 +40,11 @@
             <groupId>org.ktorm</groupId>
             <artifactId>ktorm-support-postgresql</artifactId>
             <version>${ktorm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
         </dependency>
     </dependencies>
 

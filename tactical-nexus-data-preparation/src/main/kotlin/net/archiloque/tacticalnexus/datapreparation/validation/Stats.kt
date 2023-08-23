@@ -18,7 +18,7 @@ class Stats {
                 }
             }
             checkDuplicates(stats.map { it.tower }.groupBy { it })
-            println("${stats.size} enemies are OK")
+            println("${stats.size} stats are OK")
         }
 
     }

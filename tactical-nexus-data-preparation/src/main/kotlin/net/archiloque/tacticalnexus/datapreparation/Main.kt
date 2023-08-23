@@ -7,10 +7,8 @@ import java.util.stream.Collectors
 import kotlin.io.path.readText
 import kotlinx.serialization.json.Json
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
-import net.archiloque.tacticalnexus.datapreparation.input.entities.EnemySheet
-import net.archiloque.tacticalnexus.datapreparation.input.entities.Entities
-import net.archiloque.tacticalnexus.datapreparation.input.entities.ItemSheet
-import net.archiloque.tacticalnexus.datapreparation.input.entities.StatSheet
+import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
+import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.Level
 import net.archiloque.tacticalnexus.datapreparation.output.solver.Solver
 import net.archiloque.tacticalnexus.datapreparation.validation.Enemies
@@ -41,14 +39,10 @@ fun main(args: Array<String>) {
         val level = json.decodeFromString<Level>(it.readText())
         level
     }
-    val entitiesPath = Paths.get("../tactical-nexus-entities.dpo")
-    println("Processing entities at [${entitiesPath}]")
-    val entities = json.decodeFromString<Entities>(entitiesPath.readText())
-
-    val enemies = (entities.sheets.find { it.name == "Enemy" } as? EnemySheet)!!.enemies
-    val items = (entities.sheets.find { it.name == "Item" } as? ItemSheet)!!.items
+    val enemies = Enemy.readItems("../enemies.csv")
+    val items = Item.readItems("../items.csv")
     val itemsIdentifiers = items.map { it.identifier }
-    val stats = (entities.sheets.find { it.name == "Stat" } as? StatSheet)!!.stats
+    val stats = Stat.readItems("../stats.csv")
     val statsIds = stats.map { it.tower }
 
     Items.validate(items, itemsIdentifiers)

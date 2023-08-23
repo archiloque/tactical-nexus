@@ -1,5 +1,6 @@
 package net.archiloque.tacticalnexus.datapreparation.output.solver
 
+import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
@@ -46,6 +47,13 @@ class Levels {
         ) {
             println("Generating levels")
 
+            println("Generating enemies")
+            csvWriter().open("../enemies.csv") {
+                writeRow("Tower", "Type", "Level", "HP", "ATK", "DEF", "EXP", "Drop")
+                for (enemy in enemies) {
+                    writeRow(enemy.tower, enemy.type, enemy.level, enemy.hp, enemy.atk, enemy.def, enemy.exp, enemy.drop)
+                }
+            }
 
             val towersList = levels.map { it.levelCustomFields.tower }.toSet().sorted()
 
