@@ -7,4 +7,5 @@ A WIP solver in Kotlin.
 - A PostgreSQL user with login `tactical-nexus-solver` that owns this database
 
 ```console
+mvn clean install exec:java
 ```

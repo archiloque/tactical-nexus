@@ -58,15 +58,15 @@ abstract class Entity {
             if ((!state.visited.get(positionToAdd)) && (!state.reachable.get(positionToAdd))) {
                 when (elementToAdd.entity.getType()) {
                     EntityType.Staircase -> {
-                        // If a staircase becomes reachable we immediately treat it as being taken
+                        // If a staircase becomes reachable we immediately treat it as being taken by adding the newly reachable positionw
                         state.visited.set(positionToAdd)
                         state.moves = state.moves.plus(positionToAdd)
                         positionsToAdd.addAll(playableTower.reachable[positionToAdd])
                     }
 
                     EntityType.Key -> {
+                        // If a key becomes reachable we immediately treat it as being grabbed and adding the newly reachable positionw
                         val key = elementToAdd.entity as Key
-                        // If a staircase becomes reachable we immediately treat it as being taken
                         key.apply(state)
                         state.visited.set(positionToAdd)
                         state.moves = state.moves.plus(positionToAdd)

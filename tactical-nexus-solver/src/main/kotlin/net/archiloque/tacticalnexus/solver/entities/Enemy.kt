@@ -1,10 +1,8 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
-import net.archiloque.tacticalnexus.solver.input.LevelUps
 
 data class Enemy(
     val type: EnemyType,
@@ -21,17 +19,12 @@ data class Enemy(
 
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
         val newState = newState(entityIndex, state)
-        val fromLevelUp = findLevelUp(newState.exp)!!
+        val fromLevelUp = levelUp(newState.exp)
 
         val fightResult = apply(newState)
-        if (fightResult != null) {
-            val toLevelUp = findLevelUp(newState.exp)
-            if (toLevelUp == null) {
-                System.err.println("No level up found")
-                stateManager.reachedExit(newState)
-                exitProcess(-1)
-            } else if (fromLevelUp != toLevelUp) {
-                newState.exp -= toLevelUp.exp
+        if (fightResult) {
+            val toLevelUp = levelUp(newState.exp)
+            if (fromLevelUp != toLevelUp) {
                 addNewReachablePositions(entityIndex, newState, playableTower)
                 for (levelUpType in LevelUpType.entries) {
                     val levelUpState = newState(levelUpType.type, newState)
@@ -40,51 +33,72 @@ data class Enemy(
                     stateManager.save(levelUpState)
                 }
             } else {
-                drop.apply(state)
+                drop.apply(newState)
                 addNewReachablePositions(entityIndex, newState, playableTower)
                 stateManager.save(newState)
             }
         }
     }
 
-    fun apply(state: State): Int? {
+    fun apply(state: State): Boolean {
         val result = calculate(state)
-        if (result != null) {
+        return if (result != null) {
             state.hp = result
             state.exp += (exp * (100 + state.expBonus)) / 100
+            true
+        } else {
+            false
         }
-        return result
+
     }
 
     private fun calculate(state: State): Int? {
         val damagesToEnemy = Math.max(state.atk - def, 0)
         val damagesToPlayer = Math.max(atk - state.def, 0)
-        if ((damagesToPlayer == 0) && (damagesToEnemy > 0)) {
+        return if ((damagesToPlayer == 0) && (damagesToEnemy > 0)) {
             // Enemy can't hurt player but player can hurt enemy
-            return state.hp
+            state.hp
         } else if (damagesToEnemy == 0) {
             // Can't hurt enemy
-            return null
+            null
         } else {
-            var playerCurrentHp = state.hp
-            var enemyCurrentHp = hp
-            for (turn in 0..1000) {
-                enemyCurrentHp -= damagesToEnemy
-                if (enemyCurrentHp <= 0) {
-                    return playerCurrentHp
-                }
-                playerCurrentHp -= damagesToPlayer
-                if (playerCurrentHp <= 0) {
-                    return null
-                }
+            val turnsToKillEnemy = Math.ceilDiv(hp, damagesToEnemy)
+            val turnsToKillPlayer = Math.ceilDiv(state.hp, damagesToPlayer)
+            if (turnsToKillEnemy <= turnsToKillPlayer) {
+                state.hp - ((turnsToKillEnemy - 1) * damagesToPlayer)
+            } else {
+                null
             }
-            throw RuntimeException("Too many turns: ${state.atk} ${state.def} ${state.hp} ${atk} ${def} ${hp}")
         }
     }
 
     companion object {
-        private fun findLevelUp(exp: Int): LevelUp? {
-            return LevelUps.levelUps.find { it.exp >= exp }
+        val levelUps = mutableListOf(LevelUp(0, 0, 0, 0))
+
+        public fun levelUp(exp: Int): LevelUp {
+            val nexLevelUp = levelUps.indexOfFirst { it.exp > exp }
+            return if(nexLevelUp == -1) {
+                createLevelsUp(exp)
+                levelUp(exp)
+            } else {
+                levelUps[nexLevelUp - 1]
+            }
+        }
+
+        private fun createLevelsUp(exp: Int) {
+            synchronized(Enemy) {
+                var maxLevel = levelUps.last()
+                while (maxLevel.exp <= exp) {
+                    val newLevelNumber = maxLevel.number + 1
+                    maxLevel = LevelUp(
+                        newLevelNumber,
+                        maxLevel.exp + (newLevelNumber * 10),
+                        4 + newLevelNumber,
+                        8 + (newLevelNumber * 2)
+                    )
+                    levelUps.add(maxLevel)
+                }
+            }
         }
 
         fun applyLevelUp(
@@ -102,15 +116,15 @@ data class Enemy(
                 }
 
                 LevelUpType.blueKeys -> {
-                    levelUpState.blueKeys += toLevelUp.blueKeys
+                    levelUpState.blueKeys += 2
                 }
 
                 LevelUpType.crimsonKeys -> {
-                    levelUpState.crimsonKeys += toLevelUp.crimsonKeys
+                    levelUpState.crimsonKeys += 1
                 }
 
                 LevelUpType.yellowKeys -> {
-                    levelUpState.yellowKeys += toLevelUp.yellowKeys
+                    levelUpState.yellowKeys += 3
                 }
             }
         }

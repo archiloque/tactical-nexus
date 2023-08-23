@@ -6,9 +6,6 @@ data class LevelUp(
 
     val atk: Int,
     val def: Int,
-    val blueKeys: Int,
-    val crimsonKeys: Int,
-    val yellowKeys: Int,
 )
 
 enum class LevelUpType(val type: Int) {

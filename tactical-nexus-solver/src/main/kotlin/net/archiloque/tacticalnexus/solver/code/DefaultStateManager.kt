@@ -1,5 +1,6 @@
 package net.archiloque.tacticalnexus.solver.code
 
+import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.States
@@ -10,7 +11,6 @@ import net.archiloque.tacticalnexus.solver.entities.Item
 import net.archiloque.tacticalnexus.solver.entities.Key
 import net.archiloque.tacticalnexus.solver.entities.LevelUpType
 import net.archiloque.tacticalnexus.solver.entities.Tower
-import net.archiloque.tacticalnexus.solver.input.LevelUps
 import org.ktorm.database.Database
 import org.ktorm.support.postgresql.bulkInsertOrUpdate
 
@@ -70,91 +70,97 @@ class DefaultStateManager(
     }
 
     override fun reachedExit(finalState: State) {
-        println("Win !")
-        println(finalState)
-        val currentState = initialState.copy()
+        synchronized(this) {
+            println(finalState)
+            val currentState = initialState.copy()
 
-        val moveIndexLength = finalState.moves.size.toString().length
-        val positionedEntities = finalState.moves.filter { it >= 0 }.map { playableTower.positionedEntities[it] }
-        val maxLevelIndexLength = positionedEntities.map { it.position.level }.max().toString().length
-        val maxLevelColumnsLength = positionedEntities.map { it.position.column }.max().toString().length
-        val maxLevelLinesLength = positionedEntities.map { it.position.line }.max().toString().length
-        var index = 1
-        val initialPosition = playableTower.positionedEntities[playableTower.startingPosition].position
-        printStatus(
-            0,
-            moveIndexLength,
-            initialPosition,
-            maxLevelIndexLength,
-            maxLevelLinesLength,
-            maxLevelColumnsLength,
-            "Starting",
-            currentState
-        )
-        printMove(initialPosition, initialPosition, tower)
-        println()
-        var lastPosition: Position = initialPosition
-        var currentLevelUpIndex = 0
-        for (move in finalState.moves) {
-            if (move >= 0) {
-                val positionedEntity = playableTower.positionedEntities[move]
-                val entity = positionedEntity.entity
-                val position = positionedEntity.position
-                val description = apply(entity, currentState)
-                if (description != null) {
+            val moveIndexLength = finalState.moves.size.toString().length
+            val positionedEntities = finalState.moves.filter { it >= 0 }.map { playableTower.positionedEntities[it] }
+            val maxLevelIndexLength = positionedEntities.map { it.position.level }.max().toString().length
+            val maxLevelColumnsLength = positionedEntities.map { it.position.column }.max().toString().length
+            val maxLevelLinesLength = positionedEntities.map { it.position.line }.max().toString().length
+            var index = 1
+            val initialPosition = playableTower.positionedEntities[playableTower.startingPosition].position
+            var currentLevelUpIndex = 0
+            printStatus(
+                0,
+                moveIndexLength,
+                initialPosition,
+                maxLevelIndexLength,
+                maxLevelLinesLength,
+                maxLevelColumnsLength,
+                "Starting",
+                currentState,
+                currentLevelUpIndex,
+            )
+            printMove(initialPosition, initialPosition, tower)
+            println()
+            var lastPosition: Position = initialPosition
+            for (move in finalState.moves) {
+                if (move >= 0) {
+                    val positionedEntity = playableTower.positionedEntities[move]
+                    val entity = positionedEntity.entity
+                    val position = positionedEntity.position
+                    val description = apply(entity, currentState)
+                    if (description != null) {
+                        printStatus(
+                            index,
+                            moveIndexLength,
+                            position,
+                            maxLevelIndexLength,
+                            maxLevelLinesLength,
+                            maxLevelColumnsLength,
+                            description,
+                            currentState,
+                            currentLevelUpIndex
+                        )
+                        printMove(position, lastPosition, tower)
+                        println()
+
+                        lastPosition = position
+                    }
+                } else {
+                    currentLevelUpIndex++
+                    val levelUp = Enemy.levelUp(currentState.exp)
+                    val levelUpType = LevelUpType.entries.find { it.type == move }!!
+                    val description = when (levelUpType) {
+                        LevelUpType.atk -> {
+                            "gain ${levelUp.atk} atk"
+                        }
+
+                        LevelUpType.def -> {
+                            "gain ${levelUp.def} def"
+                        }
+
+                        LevelUpType.blueKeys -> {
+                            "gain 2 blue key(s)"
+                        }
+
+                        LevelUpType.crimsonKeys -> {
+                            "gain 1 crimson key(s)"
+                        }
+
+                        LevelUpType.yellowKeys -> {
+                            "gain 3 yellow key(s)"
+                        }
+                    }
+                    Enemy.applyLevelUp(levelUpType, currentState, levelUp)
                     printStatus(
                         index,
                         moveIndexLength,
-                        position,
+                        lastPosition,
                         maxLevelIndexLength,
                         maxLevelLinesLength,
                         maxLevelColumnsLength,
-                        description,
-                        currentState
+                        "Level up to ${currentLevelUpIndex}, ${description}",
+                        currentState,
+                        currentLevelUpIndex,
                     )
-                    printMove(position, lastPosition, tower)
                     println()
-
-                    lastPosition = position
                 }
-            } else {
-                currentLevelUpIndex++
-                val levelUp = LevelUps.levelUps[currentLevelUpIndex]
-                val levelUpType = LevelUpType.entries.find { it.type == move }!!
-                val description = when (levelUpType) {
-                    LevelUpType.atk -> {
-                        "gain ${levelUp.atk} atk"
-                    }
-
-                    LevelUpType.def -> {
-                        "gain ${levelUp.def} def"
-                    }
-
-                    LevelUpType.blueKeys -> {
-                        "gain ${levelUp.blueKeys} blue key(s)"
-                    }
-
-                    LevelUpType.crimsonKeys -> {
-                        "gain ${levelUp.crimsonKeys} crimson key(s)"
-                    }
-
-                    LevelUpType.yellowKeys -> {
-                        "gain ${levelUp.yellowKeys} yellow key(s)"
-                    }
-                }
-                Enemy.applyLevelUp(levelUpType, currentState, levelUp)
-                printStatus(
-                    index,
-                    moveIndexLength,
-                    lastPosition,
-                    maxLevelIndexLength,
-                    maxLevelLinesLength,
-                    maxLevelColumnsLength,
-                    "Level up to ${currentLevelUpIndex}, ${description}",
-                    currentState
-                )
+                index++
             }
-            index++
+            exitProcess(0)
         }
     }
 
@@ -167,6 +173,7 @@ class DefaultStateManager(
         maxLevelColumnsLength: Int,
         moveDescription: String,
         currentState: State,
+        currentLevelUpIndex: Int,
     ) {
         println(
             "${index.toString().padStart(moveIndexLength)} (${
@@ -175,8 +182,9 @@ class DefaultStateManager(
                 currentPosition.column.toString().padStart(maxLevelColumnsLength)
             }) ${moveDescription}"
         )
+        var exp = currentState.exp - Enemy.levelUp(currentState.exp).exp
         println(
-            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${currentState.exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
+            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
         )
     }
 
