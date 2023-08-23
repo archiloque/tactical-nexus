@@ -3,6 +3,7 @@ package net.archiloque.tacticalnexus.solver.entities
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.entities.LevelUp.Companion.levelUp
 
 data class Enemy(
     val type: EnemyType,
@@ -73,34 +74,6 @@ data class Enemy(
     }
 
     companion object {
-        val levelUps = mutableListOf(LevelUp(0, 0, 0, 0))
-
-        public fun levelUp(exp: Int): LevelUp {
-            val nexLevelUp = levelUps.indexOfFirst { it.exp > exp }
-            return if(nexLevelUp == -1) {
-                createLevelsUp(exp)
-                levelUp(exp)
-            } else {
-                levelUps[nexLevelUp - 1]
-            }
-        }
-
-        private fun createLevelsUp(exp: Int) {
-            synchronized(Enemy) {
-                var maxLevel = levelUps.last()
-                while (maxLevel.exp <= exp) {
-                    val newLevelNumber = maxLevel.number + 1
-                    maxLevel = LevelUp(
-                        newLevelNumber,
-                        maxLevel.exp + (newLevelNumber * 10),
-                        4 + newLevelNumber,
-                        8 + (newLevelNumber * 2)
-                    )
-                    levelUps.add(maxLevel)
-                }
-            }
-        }
-
         fun applyLevelUp(
             levelUpType: LevelUpType,
             levelUpState: State,

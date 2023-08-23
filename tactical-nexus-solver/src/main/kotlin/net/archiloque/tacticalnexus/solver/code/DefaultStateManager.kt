@@ -9,6 +9,7 @@ import net.archiloque.tacticalnexus.solver.entities.Enemy
 import net.archiloque.tacticalnexus.solver.entities.Entity
 import net.archiloque.tacticalnexus.solver.entities.Item
 import net.archiloque.tacticalnexus.solver.entities.Key
+import net.archiloque.tacticalnexus.solver.entities.LevelUp
 import net.archiloque.tacticalnexus.solver.entities.LevelUpType
 import net.archiloque.tacticalnexus.solver.entities.Tower
 import org.ktorm.database.Database
@@ -121,7 +122,7 @@ class DefaultStateManager(
                     }
                 } else {
                     currentLevelUpIndex++
-                    val levelUp = Enemy.levelUp(currentState.exp)
+                    val levelUp = LevelUp.levelUp(currentState.exp)
                     val levelUpType = LevelUpType.entries.find { it.type == move }!!
                     val description = when (levelUpType) {
                         LevelUpType.atk -> {
@@ -182,7 +183,7 @@ class DefaultStateManager(
                 currentPosition.column.toString().padStart(maxLevelColumnsLength)
             }) ${moveDescription}"
         )
-        var exp = currentState.exp - Enemy.levelUp(currentState.exp).exp
+        var exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
             "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
         )
