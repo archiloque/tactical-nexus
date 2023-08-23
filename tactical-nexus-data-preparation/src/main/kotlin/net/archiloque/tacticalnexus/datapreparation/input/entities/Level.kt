@@ -11,12 +11,12 @@ data class Level(
     val blueKey: Int,
     val crimsonKey: Int,
     val yellowKey: Int,
-    ) {
+) {
     companion object {
         fun parse(filePath: String): List<Level> {
             println("Reading levels at [${filePath}]")
-            var result : List<Level> = mutableListOf()
-            csvReader{delimiter = ';'}.open(filePath) {
+            var result: List<Level> = mutableListOf()
+            csvReader { delimiter = ';' }.open(filePath) {
                 result = readAllWithHeaderAsSequence().map {
                     Level(
                         it["Number"]!!.toInt(),

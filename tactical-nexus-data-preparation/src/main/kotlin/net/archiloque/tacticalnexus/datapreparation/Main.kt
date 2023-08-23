@@ -54,5 +54,5 @@ fun main(args: Array<String>) {
     Levels.validate(levels)
     TowerLevels.validate(towerLevels, itemsIdentifiers, enemies, statsIds)
 
-    Solver(enemies, items, towerLevels, stats).generate()
+    Solver(enemies, items, levels, towerLevels, stats).generate()
 }

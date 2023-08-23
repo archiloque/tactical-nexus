@@ -1,7 +1,7 @@
 package net.archiloque.tacticalnexus.solver.code
 
 import net.archiloque.tacticalnexus.solver.entities.Entity
-import net.archiloque.tacticalnexus.solver.entities.Level
+import net.archiloque.tacticalnexus.solver.entities.TowerLevel
 import net.archiloque.tacticalnexus.solver.entities.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.Staircase
 import net.archiloque.tacticalnexus.solver.entities.Tower
@@ -84,7 +84,7 @@ class PlayableTower(
 
         private fun findReacheableEntities(
             entityPosition: Position,
-            data: Array<Level>,
+            data: Array<TowerLevel>,
             entitiesIndexByPosition: MutableMap<Position, Int>,
         ): Array<Int> {
             var positionsToCheck = mutableSetOf<Position>()
@@ -147,7 +147,7 @@ class PlayableTower(
             positionsToCheck: MutableSet<Position>,
             exploredPositions: MutableSet<Position>,
             entitiesIndexByPosition: MutableMap<Position, Int>,
-            data: Array<Level>,
+            data: Array<TowerLevel>,
         ) {
             if (exploredPositions.add(position)) {
                 val entity = data[position.level].entities[position.line][position.column]

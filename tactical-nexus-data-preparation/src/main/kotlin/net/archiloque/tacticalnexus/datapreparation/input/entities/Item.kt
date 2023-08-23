@@ -11,12 +11,12 @@ data class Item(
     val expBonus: Int,
     val hp: Int,
     val hpBonus: Int,
-    ) {
+) {
     companion object {
         fun parse(filePath: String): List<Item> {
             println("Reading items at [${filePath}]")
-            var result : List<Item> = mutableListOf()
-            csvReader{delimiter = ';'}.open(filePath) {
+            var result: List<Item> = mutableListOf()
+            csvReader { delimiter = ';' }.open(filePath) {
                 result = readAllWithHeaderAsSequence().map {
                     Item(
                         it["Identifier"]!!,

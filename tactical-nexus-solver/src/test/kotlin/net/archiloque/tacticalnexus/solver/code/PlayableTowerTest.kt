@@ -2,7 +2,7 @@ package net.archiloque.tacticalnexus.solver.code
 
 import kotlin.test.assertEquals
 import net.archiloque.tacticalnexus.solver.entities.Exit
-import net.archiloque.tacticalnexus.solver.entities.Level
+import net.archiloque.tacticalnexus.solver.entities.TowerLevel
 import net.archiloque.tacticalnexus.solver.entities.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.Staircase
 import net.archiloque.tacticalnexus.solver.entities.Wall
@@ -18,7 +18,7 @@ class PlayableTowerTest {
             PlayableTower.prepare(
                 TowerForTest(
                     arrayOf(
-                        Level(
+                        TowerLevel(
                             1,
                             5,
                             arrayOf(
@@ -31,7 +31,7 @@ class PlayableTowerTest {
                                 )
                             )
                         ),
-                        Level(
+                        TowerLevel(
                             1,
                             2,
                             arrayOf(
@@ -91,7 +91,7 @@ class PlayableTowerTest {
             PlayableTower.prepare(
                 TowerForTest(
                     arrayOf(
-                        Level(
+                        TowerLevel(
                             5,
                             1,
                             arrayOf(
@@ -102,7 +102,7 @@ class PlayableTowerTest {
                                 arrayOf(Staircase.up),
                             )
                         ),
-                        Level(
+                        TowerLevel(
                             2,
                             1,
                             arrayOf(
@@ -171,7 +171,7 @@ class PlayableTowerTest {
             PlayableTower.prepare(
                 TowerForTest(
                     arrayOf(
-                        Level(
+                        TowerLevel(
                             5,
                             5,
                             arrayOf(
@@ -188,7 +188,7 @@ class PlayableTowerTest {
                                 arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
                             )
                         ),
-                        Level(
+                        TowerLevel(
                             1,
                             2,
                             arrayOf(

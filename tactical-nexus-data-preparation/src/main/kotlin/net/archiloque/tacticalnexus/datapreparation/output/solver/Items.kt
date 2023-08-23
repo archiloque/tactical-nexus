@@ -10,11 +10,11 @@ import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
 
 class Items {
-
     companion object {
+        private val itemClass = ClassName(Solver.ENTITIES_PACKAGE, "Item")
+
         fun generate(items: List<Item>, generatedPath: Path) {
             println("Generating items")
-            val itemClass = ClassName(Solver.ENTITIES_PACKAGE, "Item")
 
             val itemsCompanion = TypeSpec
                 .companionObjectBuilder()
