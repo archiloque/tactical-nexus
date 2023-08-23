@@ -31,11 +31,11 @@ class Towers {
         private val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
         private val keyClass = ClassName(Solver.ENTITIES_PACKAGE, "Key")
         private val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
-        private val levelClass = ClassName(Solver.ENTITIES_PACKAGE, "Level")
         private val playerStartPositionClass = ClassName(Solver.ENTITIES_PACKAGE, "PlayerStartPosition")
         private val staircaseClass = ClassName(Solver.ENTITIES_PACKAGE, "Staircase")
-        private val wallClass = ClassName(Solver.ENTITIES_PACKAGE, "Wall")
+        private val towerLevelClass = ClassName(Solver.ENTITIES_PACKAGE, "TowerLevel")
         private val towerInterfaceClass = ClassName(Solver.ENTITIES_PACKAGE, "Tower")
+        private val wallClass = ClassName(Solver.ENTITIES_PACKAGE, "Wall")
 
         fun generate(
             towerLevels: List<TowerLevel>,
@@ -67,11 +67,11 @@ class Towers {
                     )
 
 
-                val levelsIndexForTower =
+                val towerLevelsIndexForTower =
                     towerLevels.filter { it.levelCustomFields.tower == tower }.map { it.levelCustomFields.level }
                         .sorted()
 
-                towerSpec.addProperty(createLevels(levelsIndexForTower, towerLevels, tower))
+                towerSpec.addProperty(createTowerLevels(towerLevelsIndexForTower, towerLevels, tower))
 
                 towerSpec.addFunction(
                     FunSpec.builder(
@@ -79,7 +79,7 @@ class Towers {
                     )
                         .addModifiers(KModifier.OVERRIDE)
                         .returns(
-                            Solver.arrayOf(levelClass)
+                            Solver.arrayOf(towerLevelClass)
                         )
                         .addCode("return levels")
                         .build()
@@ -99,7 +99,7 @@ class Towers {
             }
         }
 
-        private fun createLevels(
+        private fun createTowerLevels(
             levelsIndexForTower: List<Int>,
             towerLevels: List<TowerLevel>,
             tower: Int,
@@ -124,7 +124,7 @@ class Towers {
             val levelsProperty = PropertySpec
                 .builder(
                     "levels",
-                    Solver.arrayOf(levelClass),
+                    Solver.arrayOf(towerLevelClass),
                     KModifier.PRIVATE
                 )
                 .initializer(levelsArrayCode.build())
@@ -163,7 +163,7 @@ class Towers {
                 entitiesByPosition[Position(entity.y / 16, entity.x / 16)] = entity
             }
 
-            levelsArrayCode.add("Level(${maxLine + 1}, ${maxColumn + 1}, %M(", Solver.arrayOf)
+            levelsArrayCode.add("%T(${maxLine + 1}, ${maxColumn + 1}, %M(", towerLevelClass, Solver.arrayOf)
             for (line in 0..maxLine) {
                 levelsArrayCode.add("%M(", Solver.arrayOf)
                 for (column in 0..maxColumn) {

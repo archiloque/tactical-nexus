@@ -1,8 +1,10 @@
 package net.archiloque.tacticalnexus.solver.entities
 
+import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.input.LevelUps
 
 data class Enemy(
     val type: EnemyType,
@@ -19,12 +21,29 @@ data class Enemy(
 
     override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
         val newState = newState(entityIndex, state)
-        val fightResult = apply(
-            newState
-        )
+        val fromLevelUp = findLevelUp(newState.exp)!!
+
+        val fightResult = apply(newState)
         if (fightResult != null) {
-            addNewReachablePositions(entityIndex, newState, playableTower)
-            stateManager.save(newState)
+            val toLevelUp = findLevelUp(newState.exp)
+            if (toLevelUp == null) {
+                System.err.println("No level up found")
+                stateManager.reachedExit(newState)
+                exitProcess(-1)
+            } else if (fromLevelUp != toLevelUp) {
+                newState.exp -= toLevelUp.exp
+                addNewReachablePositions(entityIndex, newState, playableTower)
+                for (levelUpType in LevelUpType.entries) {
+                    val levelUpState = newState(levelUpType.type, newState)
+                    applyLevelUp(levelUpType, levelUpState, toLevelUp)
+                    drop.apply(levelUpState)
+                    stateManager.save(levelUpState)
+                }
+            } else {
+                drop.apply(state)
+                addNewReachablePositions(entityIndex, newState, playableTower)
+                stateManager.save(newState)
+            }
         }
     }
 
@@ -33,7 +52,6 @@ data class Enemy(
         if (result != null) {
             state.hp = result
             state.exp += (exp * (100 + state.expBonus)) / 100
-            drop.apply(state)
         }
         return result
     }
@@ -61,6 +79,40 @@ data class Enemy(
                 }
             }
             throw RuntimeException("Too many turns: ${state.atk} ${state.def} ${state.hp} ${atk} ${def} ${hp}")
+        }
+    }
+
+    companion object {
+        private fun findLevelUp(exp: Int): LevelUp? {
+            return LevelUps.levelUps.find { it.exp >= exp }
+        }
+
+        fun applyLevelUp(
+            levelUpType: LevelUpType,
+            levelUpState: State,
+            toLevelUp: LevelUp,
+        ) {
+            when (levelUpType) {
+                LevelUpType.atk -> {
+                    levelUpState.atk += toLevelUp.atk
+                }
+
+                LevelUpType.def -> {
+                    levelUpState.def += toLevelUp.def
+                }
+
+                LevelUpType.blueKeys -> {
+                    levelUpState.blueKeys += toLevelUp.blueKeys
+                }
+
+                LevelUpType.crimsonKeys -> {
+                    levelUpState.crimsonKeys += toLevelUp.crimsonKeys
+                }
+
+                LevelUpType.yellowKeys -> {
+                    levelUpState.yellowKeys += toLevelUp.yellowKeys
+                }
+            }
         }
     }
 }

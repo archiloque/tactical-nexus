@@ -1,12 +1,12 @@
 package net.archiloque.tacticalnexus.datapreparation.validation;
 
-import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
+import net.archiloque.tacticalnexus.datapreparation.input.entities.LevelUp
 import net.archiloque.tacticalnexus.datapreparation.validation.Validator.Companion.checkDuplicates
 
-class Levels {
+class LevelUps {
 
     companion object {
-        fun validate(stats: List<Level>) {
+        fun validate(stats: List<LevelUp>) {
             println("Validating level")
             stats.forEach {
                 if (it.number < 0) {

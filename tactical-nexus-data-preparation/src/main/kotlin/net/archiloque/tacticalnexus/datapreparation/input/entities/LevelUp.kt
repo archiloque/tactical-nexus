@@ -2,7 +2,7 @@ package net.archiloque.tacticalnexus.datapreparation.input.entities
 
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 
-data class Level(
+data class LevelUp(
     val number: Int,
     val exp: Int,
 
@@ -13,12 +13,12 @@ data class Level(
     val yellowKey: Int,
 ) {
     companion object {
-        fun parse(filePath: String): List<Level> {
+        fun parse(filePath: String): List<LevelUp> {
             println("Reading levels at [${filePath}]")
-            var result: List<Level> = mutableListOf()
+            var result: List<LevelUp> = mutableListOf()
             csvReader { delimiter = ';' }.open(filePath) {
                 result = readAllWithHeaderAsSequence().map {
-                    Level(
+                    LevelUp(
                         it["Number"]!!.toInt(),
                         it["EXP"]!!.toInt(),
                         it["ATK"]!!.toInt(),

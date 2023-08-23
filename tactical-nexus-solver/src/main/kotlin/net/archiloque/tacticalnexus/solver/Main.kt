@@ -45,19 +45,21 @@ fun main(args: Array<String>) {
     stateManager.save(initialState)
 
     if (System.getenv("SINGLE") == "true") {
-        val state = findNextState(database)
-        if (state != null) {
-            Player.play(state, playableTower, stateManager)
-            database.useTransaction {
-                database.update(States) {
-                    set(it.status, StateStatus.processed)
-                    where {
-                        id eq state.id
+        while (true) {
+            val state = findNextState(database)
+            if (state != null) {
+                Player.play(state, playableTower, stateManager)
+                database.useTransaction {
+                    database.update(States) {
+                        set(it.status, StateStatus.processed)
+                        where {
+                            id eq state.id
+                        }
                     }
                 }
+            } else {
+                exitProcess(0)
             }
-        } else {
-            exitProcess(0)
         }
     } else {
         val availableProcessors = Runtime.getRuntime().availableProcessors()

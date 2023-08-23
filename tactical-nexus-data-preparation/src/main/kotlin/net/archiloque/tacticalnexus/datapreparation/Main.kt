@@ -8,13 +8,13 @@ import kotlin.io.path.readText
 import kotlinx.serialization.json.Json
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
-import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
+import net.archiloque.tacticalnexus.datapreparation.input.entities.LevelUp
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 import net.archiloque.tacticalnexus.datapreparation.output.solver.Solver
 import net.archiloque.tacticalnexus.datapreparation.validation.Enemies
 import net.archiloque.tacticalnexus.datapreparation.validation.Items
-import net.archiloque.tacticalnexus.datapreparation.validation.Levels
+import net.archiloque.tacticalnexus.datapreparation.validation.LevelUps
 import net.archiloque.tacticalnexus.datapreparation.validation.Stats
 import net.archiloque.tacticalnexus.datapreparation.validation.TowerLevels
 
@@ -46,13 +46,13 @@ fun main(args: Array<String>) {
     val itemsIdentifiers = items.map { it.identifier }
     val stats = Stat.parse("../stats.csv")
     val statsIds = stats.map { it.tower }
-    val levels = Level.parse("../levels.csv")
+    val levelUps = LevelUp.parse("../levelups.csv")
 
     Items.validate(items, itemsIdentifiers)
     Enemies.validate(enemies, itemsIdentifiers)
     Stats.validate(stats)
-    Levels.validate(levels)
+    LevelUps.validate(levelUps)
     TowerLevels.validate(towerLevels, itemsIdentifiers, enemies, statsIds)
 
-    Solver(enemies, items, levels, towerLevels, stats).generate()
+    Solver(enemies, items, levelUps, towerLevels, stats).generate()
 }

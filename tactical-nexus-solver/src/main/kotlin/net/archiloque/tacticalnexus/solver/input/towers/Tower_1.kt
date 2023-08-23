@@ -10,10 +10,10 @@ import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.Exit
 import net.archiloque.tacticalnexus.solver.entities.Key
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
-import net.archiloque.tacticalnexus.solver.entities.Level
 import net.archiloque.tacticalnexus.solver.entities.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.Staircase
 import net.archiloque.tacticalnexus.solver.entities.Tower
+import net.archiloque.tacticalnexus.solver.entities.TowerLevel
 import net.archiloque.tacticalnexus.solver.entities.Wall
 import net.archiloque.tacticalnexus.solver.input.Items
 
@@ -49,13 +49,13 @@ public class Tower_1 : Tower {
         Enemy(EnemyType.ranger, 26, 3000, 3740, 720, 324, Items.heavenly_potion),
     )
 
-    private val levels: Array<Level> = arrayOf(
-        Level(
+    private val levels: Array<TowerLevel> = arrayOf(
+        TowerLevel(
             11, 15, arrayOf(
                 arrayOf(
-                    null, null, null, null,
-                    null, null, null, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                    null, null, null,
+                    null, null,
+                    null, null, null, null, null, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance, null, null, null,
                 ),
                 arrayOf(
                     null, null, null, null, null, null, Wall.instance,
@@ -111,7 +111,7 @@ public class Tower_1 : Tower {
                 ),
             )
         ),
-        Level(
+        TowerLevel(
             15, 15, arrayOf(
                 arrayOf(
                     Items.guard_deck, Wall.instance, null,
@@ -194,7 +194,7 @@ public class Tower_1 : Tower {
                 ),
             )
         ),
-        Level(
+        TowerLevel(
             15, 15,
             arrayOf(
                 arrayOf(
@@ -282,7 +282,7 @@ public class Tower_1 : Tower {
                 ),
             )
         ),
-        Level(
+        TowerLevel(
             15, 15,
             arrayOf(
                 arrayOf(
@@ -358,7 +358,7 @@ public class Tower_1 : Tower {
                 ),
             )
         ),
-        Level(
+        TowerLevel(
             15, 15, arrayOf(
                 arrayOf(
                     Items.heavenly_potion,
@@ -450,7 +450,7 @@ public class Tower_1 : Tower {
         ),
     )
 
-    override fun levels(): Array<Level> = levels
+    override fun levels(): Array<TowerLevel> = levels
 
     override fun atk(): Int = 50
 

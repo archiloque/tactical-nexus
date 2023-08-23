@@ -24,17 +24,25 @@ abstract class Entity {
     }
 
     protected fun newState(entityIndex: Int, state: State): State {
-        val visitedEntities = state.visited.clone() as BitSet
-        visitedEntities.set(entityIndex)
-        val reachableEntities = state.reachable.clone() as BitSet
-        reachableEntities.set(entityIndex, false)
-        return state.copy(
-            id = -1,
-            status = StateStatus.new,
-            visited = visitedEntities,
-            reachable = reachableEntities,
-            moves = state.moves.plus(entityIndex)
-        )
+        if (entityIndex >= 0) {
+            val visitedEntities = state.visited.clone() as BitSet
+            visitedEntities.set(entityIndex)
+            val reachableEntities = state.reachable.clone() as BitSet
+            reachableEntities.set(entityIndex, false)
+            return state.copy(
+                id = -1,
+                status = StateStatus.new,
+                visited = visitedEntities,
+                reachable = reachableEntities,
+                moves = state.moves.plus(entityIndex)
+            )
+        } else {
+            return state.copy(
+                id = -1,
+                status = StateStatus.new,
+                moves = state.moves.plus(entityIndex)
+            )
+        }
     }
 
 

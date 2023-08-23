@@ -22,6 +22,7 @@
         <ktorm.version>3.6.0</ktorm.version>
         <postgresql.driver.version>42.6.0</postgresql.driver.version>
         <hikaricp.version>5.0.1</hikaricp.version>
+        <slf4j.version>2.0.7</slf4j.version>
     </properties>
 
 
@@ -45,6 +46,16 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>${hikaricp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 
