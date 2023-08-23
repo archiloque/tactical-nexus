@@ -10,7 +10,7 @@ data class Stat(
     val hp: Int,
 ) {
     companion object {
-        fun readItems(filePath: String): List<Stat> {
+        fun parse(filePath: String): List<Stat> {
             println("Reading stats at [${filePath}]")
             var result: List<Stat> = mutableListOf()
             csvReader { delimiter = ';' }.open(filePath) {

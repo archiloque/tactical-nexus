@@ -13,7 +13,7 @@ data class Item(
     val hpBonus: Int,
     ) {
     companion object {
-        fun readItems(filePath: String): List<Item> {
+        fun parse(filePath: String): List<Item> {
             println("Reading items at [${filePath}]")
             var result : List<Item> = mutableListOf()
             csvReader{delimiter = ';'}.open(filePath) {

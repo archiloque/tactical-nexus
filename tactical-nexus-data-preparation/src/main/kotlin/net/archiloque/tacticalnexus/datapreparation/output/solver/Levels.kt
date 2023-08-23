@@ -18,7 +18,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.level.Entity
 import net.archiloque.tacticalnexus.datapreparation.input.level.Exit
 import net.archiloque.tacticalnexus.datapreparation.input.level.Item
 import net.archiloque.tacticalnexus.datapreparation.input.level.Key
-import net.archiloque.tacticalnexus.datapreparation.input.level.Level
+import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 import net.archiloque.tacticalnexus.datapreparation.input.level.PlayerStartPosition
 import net.archiloque.tacticalnexus.datapreparation.input.level.Staircase
 import net.archiloque.tacticalnexus.datapreparation.input.level.Wall
@@ -39,7 +39,7 @@ class Levels {
         private val towerInterfaceClass = ClassName(Solver.ENTITIES_PACKAGE, "Tower")
 
         fun generate(
-            levels: List<Level>,
+            towerLevels: List<TowerLevel>,
             items: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Item>,
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             stats: List<Stat>,
@@ -55,7 +55,7 @@ class Levels {
                 }
             }
 
-            val towersList = levels.map { it.levelCustomFields.tower }.toSet().sorted()
+            val towersList = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
 
             for (tower in towersList) {
                 println("Generating levels for tower ${tower}")
@@ -77,9 +77,9 @@ class Levels {
 
 
                 val levelsIndexForTower =
-                    levels.filter { it.levelCustomFields.tower == tower }.map { it.levelCustomFields.level }.sorted()
+                    towerLevels.filter { it.levelCustomFields.tower == tower }.map { it.levelCustomFields.level }.sorted()
 
-                towerSpec.addProperty(createLevels(levelsIndexForTower, levels, tower))
+                towerSpec.addProperty(createLevels(levelsIndexForTower, towerLevels, tower))
 
                 towerSpec.addFunction(
                     FunSpec.builder(
@@ -109,13 +109,13 @@ class Levels {
 
         private fun createLevels(
             levelsIndexForTower: List<Int>,
-            levels: List<Level>,
+            towerLevels: List<TowerLevel>,
             tower: Int,
         ): PropertySpec {
             val levelsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
             for (levelIndex in levelsIndexForTower) {
                 val level =
-                    levels.find { (it.levelCustomFields.tower == tower) && (it.levelCustomFields.level == levelIndex) }!!
+                    towerLevels.find { (it.levelCustomFields.tower == tower) && (it.levelCustomFields.level == levelIndex) }!!
                 val entities = mutableListOf<Entity>()
                 addEntities(level.entities.door, entities)
                 addEntities(level.entities.enemy, entities)

@@ -4,8 +4,8 @@ CREATE TABLE states
 
     status STATE_STATUS NOT NULL,
 
-    visited BIT VARYING(2048) NOT NULL,
-    reachable BIT VARYING(2048) NOT NULL,
+    visited BIT VARYING(4096) NOT NULL,
+    reachable BIT VARYING(4096) NOT NULL,
 
     atk INTEGER NOT NULL,
     def INTEGER NOT NULL,

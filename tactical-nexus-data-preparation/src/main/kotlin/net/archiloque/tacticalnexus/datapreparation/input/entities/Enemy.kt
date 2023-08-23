@@ -15,7 +15,7 @@ data class Enemy(
     val hp: Int,
 ) {
     companion object {
-        fun readItems(filePath: String): List<Enemy> {
+        fun parse(filePath: String): List<Enemy> {
             println("Reading enemies at [${filePath}]")
             var result: List<Enemy> = mutableListOf()
             csvReader { delimiter = ';' }.open(filePath) {

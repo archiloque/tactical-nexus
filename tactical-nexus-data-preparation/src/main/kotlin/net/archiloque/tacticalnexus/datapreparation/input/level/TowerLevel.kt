@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Level(
+data class TowerLevel(
     @Required @SerialName("identifier") val identifier: String,
     @Required @SerialName("entities") val entities: Entities,
     @SerialName("customFields") @Required val levelCustomFields: LevelCustomFields,

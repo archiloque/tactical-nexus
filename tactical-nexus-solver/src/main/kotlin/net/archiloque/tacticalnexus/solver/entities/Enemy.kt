@@ -38,7 +38,7 @@ data class Enemy(
         return result
     }
 
-    fun calculate(state: State): Int? {
+    private fun calculate(state: State): Int? {
         val damagesToEnemy = Math.max(state.atk - def, 0)
         val damagesToPlayer = Math.max(atk - state.def, 0)
         if ((damagesToPlayer == 0) && (damagesToEnemy > 0)) {
