@@ -1644,6 +1644,25 @@
 						"id": "V_String",
 						"params": ["life_crown"]
 					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [7,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 896,
+					"__worldY": 144,
+					"iid": "c5b22c90-3b70-11ee-8784-55094a75297d",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [112,112],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "heavenly_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["heavenly_potion"]
+					}] }]
 				}
 			]
 		}

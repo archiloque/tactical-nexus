@@ -2,44 +2,42 @@ package net.archiloque.tacticalnexus.solver.database
 
 import java.sql.Types
 import org.ktorm.database.Database
+import org.ktorm.database.asIterable
 
 fun readSqlFile(path: String): String {
     return Database::class.java.getResource("/sql/${path}")!!.readText()
 }
 
-val findNextStateQuery: String = readSqlFile("find_next_state.sql")
+val findNextStatesQuery: String = readSqlFile("find_next_states.sql")
 
-fun findNextState(database: Database): State? {
+fun findNextStates(database: Database): List<State> {
     database.useConnection { conn ->
-        conn.prepareStatement(findNextStateQuery).use { statement ->
+        conn.prepareStatement(findNextStatesQuery).use { statement ->
             statement.setObject(1, StateStatus.in_progress.name, Types.OTHER)
             statement.setObject(2, StateStatus.new.name, Types.OTHER)
-            val result = statement.executeQuery()
-            if (result.next()) {
-                return State(
-                    result.getInt(1),
+            return statement.executeQuery().asIterable().map {
+                State(
+                    it.getInt(1),
                     StateStatus.in_progress,
-                    Mappings.BitSetSqlType.getResult(result, 2)!!,
-                    Mappings.BitSetSqlType.getResult(result, 3)!!,
+                    Mappings.BitSetSqlType.getResult(it, 2)!!,
+                    Mappings.BitSetSqlType.getResult(it, 3)!!,
 
-                    result.getInt(4),
-                    result.getInt(5),
-                    result.getInt(6),
-                    result.getInt(7),
+                    it.getInt(4),
+                    it.getInt(5),
+                    it.getInt(6),
+                    it.getInt(7),
 
-                    result.getInt(8),
-                    result.getInt(9),
+                    it.getInt(8),
+                    it.getInt(9),
 
-                    result.getInt(10),
-                    result.getInt(11),
-                    result.getInt(12),
-                    result.getInt(13),
-                    result.getInt(14),
+                    it.getInt(10),
+                    it.getInt(11),
+                    it.getInt(12),
+                    it.getInt(13),
+                    it.getInt(14),
 
-                    Mappings.IntArraySqlType.getResult(result, 15)!!,
+                    Mappings.IntArraySqlType.getResult(it, 15)!!,
                 )
-            } else {
-                return null
             }
         }
     }

@@ -12,11 +12,11 @@ import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.States
 import net.archiloque.tacticalnexus.solver.database.States.id
-import net.archiloque.tacticalnexus.solver.database.findNextState
+import net.archiloque.tacticalnexus.solver.database.findNextStates
 import net.archiloque.tacticalnexus.solver.entities.Tower
 import net.archiloque.tacticalnexus.solver.input.towers.Tower_1
 import org.ktorm.database.Database
-import org.ktorm.dsl.eq
+import org.ktorm.dsl.inList
 import org.ktorm.dsl.update
 import org.ktorm.support.postgresql.PostgreSqlDialect
 
@@ -47,19 +47,9 @@ fun main(args: Array<String>) {
 
     if (System.getenv("SINGLE") == "true") {
         while (true) {
-            val state = findNextState(database)
-            if (state != null) {
-                val newStates = mutableListOf<State>()
-                Player.play(state, playableTower, stateManager, newStates)
-                stateManager.save(newStates)
-                database.useTransaction {
-                    database.update(States) {
-                        set(it.status, StateStatus.processed)
-                        where {
-                            id eq state.id
-                        }
-                    }
-                }
+            val states = findNextStates(database)
+            if (states.isNotEmpty()) {
+                processStates(states, playableTower, stateManager, database)
             } else {
                 exitProcess(0)
             }
@@ -70,19 +60,9 @@ fun main(args: Array<String>) {
             Thread {
                 println("Staring thread ${i}")
                 while (true) {
-                    val state = findNextState(database)
-                    if (state != null) {
-                        val newStates = mutableListOf<State>()
-                        Player.play(state, playableTower, stateManager, newStates)
-                        database.useTransaction {
-                            database.update(States) {
-                                set(it.status, StateStatus.processed)
-                                where {
-                                    id eq state.id
-                                }
-                            }
-                        }
-                        stateManager.save(newStates)
+                    val states = findNextStates(database)
+                    if (states.isNotEmpty()) {
+                        processStates(states, playableTower, stateManager, database)
                     } else {
                         Thread.sleep(1000)
                     }
@@ -91,6 +71,27 @@ fun main(args: Array<String>) {
         }
         Thread.sleep(Long.MAX_VALUE)
     }
+}
+
+private fun processStates(
+    states: List<State>,
+    playableTower: PlayableTower,
+    stateManager: DefaultStateManager,
+    database: Database,
+) {
+    val newStates = mutableListOf<State>()
+    for (state in states) {
+        Player.play(state, playableTower, stateManager, newStates)
+    }
+    database.useTransaction {
+        database.update(States) {
+            set(it.status, StateStatus.processed)
+            where {
+                id inList states.map { it.id }
+            }
+        }
+    }
+    stateManager.save(newStates)
 }
 
 

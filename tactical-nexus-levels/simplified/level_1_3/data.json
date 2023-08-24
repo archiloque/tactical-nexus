@@ -2498,6 +2498,20 @@
 					"type": "ranger",
 					"level": 7
 				}
+			},
+			{
+				"id": "enemy",
+				"iid": "e12295f0-3b70-11ee-aa18-13039d8e07d5",
+				"layer": "entities",
+				"x": 192,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 5
+				}
 			}
 		]
 	}

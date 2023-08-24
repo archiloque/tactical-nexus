@@ -1,11 +1,11 @@
 UPDATE states
 SET status = ?
-WHERE id =
+WHERE id in
 		(SELECT id
 			FROM states
 			WHERE status = ?
 			ORDER BY id DESC
-			LIMIT 1
+			LIMIT 25
 			FOR UPDATE SKIP LOCKED) RETURNING id,
     visited,
     reachable,
