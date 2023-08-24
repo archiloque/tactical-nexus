@@ -42,9 +42,9 @@ data class LevelUp(
 }
 
 enum class LevelUpType(val type: Int) {
-    atk(-1),
-    def(-2),
+    yellowKeys(-1),
+    crimsonKeys(-2),
     blueKeys(-3),
-    crimsonKeys(-4),
-    yellowKeys(-5),
+    def(-4),
+    atk(-5),
 }
