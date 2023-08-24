@@ -13,7 +13,13 @@ class Exit private constructor() : Entity() {
         return EntityType.Exit
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
+    override fun play(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+        newStates: MutableList<State>,
+    ) {
         stateManager.reachedExit(state)
     }
 }

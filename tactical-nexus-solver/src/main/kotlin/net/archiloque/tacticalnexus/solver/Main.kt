@@ -43,13 +43,15 @@ fun main(args: Array<String>) {
     val playableTower = PlayableTower.prepare(inputTower)
     val initialState = createInitialState(inputTower, playableTower)
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
-    stateManager.save(initialState)
+    stateManager.save(listOf(initialState))
 
     if (System.getenv("SINGLE") == "true") {
         while (true) {
             val state = findNextState(database)
             if (state != null) {
-                Player.play(state, playableTower, stateManager)
+                val newStates = mutableListOf<State>()
+                Player.play(state, playableTower, stateManager, newStates)
+                stateManager.save(newStates)
                 database.useTransaction {
                     database.update(States) {
                         set(it.status, StateStatus.processed)
@@ -70,7 +72,8 @@ fun main(args: Array<String>) {
                 while (true) {
                     val state = findNextState(database)
                     if (state != null) {
-                        Player.play(state, playableTower, stateManager)
+                        val newStates = mutableListOf<State>()
+                        Player.play(state, playableTower, stateManager, newStates)
                         database.useTransaction {
                             database.update(States) {
                                 set(it.status, StateStatus.processed)
@@ -79,6 +82,7 @@ fun main(args: Array<String>) {
                                 }
                             }
                         }
+                        stateManager.save(newStates)
                     } else {
                         Thread.sleep(1000)
                     }

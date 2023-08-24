@@ -18,7 +18,13 @@ data class Enemy(
         return EntityType.Enemy
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
+    override fun play(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+        newStates: MutableList<State>,
+    ) {
         val newState = newState(entityIndex, state)
         val fromLevelUp = levelUp(newState.exp)
 
@@ -31,12 +37,12 @@ data class Enemy(
                     val levelUpState = newState(levelUpType.type, newState)
                     applyLevelUp(levelUpType, levelUpState, toLevelUp)
                     drop.apply(levelUpState)
-                    stateManager.save(levelUpState)
+                    newStates.add(levelUpState)
                 }
             } else {
                 drop.apply(newState)
                 addNewReachablePositions(entityIndex, newState, playableTower)
-                stateManager.save(newState)
+                newStates.add(newState)
             }
         }
     }

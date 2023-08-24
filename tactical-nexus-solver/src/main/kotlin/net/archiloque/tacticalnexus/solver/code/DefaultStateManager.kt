@@ -23,49 +23,53 @@ class DefaultStateManager(
 ) :
     StateManager {
 
-    override fun save(state: State) {
-        database.bulkInsertOrUpdate(States) {
-            item {
-                set(it.status, StateStatus.new)
+    override fun save(states: List<State>) {
+        if (states.isNotEmpty()) {
+            database.bulkInsertOrUpdate(States) {
+                for (state in states) {
+                    item {
+                        set(it.status, StateStatus.new)
 
-                set(it.visited, state.visited)
-                set(it.reachable, state.reachable)
+                        set(it.atk, state.atk)
+                        set(it.def, state.def)
+                        set(it.exp, state.exp)
+                        set(it.hp, state.hp)
 
-                set(it.atk, state.atk)
-                set(it.def, state.def)
-                set(it.exp, state.exp)
-                set(it.hp, state.hp)
+                        set(it.visited, state.visited)
+                        set(it.reachable, state.reachable)
 
-                set(it.expBonus, state.expBonus)
-                set(it.hpBonus, state.hpBonus)
+                        set(it.expBonus, state.expBonus)
+                        set(it.hpBonus, state.hpBonus)
 
-                set(it.blue_keys, state.blueKeys)
-                set(it.crimson_keys, state.crimsonKeys)
-                set(it.platinum_keys, state.platinumKeys)
-                set(it.violet_keys, state.violetKeys)
-                set(it.yellow_keys, state.yellowKeys)
+                        set(it.blue_keys, state.blueKeys)
+                        set(it.crimson_keys, state.crimsonKeys)
+                        set(it.platinum_keys, state.platinumKeys)
+                        set(it.violet_keys, state.violetKeys)
+                        set(it.yellow_keys, state.yellowKeys)
 
-                set(it.moves, state.moves)
-            }
-            onConflict(
-                States.visited,
-                States.reachable,
+                        set(it.moves, state.moves)
+                    }
+                }
+                onConflict(
+                    States.atk,
+                    States.def,
+                    States.exp,
+                    States.hp,
 
-                States.atk,
-                States.def,
-                States.exp,
-                States.hp,
+                    States.visited,
+                    States.reachable,
 
-                States.expBonus,
-                States.hpBonus,
+                    States.expBonus,
+                    States.hpBonus,
 
-                States.blue_keys,
-                States.crimson_keys,
-                States.platinum_keys,
-                States.violet_keys,
-                States.yellow_keys,
-            ) {
-                doNothing()
+                    States.blue_keys,
+                    States.crimson_keys,
+                    States.platinum_keys,
+                    States.violet_keys,
+                    States.yellow_keys,
+                ) {
+                    doNothing()
+                }
             }
         }
     }

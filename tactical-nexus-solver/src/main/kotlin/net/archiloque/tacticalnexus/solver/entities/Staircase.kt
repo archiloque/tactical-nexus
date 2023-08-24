@@ -14,7 +14,13 @@ data class Staircase private constructor(val direction: StaircaseDirection) : En
         return EntityType.Staircase
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
+    override fun play(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+        newStates: MutableList<State>,
+    ) {
         when (direction) {
             StaircaseDirection.up -> {
                 val newState = newState(entityIndex, state)
@@ -23,7 +29,7 @@ data class Staircase private constructor(val direction: StaircaseDirection) : En
                     newState,
                     playableTower
                 )
-                stateManager.save(newState)
+                newStates.add(newState)
             }
 
             StaircaseDirection.down -> {

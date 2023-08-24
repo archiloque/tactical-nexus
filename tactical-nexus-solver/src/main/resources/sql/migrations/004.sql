@@ -1,8 +1,5 @@
 CREATE UNIQUE INDEX states_duplicates
     ON states USING btree (
-    visited,
-    reachable,
-
     atk,
     def,
     exp,
@@ -15,5 +12,9 @@ CREATE UNIQUE INDEX states_duplicates
     crimson_keys,
     platinum_keys,
     violet_keys,
-    yellow_keys
+    yellow_keys,
+
+    visited,
+    reachable
+
     )

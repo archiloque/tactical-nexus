@@ -10,7 +10,13 @@ data class Door(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         return EntityType.Door
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
+    override fun play(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+        newStates: MutableList<State>,
+    ) {
         when (color) {
             KeyOrDoorColor.blue -> {
                 if (state.blueKeys < 1) {
@@ -50,7 +56,7 @@ data class Door(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
             newState,
             playableTower
         )
-        stateManager.save(newState)
+        newStates.add(newState)
     }
 
     fun apply(state: State) {

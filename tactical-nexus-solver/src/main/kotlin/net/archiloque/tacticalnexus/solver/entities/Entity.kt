@@ -9,7 +9,13 @@ import net.archiloque.tacticalnexus.solver.database.StateStatus
 abstract class Entity {
     abstract fun getType(): EntityType
 
-    abstract fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager)
+    abstract fun play(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+        newStates: MutableList<State>,
+    )
 
     enum class EntityType() {
         Door,

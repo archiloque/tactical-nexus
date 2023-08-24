@@ -13,7 +13,13 @@ class Wall private constructor() : Entity() {
         return EntityType.Wall
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
+    override fun play(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+        newStates: MutableList<State>,
+    ) {
         throw IllegalStateException("Should not happen")
     }
 }

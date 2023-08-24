@@ -10,7 +10,13 @@ data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
         return EntityType.Key
     }
 
-    override fun play(entityIndex: Int, state: State, playableTower: PlayableTower, stateManager: StateManager) {
+    override fun play(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+        newStates: MutableList<State>,
+    ) {
         val newState = newState(entityIndex, state)
         apply(newState)
         addNewReachablePositions(
@@ -18,7 +24,7 @@ data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
             newState,
             playableTower
         )
-        stateManager.save(newState)
+        newStates.add(newState)
     }
 
     fun apply(state: State) {
