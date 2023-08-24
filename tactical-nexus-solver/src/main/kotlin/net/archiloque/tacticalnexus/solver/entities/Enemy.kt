@@ -56,7 +56,12 @@ data class Enemy(
         } else {
             false
         }
+    }
 
+    public fun killNoHPLost(state: State): Boolean {
+        val damagesToEnemy = Math.max(state.atk - def, 0)
+        val damagesToPlayer = Math.max(atk - state.def, 0)
+        return (damagesToEnemy > hp) || ((damagesToPlayer == 0) && (damagesToEnemy > 0))
     }
 
     private fun calculate(state: State): Int? {

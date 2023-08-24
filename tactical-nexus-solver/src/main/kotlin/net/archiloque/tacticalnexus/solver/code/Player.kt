@@ -1,6 +1,8 @@
 package net.archiloque.tacticalnexus.solver.code
 
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.entities.Enemy
+import net.archiloque.tacticalnexus.solver.entities.Entity
 
 class Player {
 
@@ -11,24 +13,27 @@ class Player {
             stateManager: StateManager,
             newStates: MutableList<State>,
         ) {
-            var reachableEntityIndex = state.reachable.previousSetBit(state.reachable.length() - 1)
-            while (reachableEntityIndex >= 0) {
-                play(reachableEntityIndex, state, playableTower, stateManager, newStates)
-                reachableEntityIndex = state.reachable.previousSetBit(reachableEntityIndex - 1)
+            var reachableEntityIndexFirst = state.reachable.previousSetBit(state.reachable.length() - 1)
+            var oneShotEnemyFound = false
+            while (reachableEntityIndexFirst >= 0) {
+                val positionedEntity = playableTower.positionedEntities[reachableEntityIndexFirst]
+                val entity = positionedEntity.entity
+                if((entity.getType() == Entity.EntityType.Enemy) && ((entity as Enemy).killNoHPLost(state))) {
+                    oneShotEnemyFound = true
+                    entity.play(reachableEntityIndexFirst, state, playableTower, stateManager, newStates)
+                }
+                reachableEntityIndexFirst = state.reachable.previousSetBit(reachableEntityIndexFirst - 1)
+            }
+            if(! oneShotEnemyFound) {
+                var reachableEntityIndexSecond = state.reachable.previousSetBit(state.reachable.length() - 1)
+                while (reachableEntityIndexSecond >= 0) {
+                    val positionedEntity = playableTower.positionedEntities[reachableEntityIndexSecond]
+                    val entity = positionedEntity.entity
+                    entity.play(reachableEntityIndexSecond, state, playableTower, stateManager, newStates)
+                    reachableEntityIndexSecond = state.reachable.previousSetBit(reachableEntityIndexSecond - 1)
+                }
             }
         }
 
-        private fun play(
-            entityIndex: Int,
-            state: State,
-            playableTower: PlayableTower,
-            stateManager: StateManager,
-            newStates: MutableList<State>,
-        ) {
-            val positionedEntity = playableTower.positionedEntities[entityIndex]
-            val entity = positionedEntity.entity
-            // println(positionedEntity)
-            entity.play(entityIndex, state, playableTower, stateManager, newStates)
-        }
     }
 }
