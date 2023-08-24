@@ -28,6 +28,7 @@ fun main(args: Array<String>) {
         addDataSourceProperty("cachePrepStmts", "true")
         addDataSourceProperty("prepStmtCacheSize", "250")
         addDataSourceProperty("prepStmtCacheSqlLimit", "2048")
+        maximumPoolSize = Runtime.getRuntime().availableProcessors()
     }
 
     val database = Database.connect(

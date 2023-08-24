@@ -5,7 +5,6 @@ import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
-import net.archiloque.tacticalnexus.solver.input.Items
 
 abstract class Entity {
     abstract fun getType(): EntityType
@@ -75,16 +74,11 @@ abstract class Entity {
 
                     EntityType.Item -> {
                         val item = elementToAdd.entity as Item
-                        if ((item == Items.golden_feather) || (item == Items.life_crown)) {
-                            // Items that gives a bonus should be taken immediately
-                            state.visited.set(positionToAdd)
-                            state.moves = state.moves.plus(positionToAdd)
-                            item.apply(state)
-                            positionsToAdd.addAll(playableTower.reachable[positionToAdd])
-
-                        } else {
-                            state.reachable.set(positionToAdd)
-                        }
+                        // Items should be taken immediately
+                        state.visited.set(positionToAdd)
+                        state.moves = state.moves.plus(positionToAdd)
+                        item.apply(state)
+                        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
                     }
 
                     else -> {
