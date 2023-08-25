@@ -8,7 +8,7 @@ guard_gem;Guard gem;0;2;0;0;0
 guard_piece;Guard piece;0;1;0;0;0
 guard_potion;Guard potion;0;3;300;0;0
 heavenly_potion;Heavenly potion;3;3;3000;0;0
-life_crown;Life Crown;0;0;30;0;30
+life_crown;Life Crown;0;0;0;0;30
 life_potion;Life potion;0;0;2000;0;0
 power_card;Power card;5;0;0;0;0
 power_deck;Power deck;15;0;0;0;0

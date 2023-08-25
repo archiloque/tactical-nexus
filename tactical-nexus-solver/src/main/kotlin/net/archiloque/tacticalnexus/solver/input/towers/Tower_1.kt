@@ -320,7 +320,7 @@ public class Tower_1 : Tower {
                 ),
                 arrayOf(
                     null, null, null, null, null, null, null,
-                    Items.heavenly_potion, null, null, null, null, Staircase.down, null, Staircase.up,
+                    Items.drop_of_dream_ocean, null, null, null, null, Staircase.down, null, Staircase.up,
                 ),
                 arrayOf(
                     null, null, null, null, null, null, null, null, null, null, null, null, null, null,

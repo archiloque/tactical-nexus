@@ -70,21 +70,25 @@ abstract class Entity {
                     EntityType.Staircase -> {
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
+
                     EntityType.Key -> {
                         val key = elementToAdd.entity as Key
                         key.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
+
                     EntityType.Item -> {
                         val item = elementToAdd.entity as Item
                         item.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
+
                     EntityType.Enemy -> {
                         val enemy = elementToAdd.entity as Enemy
-                        val killEnemyNoHpLostAndNoLevelUp = enemy.killNoHPLost(state) && (LevelUp.levelUp(state.exp) == LevelUp.levelUp(
-                            state.exp + enemy.earnXp(state)
-                        ))
+                        val killEnemyNoHpLostAndNoLevelUp =
+                            enemy.killNoHPLost(state) && (LevelUp.levelUp(state.exp) == LevelUp.levelUp(
+                                state.exp + enemy.earnXp(state)
+                            ))
                         if (killEnemyNoHpLostAndNoLevelUp) {
                             enemy.apply(state)
                             enemy.drop.apply(state)
