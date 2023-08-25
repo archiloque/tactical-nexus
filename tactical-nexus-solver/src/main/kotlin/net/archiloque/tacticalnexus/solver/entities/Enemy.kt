@@ -51,14 +51,16 @@ data class Enemy(
         val result = calculate(state)
         return if (result != null) {
             state.hp = result
-            state.exp += (exp * (100 + state.expBonus)) / 100
+            state.exp += earnXp(state)
             true
         } else {
             false
         }
     }
 
-    public fun killNoHPLost(state: State): Boolean {
+    fun earnXp(state: State) = (exp * (100 + state.expBonus)) / 100
+
+    fun killNoHPLost(state: State): Boolean {
         val damagesToEnemy = Math.max(state.atk - def, 0)
         val damagesToPlayer = Math.max(atk - state.def, 0)
         return (damagesToEnemy > hp) || ((damagesToPlayer == 0) && (damagesToEnemy > 0))

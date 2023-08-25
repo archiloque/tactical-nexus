@@ -56,6 +56,11 @@ abstract class Entity {
         state: State,
         playableTower: PlayableTower,
     ) {
+        // We optimize for cases where the decision is automatic so we avoid adding more states:
+        // - staircases
+        // - keys
+        // - items
+        // - enemies that can be killed without loosing any HP and without leveling up (because levelling up requires creating branches)
         val positionsToAdd = playableTower.reachable[entityIndex].toMutableList()
         while (positionsToAdd.isNotEmpty()) {
             val positionToAdd = positionsToAdd.removeLast()
@@ -63,28 +68,30 @@ abstract class Entity {
             if ((!state.visited.get(positionToAdd)) && (!state.reachable.get(positionToAdd))) {
                 when (elementToAdd.entity.getType()) {
                     EntityType.Staircase -> {
-                        // If a staircase becomes reachable we immediately treat it as being taken by adding the newly reachable positionw
-                        state.visited.set(positionToAdd)
-                        state.moves = state.moves.plus(positionToAdd)
-                        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
+                        addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
-
                     EntityType.Key -> {
-                        // If a key becomes reachable we immediately treat it as being grabbed and adding the newly reachable positionw
                         val key = elementToAdd.entity as Key
                         key.apply(state)
-                        state.visited.set(positionToAdd)
-                        state.moves = state.moves.plus(positionToAdd)
-                        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
+                        addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
-
                     EntityType.Item -> {
                         val item = elementToAdd.entity as Item
-                        // Items should be taken immediately
-                        state.visited.set(positionToAdd)
-                        state.moves = state.moves.plus(positionToAdd)
                         item.apply(state)
-                        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
+                        addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                    }
+                    EntityType.Enemy -> {
+                        val enemy = elementToAdd.entity as Enemy
+                        val killEnemyNoHpLostAndNoLevelUp = enemy.killNoHPLost(state) && (LevelUp.levelUp(state.exp) == LevelUp.levelUp(
+                            state.exp + enemy.earnXp(state)
+                        ))
+                        if (killEnemyNoHpLostAndNoLevelUp) {
+                            enemy.apply(state)
+                            enemy.drop.apply(state)
+                            addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                        } else {
+                            state.reachable.set(positionToAdd)
+                        }
                     }
 
                     else -> {
@@ -93,5 +100,16 @@ abstract class Entity {
                 }
             }
         }
+    }
+
+    private fun addNewPosition(
+        state: State,
+        positionToAdd: Int,
+        positionsToAdd: MutableList<Int>,
+        playableTower: PlayableTower,
+    ) {
+        state.visited.set(positionToAdd)
+        state.moves = state.moves.plus(positionToAdd)
+        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
     }
 }
