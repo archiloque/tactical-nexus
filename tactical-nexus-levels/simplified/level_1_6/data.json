@@ -1157,6 +1157,58 @@
 				"customFields": {
 					"item": "life_potion"
 				}
+			},
+			{
+				"id": "item",
+				"iid": "1931b200-3b70-11ee-a31b-4f0c9aa36b79",
+				"layer": "entities",
+				"x": 96,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "power_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "1b99b150-3b70-11ee-a31b-7d98028ee460",
+				"layer": "entities",
+				"x": 96,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "power_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "1e149c60-3b70-11ee-a31b-1563df479bc3",
+				"layer": "entities",
+				"x": 96,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "power_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "2517f5c0-3b70-11ee-a31b-37725656f8cf",
+				"layer": "entities",
+				"x": 208,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "guard_deck"
+				}
 			}
 		],
 		"wall": [
@@ -2019,7 +2071,7 @@
 				"height": 16,
 				"color": 1578021,
 				"customFields": {
-					"direction": "up"
+					"direction": "down"
 				}
 			}
 		],
@@ -2073,7 +2125,7 @@
 				"height": 16,
 				"color": 14984818,
 				"customFields": {
-					"key_or_door_color": "platinium"
+					"key_or_door_color": "platinum"
 				}
 			},
 			{
@@ -2203,7 +2255,7 @@
 				"height": 16,
 				"color": 14984818,
 				"customFields": {
-					"key_or_door_color": "platinium"
+					"key_or_door_color": "platinum"
 				}
 			},
 			{
@@ -2322,7 +2374,7 @@
 				"height": 16,
 				"color": 15389866,
 				"customFields": {
-					"key_or_door_color": "platinium"
+					"key_or_door_color": "platinum"
 				}
 			},
 			{
@@ -2336,6 +2388,386 @@
 				"color": 15389866,
 				"customFields": {
 					"key_or_door_color": "violet"
+				}
+			}
+		],
+		"enemy": [
+			{
+				"id": "enemy",
+				"iid": "7aeae580-3b70-11ee-a31b-1d8d0068fe44",
+				"layer": "entities",
+				"x": 96,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 23
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "7d820b20-3b70-11ee-a31b-678568c645ca",
+				"layer": "entities",
+				"x": 96,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 23
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "8fa6f8b0-3b70-11ee-a31b-637784b0aaf3",
+				"layer": "entities",
+				"x": 64,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 15
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "9234f690-3b70-11ee-a31b-03efbbe93c50",
+				"layer": "entities",
+				"x": 64,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 15
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "9a10ae90-3b70-11ee-a31b-fd8b69149356",
+				"layer": "entities",
+				"x": 192,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 28
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "9e368a80-3b70-11ee-a31b-f9b24723c03f",
+				"layer": "entities",
+				"x": 192,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 28
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "a6728af0-3b70-11ee-a31b-118c3ea4dc25",
+				"layer": "entities",
+				"x": 16,
+				"y": 192,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 12
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "a9b44870-3b70-11ee-a31b-c51c1d798dd2",
+				"layer": "entities",
+				"x": 32,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 12
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "abe53230-3b70-11ee-a31b-c9356b2a862e",
+				"layer": "entities",
+				"x": 32,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 12
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "ae28e0a0-3b70-11ee-a31b-abe658baea59",
+				"layer": "entities",
+				"x": 32,
+				"y": 192,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 12
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "b2222e50-3b70-11ee-a31b-99d229cce49e",
+				"layer": "entities",
+				"x": 32,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 12
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "b7a6fe00-3b70-11ee-a31b-c3814ef116ca",
+				"layer": "entities",
+				"x": 16,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 19
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "c1cdb770-3b70-11ee-a31b-23bb178231d3",
+				"layer": "entities",
+				"x": 80,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 18
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "c6d47d80-3b70-11ee-a31b-2f5c0f967b07",
+				"layer": "entities",
+				"x": 128,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 18
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "cd7173f0-3b70-11ee-a31b-b55335965d9c",
+				"layer": "entities",
+				"x": 16,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 18
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "d684e8a0-3b70-11ee-a31b-f736e56f1d22",
+				"layer": "entities",
+				"x": 64,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 16
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "d92731d0-3b70-11ee-a31b-29f63be5143e",
+				"layer": "entities",
+				"x": 64,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 16
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "df9c06d0-3b70-11ee-a31b-21d3e5eeaa79",
+				"layer": "entities",
+				"x": 32,
+				"y": 16,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 13
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "e2dc8bd0-3b70-11ee-a31b-1369f90f1527",
+				"layer": "entities",
+				"x": 16,
+				"y": 32,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 13
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "e6d208f0-3b70-11ee-a31b-8f29540b76b6",
+				"layer": "entities",
+				"x": 32,
+				"y": 32,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 13
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "ea045d20-3b70-11ee-a31b-d1b82d260cbe",
+				"layer": "entities",
+				"x": 32,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 13
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "ecbdfee0-3b70-11ee-a31b-5b32806c0b0a",
+				"layer": "entities",
+				"x": 32,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 13
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "faec0fc0-3b70-11ee-a31b-d5d7a2b0e8ab",
+				"layer": "entities",
+				"x": 128,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 19
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "05c99610-3b70-11ee-a31b-3100be110e2b",
+				"layer": "entities",
+				"x": 144,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 22
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "0ee82e50-3b70-11ee-a31b-c996b1883b7d",
+				"layer": "entities",
+				"x": 96,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 22
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "11a41a00-3b70-11ee-a31b-51a080aa3a4a",
+				"layer": "entities",
+				"x": 96,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 22
+				}
+			},
+			{
+				"id": "enemy",
+				"iid": "30c32c50-3b70-11ee-a31b-8df592347e9e",
+				"layer": "entities",
+				"x": 192,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "ranger",
+					"level": 30
 				}
 			}
 		]

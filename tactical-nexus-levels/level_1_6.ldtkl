@@ -584,9 +584,9 @@
 					"height": 16,
 					"defUid": 16,
 					"px": [0,112],
-					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "down", "__tile": null, "defUid": 20, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["up"]
+						"params": ["down"]
 					}] }]
 				},
 				{
@@ -2076,9 +2076,9 @@
 					"height": 16,
 					"defUid": 29,
 					"px": [32,112],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "platinium", "__tile": null, "defUid": 30, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "platinum", "__tile": null, "defUid": 30, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["platinium"]
+						"params": ["platinum"]
 					}] }]
 				},
 				{
@@ -2095,9 +2095,9 @@
 					"height": 16,
 					"defUid": 27,
 					"px": [16,112],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "platinium", "__tile": null, "defUid": 28, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "platinum", "__tile": null, "defUid": 28, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["platinium"]
+						"params": ["platinum"]
 					}] }]
 				},
 				{
@@ -2285,9 +2285,9 @@
 					"height": 16,
 					"defUid": 29,
 					"px": [224,208],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "platinium", "__tile": null, "defUid": 30, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "platinum", "__tile": null, "defUid": 30, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["platinium"]
+						"params": ["platinum"]
 					}] }]
 				},
 				{
@@ -3430,6 +3430,676 @@
 						"id": "V_String",
 						"params": ["life_potion"]
 					}] }]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [6,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1392,
+					"__worldY": 96,
+					"iid": "7aeae580-3b70-11ee-a31b-1d8d0068fe44",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [96,64],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 23, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [23] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [6,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1392,
+					"__worldY": 112,
+					"iid": "7d820b20-3b70-11ee-a31b-678568c645ca",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [96,80],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 23, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [23] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [4,10],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1360,
+					"__worldY": 192,
+					"iid": "8fa6f8b0-3b70-11ee-a31b-637784b0aaf3",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [64,160],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 15, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [15] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [4,11],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1360,
+					"__worldY": 208,
+					"iid": "9234f690-3b70-11ee-a31b-03efbbe93c50",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [64,176],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 15, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [15] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [12,9],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1488,
+					"__worldY": 176,
+					"iid": "9a10ae90-3b70-11ee-a31b-fd8b69149356",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [192,144],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 28, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [28] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [12,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1488,
+					"__worldY": 112,
+					"iid": "9e368a80-3b70-11ee-a31b-f9b24723c03f",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [192,80],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 28, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [28] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [1,12],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1312,
+					"__worldY": 224,
+					"iid": "a6728af0-3b70-11ee-a31b-118c3ea4dc25",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [16,192],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 12, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [12] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,10],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 192,
+					"iid": "a9b44870-3b70-11ee-a31b-c51c1d798dd2",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,160],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 12, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [12] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,11],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 208,
+					"iid": "abe53230-3b70-11ee-a31b-c9356b2a862e",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,176],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 12, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [12] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,12],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 224,
+					"iid": "ae28e0a0-3b70-11ee-a31b-abe658baea59",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,192],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 12, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [12] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,13],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 240,
+					"iid": "b2222e50-3b70-11ee-a31b-99d229cce49e",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,208],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 12, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [12] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [1,9],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1312,
+					"__worldY": 176,
+					"iid": "b7a6fe00-3b70-11ee-a31b-c3814ef116ca",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [16,144],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 19, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [19] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [5,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1376,
+					"__worldY": 144,
+					"iid": "c1cdb770-3b70-11ee-a31b-23bb178231d3",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [80,112],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 18, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [18] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [8,6],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1424,
+					"__worldY": 128,
+					"iid": "c6d47d80-3b70-11ee-a31b-2f5c0f967b07",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [128,96],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 18, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [18] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [1,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1312,
+					"__worldY": 112,
+					"iid": "cd7173f0-3b70-11ee-a31b-b55335965d9c",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [16,80],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 18, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [18] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [4,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1360,
+					"__worldY": 96,
+					"iid": "d684e8a0-3b70-11ee-a31b-f736e56f1d22",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [64,64],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 16, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [16] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [4,3],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1360,
+					"__worldY": 80,
+					"iid": "d92731d0-3b70-11ee-a31b-29f63be5143e",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [64,48],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 16, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [16] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,1],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 48,
+					"iid": "df9c06d0-3b70-11ee-a31b-21d3e5eeaa79",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,16],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 13, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [13] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [1,2],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1312,
+					"__worldY": 64,
+					"iid": "e2dc8bd0-3b70-11ee-a31b-1369f90f1527",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [16,32],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 13, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [13] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,2],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 64,
+					"iid": "e6d208f0-3b70-11ee-a31b-8f29540b76b6",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,32],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 13, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [13] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,3],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 80,
+					"iid": "ea045d20-3b70-11ee-a31b-d1b82d260cbe",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,48],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 13, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [13] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [2,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1328,
+					"__worldY": 96,
+					"iid": "ecbdfee0-3b70-11ee-a31b-5b32806c0b0a",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [32,64],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 13, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [13] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [8,8],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1424,
+					"__worldY": 160,
+					"iid": "faec0fc0-3b70-11ee-a31b-d5d7a2b0e8ab",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [128,128],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 19, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [19] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [9,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1440,
+					"__worldY": 144,
+					"iid": "05c99610-3b70-11ee-a31b-3100be110e2b",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [144,112],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 22, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [22] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [6,9],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1392,
+					"__worldY": 176,
+					"iid": "0ee82e50-3b70-11ee-a31b-c996b1883b7d",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [96,144],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 22, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [22] }] }
+					]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [6,10],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1392,
+					"__worldY": 192,
+					"iid": "11a41a00-3b70-11ee-a31b-51a080aa3a4a",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [96,160],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 22, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [22] }] }
+					]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [6,6],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 1392,
+					"__worldY": 128,
+					"iid": "1931b200-3b70-11ee-a31b-4f0c9aa36b79",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [96,96],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["power_potion"]
+					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [6,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 1392,
+					"__worldY": 144,
+					"iid": "1b99b150-3b70-11ee-a31b-7d98028ee460",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [96,112],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["power_potion"]
+					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [6,8],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 1392,
+					"__worldY": 160,
+					"iid": "1e149c60-3b70-11ee-a31b-1563df479bc3",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [96,128],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["power_potion"]
+					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [13,13],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 1504,
+					"__worldY": 240,
+					"iid": "2517f5c0-3b70-11ee-a31b-37725656f8cf",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [208,208],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_deck", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["guard_deck"]
+					}] }]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [12,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1488,
+					"__worldY": 144,
+					"iid": "30c32c50-3b70-11ee-a31b-8df592347e9e",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [192,112],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "ranger", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ranger"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 30, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [30] }] }
+					]
 				}
 			]
 		}

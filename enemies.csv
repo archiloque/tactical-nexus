@@ -6,6 +6,8 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 1;fighter;12;2000;440;120;30;guard_potion
 1;fighter;15;3500;590;170;47;guard_potion
 1;fighter;19;5500;1120;445;70;guard_card
+1;fighter;23;8000;1650;620;100;guard_card
+1;fighter;28;1600;2150;700;138;guard_card
 1;ranger;2;200;200;10;4;red_potion
 1;ranger;4;200;350;20;16;red_potion
 1;ranger;7;800;280;40;36;blue_potion
@@ -15,3 +17,4 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 1;ranger;18;2000;1660;240;196;life_potion
 1;ranger;22;3000;2350;360;256;heavenly_potion
 1;ranger;26;3000;3740;720;324;heavenly_potion
+1;ranger;30;9999;4800;480;400;drop_of_dream_ocean

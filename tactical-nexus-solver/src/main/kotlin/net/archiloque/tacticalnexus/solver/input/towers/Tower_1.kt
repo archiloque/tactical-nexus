@@ -1,9 +1,6 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.`annotation`.processing.Generated
-import kotlin.Array
-import kotlin.Int
-import kotlin.arrayOf
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.Door
 import net.archiloque.tacticalnexus.solver.entities.Enemy
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
@@ -30,7 +27,9 @@ public class Tower_1 : Tower {
         Enemy(EnemyType.fighter, 8, 1000, 260, 85, 18, Items.guard_gem), null, null, null,
         Enemy(EnemyType.fighter, 12, 2000, 440, 120, 30, Items.guard_potion), null, null,
         Enemy(EnemyType.fighter, 15, 3500, 590, 170, 47, Items.guard_potion), null, null, null,
-        Enemy(EnemyType.fighter, 19, 5500, 1120, 445, 70, Items.guard_card),
+        Enemy(EnemyType.fighter, 19, 5500, 1120, 445, 70, Items.guard_card), null, null, null,
+        Enemy(EnemyType.fighter, 23, 8000, 1650, 620, 100, Items.guard_card), null, null, null, null,
+        Enemy(EnemyType.fighter, 28, 1600, 2150, 700, 138, Items.guard_card),
     )
 
     private val rangers: Array<Enemy?> = arrayOf(
@@ -46,7 +45,8 @@ public class Tower_1 : Tower {
         Enemy(EnemyType.ranger, 16, 2000, 1100, 120, 140, Items.life_potion), null,
         Enemy(EnemyType.ranger, 18, 2000, 1660, 240, 196, Items.life_potion), null, null, null,
         Enemy(EnemyType.ranger, 22, 3000, 2350, 360, 256, Items.heavenly_potion), null, null, null,
-        Enemy(EnemyType.ranger, 26, 3000, 3740, 720, 324, Items.heavenly_potion),
+        Enemy(EnemyType.ranger, 26, 3000, 3740, 720, 324, Items.heavenly_potion), null, null, null,
+        Enemy(EnemyType.ranger, 30, 9999, 4800, 480, 400, Items.drop_of_dream_ocean),
     )
 
     private val levels: Array<TowerLevel> = arrayOf(
@@ -400,7 +400,7 @@ public class Tower_1 : Tower {
                     Items.power_card, null, rangers[16], Wall.instance, Wall.instance, Wall.instance,
                 ),
                 arrayOf(
-                    Exit.instance, Items.drop_of_dream_ocean, Door(KeyOrDoorColor.crimson),
+                    Staircase.up, Items.drop_of_dream_ocean, Door(KeyOrDoorColor.crimson),
                     Door(KeyOrDoorColor.crimson), Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue),
                     Door(KeyOrDoorColor.yellow), Door(KeyOrDoorColor.yellow), Items.power_card, Items.power_deck,
                     Items.power_card, rangers[16], Key(KeyOrDoorColor.blue), Key(KeyOrDoorColor.yellow),
@@ -445,6 +445,100 @@ public class Tower_1 : Tower {
                     Door(KeyOrDoorColor.blue), Key(KeyOrDoorColor.crimson), Wall.instance, Items.heavenly_potion,
                     rangers[18], Items.guard_card, Key(KeyOrDoorColor.crimson), Items.guard_card, rangers[18],
                     Items.heavenly_potion, null, rangers[18],
+                ),
+            )
+        ),
+        TowerLevel(
+            15, 15,
+            arrayOf(
+                arrayOf(
+                    Items.golden_feather, Items.power_deck, Wall.instance, Items.power_deck,
+                    Items.power_card, Wall.instance, Items.power_potion, Items.power_card, Items.power_card,
+                    Wall.instance, Door(KeyOrDoorColor.yellow), Items.golden_feather, Wall.instance,
+                    Items.life_crown, Items.life_crown,
+                ),
+                arrayOf(
+                    Wall.instance, Door(KeyOrDoorColor.crimson),
+                    rangers[13], Wall.instance, Items.power_card, Wall.instance, Items.power_potion,
+                    Items.power_potion, Items.power_card, Wall.instance, Door(KeyOrDoorColor.yellow),
+                    Wall.instance, Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue), Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, rangers[13], rangers[13], Wall.instance, Door(KeyOrDoorColor.blue),
+                    Wall.instance, Items.power_potion, Items.power_potion, Wall.instance, Items.power_potion,
+                    Items.power_potion, Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue), Wall.instance,
+                    Items.guard_deck,
+                ),
+                arrayOf(
+                    Items.power_card, Wall.instance, rangers[13], Wall.instance,
+                    rangers[16], Wall.instance, Door(KeyOrDoorColor.yellow), Items.power_potion, Wall.instance,
+                    Items.power_card, Items.power_potion, Items.guard_potion, Wall.instance,
+                    Items.drop_of_dream_ocean, Items.drop_of_dream_ocean,
+                ),
+                arrayOf(
+                    Items.power_card,
+                    Wall.instance, rangers[13], Wall.instance, rangers[16], Wall.instance, fighters[23],
+                    Wall.instance, Items.power_potion, Items.power_potion, Items.power_potion, Wall.instance,
+                    Door(KeyOrDoorColor.crimson), Items.guard_deck, Wall.instance,
+                ),
+                arrayOf(
+                    Items.power_card,
+                    rangers[18], null, null, Items.guard_potion, Wall.instance, fighters[23], Wall.instance,
+                    Items.blue_potion, Items.guard_potion, Wall.instance, Items.life_potion, fighters[28],
+                    Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance,
+                    Items.power_potion, Items.guard_potion, Wall.instance, Items.power_potion, Items.power_card,
+                    rangers[18], Wall.instance, Items.blue_potion, Items.life_potion, Wall.instance,
+                    Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Staircase.down, Key(KeyOrDoorColor.platinum),
+                    Door(KeyOrDoorColor.platinum), Items.power_potion, Items.guard_potion, rangers[18],
+                    Items.power_potion, Items.power_card, Items.power_deck, rangers[22], Items.blue_potion,
+                    Items.life_potion, rangers[30], Items.drop_of_dream_ocean, Exit.instance,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance, Items.power_potion, Items.guard_potion,
+                    Wall.instance, Items.power_potion, Items.power_card, fighters[19], Wall.instance,
+                    Items.blue_potion, Items.life_potion, Wall.instance, Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Items.heavenly_potion, fighters[19], null, null, Items.guard_potion, Wall.instance,
+                    rangers[22], Wall.instance, Items.blue_potion, Items.blue_potion, Wall.instance,
+                    Items.life_potion, fighters[28], Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Items.heavenly_potion, Wall.instance, fighters[12], Wall.instance, fighters[15],
+                    Wall.instance, rangers[22], Wall.instance, Items.blue_potion, Items.heavenly_potion,
+                    Items.life_potion, Wall.instance, Door(KeyOrDoorColor.crimson), Items.power_deck,
+                    Wall.instance,
+                ),
+                arrayOf(
+                    Items.heavenly_potion, Wall.instance, fighters[12], Wall.instance,
+                    fighters[15], Wall.instance, Door(KeyOrDoorColor.yellow), Items.life_potion, Wall.instance,
+                    Items.heavenly_potion, Items.life_potion, Items.power_potion, Wall.instance,
+                    Items.drop_of_dream_ocean, Items.drop_of_dream_ocean,
+                ),
+                arrayOf(
+                    Wall.instance, fighters[12],
+                    fighters[12], Wall.instance, Door(KeyOrDoorColor.blue), Wall.instance, Items.life_potion,
+                    Items.life_potion, Wall.instance, Items.power_potion, Items.power_potion,
+                    Door(KeyOrDoorColor.yellow), Items.power_deck, Wall.instance, Items.power_deck,
+                ),
+                arrayOf(
+                    Wall.instance, Door(KeyOrDoorColor.crimson), fighters[12], Wall.instance,
+                    Items.guard_deck, Wall.instance, Items.life_potion, Items.life_potion, Items.heavenly_potion,
+                    Wall.instance, Door(KeyOrDoorColor.yellow), Wall.instance, Door(KeyOrDoorColor.blue),
+                    Items.guard_deck, Door(KeyOrDoorColor.platinum),
+                ),
+                arrayOf(
+                    Items.golden_feather,
+                    Items.drop_of_dream_ocean, Wall.instance, Items.drop_of_dream_ocean, Items.heavenly_potion,
+                    Wall.instance, Items.life_potion, Items.heavenly_potion, Items.heavenly_potion, Wall.instance,
+                    Door(KeyOrDoorColor.yellow), Items.golden_feather, Wall.instance,
+                    Door(KeyOrDoorColor.crimson), Key(KeyOrDoorColor.violet),
                 ),
             )
         ),
