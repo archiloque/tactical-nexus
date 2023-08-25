@@ -895,19 +895,6 @@
 				"customFields" : {}
 			}
 		],
-		"exit": [
-			{
-				"id": "exit",
-				"iid": "ff1bba70-3b70-11ee-b839-dde27107c9ad",
-				"layer": "entities",
-				"x": 0,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 7552569,
-				"customFields" : {}
-			}
-		],
 		"staircase": [
 			{
 				"id": "staircase",
@@ -920,6 +907,19 @@
 				"color": 1578021,
 				"customFields": {
 					"direction": "down"
+				}
+			},
+			{
+				"id": "staircase",
+				"iid": "8acd3d70-3b70-11ee-a31b-23fce9843376",
+				"layer": "entities",
+				"x": 0,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "up"
 				}
 			}
 		],
