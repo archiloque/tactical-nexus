@@ -81,13 +81,13 @@ class DefaultStateManager(
         }
     }
 
-    override fun reachedExit(finalState: State) {
+    override fun reachedExit(state: State) {
         synchronized(this) {
-            println(finalState)
+            println(state)
             val currentState = initialState.copy()
 
-            val moveIndexLength = finalState.moves.size.toString().length
-            val positionedEntities = finalState.moves.filter { it >= 0 }.map { playableTower.positionedEntities[it] }
+            val moveIndexLength = state.moves.size.toString().length
+            val positionedEntities = state.moves.filter { it >= 0 }.map { playableTower.positionedEntities[it] }
             val maxLevelIndexLength = positionedEntities.map { it.position.level }.max().toString().length
             val maxLevelColumnsLength = positionedEntities.map { it.position.column }.max().toString().length
             val maxLevelLinesLength = positionedEntities.map { it.position.line }.max().toString().length
@@ -103,12 +103,11 @@ class DefaultStateManager(
                 maxLevelColumnsLength,
                 "Starting",
                 currentState,
-                currentLevelUpIndex,
             )
             printMove(initialPosition, initialPosition, tower)
             println()
             var lastPosition: Position = initialPosition
-            for (move in finalState.moves) {
+            for (move in state.moves) {
                 if (move >= 0) {
                     val positionedEntity = playableTower.positionedEntities[move]
                     val entity = positionedEntity.entity
@@ -123,8 +122,7 @@ class DefaultStateManager(
                             maxLevelLinesLength,
                             maxLevelColumnsLength,
                             description,
-                            currentState,
-                            currentLevelUpIndex
+                            currentState
                         )
                         printMove(position, lastPosition, tower)
                         println()
@@ -166,7 +164,6 @@ class DefaultStateManager(
                         maxLevelColumnsLength,
                         "Level up to ${currentLevelUpIndex}, ${description}",
                         currentState,
-                        currentLevelUpIndex,
                     )
                     println()
                 }
@@ -185,7 +182,6 @@ class DefaultStateManager(
         maxLevelColumnsLength: Int,
         moveDescription: String,
         currentState: State,
-        currentLevelUpIndex: Int,
     ) {
         println(
             "${index.toString().padStart(moveIndexLength)} (${
@@ -194,7 +190,7 @@ class DefaultStateManager(
                 currentPosition.column.toString().padStart(maxLevelColumnsLength)
             }) ${moveDescription}"
         )
-        var exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
+        val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
             "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
         )

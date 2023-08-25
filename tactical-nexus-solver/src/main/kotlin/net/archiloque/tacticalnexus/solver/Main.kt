@@ -21,7 +21,7 @@ import org.ktorm.dsl.update
 import org.ktorm.support.postgresql.PostgreSqlDialect
 
 
-fun main(args: Array<String>) {
+fun main() {
     val config = HikariConfig().apply {
         jdbcUrl = "jdbc:postgresql://localhost:5432/tactical-nexus-solver"
         username = "tactical-nexus-solver"
