@@ -1,9 +1,9 @@
 package net.archiloque.tacticalnexus.solver.code
 
-import net.archiloque.tacticalnexus.solver.entities.TowerLevel
-import net.archiloque.tacticalnexus.solver.entities.Tower
+import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
+import net.archiloque.tacticalnexus.solver.entities.input.Tower
 
-data class TowerForTest(
+class TowerForTest(
     val towerLevels: Array<TowerLevel>,
     val atk: Int,
     val def: Int,

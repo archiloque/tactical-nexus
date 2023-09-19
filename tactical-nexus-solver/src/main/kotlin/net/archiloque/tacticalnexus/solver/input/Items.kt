@@ -1,7 +1,7 @@
 package net.archiloque.tacticalnexus.solver.input
 
 import javax.`annotation`.processing.Generated
-import net.archiloque.tacticalnexus.solver.entities.Item
+import net.archiloque.tacticalnexus.solver.entities.input.Item
 
 @Generated
 public class Items {

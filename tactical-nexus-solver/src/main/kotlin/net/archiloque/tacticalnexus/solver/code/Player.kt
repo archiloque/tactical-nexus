@@ -1,8 +1,9 @@
 package net.archiloque.tacticalnexus.solver.code
 
 import net.archiloque.tacticalnexus.solver.database.State
-import net.archiloque.tacticalnexus.solver.entities.Enemy
-import net.archiloque.tacticalnexus.solver.entities.Entity
+import net.archiloque.tacticalnexus.solver.entities.play.Enemy
+import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
+import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 
 class Player {
 
@@ -15,20 +16,18 @@ class Player {
         ) {
             var reachableEntityIndexFirst = state.reachable.previousSetBit(state.reachable.length() - 1)
             while (reachableEntityIndexFirst >= 0) {
-                val positionedEntity = playableTower.positionedEntities[reachableEntityIndexFirst]
-                val entity = positionedEntity.entity
-                if ((entity.getType() == Entity.EntityType.Enemy) && ((entity as Enemy).killNoHPLost(state))) {
+                val positionedEntity = playableTower.playEntities[reachableEntityIndexFirst]
+                if ((positionedEntity.getType() == PlayEntityType.Enemy) && ((positionedEntity as Enemy).killNoHPLost(state))) {
                     // If we can kill an enemy without loosing any HP we only try this move
-                    entity.play(reachableEntityIndexFirst, state, playableTower, stateManager, newStates)
+                    positionedEntity.play(reachableEntityIndexFirst, state, playableTower, stateManager, newStates)
                     return
                 }
                 reachableEntityIndexFirst = state.reachable.previousSetBit(reachableEntityIndexFirst - 1)
             }
             var reachableEntityIndexSecond = state.reachable.previousSetBit(state.reachable.length() - 1)
             while (reachableEntityIndexSecond >= 0) {
-                val positionedEntity = playableTower.positionedEntities[reachableEntityIndexSecond]
-                val entity = positionedEntity.entity
-                entity.play(reachableEntityIndexSecond, state, playableTower, stateManager, newStates)
+                val positionedEntity = playableTower.playEntities[reachableEntityIndexSecond]
+                positionedEntity.play(reachableEntityIndexSecond, state, playableTower, stateManager, newStates)
                 reachableEntityIndexSecond = state.reachable.previousSetBit(reachableEntityIndexSecond - 1)
             }
         }

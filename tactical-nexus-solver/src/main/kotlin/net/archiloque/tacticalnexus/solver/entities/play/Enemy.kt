@@ -1,21 +1,26 @@
-package net.archiloque.tacticalnexus.solver.entities
+package net.archiloque.tacticalnexus.solver.entities.play
 
-import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
-import net.archiloque.tacticalnexus.solver.entities.LevelUp.Companion.levelUp
+import net.archiloque.tacticalnexus.solver.entities.EnemyType
+import net.archiloque.tacticalnexus.solver.entities.play.LevelUp.Companion.levelUp
 
-data class Enemy(
+class Enemy(
     val type: EnemyType,
     val level: Int,
     val hp: Int,
     val atk: Int,
     val def: Int,
     val exp: Int,
-    val drop: Item,
-) : Entity() {
-    override fun getType(): EntityType {
-        return EntityType.Enemy
+    val drop: DropItem,
+    val position: Position,
+) : PlayEntitySinglePosition(position) {
+    override fun getType(): PlayEntityType {
+        return PlayEntityType.Enemy
+    }
+
+    override fun description(): Array<PositionedDescription> {
+        return arrayOf(PositionedDescription("Fight lv ${level} ${type}", position))
     }
 
     override fun play(
@@ -114,10 +119,30 @@ data class Enemy(
                 }
             }
         }
-    }
-}
 
-enum class EnemyType() {
-    fighter,
-    ranger
+        data class EnemyId(val type: EnemyType, val level: Int)
+
+        private val enemies = mutableMapOf<EnemyId, Enemy>()
+
+        fun enemy(enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy, position: Position): Enemy {
+            val enemyId = EnemyId(enemy.type, enemy.level)
+            var value = enemies[enemyId]
+            if (value == null) {
+                value = Enemy(
+                    enemy.type,
+                    enemy.level,
+                    enemy.hp,
+                    enemy.atk,
+                    enemy.def,
+                    enemy.def,
+                    DropItem.item(enemy.drop),
+                    position
+                )
+                enemies[enemyId] = value
+                return value
+            } else {
+                return value
+            }
+        }
+    }
 }

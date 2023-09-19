@@ -4,14 +4,18 @@ import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.States
-import net.archiloque.tacticalnexus.solver.entities.Door
-import net.archiloque.tacticalnexus.solver.entities.Enemy
-import net.archiloque.tacticalnexus.solver.entities.Entity
-import net.archiloque.tacticalnexus.solver.entities.Item
-import net.archiloque.tacticalnexus.solver.entities.Key
-import net.archiloque.tacticalnexus.solver.entities.LevelUp
-import net.archiloque.tacticalnexus.solver.entities.LevelUpType
-import net.archiloque.tacticalnexus.solver.entities.Tower
+import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
+import net.archiloque.tacticalnexus.solver.entities.input.Tower
+import net.archiloque.tacticalnexus.solver.entities.play.Door
+import net.archiloque.tacticalnexus.solver.entities.play.Enemy
+import net.archiloque.tacticalnexus.solver.entities.play.Item
+import net.archiloque.tacticalnexus.solver.entities.play.Key
+import net.archiloque.tacticalnexus.solver.entities.play.LevelUp
+import net.archiloque.tacticalnexus.solver.entities.play.LevelUpType
+import net.archiloque.tacticalnexus.solver.entities.play.PlayEntity
+import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
+import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
+import net.archiloque.tacticalnexus.solver.entities.play.Position
 import org.ktorm.database.Database
 import org.ktorm.support.postgresql.bulkInsertOrUpdate
 
@@ -84,48 +88,45 @@ class DefaultStateManager(
             val currentState = initialState.copy()
 
             val moveIndexLength = state.moves.size.toString().length
-            val positionedEntities = state.moves.filter { it >= 0 }.map { playableTower.positionedEntities[it] }
-            val maxLevelIndexLength = positionedEntities.map { it.position.level }.max().toString().length
-            val maxLevelColumnsLength = positionedEntities.map { it.position.column }.max().toString().length
-            val maxLevelLinesLength = positionedEntities.map { it.position.line }.max().toString().length
+            val positionedEntities = state.moves.filter { it >= 0 }.map { playableTower.playEntities[it] }
+            val maxLevelIndexLength =
+                positionedEntities.map { it.getPositions().map { it.level }.max() }.max().toString().length
+            val maxLevelColumnsLength =
+                positionedEntities.map { it.getPositions().map { it.column }.max() }.max().toString().length
+            val maxLevelLinesLength =
+                positionedEntities.map { it.getPositions().map { it.line }.max() }.max().toString().length
             var index = 1
-            val initialPosition = playableTower.positionedEntities[playableTower.startingPosition].position
+            val initialPosition = playableTower.startingPositionPosition
             var currentLevelUpIndex = 0
             printStatus(
                 0,
                 moveIndexLength,
-                initialPosition,
                 maxLevelIndexLength,
                 maxLevelLinesLength,
                 maxLevelColumnsLength,
-                "Starting",
-                currentState,
+                initialPosition,
+                "Starting"
             )
-            printMove(initialPosition, initialPosition, tower)
+            printMove(arrayOf(initialPosition), initialPosition, tower)
             println()
             var lastPosition: Position = initialPosition
             for (move in state.moves) {
                 if (move >= 0) {
-                    val positionedEntity = playableTower.positionedEntities[move]
-                    val entity = positionedEntity.entity
-                    val position = positionedEntity.position
-                    val description = apply(entity, currentState)
-                    if (description != null) {
-                        printStatus(
-                            index,
-                            moveIndexLength,
-                            position,
-                            maxLevelIndexLength,
-                            maxLevelLinesLength,
-                            maxLevelColumnsLength,
-                            description,
-                            currentState
-                        )
-                        printMove(position, lastPosition, tower)
-                        println()
+                    val positionedEntity = playableTower.playEntities[move]
+                    apply(positionedEntity, currentState)
+                    printStatus(
+                        index,
+                        moveIndexLength,
+                        maxLevelIndexLength,
+                        maxLevelLinesLength,
+                        maxLevelColumnsLength,
+                        currentState,
+                        positionedEntity
+                    )
+                    printMove(positionedEntity.getPositions(), lastPosition, tower)
+                    println()
 
-                        lastPosition = position
-                    }
+                    lastPosition = positionedEntity.getPositions().last()
                 } else {
                     currentLevelUpIndex++
                     val levelUp = LevelUp.levelUp(currentState.exp)
@@ -155,12 +156,11 @@ class DefaultStateManager(
                     printStatus(
                         index,
                         moveIndexLength,
-                        lastPosition,
                         maxLevelIndexLength,
                         maxLevelLinesLength,
                         maxLevelColumnsLength,
-                        "Level up to ${currentLevelUpIndex}, ${description}",
-                        currentState,
+                        lastPosition,
+                        description
                     )
                     println()
                 }
@@ -173,83 +173,91 @@ class DefaultStateManager(
     private fun printStatus(
         index: Int,
         moveIndexLength: Int,
-        currentPosition: Position,
         maxLevelIndexLength: Int,
         maxLevelLinesLength: Int,
         maxLevelColumnsLength: Int,
-        moveDescription: String,
         currentState: State,
+        entity: PlayEntity,
     ) {
-        println(
-            "${index.toString().padStart(moveIndexLength)} (${
-                currentPosition.level.toString().padStart(maxLevelIndexLength)
-            }, ${currentPosition.line.toString().padStart(maxLevelLinesLength)}, ${
-                currentPosition.column.toString().padStart(maxLevelColumnsLength)
-            }) ${moveDescription}"
-        )
+        entity.description().forEach { positionedDescription ->
+            printStatus(
+                index,
+                moveIndexLength,
+                maxLevelIndexLength,
+                maxLevelLinesLength,
+                maxLevelColumnsLength,
+                positionedDescription.position,
+                positionedDescription.description
+            )
+        }
         val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
             "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
         )
     }
 
+    private fun printStatus(
+        index: Int,
+        moveIndexLength: Int,
+        maxLevelIndexLength: Int,
+        maxLevelLinesLength: Int,
+        maxLevelColumnsLength: Int,
+        position: Position,
+        description: String,
+    ) {
+        println(
+            "${index.toString().padStart(moveIndexLength)} (${
+                position.level.toString().padStart(maxLevelIndexLength)
+            }, ${position.line.toString().padStart(maxLevelLinesLength)}, ${
+                position.column.toString().padStart(maxLevelColumnsLength)
+            }) ${description}"
+        )
+    }
+
     private fun apply(
-        entity: Entity,
+        inputEntity: PlayEntity,
         state: State,
-    ): String? {
-        return when (entity.getType()) {
-            Entity.EntityType.Door -> {
-                val door = entity as Door
+    ) {
+        when (inputEntity.getType()) {
+            PlayEntityType.Door -> {
+                val door = inputEntity as Door
                 door.apply(state)
-                "Open ${door.color} door"
             }
 
-            Entity.EntityType.Enemy -> {
-                val enemy = entity as Enemy
+            PlayEntityType.Enemy -> {
+                val enemy = inputEntity as Enemy
                 enemy.apply(state)
                 enemy.drop.apply(state)
-                "Fight lv ${enemy.level} ${enemy.type}"
             }
 
-            Entity.EntityType.Exit -> {
-                "Take exit"
+            PlayEntityType.Exit -> {
             }
 
-            Entity.EntityType.Item -> {
-                val item = entity as Item
+            PlayEntityType.ItemGroup -> {
+                val item = inputEntity as Item
                 item.apply(state)
-                "Grab ${item.name.lowercase()}"
             }
 
-            Entity.EntityType.Key -> {
-                val key = entity as Key
+            PlayEntityType.Key -> {
+                val key = inputEntity as Key
                 key.apply(state)
-                "Grab ${key.color} key"
             }
 
-            Entity.EntityType.PlayerStartPosition -> {
-                throw IllegalStateException("Should not happen")
-            }
-
-            Entity.EntityType.Staircase -> {
-                null
-            }
-
-            Entity.EntityType.Wall -> {
-                throw IllegalStateException("Should not happen")
+            PlayEntityType.UpStaircase -> {
             }
         }
     }
 
-    private fun printMove(currentPosition: Position, previousPosition: Position, tower: Tower) {
-        val level = tower.levels()[currentPosition.level]
+    private fun printMove(currentPositions: Array<Position>, previousPosition: Position, tower: Tower) {
+        val levelIndex = currentPositions.first().level
+        val level = tower.levels()[levelIndex]
         for ((lineIndex, line) in level.entities.withIndex()) {
             println(line.mapIndexed { columnIndex, entity ->
-                if ((lineIndex == currentPosition.line) && (columnIndex == currentPosition.column)) {
+                if (currentPositions.contains(Position(levelIndex, lineIndex, columnIndex))) {
                     'X'
-                } else if ((currentPosition.level == previousPosition.level) && (lineIndex == previousPosition.line) && (columnIndex == previousPosition.column)) {
+                } else if ((levelIndex == previousPosition.level) && (lineIndex == previousPosition.line) && (columnIndex == previousPosition.column)) {
                     '□'
-                } else if ((entity != null) && (entity.getType() == Entity.EntityType.Wall)) {
+                } else if ((entity != null) && (entity.getType() == InputEntityType.Wall)) {
                     '#'
                 } else {
                     ' '

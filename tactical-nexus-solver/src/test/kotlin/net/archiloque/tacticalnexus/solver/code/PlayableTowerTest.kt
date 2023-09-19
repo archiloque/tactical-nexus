@@ -1,14 +1,20 @@
 package net.archiloque.tacticalnexus.solver.code
 
+import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
-import net.archiloque.tacticalnexus.solver.entities.Exit
-import net.archiloque.tacticalnexus.solver.entities.TowerLevel
-import net.archiloque.tacticalnexus.solver.entities.PlayerStartPosition
-import net.archiloque.tacticalnexus.solver.entities.Staircase
-import net.archiloque.tacticalnexus.solver.entities.Wall
+import net.archiloque.tacticalnexus.solver.entities.input.Exit
+import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
+import net.archiloque.tacticalnexus.solver.entities.input.Staircase
+import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
+import net.archiloque.tacticalnexus.solver.entities.input.Wall
+import net.archiloque.tacticalnexus.solver.entities.play.ItemGroup
+import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
+import net.archiloque.tacticalnexus.solver.entities.play.Position
+import net.archiloque.tacticalnexus.solver.entities.play.PositionedItem
+import net.archiloque.tacticalnexus.solver.entities.play.UpStaircase
 import net.archiloque.tacticalnexus.solver.input.Items
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
 
 class PlayableTowerTest {
 
@@ -20,12 +26,13 @@ class PlayableTowerTest {
                     arrayOf(
                         TowerLevel(
                             1,
-                            5,
+                            6,
                             arrayOf(
                                 arrayOf(
                                     PlayerStartPosition.instance,
                                     null,
                                     Items.blue_potion,
+                                    Items.red_potion,
                                     null,
                                     Staircase.up,
                                 )
@@ -45,45 +52,39 @@ class PlayableTowerTest {
                 )
             )
 
-        assertArrayEquals(
-            playableTower.positionedEntities,
+        assertEquals(playableTower.entitiesNumber, 3)
+
+        assertContentEquals(
+            playableTower.playEntities,
             arrayOf(
-                PositionedEntity(PlayerStartPosition.instance, Position(0, 0, 0)),
-                PositionedEntity(Items.blue_potion, Position(0, 0, 2)),
-                PositionedEntity(Staircase.up, Position(0, 0, 4)),
-                PositionedEntity(Exit.instance, Position(1, 0, 1)),
+                ItemGroup(
+                    arrayOf(
+                        PositionedItem(Items.blue_potion, Position(0, 0, 2)),
+                        PositionedItem(Items.red_potion, Position(0, 0, 3))
+                    )
+                ),
+                UpStaircase(Position(0, 0, 5)),
+                net.archiloque.tacticalnexus.solver.entities.play.Exit(Position(1, 0, 1)),
             )
         )
         assertEquals(
-            playableTower.entitiesIndexByPosition.size,
-            4
+            playableTower.startingPositionPosition,
+            Position(0, 0, 0)
         )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 0, 0)],
-            0
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 0, 2)],
-            1
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 0, 4)],
-            2
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(1, 0, 1)],
-            3
+        assertContentEquals(
+            playableTower.reachableByStartingPosition,
+            intArrayOf(0)
         )
         assertArrayEquals(
             playableTower.reachable,
             arrayOf(
-                arrayOf(1),
-                arrayOf(0, 2),
-                arrayOf(3),
-                arrayOf(),
+                intArrayOf(1),
+                intArrayOf(2),
+                intArrayOf(),
             )
         )
     }
+
 
     @Test
     fun prepareVertical() {
@@ -92,12 +93,13 @@ class PlayableTowerTest {
                 TowerForTest(
                     arrayOf(
                         TowerLevel(
-                            5,
+                            6,
                             1,
                             arrayOf(
                                 arrayOf(PlayerStartPosition.instance),
                                 arrayOf(null),
                                 arrayOf(Items.blue_potion),
+                                arrayOf(Items.red_potion),
                                 arrayOf(null),
                                 arrayOf(Staircase.up),
                             )
@@ -117,130 +119,111 @@ class PlayableTowerTest {
                     ), 0, 0, 0
                 )
             )
-        assertEquals(playableTower.positionedEntities.size, 4)
-        assertArrayEquals(
-            playableTower.positionedEntities,
+
+        assertEquals(playableTower.entitiesNumber, 3)
+
+        assertContentEquals(
+            playableTower.playEntities,
             arrayOf(
-                PositionedEntity(PlayerStartPosition.instance, Position(0, 0, 0)),
-                PositionedEntity(Items.blue_potion, Position(0, 2, 0)),
-                PositionedEntity(Staircase.up, Position(0, 4, 0)),
-                PositionedEntity(Exit.instance, Position(1, 1, 0)),
+                ItemGroup(
+                    arrayOf(
+                        PositionedItem(Items.blue_potion, Position(0, 2, 0)),
+                        PositionedItem(Items.red_potion, Position(0, 3, 0))
+                    ),
+                ),
+
+                UpStaircase(Position(0, 5, 0)),
+                net.archiloque.tacticalnexus.solver.entities.play.Exit(Position(1, 1, 0)),
             )
         )
-        assertEquals(
-            playableTower.entitiesIndexByPosition.size,
-            4
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 0, 0)],
-            0
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 2, 0)],
-            1
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 4, 0)],
-            2
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(1, 1, 0)],
-            3
-        )
 
+        assertEquals(
+            playableTower.startingPositionPosition,
+            Position(0, 0, 0)
+        )
+        assertContentEquals(
+            playableTower.reachableByStartingPosition,
+            intArrayOf(0)
+        )
         assertArrayEquals(
             playableTower.reachable,
             arrayOf(
-                arrayOf(1),
-                arrayOf(0, 2),
-                arrayOf(3),
-                arrayOf(),
+                intArrayOf(1),
+                intArrayOf(2),
+                intArrayOf(),
             )
         )
     }
 
-    @Test
-    fun prepareComplex() {
-        // This is the tower:
-        // wwwww
-        // wX ww
-        // w Bww
-        // wwRSw
-        // wwwww
-        val playableTower =
-            PlayableTower.prepare(
-                TowerForTest(
-                    arrayOf(
-                        TowerLevel(
-                            5,
-                            5,
-                            arrayOf(
-                                arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+
+        @Test
+        fun prepareComplex() {
+            // This is the tower:
+            // wwwww
+            // wX ww
+            // w Bww
+            // wwRSw
+            // wwwww
+            val playableTower =
+                PlayableTower.prepare(
+                    TowerForTest(
+                        arrayOf(
+                            TowerLevel(
+                                5,
+                                5,
                                 arrayOf(
-                                    Wall.instance,
-                                    PlayerStartPosition.instance,
-                                    null,
-                                    Wall.instance,
-                                    Wall.instance
-                                ),
-                                arrayOf(Wall.instance, null, Items.blue_potion, Wall.instance, Wall.instance),
-                                arrayOf(Wall.instance, Wall.instance, Items.red_potion, Staircase.up, Wall.instance),
-                                arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+                                    arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+                                    arrayOf(
+                                        Wall.instance,
+                                        PlayerStartPosition.instance,
+                                        null,
+                                        Wall.instance,
+                                        Wall.instance
+                                    ),
+                                    arrayOf(Wall.instance, null, Items.blue_potion, Wall.instance, Wall.instance),
+                                    arrayOf(Wall.instance, Wall.instance, Items.red_potion, Staircase.up, Wall.instance),
+                                    arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
+                                )
+                            ),
+                            TowerLevel(
+                                1,
+                                2,
+                                arrayOf(
+                                    arrayOf(Staircase.down, Exit.instance),
+                                )
                             )
+                        ), 0, 0, 0
+                    )
+                )
+            assertContentEquals(
+                playableTower.playEntities,
+                arrayOf(
+                    ItemGroup(
+                        arrayOf(
+                            PositionedItem(Items.blue_potion, Position(0, 2, 2)),
+                            PositionedItem(Items.red_potion, Position(0, 3, 2))
                         ),
-                        TowerLevel(
-                            1,
-                            2,
-                            arrayOf(
-                                arrayOf(Staircase.down, Exit.instance),
-                            )
-                        )
-                    ), 0, 0, 0
+                    ),
+                    UpStaircase(Position(0, 3, 3)),
+                    net.archiloque.tacticalnexus.solver.entities.play.Exit(Position(1, 0, 1)),
                 )
             )
-        assertArrayEquals(
-            playableTower.positionedEntities,
-            arrayOf(
-                PositionedEntity(PlayerStartPosition.instance, Position(0, 1, 1)),
-                PositionedEntity(Items.blue_potion, Position(0, 2, 2)),
-                PositionedEntity(Items.red_potion, Position(0, 3, 2)),
-                PositionedEntity(Staircase.up, Position(0, 3, 3)),
-                PositionedEntity(Exit.instance, Position(1, 0, 1)),
+
+            assertEquals(
+                playableTower.startingPositionPosition,
+                Position(0, 1, 1)
             )
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition.size,
-            5
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 1, 1)],
-            0
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 2, 2)],
-            1
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 3, 2)],
-            2
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(0, 3, 3)],
-            3
-        )
-        assertEquals(
-            playableTower.entitiesIndexByPosition[Position(1, 0, 1)],
-            4
-        )
-        assertArrayEquals(
-            playableTower.reachable,
-            arrayOf(
-                arrayOf(1),
-                arrayOf(0, 2),
-                arrayOf(1, 3),
-                arrayOf(4),
-                arrayOf(),
+            assertContentEquals(
+                playableTower.reachableByStartingPosition,
+                intArrayOf(0)
             )
-        )
-    }
+            assertArrayEquals(
+                playableTower.reachable,
+                arrayOf(
+                    intArrayOf(1),
+                    intArrayOf(2),
+                    intArrayOf(),
+                )
+            )
+        }
 }

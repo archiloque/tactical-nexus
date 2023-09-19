@@ -1,4 +1,6 @@
-package net.archiloque.tacticalnexus.solver.entities
+package net.archiloque.tacticalnexus.solver.entities.play
+
+import net.archiloque.tacticalnexus.solver.entities.input.Enemy
 
 data class LevelUp(
     val number: Int,
@@ -9,7 +11,7 @@ data class LevelUp(
     val def: Int,
 ) {
     companion object {
-        val levelUps = mutableListOf(LevelUp(0, 0, 0, 0, 0))
+        private val levelUps = mutableListOf(LevelUp(0, 0, 0, 0, 0))
 
         fun levelUp(exp: Int): LevelUp {
             val nexLevelUp = levelUps.indexOfFirst { it.exp > exp }

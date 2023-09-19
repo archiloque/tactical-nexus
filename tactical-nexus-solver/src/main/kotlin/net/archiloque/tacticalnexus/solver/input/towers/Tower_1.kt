@@ -1,17 +1,17 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
 import javax.annotation.processing.Generated
-import net.archiloque.tacticalnexus.solver.entities.Door
-import net.archiloque.tacticalnexus.solver.entities.Enemy
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
-import net.archiloque.tacticalnexus.solver.entities.Exit
-import net.archiloque.tacticalnexus.solver.entities.Key
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
-import net.archiloque.tacticalnexus.solver.entities.PlayerStartPosition
-import net.archiloque.tacticalnexus.solver.entities.Staircase
-import net.archiloque.tacticalnexus.solver.entities.Tower
-import net.archiloque.tacticalnexus.solver.entities.TowerLevel
-import net.archiloque.tacticalnexus.solver.entities.Wall
+import net.archiloque.tacticalnexus.solver.entities.input.Door
+import net.archiloque.tacticalnexus.solver.entities.input.Enemy
+import net.archiloque.tacticalnexus.solver.entities.input.Exit
+import net.archiloque.tacticalnexus.solver.entities.input.Key
+import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
+import net.archiloque.tacticalnexus.solver.entities.input.Staircase
+import net.archiloque.tacticalnexus.solver.entities.input.Tower
+import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
+import net.archiloque.tacticalnexus.solver.entities.input.Wall
 import net.archiloque.tacticalnexus.solver.input.Items
 
 @Generated

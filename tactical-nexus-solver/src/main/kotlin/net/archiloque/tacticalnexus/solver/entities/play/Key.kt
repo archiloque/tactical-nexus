@@ -1,13 +1,17 @@
-package net.archiloque.tacticalnexus.solver.entities
+package net.archiloque.tacticalnexus.solver.entities.play
 
-import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 
-data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
+class Key(val color: KeyOrDoorColor, val position: Position) : PlayEntitySinglePosition(position) {
 
-    override fun getType(): EntityType {
-        return EntityType.Key
+    override fun getType(): PlayEntityType {
+        return PlayEntityType.Key
+    }
+
+    override fun description(): Array<PositionedDescription> {
+        return arrayOf(PositionedDescription("Grab ${color} key", position))
     }
 
     override fun play(
@@ -36,10 +40,5 @@ data class Key(val color: KeyOrDoorColor) : Entity(), KeyOrDoor {
             KeyOrDoorColor.yellow -> state.yellowKeys += 1
         }
     }
-
-    override fun color(): KeyOrDoorColor {
-        return color
-    }
-
 }
 

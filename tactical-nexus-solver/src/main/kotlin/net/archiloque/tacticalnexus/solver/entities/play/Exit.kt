@@ -1,16 +1,16 @@
-package net.archiloque.tacticalnexus.solver.entities
+package net.archiloque.tacticalnexus.solver.entities.play
 
-import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
-class Exit private constructor() : Entity() {
-    companion object {
-        val instance = Exit()
+data class Exit(val position: Position) : PlayEntitySinglePosition(position) {
+
+    override fun getType(): PlayEntityType {
+        return PlayEntityType.Exit
     }
 
-    override fun getType(): EntityType {
-        return EntityType.Exit
+    override fun description(): Array<PositionedDescription> {
+        return arrayOf(PositionedDescription("Take exit", position))
     }
 
     override fun play(

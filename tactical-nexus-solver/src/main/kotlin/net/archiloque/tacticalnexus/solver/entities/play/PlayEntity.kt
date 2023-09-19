@@ -1,15 +1,20 @@
-package net.archiloque.tacticalnexus.solver.entities
+package net.archiloque.tacticalnexus.solver.entities.play
 
 import java.util.BitSet
-import net.archiloque.tacticalnexus.solver.code.PlayableTower
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 
-abstract class Entity {
-    abstract fun getType(): EntityType
+data class PositionedDescription(val description: String, val position: Position)
 
-    abstract fun play(
+interface PlayEntity {
+    fun getType(): PlayEntityType
+
+    fun getPositions(): Array<Position>
+
+    fun description(): Array<PositionedDescription>
+
+    fun play(
         entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
@@ -17,18 +22,7 @@ abstract class Entity {
         newStates: MutableList<State>,
     )
 
-    enum class EntityType() {
-        Door,
-        Enemy,
-        Exit,
-        Item,
-        Key,
-        PlayerStartPosition,
-        Staircase,
-        Wall,
-    }
-
-    protected fun newState(entityIndex: Int, state: State): State {
+    fun newState(entityIndex: Int, state: State): State {
         if (entityIndex >= 0) {
             val visitedEntities = state.visited.clone() as BitSet
             visitedEntities.set(entityIndex)
@@ -50,8 +44,7 @@ abstract class Entity {
         }
     }
 
-
-    protected fun addNewReachablePositions(
+    fun addNewReachablePositions(
         entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
@@ -64,27 +57,27 @@ abstract class Entity {
         val positionsToAdd = playableTower.reachable[entityIndex].toMutableList()
         while (positionsToAdd.isNotEmpty()) {
             val positionToAdd = positionsToAdd.removeLast()
-            val elementToAdd = playableTower.positionedEntities[positionToAdd]
+            val elementToAdd = playableTower.playEntities[positionToAdd]
             if ((!state.visited.get(positionToAdd)) && (!state.reachable.get(positionToAdd))) {
-                when (elementToAdd.entity.getType()) {
-                    EntityType.Staircase -> {
+                when (elementToAdd.getType()) {
+                    PlayEntityType.UpStaircase -> {
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
 
-                    EntityType.Key -> {
-                        val key = elementToAdd.entity as Key
+                    PlayEntityType.Key -> {
+                        val key = elementToAdd as Key
                         key.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
 
-                    EntityType.Item -> {
-                        val item = elementToAdd.entity as Item
+                    PlayEntityType.ItemGroup -> {
+                        val item = elementToAdd as ItemGroup
                         item.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
 
-                    EntityType.Enemy -> {
-                        val enemy = elementToAdd.entity as Enemy
+                    PlayEntityType.Enemy -> {
+                        val enemy = elementToAdd as Enemy
                         val killEnemyNoHpLostAndNoLevelUp =
                             enemy.killNoHPLost(state) && (LevelUp.levelUp(state.exp) == LevelUp.levelUp(
                                 state.exp + enemy.earnXp(state)
@@ -114,6 +107,6 @@ abstract class Entity {
     ) {
         state.visited.set(positionToAdd)
         state.moves = state.moves.plus(positionToAdd)
-        positionsToAdd.addAll(playableTower.reachable[positionToAdd])
+        positionsToAdd.addAll(playableTower.reachable[positionToAdd].asIterable())
     }
 }

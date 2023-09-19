@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.solver.entities
+package net.archiloque.tacticalnexus.solver.entities.input
 
 interface Tower {
     fun levels(): Array<TowerLevel>
