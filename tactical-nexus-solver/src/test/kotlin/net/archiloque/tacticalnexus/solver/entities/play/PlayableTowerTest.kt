@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.solver.code
+package net.archiloque.tacticalnexus.solver.entities.play
 
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -8,11 +8,6 @@ import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.input.Staircase
 import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
 import net.archiloque.tacticalnexus.solver.entities.input.Wall
-import net.archiloque.tacticalnexus.solver.entities.play.ItemGroup
-import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
-import net.archiloque.tacticalnexus.solver.entities.play.Position
-import net.archiloque.tacticalnexus.solver.entities.play.PositionedItem
-import net.archiloque.tacticalnexus.solver.entities.play.UpStaircase
 import net.archiloque.tacticalnexus.solver.input.Items
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 
@@ -64,7 +59,7 @@ class PlayableTowerTest {
                     )
                 ),
                 UpStaircase(Position(0, 0, 5)),
-                net.archiloque.tacticalnexus.solver.entities.play.Exit(Position(1, 0, 1)),
+                Exit(Position(1, 0, 1)),
             )
         )
         assertEquals(
@@ -133,7 +128,7 @@ class PlayableTowerTest {
                 ),
 
                 UpStaircase(Position(0, 5, 0)),
-                net.archiloque.tacticalnexus.solver.entities.play.Exit(Position(1, 1, 0)),
+                Exit(Position(1, 1, 0)),
             )
         )
 
@@ -205,7 +200,7 @@ class PlayableTowerTest {
                         ),
                     ),
                     UpStaircase(Position(0, 3, 3)),
-                    net.archiloque.tacticalnexus.solver.entities.play.Exit(Position(1, 0, 1)),
+                    Exit(Position(1, 0, 1)),
                 )
             )
 

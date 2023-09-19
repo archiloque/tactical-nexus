@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.solver.code
+package net.archiloque.tacticalnexus.solver.entities.play
 
 import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
