@@ -19,6 +19,6 @@ data class Exit(val position: Position) : PlayEntitySinglePosition(position) {
         playableTower: PlayableTower,
         stateManager: StateManager,
     ) {
-        stateManager.reachedExit(state)
+        stateManager.reachedExit(state.moves)
     }
 }

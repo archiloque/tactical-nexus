@@ -43,6 +43,9 @@ fun main() {
     val playableTower = PlayableTower.prepare(inputTower)
     val initialState = createInitialState(inputTower, playableTower)
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
+    if(System.getenv("MOVES") != null) {
+        stateManager.reachedExit(System.getenv("MOVES").split(",").map { Integer.parseInt(it) }.toTypedArray())
+    }
     stateManager.save(initialState)
 
     if (System.getenv("SINGLE") == "true") {
@@ -64,6 +67,7 @@ fun main() {
                     if (states.isNotEmpty()) {
                         processStates(states, playableTower, stateManager, database)
                     } else {
+                        println("Thread ${i}, nothing to do, sleeping")
                         Thread.sleep(1000)
                     }
                 }

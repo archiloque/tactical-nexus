@@ -24,18 +24,18 @@ import net.archiloque.tacticalnexus.datapreparation.input.level.Wall
 
 class Towers {
     companion object {
-        private val doorClass = ClassName(Solver.ENTITIES_PACKAGE, "Door")
-        private val enemyClass = ClassName(Solver.ENTITIES_PACKAGE, "Enemy")
+        private val doorClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Door")
+        private val enemyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Enemy")
         private val enemyTypeClass = ClassName(Solver.ENTITIES_PACKAGE, "EnemyType")
-        private val exitClass = ClassName(Solver.ENTITIES_PACKAGE, "Exit")
+        private val exitClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Exit")
         private val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
-        private val keyClass = ClassName(Solver.ENTITIES_PACKAGE, "Key")
+        private val keyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Key")
         private val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
-        private val playerStartPositionClass = ClassName(Solver.ENTITIES_PACKAGE, "PlayerStartPosition")
-        private val staircaseClass = ClassName(Solver.ENTITIES_PACKAGE, "Staircase")
-        private val towerLevelClass = ClassName(Solver.ENTITIES_PACKAGE, "TowerLevel")
-        private val towerInterfaceClass = ClassName(Solver.ENTITIES_PACKAGE, "Tower")
-        private val wallClass = ClassName(Solver.ENTITIES_PACKAGE, "Wall")
+        private val playerStartPositionClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "PlayerStartPosition")
+        private val staircaseClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Staircase")
+        private val towerLevelClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "TowerLevel")
+        private val towerInterfaceClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Tower")
+        private val wallClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Wall")
 
         fun generate(
             towerLevels: List<TowerLevel>,

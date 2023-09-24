@@ -21,7 +21,9 @@ class Solver(
 
     companion object {
         val arrayOf = MemberName("kotlin", "arrayOf")
-        const val ENTITIES_PACKAGE = "net.archiloque.tacticalnexus.solver.entities.input"
+
+        const val ENTITIES_PACKAGE = "net.archiloque.tacticalnexus.solver.entities"
+        const val INPUT_ENTITIES_PACKAGE = "net.archiloque.tacticalnexus.solver.entities.input"
         const val INPUT_PACKAGE = "net.archiloque.tacticalnexus.solver.input"
         fun arrayOf(typeName: TypeName): ParameterizedTypeName {
             return Array::class.asClassName().parameterizedBy(typeName)

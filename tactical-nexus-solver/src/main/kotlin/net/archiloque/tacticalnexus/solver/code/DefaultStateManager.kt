@@ -119,44 +119,32 @@ class DefaultStateManager(
         }
     }
 
-    override fun reachedExit(state: State) {
+    override fun reachedExit(moves: Array<Int>) {
         synchronized(this) {
-            println(state)
             val currentState = initialState.copy()
 
-            val moveIndexLength = state.moves.size.toString().length
-            val positionedEntities = state.moves.filter { it >= 0 }.map { playableTower.playEntities[it] }
-            val maxLevelIndexLength =
-                positionedEntities.map { it.getPositions().map { it.level }.max() }.max().toString().length
-            val maxLevelColumnsLength =
-                positionedEntities.map { it.getPositions().map { it.column }.max() }.max().toString().length
-            val maxLevelLinesLength =
-                positionedEntities.map { it.getPositions().map { it.line }.max() }.max().toString().length
+            val moveIndexLength = moves.size.toString().length
+            val positionedEntities = moves.filter { it >= 0 }.map { playableTower.playEntities[it] }
+            positionedEntities.map { it.getPositions().map { it.level }.max() }.max().toString().length
             var index = 1
             val initialPosition = playableTower.startingPositionPosition
             var currentLevelUpIndex = 0
             printStatus(
                 0,
                 moveIndexLength,
-                maxLevelIndexLength,
-                maxLevelLinesLength,
-                maxLevelColumnsLength,
                 initialPosition,
                 "Starting"
             )
             printMove(arrayOf(initialPosition), initialPosition, tower)
             println()
             var lastPosition: Position = initialPosition
-            for (move in state.moves) {
+            for (move in moves) {
                 if (move >= 0) {
                     val positionedEntity = playableTower.playEntities[move]
                     apply(positionedEntity, currentState)
                     printStatus(
                         index,
                         moveIndexLength,
-                        maxLevelIndexLength,
-                        maxLevelLinesLength,
-                        maxLevelColumnsLength,
                         currentState,
                         positionedEntity
                     )
@@ -193,9 +181,6 @@ class DefaultStateManager(
                     printStatus(
                         index,
                         moveIndexLength,
-                        maxLevelIndexLength,
-                        maxLevelLinesLength,
-                        maxLevelColumnsLength,
                         lastPosition,
                         description
                     )
@@ -210,9 +195,6 @@ class DefaultStateManager(
     private fun printStatus(
         index: Int,
         moveIndexLength: Int,
-        maxLevelIndexLength: Int,
-        maxLevelLinesLength: Int,
-        maxLevelColumnsLength: Int,
         currentState: State,
         entity: PlayEntity,
     ) {
@@ -220,9 +202,6 @@ class DefaultStateManager(
             printStatus(
                 index,
                 moveIndexLength,
-                maxLevelIndexLength,
-                maxLevelLinesLength,
-                maxLevelColumnsLength,
                 positionedDescription.position,
                 positionedDescription.description
             )
@@ -236,17 +215,14 @@ class DefaultStateManager(
     private fun printStatus(
         index: Int,
         moveIndexLength: Int,
-        maxLevelIndexLength: Int,
-        maxLevelLinesLength: Int,
-        maxLevelColumnsLength: Int,
         position: Position,
         description: String,
     ) {
         println(
             "${index.toString().padStart(moveIndexLength)} (${
-                position.level.toString().padStart(maxLevelIndexLength)
-            }, ${position.line.toString().padStart(maxLevelLinesLength)}, ${
-                position.column.toString().padStart(maxLevelColumnsLength)
+                position.level.toString().padStart(3)
+            }, ${position.line.toString().padStart(2)}, ${
+                position.column.toString().padStart(2)
             }) ${description}"
         )
     }
