@@ -19,7 +19,6 @@ interface PlayEntity {
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
-        newStates: MutableList<State>,
     )
 
     fun newState(entityIndex: Int, state: State): State {

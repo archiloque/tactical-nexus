@@ -1,9 +1,12 @@
 package net.archiloque.tacticalnexus.solver.code
 
+import java.sql.Types
 import kotlin.system.exitProcess
+import net.archiloque.tacticalnexus.solver.database.Mappings
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.States
+import net.archiloque.tacticalnexus.solver.database.readSqlFile
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.play.Door
@@ -17,7 +20,11 @@ import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 import net.archiloque.tacticalnexus.solver.entities.play.Position
 import org.ktorm.database.Database
-import org.ktorm.support.postgresql.bulkInsertOrUpdate
+import org.ktorm.dsl.and
+import org.ktorm.dsl.delete
+import org.ktorm.dsl.eq
+import org.ktorm.dsl.lessEq
+import org.ktorm.dsl.neq
 
 class DefaultStateManager(
     val database: Database,
@@ -27,55 +34,85 @@ class DefaultStateManager(
 ) :
     StateManager {
 
-    override fun save(states: List<State>) {
-        if (states.isNotEmpty()) {
-            synchronized(this) {
-                database.useTransaction {
-                    database.bulkInsertOrUpdate(States) {
-                        for (state in states) {
-                            item {
-                                set(it.status, StateStatus.new)
+    val insertStateQuery: String = readSqlFile("insert_state.sql")
 
-                                set(it.atk, state.atk)
-                                set(it.def, state.def)
-                                set(it.exp, state.exp)
-                                set(it.hp, state.hp)
+    override fun save(state: State) {
+        val stateId = tryInsertState(state)
+        if (stateId != null) {
+            //deleteLowerStates(state, stateId)
+        }
+    }
 
-                                set(it.visited, state.visited)
-                                set(it.reachable, state.reachable)
+    private fun deleteLowerStates(state: State, stateId: Int) {
+        database.useTransaction {
+            database.delete(States) {
+                (it.reachable eq state.reachable) and
+                        (it.visited eq state.visited) and
 
-                                set(it.expBonus, state.expBonus)
-                                set(it.hpBonus, state.hpBonus)
+                        (it.atk lessEq state.atk) and
+                        (it.def lessEq state.def) and
+                        (it.exp lessEq state.exp) and
+                        (it.hp lessEq state.hp) and
 
-                                set(it.blue_keys, state.blueKeys)
-                                set(it.crimson_keys, state.crimsonKeys)
-                                set(it.platinum_keys, state.platinumKeys)
-                                set(it.violet_keys, state.violetKeys)
-                                set(it.yellow_keys, state.yellowKeys)
+                        (it.expBonus lessEq state.expBonus) and
+                        (it.hpBonus lessEq state.hpBonus) and
 
-                                set(it.moves, state.moves)
-                            }
-                        }
-                        onConflict(
-                            States.atk,
-                            States.def,
-                            States.exp,
-                            States.hp,
+                        (it.blue_keys lessEq state.blueKeys) and
+                        (it.crimson_keys lessEq state.crimsonKeys) and
+                        (it.platinum_keys lessEq state.platinumKeys) and
+                        (it.violet_keys lessEq state.violetKeys) and
+                        (it.yellow_keys lessEq state.yellowKeys) and
 
-                            States.visited,
-                            States.reachable,
+                        (it.id neq stateId)
+            }
+        }
+    }
 
-                            States.expBonus,
-                            States.hpBonus,
+    private fun tryInsertState(state: State): Int? {
+        database.useTransaction {
+            database.useConnection { conn ->
+                conn.prepareStatement(insertStateQuery).use { statement ->
+                    statement.setObject(1, StateStatus.new.name, Types.OTHER)
+                    Mappings.BitSetSqlType.setParameter(statement, 2, state.visited)
+                    Mappings.BitSetSqlType.setParameter(statement, 3, state.reachable)
+                    statement.setObject(4, state.atk)
+                    statement.setInt(5, state.def)
+                    statement.setInt(6, state.exp)
+                    statement.setInt(7, state.hp)
 
-                            States.blue_keys,
-                            States.crimson_keys,
-                            States.platinum_keys,
-                            States.violet_keys,
-                            States.yellow_keys,
-                        ) {
-                            doNothing()
-                        }
+                    statement.setInt(8, state.expBonus)
+                    statement.setInt(9, state.hpBonus)
+
+                    statement.setInt(10, state.blueKeys)
+                    statement.setInt(11, state.crimsonKeys)
+                    statement.setInt(12, state.platinumKeys)
+                    statement.setInt(13, state.violetKeys)
+                    statement.setInt(14, state.yellowKeys)
+
+                    Mappings.IntArraySqlType.setParameter(statement, 15, state.moves)
+
+                    Mappings.BitSetSqlType.setParameter(statement, 16, state.visited)
+                    Mappings.BitSetSqlType.setParameter(statement, 17, state.reachable)
+
+                    statement.setObject(18, state.atk)
+                    statement.setInt(19, state.def)
+                    statement.setInt(20, state.exp)
+                    statement.setInt(21, state.hp)
+
+                    statement.setInt(22, state.expBonus)
+                    statement.setInt(23, state.hpBonus)
+
+                    statement.setInt(24, state.blueKeys)
+                    statement.setInt(25, state.crimsonKeys)
+                    statement.setInt(26, state.platinumKeys)
+                    statement.setInt(27, state.violetKeys)
+                    statement.setInt(28, state.yellowKeys)
+                    val resultSet = statement.executeQuery()
+                    if (resultSet.next()) {
+                        // The state has been inserted
+                        return resultSet.getInt(1)
+                    } else {
+                        return null
                     }
                 }
             }

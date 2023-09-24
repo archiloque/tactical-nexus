@@ -18,7 +18,6 @@ data class Exit(val position: Position) : PlayEntitySinglePosition(position) {
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
-        newStates: MutableList<State>,
     ) {
         stateManager.reachedExit(state)
     }

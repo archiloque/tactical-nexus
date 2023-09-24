@@ -19,7 +19,6 @@ class Key(val color: KeyOrDoorColor, val position: Position) : PlayEntitySingleP
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
-        newStates: MutableList<State>,
     ) {
         val newState = newState(entityIndex, state)
         apply(newState)
@@ -28,7 +27,7 @@ class Key(val color: KeyOrDoorColor, val position: Position) : PlayEntitySingleP
             newState,
             playableTower
         )
-        newStates.add(newState)
+        stateManager.save(newState)
     }
 
     fun apply(state: State) {

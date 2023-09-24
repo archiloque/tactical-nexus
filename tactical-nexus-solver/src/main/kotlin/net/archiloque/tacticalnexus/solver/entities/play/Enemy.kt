@@ -28,7 +28,6 @@ class Enemy(
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
-        newStates: MutableList<State>,
     ) {
         val newState = newState(entityIndex, state)
         val fromLevelUp = levelUp(newState.exp)
@@ -42,12 +41,12 @@ class Enemy(
                     val levelUpState = newState(levelUpType.type, newState)
                     applyLevelUp(levelUpType, levelUpState, toLevelUp)
                     drop.apply(levelUpState)
-                    newStates.add(levelUpState)
+                    stateManager.save(levelUpState)
                 }
             } else {
                 drop.apply(newState)
                 addNewReachablePositions(entityIndex, newState, playableTower)
-                newStates.add(newState)
+                stateManager.save(newState)
             }
         }
     }

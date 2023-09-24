@@ -34,7 +34,7 @@ fun main() {
     val database = Database.connect(
         HikariDataSource(config),
         dialect = PostgreSqlDialect(),
-        //logger = ConsoleLogger(LogLevel.DEBUG)
+        // logger = ConsoleLogger(LogLevel.DEBUG)
     )
 
     Migrations.run(database)
@@ -43,7 +43,7 @@ fun main() {
     val playableTower = PlayableTower.prepare(inputTower)
     val initialState = createInitialState(inputTower, playableTower)
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
-    stateManager.save(listOf(initialState))
+    stateManager.save(initialState)
 
     if (System.getenv("SINGLE") == "true") {
         while (true) {
@@ -79,9 +79,8 @@ private fun processStates(
     stateManager: DefaultStateManager,
     database: Database,
 ) {
-    val newStates = mutableListOf<State>()
     for (state in states) {
-        Player.play(state, playableTower, stateManager, newStates)
+        Player.play(state, playableTower, stateManager)
     }
     database.useTransaction {
         database.update(States) {
@@ -91,7 +90,6 @@ private fun processStates(
             }
         }
     }
-    stateManager.save(newStates)
 }
 
 

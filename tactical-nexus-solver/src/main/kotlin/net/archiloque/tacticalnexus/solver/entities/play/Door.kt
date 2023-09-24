@@ -19,7 +19,6 @@ class Door(val color: KeyOrDoorColor, val position: Position) : PlayEntitySingle
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
-        newStates: MutableList<State>,
     ) {
         when (color) {
             KeyOrDoorColor.blue -> {
@@ -59,8 +58,9 @@ class Door(val color: KeyOrDoorColor, val position: Position) : PlayEntitySingle
             entityIndex,
             newState,
             playableTower
+
         )
-        newStates.add(newState)
+        stateManager.save(newState)
     }
 
     fun apply(state: State) {

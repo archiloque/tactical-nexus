@@ -18,7 +18,6 @@ data class UpStaircase(val position: Position) : PlayEntitySinglePosition(positi
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
-        newStates: MutableList<State>,
     ) {
         val newState = newState(entityIndex, state)
         addNewReachablePositions(
@@ -26,7 +25,7 @@ data class UpStaircase(val position: Position) : PlayEntitySinglePosition(positi
             newState,
             playableTower
         )
-        newStates.add(newState)
+        stateManager.save(newState)
     }
 
 }

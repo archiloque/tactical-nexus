@@ -35,7 +35,6 @@ ItemGroup(
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
-        newStates: MutableList<State>,
     ) {
         val newState = newState(entityIndex, state)
         apply(newState)
@@ -44,7 +43,7 @@ ItemGroup(
             newState,
             playableTower
         )
-        newStates.add(newState)
+        stateManager.save(newState)
     }
 
     override fun equals(other: Any?): Boolean {
