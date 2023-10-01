@@ -11,7 +11,11 @@ class Key(val color: KeyOrDoorColor, val position: Position) : PlayEntitySingleP
     }
 
     override fun description(): Array<PositionedDescription> {
-        return arrayOf(PositionedDescription("Grab ${color} key", position))
+        return arrayOf(PositionedDescription("Grab $color key", position))
+    }
+
+    override fun toString(): String {
+        return "Key $color at $position"
     }
 
     override fun play(

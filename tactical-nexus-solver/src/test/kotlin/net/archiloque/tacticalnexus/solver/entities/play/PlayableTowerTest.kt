@@ -47,7 +47,7 @@ class PlayableTowerTest {
                 )
             )
 
-        assertEquals(playableTower.entitiesNumber, 3)
+        assertEquals(playableTower.entitiesCount, 3)
 
         assertContentEquals(
             playableTower.playEntities,
@@ -115,7 +115,7 @@ class PlayableTowerTest {
                 )
             )
 
-        assertEquals(playableTower.entitiesNumber, 3)
+        assertEquals(playableTower.entitiesCount, 3)
 
         assertContentEquals(
             playableTower.playEntities,

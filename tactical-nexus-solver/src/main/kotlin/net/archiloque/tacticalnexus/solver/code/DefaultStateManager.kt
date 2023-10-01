@@ -223,7 +223,7 @@ class DefaultStateManager(
                 position.level.toString().padStart(3)
             }, ${position.line.toString().padStart(2)}, ${
                 position.column.toString().padStart(2)
-            }) ${description}"
+            }) $description"
         )
     }
 

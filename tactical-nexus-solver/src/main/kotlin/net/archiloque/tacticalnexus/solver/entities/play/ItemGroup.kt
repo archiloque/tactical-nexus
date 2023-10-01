@@ -3,10 +3,13 @@ package net.archiloque.tacticalnexus.solver.entities.play
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
-data class PositionedItem(val inputItem: net.archiloque.tacticalnexus.solver.entities.input.Item, val position: Position)
+data class PositionedItem(val inputItem: net.archiloque.tacticalnexus.solver.entities.input.Item, val position: Position) {
+    override fun toString(): String {
+        return "${inputItem.name} at $position"
+    }
+}
 
-data class
-ItemGroup(
+class ItemGroup(
     private val items: Array<PositionedItem>,
 ) : Item(
     items.sumOf { it.inputItem.atk },
@@ -27,7 +30,7 @@ ItemGroup(
     }
 
     override fun description(): Array<PositionedDescription> {
-        return items.map {PositionedDescription("Grab ${it.inputItem.name.lowercase()}", it.position) }.toTypedArray()
+        return items.map {PositionedDescription("Grab the ${it.inputItem.name.lowercase()}", it.position) }.toTypedArray()
     }
 
     override fun play(
@@ -46,17 +49,7 @@ ItemGroup(
         stateManager.save(newState)
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as ItemGroup
-
-        return items.contentEquals(other.items)
+    override fun toString(): String {
+        return "Item group: ${items.map { it.toString() }.joinToString(", ")}"
     }
-
-    override fun hashCode(): Int {
-        return items.contentHashCode()
-    }
-
 }

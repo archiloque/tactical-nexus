@@ -20,7 +20,11 @@ class Enemy(
     }
 
     override fun description(): Array<PositionedDescription> {
-        return arrayOf(PositionedDescription("Fight lv ${level} ${type}", position))
+        return arrayOf(PositionedDescription("Fight lv $level $type and grab the ${drop.name.lowercase()}", position))
+    }
+
+    override fun toString(): String {
+        return "Enemy $level $type at $position"
     }
 
     override fun play(

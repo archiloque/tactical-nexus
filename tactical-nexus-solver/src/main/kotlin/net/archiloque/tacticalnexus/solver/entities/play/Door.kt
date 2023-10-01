@@ -11,7 +11,11 @@ class Door(val color: KeyOrDoorColor, val position: Position) : PlayEntitySingle
     }
 
     override fun description(): Array<PositionedDescription> {
-        return arrayOf(PositionedDescription("Open ${color} door", position))
+        return arrayOf(PositionedDescription("Open $color door", position))
+    }
+
+    override fun toString(): String {
+        return "Door $color at $position"
     }
 
     override fun play(

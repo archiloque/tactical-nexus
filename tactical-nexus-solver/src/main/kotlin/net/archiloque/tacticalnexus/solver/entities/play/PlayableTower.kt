@@ -1,5 +1,6 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
+import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntity
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
@@ -8,7 +9,7 @@ import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.input.Wall
 
 class PlayableTower(
-    val entitiesNumber: Int,
+    val entitiesCount: Int,
     val playEntities: Array<PlayEntity>,
     val startingPositionPosition: Position,
     val reachableByStartingPosition: IntArray,
@@ -45,6 +46,7 @@ class PlayableTower(
             val entities = mutableListOf<PlayEntity>()
             val entitiesPositions = mutableMapOf<Position, PlayEntity>()
             val entitiesIndexByPosition = mutableMapOf<Position, Int>()
+
             findItemGroups(tower, entities, entitiesPositions, entitiesIndexByPosition)
             return findOtherEntities(tower, entities, entitiesPositions, entitiesIndexByPosition)
         }
@@ -53,29 +55,43 @@ class PlayableTower(
             tower: Tower,
             entities: MutableList<PlayEntity>,
             entitiesPositions: MutableMap<Position, PlayEntity>,
-            entitiesIndexByPosition: MutableMap<Position, Int>
+            entitiesIndexByPosition: MutableMap<Position, Int>,
         ) {
-            forEachEntity(tower) { levelIndex: Int, lineIndex: Int, columnIndex: Int, primaryEntity: InputEntity ->
-                if(primaryEntity.getType() == InputEntityType.Item) {
-                   val primaryEntityPosition = Position(levelIndex, lineIndex, columnIndex)
-                    if(!entitiesPositions.containsKey(primaryEntityPosition)) {
+            forEachEntity(tower) { levelIndex: Int, lineIndex: Int, columnIndex: Int, initialEntity: InputEntity ->
+                if (initialEntity.getType() == InputEntityType.Item) {
+                    initialEntity as net.archiloque.tacticalnexus.solver.entities.input.Item
+                    val initialPosition = Position(levelIndex, lineIndex, columnIndex)
+                    if (!entitiesPositions.containsKey(initialPosition)) {
                         var positionsToCheck = mutableSetOf<Position>()
                         val exploredPositions = mutableSetOf<Position>()
                         val foundItems = mutableSetOf<PositionedItem>()
-                        positionsToCheck.add(primaryEntityPosition)
-                        exploredPositions.add(primaryEntityPosition)
-                        foundItems.add(PositionedItem((primaryEntity as net.archiloque.tacticalnexus.solver.entities.input.Item), primaryEntityPosition))
+                        positionsToCheck.add(initialPosition)
+                        exploredPositions.add(initialPosition)
+                        foundItems.add(
+                            PositionedItem(
+                                initialEntity,
+                                initialPosition
+                            )
+                        )
+
                         while (positionsToCheck.isNotEmpty()) {
                             val newPositionsToCheck = mutableSetOf<Position>()
                             for (positionToCheck in positionsToCheck) {
-                                aroundPosition(positionToCheck, tower) { secondaryEntityPosition ->
-                                    if(exploredPositions.add(secondaryEntityPosition)) {
-                                        val secondaryEntity = tower.levels()[secondaryEntityPosition.level].entities[secondaryEntityPosition.line][secondaryEntityPosition.column]
-                                        if(secondaryEntity == null) {
-                                            positionsToCheck.add(secondaryEntityPosition)
-                                        }else if(secondaryEntity.getType() == InputEntityType.Item) {
-                                            foundItems.add(PositionedItem((secondaryEntity as net.archiloque.tacticalnexus.solver.entities.input.Item), secondaryEntityPosition))
-                                            positionsToCheck.add(secondaryEntityPosition)
+                                aroundPosition(positionToCheck, tower) { newPosition ->
+                                    if (exploredPositions.add(newPosition)) {
+                                        val newEntity =
+                                            tower.levels()[newPosition.level].entities[newPosition.line][newPosition.column]
+                                        if (newEntity == null) {
+                                            newPositionsToCheck.add(newPosition)
+                                        } else if (newEntity.getType() == InputEntityType.Item) {
+                                            newEntity as net.archiloque.tacticalnexus.solver.entities.input.Item
+                                            foundItems.add(
+                                                PositionedItem(
+                                                    newEntity,
+                                                    newPosition
+                                                )
+                                            )
+                                            newPositionsToCheck.add(newPosition)
                                         }
                                     }
                                 }
@@ -84,7 +100,7 @@ class PlayableTower(
                         }
 
                         val itemGroup = ItemGroup(foundItems.toTypedArray())
-                        for(foundItem in foundItems) {
+                        for (foundItem in foundItems) {
                             entitiesPositions[foundItem.position] = itemGroup
                             entitiesIndexByPosition[foundItem.position] = entities.size
                         }
@@ -125,9 +141,11 @@ class PlayableTower(
                             }
                         }
                     }
+
                     InputEntityType.PlayerStartPosition -> {
                         startingPositionPosition = Position(levelIndex, lineIndex, columnIndex)
                     }
+
                     else -> {
                         val position = Position(levelIndex, lineIndex, columnIndex)
                         val playEntity = toPlay(entity, position)
@@ -138,7 +156,7 @@ class PlayableTower(
                 }
             }
 
-            val reachableEntities = entities.map{  entity ->
+            val reachableEntities = entities.map { entity ->
                 findReacheableEntities(
                     entity,
                     tower,
@@ -226,7 +244,7 @@ class PlayableTower(
         private fun findReacheableEntities(
             entity: PlayEntity,
             tower: Tower,
-            entitiesIndexByPosition: MutableMap<Position, Int>
+            entitiesIndexByPosition: MutableMap<Position, Int>,
         ): IntArray {
             var positionsToCheck = mutableSetOf<Position>()
             val exploredPositions = mutableSetOf<Position>()
@@ -279,6 +297,17 @@ class PlayableTower(
                 }
             }
         }
+    }
+
+    fun printAll() {
+        for (entityIndex in 0..<entitiesCount) {
+            val playEntity = playEntities[entityIndex]
+            println("$entityIndex $playEntity")
+            for (reachable in reachable[entityIndex]) {
+                println("\t$reachable ${playEntities[reachable]}")
+            }
+        }
+        exitProcess(0)
     }
 
 }

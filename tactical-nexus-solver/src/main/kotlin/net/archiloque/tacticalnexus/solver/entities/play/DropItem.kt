@@ -7,6 +7,7 @@ DropItem(
     override val expBonus: Int,
     override val hp: Int,
     override val hpBonus: Int,
+    val name: String,
 ): Item(atk, def, expBonus, hp, hpBonus) {
 
     companion object {
@@ -21,6 +22,7 @@ DropItem(
                     item.expBonus,
                     item.hp,
                     item.hpBonus,
+                    item.name,
                 )
                 items[item.name] = value
                 value

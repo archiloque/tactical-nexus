@@ -41,6 +41,7 @@ fun main() {
 
     val inputTower = Tower_1()
     val playableTower = PlayableTower.prepare(inputTower)
+    playableTower.printAll()
     val initialState = createInitialState(inputTower, playableTower)
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
     if(System.getenv("MOVES") != null) {
@@ -98,8 +99,8 @@ private fun processStates(
 
 
 fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
-    val visited = BitSet(playableTower.entitiesNumber)
-    val reachable = BitSet(playableTower.entitiesNumber)
+    val visited = BitSet(playableTower.entitiesCount)
+    val reachable = BitSet(playableTower.entitiesCount)
     playableTower.reachableByStartingPosition.forEach {
         reachable.set(it)
     }
