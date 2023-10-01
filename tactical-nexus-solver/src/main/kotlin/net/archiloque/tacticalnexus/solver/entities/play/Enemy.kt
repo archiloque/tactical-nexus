@@ -123,29 +123,17 @@ class Enemy(
             }
         }
 
-        data class EnemyId(val type: EnemyType, val level: Int)
-
-        private val enemies = mutableMapOf<EnemyId, Enemy>()
-
         fun enemy(enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy, position: Position): Enemy {
-            val enemyId = EnemyId(enemy.type, enemy.level)
-            var value = enemies[enemyId]
-            if (value == null) {
-                value = Enemy(
-                    enemy.type,
-                    enemy.level,
-                    enemy.hp,
-                    enemy.atk,
-                    enemy.def,
-                    enemy.def,
-                    DropItem.item(enemy.drop),
-                    position
-                )
-                enemies[enemyId] = value
-                return value
-            } else {
-                return value
-            }
+            return Enemy(
+                enemy.type,
+                enemy.level,
+                enemy.hp,
+                enemy.atk,
+                enemy.def,
+                enemy.def,
+                DropItem.item(enemy.drop),
+                position
+            )
         }
     }
 }

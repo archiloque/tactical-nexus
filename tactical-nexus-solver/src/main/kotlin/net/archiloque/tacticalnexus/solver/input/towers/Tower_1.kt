@@ -150,9 +150,9 @@ public class Tower_1 : Tower {
                     Wall.instance,
                 ),
                 arrayOf(
-                    Staircase.up, Items.drop_of_dream_ocean, fighters[5], null,
+                    Staircase.down, Items.drop_of_dream_ocean, fighters[5], null,
                     fighters[3], Items.power_gem, null, null, fighters[3], null, Items.life_potion, rangers[2],
-                    null, Items.heavenly_potion, Staircase.down,
+                    null, Items.heavenly_potion, Staircase.up,
                 ),
                 arrayOf(
                     Wall.instance, Wall.instance, null,

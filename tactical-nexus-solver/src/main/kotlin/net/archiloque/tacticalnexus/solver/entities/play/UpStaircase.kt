@@ -13,6 +13,10 @@ data class UpStaircase(val position: Position) : PlayEntitySinglePosition(positi
         return emptyArray()
     }
 
+    override fun toString(): String {
+        return "Up staircase at $position"
+    }
+
     override fun play(
         entityIndex: Int,
         state: State,
