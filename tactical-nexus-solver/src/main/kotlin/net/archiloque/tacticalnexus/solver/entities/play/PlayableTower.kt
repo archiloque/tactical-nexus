@@ -1,6 +1,5 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
-import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntity
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
@@ -307,7 +306,6 @@ class PlayableTower(
                 println("\t$reachable ${playEntities[reachable]}")
             }
         }
-        exitProcess(0)
     }
 
 }

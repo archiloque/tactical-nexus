@@ -39,7 +39,7 @@ class DefaultStateManager(
     override fun save(state: State) {
         val stateId = tryInsertState(state)
         if (stateId != null) {
-            //deleteLowerStates(state, stateId)
+            deleteLowerStates(state, stateId)
         }
     }
 
