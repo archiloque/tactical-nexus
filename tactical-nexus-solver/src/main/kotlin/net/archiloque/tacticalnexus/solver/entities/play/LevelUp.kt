@@ -1,7 +1,5 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
-import net.archiloque.tacticalnexus.solver.entities.input.Enemy
-
 data class LevelUp(
     val number: Int,
     val deltaExp: Int,

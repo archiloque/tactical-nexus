@@ -1,9 +1,9 @@
-package net.archiloque.tacticalnexus.datapreparation.validation;
+package net.archiloque.tacticalnexus.datapreparation.validation
 
 import net.archiloque.tacticalnexus.datapreparation.EnemyId
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
-import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 import net.archiloque.tacticalnexus.datapreparation.input.level.StaircaseDirection
+import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 
 class TowerLevels {
 
@@ -39,7 +39,7 @@ class TowerLevels {
                         ((levelLevel == 1) && (downStaircases != 0)) ||
                         ((levelLevel != 1) && (downStaircases != 1))
                     ) {
-                        throw RuntimeException("Bad number of down stair cases ${downStaircases} for level ${level}")
+                        throw RuntimeException("Bad number of down stair cases $downStaircases for level $level")
                     }
 
                     val upStaircases =
@@ -49,17 +49,17 @@ class TowerLevels {
                         ((levelLevel == levelsIndexForTower.size) && (upStaircases != 0)) ||
                         ((levelLevel != levelsIndexForTower.size) && (upStaircases != 1))
                     ) {
-                        throw RuntimeException("Bad number of up stair cases ${upStaircases} for level ${level}")
+                        throw RuntimeException("Bad number of up stair cases $upStaircases for level $level")
                     }
 
                     val exits = level.entities.exit
                     if (levelLevel == levelsIndexForTower.size) {
                         if ((exits == null) || (exits.count() != 1)) {
-                            throw RuntimeException("Bad number of exists for level ${level} ${exits}")
+                            throw RuntimeException("Bad number of exists for level $level $exits")
                         }
                     } else {
                         if (exits != null) {
-                            throw RuntimeException("Found an exit for level ${level} ${exits}")
+                            throw RuntimeException("Found an exit for level $level $exits")
                         }
                     }
                 }

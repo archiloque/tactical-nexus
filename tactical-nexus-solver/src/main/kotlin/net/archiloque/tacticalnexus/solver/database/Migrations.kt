@@ -39,10 +39,8 @@ class Migrations {
                         println("Clearing database")
                         val clearQueries = readSqlFile("migrations/clear.sql")
                         clearQueries.split("\n").forEach { clearQuery ->
-                            database.useTransaction {
-                                conn.prepareStatement(clearQuery).use { statement ->
-                                    statement.execute()
-                                }
+                            conn.prepareStatement(clearQuery).use { statement ->
+                                statement.execute()
                             }
                         }
                     }

@@ -16,7 +16,10 @@ class Player {
             var reachableEntityIndexFirst = state.reachable.previousSetBit(state.reachable.length() - 1)
             while (reachableEntityIndexFirst >= 0) {
                 val positionedEntity = playableTower.playEntities[reachableEntityIndexFirst]
-                if ((positionedEntity.getType() == PlayEntityType.Enemy) && ((positionedEntity as Enemy).killNoHPLost(state))) {
+                if ((positionedEntity.getType() == PlayEntityType.Enemy) && ((positionedEntity as Enemy).killNoHPLost(
+                        state
+                    ))
+                ) {
                     // If we can kill an enemy without loosing any HP we only try this move
                     positionedEntity.play(reachableEntityIndexFirst, state, playableTower, stateManager)
                     return

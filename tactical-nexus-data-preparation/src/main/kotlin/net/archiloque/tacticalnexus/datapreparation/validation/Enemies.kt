@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.datapreparation.validation;
+package net.archiloque.tacticalnexus.datapreparation.validation
 
 import net.archiloque.tacticalnexus.datapreparation.EnemyId
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy

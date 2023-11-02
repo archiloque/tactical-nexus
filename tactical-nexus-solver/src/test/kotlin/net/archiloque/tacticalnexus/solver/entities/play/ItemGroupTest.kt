@@ -7,7 +7,7 @@ import net.archiloque.tacticalnexus.solver.input.Items
 
 class ItemGroupTest {
 
-    private fun createGroup(vararg items: Item) : ItemGroup {
+    private fun createGroup(vararg items: Item): ItemGroup {
         return ItemGroup(items.map { PositionedItem(it, Position(0, 0, 0)) }.toTypedArray())
     }
 

@@ -130,7 +130,7 @@ class Enemy(
                 enemy.hp,
                 enemy.atk,
                 enemy.def,
-                enemy.def,
+                enemy.exp,
                 DropItem.item(enemy.drop),
                 position
             )

@@ -34,86 +34,95 @@ class DefaultStateManager(
 ) :
     StateManager {
 
-    val insertStateQuery: String = readSqlFile("insert_state.sql")
+    private val insertStateQuery: String = readSqlFile("insert_state.sql")
+    private val lockStateQuery: String = readSqlFile("lock_state.sql")
+    private val unlockStateQuery: String = readSqlFile("unlock_state.sql")
 
     override fun save(state: State) {
+        val stateLockId = state.reachable.hashCode()
+        lockState(lockStateQuery, stateLockId)
         val stateId = tryInsertState(state)
         if (stateId != null) {
             deleteLowerStates(state, stateId)
         }
+        lockState(unlockStateQuery, stateLockId)
     }
 
-    private fun deleteLowerStates(state: State, stateId: Int) {
-        database.useTransaction {
-            database.delete(States) {
-                (it.reachable eq state.reachable) and
-                        (it.visited eq state.visited) and
-
-                        (it.atk lessEq state.atk) and
-                        (it.def lessEq state.def) and
-                        (it.exp lessEq state.exp) and
-                        (it.hp lessEq state.hp) and
-
-                        (it.expBonus lessEq state.expBonus) and
-                        (it.hpBonus lessEq state.hpBonus) and
-
-                        (it.blue_keys lessEq state.blueKeys) and
-                        (it.crimson_keys lessEq state.crimsonKeys) and
-                        (it.platinum_keys lessEq state.platinumKeys) and
-                        (it.violet_keys lessEq state.violetKeys) and
-                        (it.yellow_keys lessEq state.yellowKeys) and
-
-                        (it.id neq stateId)
+    private fun lockState(query: String, stateLockId: Int) {
+        database.useConnection { connection ->
+            connection.prepareStatement(query).use { statement ->
+                statement.setInt(1, stateLockId)
             }
         }
     }
 
+    private fun deleteLowerStates(state: State, stateId: Int) {
+        database.delete(States) {
+            (it.reachable eq state.reachable) and
+                    (it.visited eq state.visited) and
+
+                    (it.atk lessEq state.atk) and
+                    (it.def lessEq state.def) and
+                    (it.exp lessEq state.exp) and
+                    (it.hp lessEq state.hp) and
+
+                    (it.expBonus lessEq state.expBonus) and
+                    (it.hpBonus lessEq state.hpBonus) and
+
+                    (it.blue_keys lessEq state.blueKeys) and
+                    (it.crimson_keys lessEq state.crimsonKeys) and
+                    (it.platinum_keys lessEq state.platinumKeys) and
+                    (it.violet_keys lessEq state.violetKeys) and
+                    (it.yellow_keys lessEq state.yellowKeys) and
+
+                    (it.id neq stateId)
+        }
+    }
+
     private fun tryInsertState(state: State): Int? {
-        database.useTransaction {
-            database.useConnection { conn ->
-                conn.prepareStatement(insertStateQuery).use { statement ->
-                    statement.setObject(1, StateStatus.new.name, Types.OTHER)
-                    Mappings.BitSetSqlType.setParameter(statement, 2, state.visited)
-                    Mappings.BitSetSqlType.setParameter(statement, 3, state.reachable)
-                    statement.setObject(4, state.atk)
-                    statement.setInt(5, state.def)
-                    statement.setInt(6, state.exp)
-                    statement.setInt(7, state.hp)
+        database.useConnection { connection ->
+            connection.prepareStatement(insertStateQuery).use { statement ->
+                statement.setObject(1, StateStatus.new.name, Types.OTHER)
+                Mappings.BitSetSqlType.setParameter(statement, 2, state.visited)
+                Mappings.BitSetSqlType.setParameter(statement, 3, state.reachable)
+                statement.setObject(4, state.atk)
+                statement.setInt(5, state.def)
+                statement.setInt(6, state.exp)
+                statement.setInt(7, state.hp)
 
-                    statement.setInt(8, state.expBonus)
-                    statement.setInt(9, state.hpBonus)
+                statement.setInt(8, state.expBonus)
+                statement.setInt(9, state.hpBonus)
 
-                    statement.setInt(10, state.blueKeys)
-                    statement.setInt(11, state.crimsonKeys)
-                    statement.setInt(12, state.platinumKeys)
-                    statement.setInt(13, state.violetKeys)
-                    statement.setInt(14, state.yellowKeys)
+                statement.setInt(10, state.blueKeys)
+                statement.setInt(11, state.crimsonKeys)
+                statement.setInt(12, state.platinumKeys)
+                statement.setInt(13, state.violetKeys)
+                statement.setInt(14, state.yellowKeys)
 
-                    Mappings.IntArraySqlType.setParameter(statement, 15, state.moves)
+                Mappings.IntArraySqlType.setParameter(statement, 15, state.moves)
 
-                    Mappings.BitSetSqlType.setParameter(statement, 16, state.visited)
-                    Mappings.BitSetSqlType.setParameter(statement, 17, state.reachable)
+                Mappings.BitSetSqlType.setParameter(statement, 16, state.visited)
+                Mappings.BitSetSqlType.setParameter(statement, 17, state.reachable)
 
-                    statement.setObject(18, state.atk)
-                    statement.setInt(19, state.def)
-                    statement.setInt(20, state.exp)
-                    statement.setInt(21, state.hp)
+                statement.setObject(18, state.atk)
+                statement.setInt(19, state.def)
+                statement.setInt(20, state.exp)
+                statement.setInt(21, state.hp)
 
-                    statement.setInt(22, state.expBonus)
-                    statement.setInt(23, state.hpBonus)
+                statement.setInt(22, state.expBonus)
+                statement.setInt(23, state.hpBonus)
 
-                    statement.setInt(24, state.blueKeys)
-                    statement.setInt(25, state.crimsonKeys)
-                    statement.setInt(26, state.platinumKeys)
-                    statement.setInt(27, state.violetKeys)
-                    statement.setInt(28, state.yellowKeys)
-                    val resultSet = statement.executeQuery()
-                    if (resultSet.next()) {
-                        // The state has been inserted
-                        return resultSet.getInt(1)
-                    } else {
-                        return null
-                    }
+                statement.setInt(24, state.blueKeys)
+                statement.setInt(25, state.crimsonKeys)
+                statement.setInt(26, state.platinumKeys)
+                statement.setInt(27, state.violetKeys)
+                statement.setInt(28, state.yellowKeys)
+                val resultSet = statement.executeQuery()
+                if (resultSet.next()) {
+                    // The state has been inserted
+                    return resultSet.getInt(1)
+                } else {
+                    return null
                 }
             }
         }

@@ -3,7 +3,10 @@ package net.archiloque.tacticalnexus.solver.entities.play
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
-data class PositionedItem(val inputItem: net.archiloque.tacticalnexus.solver.entities.input.Item, val position: Position) {
+data class PositionedItem(
+    val inputItem: net.archiloque.tacticalnexus.solver.entities.input.Item,
+    val position: Position,
+) {
     override fun toString(): String {
         return "${inputItem.name} at $position"
     }
@@ -30,7 +33,8 @@ class ItemGroup(
     }
 
     override fun description(): Array<PositionedDescription> {
-        return items.map {PositionedDescription("Grab the ${it.inputItem.name.lowercase()}", it.position) }.toTypedArray()
+        return items.map { PositionedDescription("Grab the ${it.inputItem.name.lowercase()}", it.position) }
+            .toTypedArray()
     }
 
     override fun play(

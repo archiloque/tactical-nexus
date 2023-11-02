@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.datapreparation.output.solver;
+package net.archiloque.tacticalnexus.datapreparation.output.solver
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock

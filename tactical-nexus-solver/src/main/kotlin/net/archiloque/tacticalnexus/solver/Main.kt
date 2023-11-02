@@ -44,7 +44,7 @@ fun main() {
     playableTower.printAll()
     val initialState = createInitialState(inputTower, playableTower)
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
-    if(System.getenv("MOVES") != null) {
+    if (System.getenv("MOVES") != null) {
         stateManager.reachedExit(System.getenv("MOVES").split(",").map { Integer.parseInt(it) }.toTypedArray())
     }
     stateManager.save(initialState)
@@ -87,12 +87,10 @@ private fun processStates(
     for (state in states) {
         Player.play(state, playableTower, stateManager)
     }
-    database.useTransaction {
-        database.update(States) {
-            set(it.status, StateStatus.processed)
-            where {
-                id inList states.map { it.id }
-            }
+    database.update(States) {
+        set(it.status, StateStatus.processed)
+        where {
+            id inList states.map { it.id }
         }
     }
 }

@@ -151,74 +151,74 @@ class PlayableTowerTest {
     }
 
 
-        @Test
-        fun prepareComplex() {
-            // This is the tower:
-            // wwwww
-            // wX ww
-            // w Bww
-            // wwRSw
-            // wwwww
-            val playableTower =
-                PlayableTower.prepare(
-                    TowerForTest(
-                        arrayOf(
-                            TowerLevel(
-                                5,
-                                5,
+    @Test
+    fun prepareComplex() {
+        // This is the tower:
+        // wwwww
+        // wX ww
+        // w Bww
+        // wwRSw
+        // wwwww
+        val playableTower =
+            PlayableTower.prepare(
+                TowerForTest(
+                    arrayOf(
+                        TowerLevel(
+                            5,
+                            5,
+                            arrayOf(
+                                arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
                                 arrayOf(
-                                    arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
-                                    arrayOf(
-                                        Wall.instance,
-                                        PlayerStartPosition.instance,
-                                        null,
-                                        Wall.instance,
-                                        Wall.instance
-                                    ),
-                                    arrayOf(Wall.instance, null, Items.blue_potion, Wall.instance, Wall.instance),
-                                    arrayOf(Wall.instance, Wall.instance, Items.red_potion, Staircase.up, Wall.instance),
-                                    arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
-                                )
-                            ),
-                            TowerLevel(
-                                1,
-                                2,
-                                arrayOf(
-                                    arrayOf(Staircase.down, Exit.instance),
-                                )
+                                    Wall.instance,
+                                    PlayerStartPosition.instance,
+                                    null,
+                                    Wall.instance,
+                                    Wall.instance
+                                ),
+                                arrayOf(Wall.instance, null, Items.blue_potion, Wall.instance, Wall.instance),
+                                arrayOf(Wall.instance, Wall.instance, Items.red_potion, Staircase.up, Wall.instance),
+                                arrayOf(Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance),
                             )
-                        ), 0, 0, 0
-                    )
-                )
-            assertContentEquals(
-                playableTower.playEntities,
-                arrayOf(
-                    ItemGroup(
-                        arrayOf(
-                            PositionedItem(Items.blue_potion, Position(0, 2, 2)),
-                            PositionedItem(Items.red_potion, Position(0, 3, 2))
                         ),
+                        TowerLevel(
+                            1,
+                            2,
+                            arrayOf(
+                                arrayOf(Staircase.down, Exit.instance),
+                            )
+                        )
+                    ), 0, 0, 0
+                )
+            )
+        assertContentEquals(
+            playableTower.playEntities,
+            arrayOf(
+                ItemGroup(
+                    arrayOf(
+                        PositionedItem(Items.blue_potion, Position(0, 2, 2)),
+                        PositionedItem(Items.red_potion, Position(0, 3, 2))
                     ),
-                    UpStaircase(Position(0, 3, 3)),
-                    Exit(Position(1, 0, 1)),
-                )
+                ),
+                UpStaircase(Position(0, 3, 3)),
+                Exit(Position(1, 0, 1)),
             )
+        )
 
-            assertEquals(
-                playableTower.startingPositionPosition,
-                Position(0, 1, 1)
+        assertEquals(
+            playableTower.startingPositionPosition,
+            Position(0, 1, 1)
+        )
+        assertContentEquals(
+            playableTower.reachableByStartingPosition,
+            intArrayOf(0)
+        )
+        assertArrayEquals(
+            playableTower.reachable,
+            arrayOf(
+                intArrayOf(1),
+                intArrayOf(2),
+                intArrayOf(),
             )
-            assertContentEquals(
-                playableTower.reachableByStartingPosition,
-                intArrayOf(0)
-            )
-            assertArrayEquals(
-                playableTower.reachable,
-                arrayOf(
-                    intArrayOf(1),
-                    intArrayOf(2),
-                    intArrayOf(),
-                )
-            )
-        }
+        )
+    }
 }

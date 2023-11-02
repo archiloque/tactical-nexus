@@ -49,7 +49,7 @@ class Towers {
             val towersList = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
 
             for (tower in towersList) {
-                println("Generating levels for tower ${tower}")
+                println("Generating levels for tower $tower")
 
                 val towerStat = stats.find { it.tower == tower }!!
 
@@ -60,10 +60,10 @@ class Towers {
                     .addAnnotation(Generated::class)
                     .addSuperinterface(towerInterfaceClass)
                     .addProperty(
-                        enemyBuilder(enemies, items, EnemyType.fighter)
+                        enemyBuilder(enemies, EnemyType.fighter)
                     )
                     .addProperty(
-                        enemyBuilder(enemies, items, EnemyType.ranger)
+                        enemyBuilder(enemies, EnemyType.ranger)
                     )
 
 
@@ -227,7 +227,6 @@ class Towers {
 
         private fun enemyBuilder(
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
-            items: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Item>,
             enemyType: EnemyType,
         ): PropertySpec {
             val enemiesArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)

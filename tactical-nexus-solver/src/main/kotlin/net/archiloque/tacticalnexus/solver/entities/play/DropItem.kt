@@ -8,7 +8,7 @@ DropItem(
     override val hp: Int,
     override val hpBonus: Int,
     val name: String,
-): Item(atk, def, expBonus, hp, hpBonus) {
+) : Item(atk, def, expBonus, hp, hpBonus) {
 
     companion object {
         private val items = mutableMapOf<String, DropItem>()

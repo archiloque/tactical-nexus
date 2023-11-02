@@ -1,6 +1,6 @@
 package net.archiloque.tacticalnexus.solver.entities.input
 
-class  Item(
+class Item(
     val name: String,
     val atk: Int,
     val def: Int,
