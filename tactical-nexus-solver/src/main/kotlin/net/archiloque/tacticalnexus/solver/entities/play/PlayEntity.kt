@@ -48,14 +48,14 @@ interface PlayEntity {
         state: State,
         playableTower: PlayableTower,
     ) {
-        // We optimize for cases where the decision is automatic so we avoid adding more states:
+        // We optimize for cases where the decision is automatic, so we avoid adding more states:
         // - staircases
         // - keys
         // - items
         // - enemies that can be killed without loosing any HP and without leveling up (because levelling up requires creating branches)
         val positionsToAdd = playableTower.reachable[entityIndex].toMutableList()
         while (positionsToAdd.isNotEmpty()) {
-            val positionToAdd = positionsToAdd.removeLast()
+            val positionToAdd = positionsToAdd.removeAt(positionsToAdd.lastIndex)
             val elementToAdd = playableTower.playEntities[positionToAdd]
             if ((!state.visited.get(positionToAdd)) && (!state.reachable.get(positionToAdd))) {
                 when (elementToAdd.getType()) {

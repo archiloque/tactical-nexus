@@ -1,9 +1,6 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.`annotation`.processing.Generated
-import kotlin.Array
-import kotlin.Int
-import kotlin.arrayOf
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.input.Door
@@ -153,9 +150,9 @@ public class Tower_1 : Tower {
                     Wall.instance,
                 ),
                 arrayOf(
-                    Staircase.down, Items.drop_of_dream_ocean, fighters[5], null,
+                    Staircase.up, Items.drop_of_dream_ocean, fighters[5], null,
                     fighters[3], Items.power_gem, null, null, fighters[3], null, Items.life_potion, rangers[2],
-                    null, Items.heavenly_potion, Staircase.up,
+                    null, Items.heavenly_potion, Staircase.down,
                 ),
                 arrayOf(
                     Wall.instance, Wall.instance, null,

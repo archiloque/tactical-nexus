@@ -1445,9 +1445,9 @@
 					"height": 16,
 					"defUid": 16,
 					"px": [224,112],
-					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "down", "__tile": null, "defUid": 20, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["up"]
+						"params": ["down"]
 					}] }]
 				},
 				{
@@ -3227,9 +3227,9 @@
 					"height": 16,
 					"defUid": 16,
 					"px": [0,112],
-					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "down", "__tile": null, "defUid": 20, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["down"]
+						"params": ["up"]
 					}] }]
 				}
 			]

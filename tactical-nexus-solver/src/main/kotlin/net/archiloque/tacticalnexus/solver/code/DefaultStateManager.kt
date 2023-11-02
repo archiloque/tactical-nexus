@@ -74,7 +74,7 @@ class DefaultStateManager(
                     (it.platinum_keys lessEq state.platinumKeys) and
                     (it.violet_keys lessEq state.violetKeys) and
                     (it.yellow_keys lessEq state.yellowKeys) and
-
+                    (it.status eq StateStatus.new) and
                     (it.id neq stateId)
         }
     }
