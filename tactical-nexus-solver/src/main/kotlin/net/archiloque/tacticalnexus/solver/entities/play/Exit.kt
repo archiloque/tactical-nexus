@@ -3,7 +3,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 
-data class Exit(val itemIndex: Int, val position: Position) : PlayEntitySinglePosition(itemIndex, position) {
+data class Exit(val entityIndex: Int, val position: Position) : PlayEntitySinglePosition(entityIndex, position) {
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.Exit
@@ -14,7 +14,6 @@ data class Exit(val itemIndex: Int, val position: Position) : PlayEntitySinglePo
     }
 
     override fun play(
-        entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,

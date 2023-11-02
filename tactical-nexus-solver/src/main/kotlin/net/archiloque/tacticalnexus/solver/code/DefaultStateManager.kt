@@ -167,23 +167,23 @@ class DefaultStateManager(
                     val levelUpType = LevelUpType.entries.find { it.type == move }!!
                     val description = when (levelUpType) {
                         LevelUpType.atk -> {
-                            "gain ${levelUp.atk} atk"
+                            "Gain ${levelUp.atk} atk"
                         }
 
                         LevelUpType.def -> {
-                            "gain ${levelUp.def} def"
+                            "Gain ${levelUp.def} def"
                         }
 
                         LevelUpType.blueKeys -> {
-                            "gain 2 blue key(s)"
+                            "Gain 2 blue key"
                         }
 
                         LevelUpType.crimsonKeys -> {
-                            "gain 1 crimson key(s)"
+                            "Gain 1 crimson key"
                         }
 
                         LevelUpType.yellowKeys -> {
-                            "gain 3 yellow key(s)"
+                            "gain 3 yellow keys"
                         }
                     }
                     Enemy.applyLevelUp(levelUpType, currentState, levelUp)

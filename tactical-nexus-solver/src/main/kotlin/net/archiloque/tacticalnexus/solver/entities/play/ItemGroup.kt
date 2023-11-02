@@ -13,7 +13,7 @@ data class PositionedItem(
 }
 
 class ItemGroup(
-    val itemIndex: Int,
+    private val entityIndex: Int,
     private val items: Array<PositionedItem>,
 ) : Item(
     items.sumOf { it.inputItem.atk },
@@ -25,8 +25,8 @@ class ItemGroup(
 
     private val positions = items.map { it.position }.toTypedArray()
 
-    override fun itemIndex(): Int {
-        return itemIndex
+    override fun entityIndex(): Int {
+        return entityIndex
     }
 
     override fun getType(): PlayEntityType {
@@ -43,22 +43,24 @@ class ItemGroup(
     }
 
     override fun play(
-        entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
     ) {
         val newState = newState(entityIndex, state)
         apply(newState)
-        addNewReachablePositions(
-            entityIndex,
-            newState,
-            playableTower
-        )
-        stateManager.save(newState)
+        if (addNewReachablePositions(
+                entityIndex,
+                newState,
+                playableTower,
+                stateManager
+            )
+        ) {
+            stateManager.save(newState)
+        }
     }
 
     override fun toString(): String {
-        return "Item group: ${items.map { it.toString() }.joinToString(", ")}"
+        return "Item group: ${items.map { it.toString() }.joinToString(", ")} and index $entityIndex"
     }
 }

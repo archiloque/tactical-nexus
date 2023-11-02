@@ -4,7 +4,8 @@ import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 
-class Key(val color: KeyOrDoorColor, itemIndex: Int,val position: Position) : PlayEntitySinglePosition(itemIndex, position) {
+class Key(private val color: KeyOrDoorColor, private val entityIndex: Int, val position: Position) :
+    PlayEntitySinglePosition(entityIndex, position) {
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.Key
@@ -15,23 +16,25 @@ class Key(val color: KeyOrDoorColor, itemIndex: Int,val position: Position) : Pl
     }
 
     override fun toString(): String {
-        return "Key $color at $position"
+        return "Key $color at $position and index $entityIndex"
     }
 
     override fun play(
-        entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
     ) {
         val newState = newState(entityIndex, state)
         apply(newState)
-        addNewReachablePositions(
-            entityIndex,
-            newState,
-            playableTower
-        )
-        stateManager.save(newState)
+        if (addNewReachablePositions(
+                entityIndex,
+                newState,
+                playableTower,
+                stateManager
+            )
+        ) {
+            stateManager.save(newState)
+        }
     }
 
     fun apply(state: State) {

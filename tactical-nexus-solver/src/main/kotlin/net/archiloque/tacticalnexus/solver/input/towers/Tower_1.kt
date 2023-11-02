@@ -46,7 +46,7 @@ public class Tower_1 : Tower {
         Enemy(EnemyType.ranger, 18, 2000, 1660, 240, 196, Items.life_potion), null, null, null,
         Enemy(EnemyType.ranger, 22, 3000, 2350, 360, 256, Items.heavenly_potion), null, null, null,
         Enemy(EnemyType.ranger, 26, 3000, 3740, 720, 324, Items.heavenly_potion), null, null, null,
-        Enemy(EnemyType.ranger, 30, 1, 4800, 480, 400, Items.drop_of_dream_ocean),
+        Enemy(EnemyType.ranger, 30, 9999, 4800, 480, 400, Items.drop_of_dream_ocean),
     )
 
     private val levels: Array<TowerLevel> = arrayOf(

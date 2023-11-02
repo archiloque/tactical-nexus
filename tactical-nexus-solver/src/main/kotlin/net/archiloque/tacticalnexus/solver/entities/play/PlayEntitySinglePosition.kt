@@ -8,7 +8,7 @@ abstract class PlayEntitySinglePosition(private val index: Int, position: Positi
         return positions
     }
 
-    override fun itemIndex(): Int {
+    override fun entityIndex(): Int {
         return index
     }
 }

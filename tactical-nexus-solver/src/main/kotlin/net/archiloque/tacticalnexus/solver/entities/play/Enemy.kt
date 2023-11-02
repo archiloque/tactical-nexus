@@ -1,21 +1,22 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
+import kotlin.math.max
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp.Companion.levelUp
 
 class Enemy(
-    val type: EnemyType,
-    val level: Int,
+    private val type: EnemyType,
+    private val level: Int,
     val hp: Int,
     val atk: Int,
     val def: Int,
     val exp: Int,
     val drop: DropItem,
-    itemIndex: Int,
+    private val entityIndex: Int,
     val position: Position,
-) : PlayEntitySinglePosition(itemIndex, position) {
+) : PlayEntitySinglePosition(entityIndex, position) {
     override fun getType(): PlayEntityType {
         return PlayEntityType.Enemy
     }
@@ -25,11 +26,10 @@ class Enemy(
     }
 
     override fun toString(): String {
-        return "Enemy $level $type at $position"
+        return "Enemy $level $type at $position and index $entityIndex"
     }
 
     override fun play(
-        entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
@@ -41,17 +41,19 @@ class Enemy(
         if (fightResult) {
             val toLevelUp = levelUp(newState.exp)
             if (fromLevelUp != toLevelUp) {
-                addNewReachablePositions(entityIndex, newState, playableTower)
-                for (levelUpType in LevelUpType.entries) {
-                    val levelUpState = newState(levelUpType.type, newState)
-                    applyLevelUp(levelUpType, levelUpState, toLevelUp)
-                    drop.apply(levelUpState)
-                    stateManager.save(levelUpState)
+                if (addNewReachablePositions(entityIndex, newState, playableTower, stateManager)) {
+                    for (levelUpType in LevelUpType.entries) {
+                        val levelUpState = newState(levelUpType.type, newState)
+                        applyLevelUp(levelUpType, levelUpState, toLevelUp)
+                        drop.apply(levelUpState)
+                        stateManager.save(levelUpState)
+                    }
                 }
             } else {
                 drop.apply(newState)
-                addNewReachablePositions(entityIndex, newState, playableTower)
-                stateManager.save(newState)
+                if (addNewReachablePositions(entityIndex, newState, playableTower, stateManager)) {
+                    stateManager.save(newState)
+                }
             }
         }
     }
@@ -67,17 +69,21 @@ class Enemy(
         }
     }
 
-    fun earnXp(state: State) = (exp * (100 + state.expBonus)) / 100
+    private fun earnXp(state: State) = (exp * (100 + state.expBonus)) / 100
 
     fun killNoHPLost(state: State): Boolean {
-        val damagesToEnemy = Math.max(state.atk - def, 0)
-        val damagesToPlayer = Math.max(atk - state.def, 0)
+        val damagesToEnemy = max(state.atk - def, 0)
+        val damagesToPlayer = max(atk - state.def, 0)
         return (damagesToEnemy > hp) || ((damagesToPlayer == 0) && (damagesToEnemy > 0))
     }
 
+    fun shouldLevelUp(state: State): Boolean {
+        return levelUp(state.exp) != levelUp(state.exp + this.earnXp(state))
+    }
+
     private fun calculate(state: State): Int? {
-        val damagesToEnemy = Math.max(state.atk - def, 0)
-        val damagesToPlayer = Math.max(atk - state.def, 0)
+        val damagesToEnemy = max(state.atk - def, 0)
+        val damagesToPlayer = max(atk - state.def, 0)
         return if ((damagesToPlayer == 0) && (damagesToEnemy > 0)) {
             // Enemy can't hurt player but player can hurt enemy
             state.hp
@@ -124,7 +130,11 @@ class Enemy(
             }
         }
 
-        fun enemy(enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy, itemIndex: Int, position: Position): Enemy {
+        fun enemy(
+            enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy,
+            itemIndex: Int,
+            position: Position,
+        ): Enemy {
             return Enemy(
                 enemy.type,
                 enemy.level,

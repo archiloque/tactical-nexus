@@ -8,7 +8,7 @@ import net.archiloque.tacticalnexus.solver.database.StateStatus
 data class PositionedDescription(val description: String, val position: Position)
 
 interface PlayEntity {
-    fun itemIndex(): Int
+    fun entityIndex(): Int
 
     fun getType(): PlayEntityType
 
@@ -17,7 +17,6 @@ interface PlayEntity {
     fun description(): Array<PositionedDescription>
 
     fun play(
-        entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
@@ -49,13 +48,16 @@ interface PlayEntity {
         entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
-    ) {
+        stateManager: StateManager,
+    ): Boolean {
         // We optimize for cases where the decision is automatic, so we avoid adding more states:
         // - staircases
         // - keys
         // - items
         // - enemies that can be killed without loosing any HP and without leveling up (because levelling up requires creating branches)
         // - doors that leads to items rooms with a single exit
+        var didSomethingAutomatic = false
+        val newEntities = mutableListOf<PlayEntity>()
         val positionsToAdd = playableTower.reachable[entityIndex].toMutableList()
         while (positionsToAdd.isNotEmpty()) {
             val positionToAdd = positionsToAdd.removeAt(positionsToAdd.lastIndex)
@@ -64,53 +66,83 @@ interface PlayEntity {
                 when (elementToAdd.getType()) {
                     PlayEntityType.UpStaircase -> {
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                        didSomethingAutomatic = true
                     }
 
                     PlayEntityType.Key -> {
                         elementToAdd as Key
                         elementToAdd.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                        didSomethingAutomatic = true
                     }
 
                     PlayEntityType.ItemGroup -> {
                         elementToAdd as ItemGroup
                         elementToAdd.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                        didSomethingAutomatic = true
                     }
 
                     PlayEntityType.Door -> {
                         elementToAdd as Door
-                        if(playableTower.roomsSingleDoor.indexOf(elementToAdd.itemIndex()) != -1) {
-                            if(elementToAdd.canApply(state)) {
-                                elementToAdd.apply(state)
-                                addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
-                            }
+                        if ((playableTower.roomsSingleDoor.indexOf(elementToAdd.entityIndex()) != -1) && elementToAdd.canApply(
+                                state
+                            )
+                        ) {
+                            elementToAdd.apply(state)
+                            addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                            didSomethingAutomatic = true
                         } else {
                             state.reachable.set(positionToAdd)
+                            newEntities.add(elementToAdd)
                         }
                     }
 
                     PlayEntityType.Enemy -> {
                         elementToAdd as Enemy
                         val killEnemyNoHpLostAndNoLevelUp =
-                            elementToAdd.killNoHPLost(state) && (LevelUp.levelUp(state.exp) == LevelUp.levelUp(
-                                state.exp + elementToAdd.earnXp(state)
-                            ))
+                            elementToAdd.killNoHPLost(state) && (!elementToAdd.shouldLevelUp(state))
                         if (killEnemyNoHpLostAndNoLevelUp) {
                             elementToAdd.apply(state)
                             elementToAdd.drop.apply(state)
                             addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                            didSomethingAutomatic = true
                         } else {
                             state.reachable.set(positionToAdd)
+                            newEntities.add(elementToAdd)
                         }
                     }
 
                     else -> {
                         state.reachable.set(positionToAdd)
+                        newEntities.add(elementToAdd)
                     }
                 }
             }
         }
+        if (!didSomethingAutomatic) {
+            when (getType()) {
+                PlayEntityType.Enemy -> {
+                    if ((newEntities.size == 1) && (newEntities.first()
+                            .getType() == PlayEntityType.Enemy)
+                    ) {
+                        newEntities.first().play(state, playableTower, stateManager)
+                        return false
+                    }
+                }
+
+                PlayEntityType.Door -> {
+                    if (newEntities.isEmpty()) {
+                        return false
+                    }
+                }
+
+                else -> {
+
+                }
+            }
+        }
+        return true
     }
 
     private fun addNewPosition(

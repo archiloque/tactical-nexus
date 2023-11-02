@@ -1,5 +1,7 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
+import java.util.Collections
+
 data class LevelUp(
     val number: Int,
     val deltaExp: Int,
@@ -9,7 +11,7 @@ data class LevelUp(
     val def: Int,
 ) {
     companion object {
-        private val levelUps = mutableListOf(LevelUp(0, 0, 0, 0, 0))
+        private val levelUps = Collections.synchronizedList(mutableListOf(LevelUp(0, 0, 0, 0, 0)))
 
         fun levelUp(exp: Int): LevelUp {
             val nexLevelUp = levelUps.indexOfFirst { it.exp > exp }

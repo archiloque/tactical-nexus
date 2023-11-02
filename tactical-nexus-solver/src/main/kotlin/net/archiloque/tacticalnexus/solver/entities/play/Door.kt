@@ -4,8 +4,8 @@ import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 
-class Door(val color: KeyOrDoorColor, itemIndex: Int, val position: Position) :
-    PlayEntitySinglePosition(itemIndex, position) {
+class Door(val color: KeyOrDoorColor, private val entityIndex: Int, val position: Position) :
+    PlayEntitySinglePosition(entityIndex, position) {
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.Door
@@ -16,11 +16,10 @@ class Door(val color: KeyOrDoorColor, itemIndex: Int, val position: Position) :
     }
 
     override fun toString(): String {
-        return "Door $color at $position"
+        return "Door $color at $position and index $entityIndex"
     }
 
     override fun play(
-        entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
@@ -31,35 +30,37 @@ class Door(val color: KeyOrDoorColor, itemIndex: Int, val position: Position) :
 
         val newState = newState(entityIndex, state)
         apply(newState)
-        addNewReachablePositions(
-            entityIndex,
-            newState,
-            playableTower
-
-        )
-        stateManager.save(newState)
+        if (addNewReachablePositions(
+                entityIndex,
+                newState,
+                playableTower,
+                stateManager
+            )
+        ) {
+            stateManager.save(newState)
+        }
     }
 
     fun canApply(state: State): Boolean {
         when (color) {
             KeyOrDoorColor.blue -> {
-                return (state.blueKeys >= 1)
+                return state.blueKeys >= 1
             }
 
             KeyOrDoorColor.crimson -> {
-                return (state.crimsonKeys >= 1)
+                return state.crimsonKeys >= 1
             }
 
             KeyOrDoorColor.platinum -> {
-                return (state.platinumKeys >= 1)
+                return state.platinumKeys >= 1
             }
 
             KeyOrDoorColor.violet -> {
-                return (state.violetKeys >= 1)
+                return state.violetKeys >= 1
             }
 
             KeyOrDoorColor.yellow -> {
-                return (state.yellowKeys >= 1)
+                return state.yellowKeys >= 1
             }
         }
     }
