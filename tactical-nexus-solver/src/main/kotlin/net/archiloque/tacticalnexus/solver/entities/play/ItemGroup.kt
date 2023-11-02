@@ -13,6 +13,7 @@ data class PositionedItem(
 }
 
 class ItemGroup(
+    val itemIndex: Int,
     private val items: Array<PositionedItem>,
 ) : Item(
     items.sumOf { it.inputItem.atk },
@@ -23,6 +24,10 @@ class ItemGroup(
 ), PlayEntity {
 
     private val positions = items.map { it.position }.toTypedArray()
+
+    override fun itemIndex(): Int {
+        return itemIndex
+    }
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.ItemGroup

@@ -8,6 +8,8 @@ import net.archiloque.tacticalnexus.solver.database.StateStatus
 data class PositionedDescription(val description: String, val position: Position)
 
 interface PlayEntity {
+    fun itemIndex(): Int
+
     fun getType(): PlayEntityType
 
     fun getPositions(): Array<Position>
@@ -53,6 +55,7 @@ interface PlayEntity {
         // - keys
         // - items
         // - enemies that can be killed without loosing any HP and without leveling up (because levelling up requires creating branches)
+        // - doors that leads to items rooms with a single exit
         val positionsToAdd = playableTower.reachable[entityIndex].toMutableList()
         while (positionsToAdd.isNotEmpty()) {
             val positionToAdd = positionsToAdd.removeAt(positionsToAdd.lastIndex)
@@ -64,26 +67,38 @@ interface PlayEntity {
                     }
 
                     PlayEntityType.Key -> {
-                        val key = elementToAdd as Key
-                        key.apply(state)
+                        elementToAdd as Key
+                        elementToAdd.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
 
                     PlayEntityType.ItemGroup -> {
-                        val item = elementToAdd as ItemGroup
-                        item.apply(state)
+                        elementToAdd as ItemGroup
+                        elementToAdd.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                     }
 
+                    PlayEntityType.Door -> {
+                        elementToAdd as Door
+                        if(playableTower.roomsSingleDoor.indexOf(elementToAdd.itemIndex()) != -1) {
+                            if(elementToAdd.canApply(state)) {
+                                elementToAdd.apply(state)
+                                addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                            }
+                        } else {
+                            state.reachable.set(positionToAdd)
+                        }
+                    }
+
                     PlayEntityType.Enemy -> {
-                        val enemy = elementToAdd as Enemy
+                        elementToAdd as Enemy
                         val killEnemyNoHpLostAndNoLevelUp =
-                            enemy.killNoHPLost(state) && (LevelUp.levelUp(state.exp) == LevelUp.levelUp(
-                                state.exp + enemy.earnXp(state)
+                            elementToAdd.killNoHPLost(state) && (LevelUp.levelUp(state.exp) == LevelUp.levelUp(
+                                state.exp + elementToAdd.earnXp(state)
                             ))
                         if (killEnemyNoHpLostAndNoLevelUp) {
-                            enemy.apply(state)
-                            enemy.drop.apply(state)
+                            elementToAdd.apply(state)
+                            elementToAdd.drop.apply(state)
                             addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                         } else {
                             state.reachable.set(positionToAdd)

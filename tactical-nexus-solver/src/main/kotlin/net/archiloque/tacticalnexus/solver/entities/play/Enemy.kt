@@ -13,8 +13,9 @@ class Enemy(
     val def: Int,
     val exp: Int,
     val drop: DropItem,
+    itemIndex: Int,
     val position: Position,
-) : PlayEntitySinglePosition(position) {
+) : PlayEntitySinglePosition(itemIndex, position) {
     override fun getType(): PlayEntityType {
         return PlayEntityType.Enemy
     }
@@ -123,7 +124,7 @@ class Enemy(
             }
         }
 
-        fun enemy(enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy, position: Position): Enemy {
+        fun enemy(enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy, itemIndex: Int, position: Position): Enemy {
             return Enemy(
                 enemy.type,
                 enemy.level,
@@ -132,6 +133,7 @@ class Enemy(
                 enemy.def,
                 enemy.exp,
                 DropItem.item(enemy.drop),
+                itemIndex,
                 position
             )
         }

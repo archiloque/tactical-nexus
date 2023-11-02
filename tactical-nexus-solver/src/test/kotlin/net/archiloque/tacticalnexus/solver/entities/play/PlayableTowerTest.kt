@@ -53,13 +53,14 @@ class PlayableTowerTest {
             playableTower.playEntities,
             arrayOf(
                 ItemGroup(
+                    0,
                     arrayOf(
                         PositionedItem(Items.blue_potion, Position(0, 0, 2)),
                         PositionedItem(Items.red_potion, Position(0, 0, 3))
                     )
                 ),
-                UpStaircase(Position(0, 0, 5)),
-                Exit(Position(1, 0, 1)),
+                UpStaircase(0, Position(0, 0, 5)),
+                Exit(0, Position(1, 0, 1)),
             )
         )
         assertEquals(
@@ -121,14 +122,15 @@ class PlayableTowerTest {
             playableTower.playEntities,
             arrayOf(
                 ItemGroup(
+                    0,
                     arrayOf(
                         PositionedItem(Items.blue_potion, Position(0, 2, 0)),
                         PositionedItem(Items.red_potion, Position(0, 3, 0))
                     ),
                 ),
 
-                UpStaircase(Position(0, 5, 0)),
-                Exit(Position(1, 1, 0)),
+                UpStaircase(0, Position(0, 5, 0)),
+                Exit(0, Position(1, 1, 0)),
             )
         )
 
@@ -194,13 +196,14 @@ class PlayableTowerTest {
             playableTower.playEntities,
             arrayOf(
                 ItemGroup(
+                    0,
                     arrayOf(
                         PositionedItem(Items.blue_potion, Position(0, 2, 2)),
                         PositionedItem(Items.red_potion, Position(0, 3, 2))
                     ),
                 ),
-                UpStaircase(Position(0, 3, 3)),
-                Exit(Position(1, 0, 1)),
+                UpStaircase(0, Position(0, 3, 3)),
+                Exit(0, Position(1, 0, 1)),
             )
         )
 

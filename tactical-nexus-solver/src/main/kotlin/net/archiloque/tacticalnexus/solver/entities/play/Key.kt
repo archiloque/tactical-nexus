@@ -4,7 +4,7 @@ import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 
-class Key(val color: KeyOrDoorColor, val position: Position) : PlayEntitySinglePosition(position) {
+class Key(val color: KeyOrDoorColor, itemIndex: Int,val position: Position) : PlayEntitySinglePosition(itemIndex, position) {
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.Key
