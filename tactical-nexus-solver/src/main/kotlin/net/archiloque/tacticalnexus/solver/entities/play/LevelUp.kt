@@ -40,6 +40,10 @@ data class LevelUp(
                 }
             }
         }
+
+        const val YELLOW_KEYS_NUMBER: Int = 3
+        const val CRIMSON_KEYS_NUMBER: Int = 1
+        const val BLUE_KEYS_NUMBER: Int = 2
     }
 }
 

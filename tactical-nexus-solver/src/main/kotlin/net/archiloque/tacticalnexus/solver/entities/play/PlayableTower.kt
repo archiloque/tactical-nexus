@@ -325,9 +325,6 @@ class PlayableTower(
         for (entityIndex in 0..<entitiesCount) {
             val playEntity = playEntities[entityIndex]
             println("$entityIndex $playEntity")
-            for (reachable in reachable[entityIndex]) {
-                println("\t$reachable ${playEntities[reachable]}")
-            }
         }
     }
 

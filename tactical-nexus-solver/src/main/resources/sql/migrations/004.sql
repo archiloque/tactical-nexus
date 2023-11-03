@@ -1,6 +1,5 @@
 CREATE UNIQUE INDEX states_duplicates
     ON states USING btree (
-    visited,
     reachable,
 
     atk,

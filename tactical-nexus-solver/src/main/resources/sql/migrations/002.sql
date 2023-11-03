@@ -2,7 +2,6 @@ CREATE TABLE states
 (
     id BIGSERIAL NOT NULL,
 
-    visited BIT VARYING(4096) NOT NULL,
     reachable BIT VARYING(4096) NOT NULL,
 
     atk INTEGER NOT NULL,
@@ -21,6 +20,7 @@ CREATE TABLE states
 
     status STATE_STATUS NOT NULL,
 
+    visited BIT VARYING(4096) NOT NULL,
     moves INTEGER[] NOT NULL,
 
     PRIMARY KEY (id)

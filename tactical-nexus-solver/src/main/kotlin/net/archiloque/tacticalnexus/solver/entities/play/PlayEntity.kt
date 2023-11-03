@@ -128,6 +128,14 @@ interface PlayEntity {
                     ) {
                         newEntities.first().play(state, playableTower, stateManager)
                         return false
+                    } else if (newEntities.isEmpty()) {
+                        return false
+                    }
+                }
+
+                PlayEntityType.Key -> {
+                    if (newEntities.isEmpty()) {
+                        return false
                     }
                 }
 

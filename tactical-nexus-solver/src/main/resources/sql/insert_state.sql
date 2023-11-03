@@ -39,8 +39,7 @@ WHERE
 		FROM
 			states
 		WHERE
-			visited = ?
-			and reachable = ?
+			reachable = ?
 			and atk >= ?
 			and def >= ?
 			and exp >= ?
@@ -53,7 +52,6 @@ WHERE
 			and violet_keys >= ?
 			and yellow_keys >= ?
 	) ON CONFLICT(
-		visited,
 		reachable,
 		atk,
 		def,

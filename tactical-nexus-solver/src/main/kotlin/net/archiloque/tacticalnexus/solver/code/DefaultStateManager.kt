@@ -59,7 +59,6 @@ class DefaultStateManager(
     private fun deleteLowerStates(state: State, stateId: Int) {
         database.delete(States) {
             (it.reachable eq state.reachable) and
-                    (it.visited eq state.visited) and
 
                     (it.atk lessEq state.atk) and
                     (it.def lessEq state.def) and
@@ -74,7 +73,7 @@ class DefaultStateManager(
                     (it.platinum_keys lessEq state.platinumKeys) and
                     (it.violet_keys lessEq state.violetKeys) and
                     (it.yellow_keys lessEq state.yellowKeys) and
-                    (it.status eq StateStatus.new) and
+                    (it.status neq  StateStatus.in_progress) and
                     (it.id neq stateId)
         }
     }
@@ -101,22 +100,21 @@ class DefaultStateManager(
 
                 Mappings.IntArraySqlType.setParameter(statement, 15, state.moves)
 
-                Mappings.BitSetSqlType.setParameter(statement, 16, state.visited)
-                Mappings.BitSetSqlType.setParameter(statement, 17, state.reachable)
+                Mappings.BitSetSqlType.setParameter(statement, 16, state.reachable)
 
-                statement.setObject(18, state.atk)
-                statement.setInt(19, state.def)
-                statement.setInt(20, state.exp)
-                statement.setInt(21, state.hp)
+                statement.setObject(17, state.atk)
+                statement.setInt(18, state.def)
+                statement.setInt(19, state.exp)
+                statement.setInt(20, state.hp)
 
-                statement.setInt(22, state.expBonus)
-                statement.setInt(23, state.hpBonus)
+                statement.setInt(21, state.expBonus)
+                statement.setInt(22, state.hpBonus)
 
-                statement.setInt(24, state.blueKeys)
-                statement.setInt(25, state.crimsonKeys)
-                statement.setInt(26, state.platinumKeys)
-                statement.setInt(27, state.violetKeys)
-                statement.setInt(28, state.yellowKeys)
+                statement.setInt(23, state.blueKeys)
+                statement.setInt(24, state.crimsonKeys)
+                statement.setInt(25, state.platinumKeys)
+                statement.setInt(26, state.violetKeys)
+                statement.setInt(27, state.yellowKeys)
                 val resultSet = statement.executeQuery()
                 if (resultSet.next()) {
                     // The state has been inserted
@@ -151,13 +149,15 @@ class DefaultStateManager(
                 if (move >= 0) {
                     val positionedEntity = playableTower.playEntities[move]
                     apply(positionedEntity, currentState)
-                    printStatus(
-                        index,
-                        moveIndexLength,
-                        currentState,
-                        positionedEntity
-                    )
-                    printMove(positionedEntity.getPositions(), lastPosition, tower)
+                    if (positionedEntity.getType() != PlayEntityType.UpStaircase) {
+                        printStatus(
+                            index,
+                            moveIndexLength,
+                            currentState,
+                            positionedEntity
+                        )
+                        printMove(positionedEntity.getPositions(), lastPosition, tower)
+                    }
                     println()
 
                     lastPosition = positionedEntity.getPositions().last()
@@ -175,15 +175,15 @@ class DefaultStateManager(
                         }
 
                         LevelUpType.blueKeys -> {
-                            "Gain 2 blue key"
+                            "Gain ${LevelUp.BLUE_KEYS_NUMBER} blue key(s)"
                         }
 
                         LevelUpType.crimsonKeys -> {
-                            "Gain 1 crimson key"
+                            "Gain ${LevelUp.CRIMSON_KEYS_NUMBER} crimson key(s)"
                         }
 
                         LevelUpType.yellowKeys -> {
-                            "gain 3 yellow keys"
+                            "Gain ${LevelUp.YELLOW_KEYS_NUMBER} yellow key(s)"
                         }
                     }
                     Enemy.applyLevelUp(levelUpType, currentState, levelUp)

@@ -6,6 +6,12 @@ import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp.Companion.levelUp
 
+enum class FightResult {
+    WIN,
+    LOOSE,
+    WIN_NO_HP_LOST,
+}
+
 class Enemy(
     private val type: EnemyType,
     private val level: Int,
@@ -38,10 +44,16 @@ class Enemy(
         val fromLevelUp = levelUp(newState.exp)
 
         val fightResult = apply(newState)
-        if (fightResult) {
+        if (fightResult != FightResult.LOOSE) {
             val toLevelUp = levelUp(newState.exp)
             if (fromLevelUp != toLevelUp) {
-                if (addNewReachablePositions(entityIndex, newState, playableTower, stateManager)) {
+                if (addNewReachablePositions(
+                        entityIndex,
+                        newState,
+                        playableTower,
+                        stateManager
+                    ) || (fightResult == FightResult.WIN_NO_HP_LOST)
+                ) {
                     for (levelUpType in LevelUpType.entries) {
                         val levelUpState = newState(levelUpType.type, newState)
                         applyLevelUp(levelUpType, levelUpState, toLevelUp)
@@ -51,21 +63,32 @@ class Enemy(
                 }
             } else {
                 drop.apply(newState)
-                if (addNewReachablePositions(entityIndex, newState, playableTower, stateManager)) {
+                if (addNewReachablePositions(
+                        entityIndex,
+                        newState,
+                        playableTower,
+                        stateManager
+                    ) || (fightResult == FightResult.WIN_NO_HP_LOST)
+                ) {
                     stateManager.save(newState)
                 }
             }
         }
     }
 
-    fun apply(state: State): Boolean {
+    fun apply(state: State): FightResult {
         val result = calculate(state)
         return if (result != null) {
+            val noHpLost = state.hp == result
             state.hp = result
             state.exp += earnXp(state)
-            true
+            if (noHpLost) {
+                FightResult.WIN_NO_HP_LOST
+            } else {
+                FightResult.WIN
+            }
         } else {
-            false
+            FightResult.LOOSE
         }
     }
 
@@ -117,15 +140,15 @@ class Enemy(
                 }
 
                 LevelUpType.blueKeys -> {
-                    levelUpState.blueKeys += 2
+                    levelUpState.blueKeys += LevelUp.BLUE_KEYS_NUMBER
                 }
 
                 LevelUpType.crimsonKeys -> {
-                    levelUpState.crimsonKeys += 1
+                    levelUpState.crimsonKeys += LevelUp.CRIMSON_KEYS_NUMBER
                 }
 
                 LevelUpType.yellowKeys -> {
-                    levelUpState.yellowKeys += 3
+                    levelUpState.yellowKeys += LevelUp.YELLOW_KEYS_NUMBER
                 }
             }
         }
