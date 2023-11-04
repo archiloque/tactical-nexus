@@ -5,7 +5,6 @@ import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.database.Mappings
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
-import net.archiloque.tacticalnexus.solver.database.States
 import net.archiloque.tacticalnexus.solver.database.readSqlFile
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
@@ -20,11 +19,6 @@ import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 import net.archiloque.tacticalnexus.solver.entities.play.Position
 import org.ktorm.database.Database
-import org.ktorm.dsl.and
-import org.ktorm.dsl.delete
-import org.ktorm.dsl.eq
-import org.ktorm.dsl.lessEq
-import org.ktorm.dsl.neq
 
 class DefaultStateManager(
     val database: Database,
@@ -34,6 +28,7 @@ class DefaultStateManager(
 ) :
     StateManager {
 
+    private val deleteStateQuery: String = readSqlFile("delete_state.sql")
     private val insertStateQuery: String = readSqlFile("insert_state.sql")
     private val lockStateQuery: String = readSqlFile("lock_state.sql")
     private val unlockStateQuery: String = readSqlFile("unlock_state.sql")
@@ -57,24 +52,27 @@ class DefaultStateManager(
     }
 
     private fun deleteLowerStates(state: State, stateId: Int) {
-        database.delete(States) {
-            (it.reachable eq state.reachable) and
+        database.useConnection { connection ->
+            connection.prepareStatement(deleteStateQuery).use { statement ->
+                Mappings.BitSetSqlType.setParameter(statement, 1, state.reachable)
 
-                    (it.atk lessEq state.atk) and
-                    (it.def lessEq state.def) and
-                    (it.exp lessEq state.exp) and
-                    (it.hp lessEq state.hp) and
+                statement.setInt(2, state.atk)
+                statement.setInt(3, state.def)
+                statement.setInt(4, state.exp)
+                statement.setInt(5, state.hp)
 
-                    (it.expBonus lessEq state.expBonus) and
-                    (it.hpBonus lessEq state.hpBonus) and
+                statement.setInt(6, state.expBonus)
+                statement.setInt(7, state.hpBonus)
 
-                    (it.blue_keys lessEq state.blueKeys) and
-                    (it.crimson_keys lessEq state.crimsonKeys) and
-                    (it.platinum_keys lessEq state.platinumKeys) and
-                    (it.violet_keys lessEq state.violetKeys) and
-                    (it.yellow_keys lessEq state.yellowKeys) and
-                    (it.status neq  StateStatus.in_progress) and
-                    (it.id neq stateId)
+                statement.setInt(8, state.blueKeys)
+                statement.setInt(9, state.crimsonKeys)
+                statement.setInt(10, state.platinumKeys)
+                statement.setInt(11, state.violetKeys)
+                statement.setInt(12, state.yellowKeys)
+
+                statement.setObject(1, StateStatus.in_progress.name, Types.OTHER)
+                statement.setInt(14, stateId)
+            }
         }
     }
 

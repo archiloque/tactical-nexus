@@ -20,8 +20,8 @@ CREATE TABLE states
 
     status STATE_STATUS NOT NULL,
 
-    visited BIT VARYING(4096) NOT NULL,
-    moves INTEGER[] NOT NULL,
+    visited BIT VARYING(4096),
+    moves INTEGER[],
 
     PRIMARY KEY (id)
 )

@@ -2,22 +2,21 @@ package net.archiloque.tacticalnexus.solver
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import java.sql.Types
 import java.util.BitSet
 import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.code.DefaultStateManager
 import net.archiloque.tacticalnexus.solver.code.Player
+import net.archiloque.tacticalnexus.solver.database.Mappings
 import net.archiloque.tacticalnexus.solver.database.Migrations
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
-import net.archiloque.tacticalnexus.solver.database.States
-import net.archiloque.tacticalnexus.solver.database.States.id
 import net.archiloque.tacticalnexus.solver.database.findNextStates
+import net.archiloque.tacticalnexus.solver.database.readSqlFile
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 import net.archiloque.tacticalnexus.solver.input.towers.Tower_1
 import org.ktorm.database.Database
-import org.ktorm.dsl.inList
-import org.ktorm.dsl.update
 import org.ktorm.support.postgresql.PostgreSqlDialect
 
 
@@ -78,6 +77,8 @@ fun main() {
     }
 }
 
+private val updateStateQuery: String = readSqlFile("update_state.sql")
+
 private fun processStates(
     states: List<State>,
     playableTower: PlayableTower,
@@ -87,14 +88,13 @@ private fun processStates(
     for (state in states) {
         Player.play(state, playableTower, stateManager)
     }
-    database.update(States) {
-        set(it.status, StateStatus.processed)
-        where {
-            id inList states.map { it.id }
+    database.useConnection { connection ->
+        connection.prepareStatement(updateStateQuery).use { statement ->
+            statement.setObject(1, StateStatus.processed.name, Types.OTHER)
+            Mappings.IntArraySqlType.setParameter(statement, 2, states.map { it.id }.toTypedArray())
         }
     }
 }
-
 
 fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
     val visited = BitSet(playableTower.entitiesCount)
