@@ -20,7 +20,7 @@ class Items {
                 .companionObjectBuilder()
             for (item in items.sortedBy { it.identifier }) {
                 val initializerCode = CodeBlock.Builder().add(
-                    "%T(%S, ${item.atk}, ${item.def}, ${item.expBonus}, ${item.hp}, ${item.hpBonus},)",
+                    "%T(%S, ${item.atk}, ${item.def}, ${item.expBonus}, ${item.hp}, ${item.hpBonus}, ${item.ignoreHbBonus},)",
                     itemClass,
                     item.name,
                 ).build()

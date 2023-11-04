@@ -19,8 +19,9 @@ class ItemGroup(
     items.sumOf { it.inputItem.atk },
     items.sumOf { it.inputItem.def },
     items.sumOf { it.inputItem.expBonus },
-    items.sumOf { it.inputItem.hp },
+    items.filter { !it.inputItem.ignoreHpBonus }.sumOf { it.inputItem.hp },
     items.sumOf { it.inputItem.hpBonus },
+    items.filter { it.inputItem.ignoreHpBonus }.sumOf { it.inputItem.hp },
 ), PlayEntity {
 
     private val positions = items.map { it.position }.toTypedArray()
