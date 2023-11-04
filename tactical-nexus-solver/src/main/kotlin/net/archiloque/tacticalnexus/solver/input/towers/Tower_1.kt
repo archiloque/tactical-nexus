@@ -42,7 +42,7 @@ public class Tower_1 : Tower {
         null, null, Enemy(EnemyType.ranger, 7, 800, 280, 40, 36, Items.blue_potion), null, null,
         Enemy(EnemyType.ranger, 10, 800, 540, 60, 64, Items.blue_potion), null, null,
         Enemy(EnemyType.ranger, 13, 800, 1050, 80, 100, Items.blue_potion), null, null,
-        Enemy(EnemyType.ranger, 16, 2000, 1100, 120, 140, Items.life_potion), null,
+        Enemy(EnemyType.ranger, 16, 2000, 1100, 120, 144, Items.life_potion), null,
         Enemy(EnemyType.ranger, 18, 2000, 1660, 240, 196, Items.life_potion), null, null, null,
         Enemy(EnemyType.ranger, 22, 3000, 2350, 360, 256, Items.heavenly_potion), null, null, null,
         Enemy(EnemyType.ranger, 26, 3000, 3740, 720, 324, Items.heavenly_potion), null, null, null,
