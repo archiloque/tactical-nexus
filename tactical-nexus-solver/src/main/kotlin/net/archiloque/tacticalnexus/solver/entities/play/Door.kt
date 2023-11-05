@@ -7,6 +7,10 @@ import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 class Door(val color: KeyOrDoorColor, private val entityIndex: Int, val position: Position) :
     PlayEntitySinglePosition(entityIndex, position) {
 
+    override fun isDoor(): Boolean {
+        return true
+    }
+
     override fun getType(): PlayEntityType {
         return PlayEntityType.Door
     }

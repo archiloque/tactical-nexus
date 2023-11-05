@@ -3,7 +3,6 @@ package net.archiloque.tacticalnexus.solver.code
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.play.Door
 import net.archiloque.tacticalnexus.solver.entities.play.Enemy
-import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 
 class Player {
@@ -18,7 +17,7 @@ class Player {
             while (reachableEntityIndexFirst >= 0) {
                 val positionedEntity = playableTower.playEntities[reachableEntityIndexFirst]
 
-                if ((positionedEntity.getType() == PlayEntityType.Door) && (playableTower.roomsSingleDoor.indexOf(
+                if ((positionedEntity.isDoor()) && (playableTower.roomsSingleDoor.indexOf(
                         positionedEntity.entityIndex()
                     ) != -1)
                 ) {
@@ -28,7 +27,7 @@ class Player {
                         positionedEntity.play(state, playableTower, stateManager)
                         return
                     }
-                } else if ((positionedEntity.getType() == PlayEntityType.Enemy) && ((positionedEntity as Enemy).killNoHPLost(
+                } else if ((positionedEntity.isEnemy()) && ((positionedEntity as Enemy).killNoHPLost(
                         state
                     ))
                 ) {

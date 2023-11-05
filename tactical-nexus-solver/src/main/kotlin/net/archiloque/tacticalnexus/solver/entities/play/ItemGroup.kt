@@ -15,14 +15,16 @@ data class PositionedItem(
 class ItemGroup(
     private val entityIndex: Int,
     private val items: Array<PositionedItem>,
-) : Item(
-    items.sumOf { it.inputItem.atk },
-    items.sumOf { it.inputItem.def },
-    items.sumOf { it.inputItem.expBonus },
-    items.filter { !it.inputItem.ignoreHpBonus }.sumOf { it.inputItem.hp },
-    items.sumOf { it.inputItem.hpBonus },
-    items.filter { it.inputItem.ignoreHpBonus }.sumOf { it.inputItem.hp },
-), PlayEntity {
+) : PlayEntity() {
+
+    val item = Item(
+        items.sumOf { it.inputItem.atk },
+        items.sumOf { it.inputItem.def },
+        items.sumOf { it.inputItem.expBonus },
+        items.filter { !it.inputItem.ignoreHpBonus }.sumOf { it.inputItem.hp },
+        items.filter { it.inputItem.ignoreHpBonus }.sumOf { it.inputItem.hp },
+        items.sumOf { it.inputItem.hpBonus },
+    )
 
     private val positions = items.map { it.position }.toTypedArray()
 
@@ -59,6 +61,10 @@ class ItemGroup(
         ) {
             stateManager.save(newState)
         }
+    }
+
+    fun apply(state: State) {
+        item.apply(state)
     }
 
     override fun toString(): String {

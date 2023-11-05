@@ -27,6 +27,10 @@ class Enemy(
         return PlayEntityType.Enemy
     }
 
+    override fun isEnemy(): Boolean {
+        return true
+    }
+
     override fun description(): Array<PositionedDescription> {
         return arrayOf(PositionedDescription("Fight lv $level $type and grab the ${drop.name.lowercase()}", position))
     }

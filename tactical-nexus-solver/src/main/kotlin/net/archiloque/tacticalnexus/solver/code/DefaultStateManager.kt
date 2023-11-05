@@ -10,7 +10,7 @@ import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.play.Door
 import net.archiloque.tacticalnexus.solver.entities.play.Enemy
-import net.archiloque.tacticalnexus.solver.entities.play.Item
+import net.archiloque.tacticalnexus.solver.entities.play.ItemGroup
 import net.archiloque.tacticalnexus.solver.entities.play.Key
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUpType
@@ -147,7 +147,7 @@ class DefaultStateManager(
                 if (move >= 0) {
                     val positionedEntity = playableTower.playEntities[move]
                     apply(positionedEntity, currentState)
-                    if (positionedEntity.getType() != PlayEntityType.UpStaircase) {
+                    if (! positionedEntity.isUpStaircase()) {
                         printStatus(
                             index,
                             moveIndexLength,
@@ -254,7 +254,7 @@ class DefaultStateManager(
             }
 
             PlayEntityType.ItemGroup -> {
-                val item = inputEntity as Item
+                val item = inputEntity as ItemGroup
                 item.apply(state)
             }
 

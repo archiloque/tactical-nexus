@@ -7,20 +7,32 @@ import net.archiloque.tacticalnexus.solver.database.StateStatus
 
 data class PositionedDescription(val description: String, val position: Position)
 
-interface PlayEntity {
-    fun entityIndex(): Int
+abstract class PlayEntity {
+    abstract fun entityIndex(): Int
 
-    fun getType(): PlayEntityType
+    abstract fun getType(): PlayEntityType
 
-    fun getPositions(): Array<Position>
+    abstract fun getPositions(): Array<Position>
 
-    fun description(): Array<PositionedDescription>
+    abstract fun description(): Array<PositionedDescription>
 
-    fun play(
+    abstract fun play(
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
     )
+
+    open fun isEnemy(): Boolean {
+        return false
+    }
+
+    open fun isDoor(): Boolean {
+        return false
+    }
+
+    open fun isUpStaircase(): Boolean {
+        return false
+    }
 
     fun newState(entityIndex: Int, state: State): State {
         if (entityIndex >= 0) {
@@ -51,9 +63,9 @@ interface PlayEntity {
         stateManager: StateManager,
     ): Boolean {
         // We optimize for cases where the decision is automatic, so we avoid adding more states:
-        // - staircases
-        // - keys
-        // - items
+        // - taking staircases
+        // - picking keys
+        // - picking items
         // - enemies that can be killed without loosing any HP and without leveling up (because levelling up requires creating branches)
         // - doors that leads to items rooms with a single exit
         var didSomethingAutomatic = false
@@ -123,8 +135,7 @@ interface PlayEntity {
         if (!didSomethingAutomatic) {
             when (getType()) {
                 PlayEntityType.Enemy -> {
-                    if ((newEntities.size == 1) && (newEntities.first()
-                            .getType() == PlayEntityType.Enemy)
+                    if ((newEntities.size == 1) && (newEntities.first().isEnemy())
                     ) {
                         newEntities.first().play(state, playableTower, stateManager)
                         return false
@@ -133,14 +144,17 @@ interface PlayEntity {
                     }
                 }
 
-                PlayEntityType.Key -> {
+                PlayEntityType.Door -> {
+                    // Don't open doors that leads to no new thing
                     if (newEntities.isEmpty()) {
                         return false
-                    }
-                }
-
-                PlayEntityType.Door -> {
-                    if (newEntities.isEmpty()) {
+                    } else if ((newEntities.size == 1) && (newEntities.first().isDoor())) {
+                        // If the only new thing available is a door, open it immediately if we can,
+                        // and in all cases don't save this move directly
+                        val newDoor = newEntities.first() as Door
+                        if(newDoor.canApply(state)) {
+                            newDoor.play(state, playableTower, stateManager)
+                        }
                         return false
                     }
                 }

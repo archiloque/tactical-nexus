@@ -6,9 +6,10 @@ DropItem(
     override val def: Int,
     override val expBonus: Int,
     override val hp: Int,
+    override val hpIgnoreBonus: Int,
     override val hpBonus: Int,
     val name: String,
-) : Item(atk, def, expBonus, hp, hpBonus) {
+) : Item(atk, def, expBonus, hp, hpIgnoreBonus, hpBonus) {
 
     companion object {
         private val items = mutableMapOf<String, DropItem>()
@@ -16,11 +17,16 @@ DropItem(
         fun item(item: net.archiloque.tacticalnexus.solver.entities.input.Item): DropItem {
             var value = items[item.name]
             return if (value == null) {
+                val hp = if (item.ignoreHpBonus)
+                    0 else item.hp
+                val hpIgnoreBonus = if (item.ignoreHpBonus)
+                    item.hp else 0
                 value = DropItem(
                     item.atk,
                     item.def,
                     item.expBonus,
-                    item.hp,
+                    hp,
+                    hpIgnoreBonus,
                     item.hpBonus,
                     item.name,
                 )

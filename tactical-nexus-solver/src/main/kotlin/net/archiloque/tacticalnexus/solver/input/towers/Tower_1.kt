@@ -1,9 +1,6 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.`annotation`.processing.Generated
-import kotlin.Array
-import kotlin.Int
-import kotlin.arrayOf
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.input.Door

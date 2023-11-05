@@ -5,6 +5,10 @@ import net.archiloque.tacticalnexus.solver.database.State
 
 data class UpStaircase(val entityIndex: Int, val position: Position) : PlayEntitySinglePosition(entityIndex, position) {
 
+    override fun isUpStaircase(): Boolean {
+        return true
+    }
+
     override fun getType(): PlayEntityType {
         return PlayEntityType.UpStaircase
     }
