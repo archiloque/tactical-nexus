@@ -152,7 +152,7 @@ abstract class PlayEntity {
                         // If the only new thing available is a door, open it immediately if we can,
                         // and in all cases don't save this move directly
                         val newDoor = newEntities.first() as Door
-                        if(newDoor.canApply(state)) {
+                        if (newDoor.canApply(state)) {
                             newDoor.play(state, playableTower, stateManager)
                         }
                         return false

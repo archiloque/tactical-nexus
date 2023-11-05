@@ -39,7 +39,6 @@ class Towers {
 
         fun generate(
             towerLevels: List<TowerLevel>,
-            items: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Item>,
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             stats: List<Stat>,
             generatedPath: Path,

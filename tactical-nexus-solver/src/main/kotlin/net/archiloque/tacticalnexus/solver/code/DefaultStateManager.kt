@@ -147,7 +147,7 @@ class DefaultStateManager(
                 if (move >= 0) {
                     val positionedEntity = playableTower.playEntities[move]
                     apply(positionedEntity, currentState)
-                    if (! positionedEntity.isUpStaircase()) {
+                    if (!positionedEntity.isUpStaircase()) {
                         printStatus(
                             index,
                             moveIndexLength,

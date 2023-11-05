@@ -8,7 +8,6 @@ Item(
     open val def: Int,
     open val expBonus: Int,
     open val hp: Int,
-    open val hpIgnoreBonus: Int,
     open val hpBonus: Int,
 ) {
 
@@ -16,7 +15,7 @@ Item(
         state.atk += atk
         state.def += def
         state.expBonus += expBonus
-        state.hp += ((hp * (100 + hpBonus)) / 100) + hpIgnoreBonus
+        state.hp += (hp * (100 + hpBonus)) / 100
         state.hpBonus += hpBonus
     }
 

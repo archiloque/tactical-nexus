@@ -484,7 +484,7 @@ public class Tower_1 : Tower {
                 arrayOf(
                     Items.power_card,
                     rangers[18], null, null, Items.guard_potion, Wall.instance, fighters[23], Wall.instance,
-                    Items.blue_potion, Items.guard_potion, Wall.instance, Items.life_potion, fighters[28],
+                    Items.power_potion, Items.guard_potion, Wall.instance, Items.life_potion, fighters[28],
                     Wall.instance, Wall.instance,
                 ),
                 arrayOf(

@@ -228,9 +228,8 @@ class PlayableTower(
                     }
 
                     if ((entitiesAroundType.size == 1) && (entitiesAroundType.first() == InputEntityType.Door)) {
-                        val doorEntity = entities.indexOfFirst { entity ->
-                            (entity.getType() == PlayEntityType.Door) && entity.getPositions().first()
-                                .equals(entitiesAroundPosition.first())
+                        val doorEntity = entities.indexOfFirst { playEntity ->
+                            (playEntity.isDoor()) && playEntity.getPositions().first() == entitiesAroundPosition.first()
                         }
                         roomsSingleDoor.add(doorEntity)
                     }

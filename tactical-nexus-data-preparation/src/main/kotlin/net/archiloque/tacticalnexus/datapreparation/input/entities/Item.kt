@@ -11,7 +11,6 @@ data class Item(
     val expBonus: Int,
     val hp: Int,
     val hpBonus: Int,
-    val ignoreHbBonus: Boolean,
 ) {
     companion object {
         fun parse(filePath: String): List<Item> {
@@ -27,7 +26,6 @@ data class Item(
                         it["EXP Bonus"]!!.toInt(),
                         it["HP"]!!.toInt(),
                         it["HP Bonus"]!!.toInt(),
-                        it["Ignore HP Bonus"]!!.toBoolean(),
                     )
                 }.toList()
             }

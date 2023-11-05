@@ -33,6 +33,6 @@ class Solver(
     fun generate() {
         println("Generating data for solver")
         Items.generate(items, generatedPath)
-        Towers.generate(towerLevels, items, enemies, stats, generatedPath)
+        Towers.generate(towerLevels, enemies, stats, generatedPath)
     }
 }

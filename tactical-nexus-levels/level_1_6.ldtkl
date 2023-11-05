@@ -2570,9 +2570,9 @@
 					"height": 16,
 					"defUid": 11,
 					"px": [128,80],
-					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "blue_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["blue_potion"]
+						"params": ["power_potion"]
 					}] }]
 				},
 				{

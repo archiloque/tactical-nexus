@@ -7,7 +7,6 @@ class Item(
     val expBonus: Int,
     val hp: Int,
     val hpBonus: Int,
-    val ignoreHpBonus: Boolean,
 ) : InputEntity() {
     override fun getType(): InputEntityType {
         return InputEntityType.Item
