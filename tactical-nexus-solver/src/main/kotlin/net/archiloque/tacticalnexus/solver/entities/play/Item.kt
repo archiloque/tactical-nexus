@@ -15,7 +15,7 @@ Item(
         state.atk += atk
         state.def += def
         state.expBonus += expBonus
-        state.hp += (hp * (100 + hpBonus)) / 100
+        state.hp += (hp * (100 + state.hpBonus)) / 100
         state.hpBonus += hpBonus
     }
 
