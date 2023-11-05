@@ -135,28 +135,11 @@ abstract class PlayEntity {
         if (!didSomethingAutomatic) {
             when (getType()) {
                 PlayEntityType.Enemy -> {
-                    if ((newEntities.size == 1) && (newEntities.first().isEnemy())
-                    ) {
-                        newEntities.first().play(state, playableTower, stateManager)
-                        return false
-                    } else if (newEntities.isEmpty()) {
-                        return false
-                    }
+                    return checkNewEntities(newEntities, state, playableTower, stateManager)
                 }
 
                 PlayEntityType.Door -> {
-                    // Don't open doors that leads to no new thing
-                    if (newEntities.isEmpty()) {
-                        return false
-                    } else if ((newEntities.size == 1) && (newEntities.first().isDoor())) {
-                        // If the only new thing available is a door, open it immediately if we can,
-                        // and in all cases don't save this move directly
-                        val newDoor = newEntities.first() as Door
-                        if (newDoor.canApply(state)) {
-                            newDoor.play(state, playableTower, stateManager)
-                        }
-                        return false
-                    }
+                    return checkNewEntities(newEntities, state, playableTower, stateManager)
                 }
 
                 else -> {
@@ -165,6 +148,39 @@ abstract class PlayEntity {
             }
         }
         return true
+    }
+
+    private fun checkNewEntities(
+        newEntities: List<PlayEntity>,
+        state: State,
+        playableTower: PlayableTower,
+        stateManager: StateManager,
+    ): Boolean {
+        if (newEntities.isEmpty()) {
+            return false
+        } else if (newEntities.size == 1) {
+            val newEntity = newEntities.first()
+            return when (newEntity.getType()) {
+                PlayEntityType.Door -> {
+                    val newDoor = newEntity as Door
+                    if (newDoor.canApply(state)) {
+                        newDoor.play(state, playableTower, stateManager)
+                    }
+                    false
+                }
+
+                PlayEntityType.Enemy -> {
+                    newEntity.play(state, playableTower, stateManager)
+                    false
+                }
+
+                else -> {
+                    true
+                }
+            }
+        } else {
+            return true
+        }
     }
 
     private fun addNewPosition(
