@@ -60,7 +60,7 @@ class Enemy(
                 ) {
                     for (levelUpType in LevelUpType.entries) {
                         val levelUpState = newState(levelUpType.type, newState)
-                        applyLevelUp(levelUpType, levelUpState, toLevelUp)
+                        applyLevelUp(levelUpState, levelUpType, toLevelUp)
                         drop.apply(levelUpState)
                         stateManager.save(levelUpState)
                     }
@@ -130,29 +130,30 @@ class Enemy(
 
     companion object {
         fun applyLevelUp(
+            state: State,
             levelUpType: LevelUpType,
-            levelUpState: State,
-            toLevelUp: LevelUp,
+            levelUp: LevelUp,
         ) {
+            state.level = levelUp.level
             when (levelUpType) {
                 LevelUpType.atk -> {
-                    levelUpState.atk += toLevelUp.atk
+                    state.atk += levelUp.atk
                 }
 
                 LevelUpType.def -> {
-                    levelUpState.def += toLevelUp.def
+                    state.def += levelUp.def
                 }
 
                 LevelUpType.blueKeys -> {
-                    levelUpState.blueKeys += LevelUp.BLUE_KEYS_NUMBER
+                    state.blueKeys += LevelUp.BLUE_KEYS_NUMBER
                 }
 
                 LevelUpType.crimsonKeys -> {
-                    levelUpState.crimsonKeys += LevelUp.CRIMSON_KEYS_NUMBER
+                    state.crimsonKeys += LevelUp.CRIMSON_KEYS_NUMBER
                 }
 
                 LevelUpType.yellowKeys -> {
-                    levelUpState.yellowKeys += LevelUp.YELLOW_KEYS_NUMBER
+                    state.yellowKeys += LevelUp.YELLOW_KEYS_NUMBER
                 }
             }
         }

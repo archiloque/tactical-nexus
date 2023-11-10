@@ -10,18 +10,18 @@ import org.ktorm.schema.SqlType
 
 class Mappings {
 
-    object IntArraySqlType : SqlType<Array<Int>>(Types.ARRAY, "int[]") {
+    object IntArraySqlType : SqlType<IntArray>(Types.ARRAY, "int[]") {
 
-        override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: Array<Int>) {
+        override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: IntArray) {
             ps.setObject(index, parameter)
         }
 
         @Suppress("UNCHECKED_CAST")
-        override fun doGetResult(rs: ResultSet, index: Int): Array<Int>? {
+        override fun doGetResult(rs: ResultSet, index: Int): IntArray? {
             val sqlArray = rs.getArray(index) ?: return null
             try {
                 val objectArray = sqlArray.array as Array<Any>?
-                return objectArray?.map { it as Int }?.toTypedArray()
+                return objectArray?.map { it as Int }?.toIntArray()
             } finally {
                 sqlArray.free()
             }
@@ -55,7 +55,7 @@ class Mappings {
     }
 }
 
-fun BaseTable<*>.intArray(name: String): Column<Array<Int>> {
+fun BaseTable<*>.intArray(name: String): Column<IntArray> {
     return registerColumn(name, Mappings.IntArraySqlType)
 }
 

@@ -3,7 +3,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 import java.util.Collections
 
 data class LevelUp(
-    val number: Int,
+    val level: Int,
     val deltaExp: Int,
     val exp: Int,
 
@@ -27,7 +27,7 @@ data class LevelUp(
             synchronized(Enemy) {
                 var maxLevel = levelUps.last()
                 while (maxLevel.exp <= exp) {
-                    val newLevelNumber = maxLevel.number + 1
+                    val newLevelNumber = maxLevel.level + 1
                     val deltaExp = maxLevel.deltaExp + (newLevelNumber * 10)
                     maxLevel = LevelUp(
                         newLevelNumber,

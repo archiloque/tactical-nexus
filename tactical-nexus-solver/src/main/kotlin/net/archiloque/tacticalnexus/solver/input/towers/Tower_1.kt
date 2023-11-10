@@ -484,7 +484,7 @@ public class Tower_1 : Tower {
                 arrayOf(
                     Items.power_card,
                     rangers[18], null, null, Items.guard_potion, Wall.instance, fighters[23], Wall.instance,
-                    Items.power_potion, Items.power_potion, Wall.instance, Items.life_potion, fighters[28],
+                    Items.power_potion, Items.guard_potion, Wall.instance, Items.life_potion, fighters[28],
                     Wall.instance, Wall.instance,
                 ),
                 arrayOf(
@@ -497,7 +497,7 @@ public class Tower_1 : Tower {
                     Staircase.down, Key(KeyOrDoorColor.platinum),
                     Door(KeyOrDoorColor.platinum), Items.power_potion, Items.guard_potion, rangers[18],
                     Items.power_potion, Items.power_card, Items.power_deck, rangers[22], Items.blue_potion,
-                    Items.life_potion, rangers[30], Items.drop_of_dream_ocean, Exit.instance,
+                    Items.life_potion, rangers[30], Items.drop_of_dream_ocean, Staircase.up,
                 ),
                 arrayOf(
                     Wall.instance, Wall.instance, Wall.instance, Items.power_potion, Items.guard_potion,
@@ -539,6 +539,54 @@ public class Tower_1 : Tower {
                     Wall.instance, Items.life_potion, Items.heavenly_potion, Items.heavenly_potion, Wall.instance,
                     Door(KeyOrDoorColor.yellow), Items.golden_feather, Wall.instance,
                     Door(KeyOrDoorColor.crimson), Key(KeyOrDoorColor.violet),
+                ),
+            )
+        ),
+        TowerLevel(
+            10, 15,
+            arrayOf(
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null,
+                    Items.heavenly_potion, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null,
+                    null, null, null, Items.heavenly_potion, Items.drop_of_dream_ocean, Items.heavenly_potion,
+                    null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    Exit.instance, null, null, null, null,
+                    Items.heavenly_potion, Items.drop_of_dream_ocean, Items.life_crown, Items.drop_of_dream_ocean,
+                    Items.heavenly_potion, null, null, null, null, Staircase.down,
+                ),
+                arrayOf(
+                    null, null, null,
+                    null, null, null, Items.heavenly_potion, Items.drop_of_dream_ocean, Items.heavenly_potion,
+                    null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null,
+                    Items.heavenly_potion, null, null, null, null, null, null, null,
                 ),
             )
         ),

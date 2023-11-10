@@ -2,6 +2,7 @@ package net.archiloque.tacticalnexus.solver.code
 
 import java.sql.Types
 import kotlin.system.exitProcess
+import kotlinx.coroutines.sync.Mutex
 import net.archiloque.tacticalnexus.solver.database.Mappings
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
@@ -33,7 +34,20 @@ class DefaultStateManager(
     private val lockStateQuery: String = readSqlFile("lock_state.sql")
     private val unlockStateQuery: String = readSqlFile("unlock_state.sql")
 
+    private val maxScoreLock = Mutex()
+    private var maxScore = 0
+    private var maxScoreMoves: IntArray = intArrayOf()
+
     override fun save(state: State) {
+        val stateScore = state.score()
+        if (stateScore > maxScore) {
+            synchronized(maxScoreLock) {
+                if(stateScore > maxScore) {
+                    maxScore = stateScore
+                    maxScoreMoves = state.moves
+                }
+            }
+        }
         val stateLockId = state.reachable.hashCode()
         lockState(lockStateQuery, stateLockId)
         val stateId = tryInsertState(state)
@@ -80,39 +94,41 @@ class DefaultStateManager(
         database.useConnection { connection ->
             connection.prepareStatement(insertStateQuery).use { statement ->
                 statement.setObject(1, StateStatus.new.name, Types.OTHER)
-                Mappings.BitSetSqlType.setParameter(statement, 2, state.visited)
-                Mappings.BitSetSqlType.setParameter(statement, 3, state.reachable)
-                statement.setObject(4, state.atk)
-                statement.setInt(5, state.def)
-                statement.setInt(6, state.exp)
-                statement.setInt(7, state.hp)
 
-                statement.setInt(8, state.expBonus)
-                statement.setInt(9, state.hpBonus)
+                Mappings.BitSetSqlType.setParameter(statement, 2, state.reachable)
 
-                statement.setInt(10, state.blueKeys)
-                statement.setInt(11, state.crimsonKeys)
-                statement.setInt(12, state.platinumKeys)
-                statement.setInt(13, state.violetKeys)
-                statement.setInt(14, state.yellowKeys)
+                statement.setObject(3, state.atk)
+                statement.setInt(4, state.def)
+                statement.setInt(5, state.exp)
+                statement.setInt(6, state.hp)
 
+                statement.setInt(7, state.expBonus)
+                statement.setInt(8, state.hpBonus)
+
+                statement.setInt(9, state.blueKeys)
+                statement.setInt(10, state.crimsonKeys)
+                statement.setInt(11, state.platinumKeys)
+                statement.setInt(12, state.violetKeys)
+                statement.setInt(13, state.yellowKeys)
+
+                Mappings.BitSetSqlType.setParameter(statement, 14, state.visited)
                 Mappings.IntArraySqlType.setParameter(statement, 15, state.moves)
+                statement.setInt(16, state.level)
 
-                Mappings.BitSetSqlType.setParameter(statement, 16, state.reachable)
+                Mappings.BitSetSqlType.setParameter(statement, 17, state.reachable)
+                statement.setInt(18, state.atk)
+                statement.setInt(19, state.def)
+                statement.setInt(20, state.exp)
+                statement.setInt(21, state.hp)
 
-                statement.setObject(17, state.atk)
-                statement.setInt(18, state.def)
-                statement.setInt(19, state.exp)
-                statement.setInt(20, state.hp)
+                statement.setInt(22, state.expBonus)
+                statement.setInt(23, state.hpBonus)
 
-                statement.setInt(21, state.expBonus)
-                statement.setInt(22, state.hpBonus)
-
-                statement.setInt(23, state.blueKeys)
-                statement.setInt(24, state.crimsonKeys)
-                statement.setInt(25, state.platinumKeys)
-                statement.setInt(26, state.violetKeys)
-                statement.setInt(27, state.yellowKeys)
+                statement.setInt(24, state.blueKeys)
+                statement.setInt(25, state.crimsonKeys)
+                statement.setInt(26, state.platinumKeys)
+                statement.setInt(27, state.violetKeys)
+                statement.setInt(28, state.yellowKeys)
                 val resultSet = statement.executeQuery()
                 if (resultSet.next()) {
                     // The state has been inserted
@@ -124,8 +140,10 @@ class DefaultStateManager(
         }
     }
 
-    override fun reachedExit(moves: Array<Int>) {
-        synchronized(this) {
+    private val exitLock = Mutex()
+
+    override fun reachedExit(moves: IntArray) {
+        synchronized(exitLock) {
             val currentState = initialState.copy()
 
             val moveIndexLength = moves.size.toString().length
@@ -184,7 +202,7 @@ class DefaultStateManager(
                             "Gain ${LevelUp.YELLOW_KEYS_NUMBER} yellow key(s)"
                         }
                     }
-                    Enemy.applyLevelUp(levelUpType, currentState, levelUp)
+                    Enemy.applyLevelUp(currentState, levelUpType, levelUp)
                     printStatus(
                         index,
                         moveIndexLength,
@@ -215,7 +233,7 @@ class DefaultStateManager(
         }
         val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
-            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
+            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}, Score: ${currentState.score()}"
         )
     }
 

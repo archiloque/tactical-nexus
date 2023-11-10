@@ -17,7 +17,6 @@ WHERE
         UPDATE
             SKIP LOCKED
     ) RETURNING id,
-    visited,
     reachable,
     atk,
     def,
@@ -30,4 +29,6 @@ WHERE
     platinum_keys,
     violet_keys,
     yellow_keys,
-    moves
+    visited,
+    moves,
+    level

@@ -32,7 +32,52 @@
 	],
 	"layerInstances": [
 		{
-			"__identifier": "entities",
+			"__identifier": "score",
+			"__type": "Entities",
+			"__cWid": 15,
+			"__cHei": 15,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "4d9c1e40-6280-11ee-a1f6-134ddf9b7aa5",
+			"levelId": 34,
+			"layerDefUid": 39,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 8311955,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": [
+				{
+					"__identifier": "score",
+					"__grid": [7,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#F77622",
+					"__worldX": 896,
+					"__worldY": 144,
+					"iid": "d7988520-6280-11ee-a1f6-7b22097e4ac8",
+					"width": 16,
+					"height": 16,
+					"defUid": 41,
+					"px": [112,112],
+					"fieldInstances": [{ "__identifier": "score", "__type": "LocalEnum.score", "__value": "check", "__tile": null, "defUid": 42, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["check"]
+					}] }]
+				}
+			]
+		},
+		{
+			"__identifier": "main",
 			"__type": "Entities",
 			"__cWid": 15,
 			"__cHei": 15,

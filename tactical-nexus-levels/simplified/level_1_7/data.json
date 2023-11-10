@@ -1,0 +1,231 @@
+{
+	"identifier": "level_1_7",
+	"uniqueIdentifer": "f49f0290-6280-11ee-b38c-ad3bda426474",
+	"x": 1552,
+	"y": 32,
+	"width": 240,
+	"height": 240,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"tower": 1,
+		"level": 7
+	},
+	"layers": [],
+	"entities": {
+		"score": [
+			{
+				"id": "score",
+				"iid": "f87489b0-6280-11ee-a1f6-497d9d04c344",
+				"layer": "score",
+				"x": 112,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"score": "star"
+				}
+			}
+		],
+		"staircase": [
+			{
+				"id": "staircase",
+				"iid": "2860fac0-6280-11ee-b38c-91823507daeb",
+				"layer": "main",
+				"x": 224,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "down"
+				}
+			}
+		],
+		"exit": [
+			{
+				"id": "exit",
+				"iid": "2d78b0c0-6280-11ee-b38c-914cd08adf97",
+				"layer": "main",
+				"x": 0,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields" : {}
+			}
+		],
+		"item": [
+			{
+				"id": "item",
+				"iid": "3ea2c390-6280-11ee-b38c-476f6a8b06f9",
+				"layer": "main",
+				"x": 128,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "8b04bfe0-6280-11ee-b38c-afc7e87f1f85",
+				"layer": "main",
+				"x": 144,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "8c1a0070-6280-11ee-b38c-2bfa0cec00c0",
+				"layer": "main",
+				"x": 128,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "8cb7c710-6280-11ee-b38c-5fd13481bf28",
+				"layer": "main",
+				"x": 112,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "8dddf790-6280-11ee-b38c-514b5f769f9c",
+				"layer": "main",
+				"x": 112,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "8e6fd750-6280-11ee-b38c-7b2943795321",
+				"layer": "main",
+				"x": 96,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "8f0cb390-6280-11ee-b38c-714d420e79c3",
+				"layer": "main",
+				"x": 80,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "8fb0e2d0-6280-11ee-b38c-6919c2fbef79",
+				"layer": "main",
+				"x": 96,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "923347f0-6280-11ee-b38c-79d9545030d6",
+				"layer": "main",
+				"x": 112,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "drop_of_dream_ocean"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "960e8650-6280-11ee-b38c-7f61a3c73ea0",
+				"layer": "main",
+				"x": 128,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "drop_of_dream_ocean"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "96a436a0-6280-11ee-b38c-87e0dda14bcb",
+				"layer": "main",
+				"x": 112,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "drop_of_dream_ocean"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "97381230-6280-11ee-b38c-ad6b06f63dc7",
+				"layer": "main",
+				"x": 96,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "drop_of_dream_ocean"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "9bcab9b0-6280-11ee-b38c-139cb5b3a421",
+				"layer": "main",
+				"x": 112,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "life_crown"
+				}
+			}
+		]
+	}
+}

@@ -22,6 +22,7 @@ CREATE TABLE states
 
     visited BIT VARYING(4096),
     moves INTEGER[],
+    level INTEGER NOT NULL,
 
     PRIMARY KEY (id)
 )

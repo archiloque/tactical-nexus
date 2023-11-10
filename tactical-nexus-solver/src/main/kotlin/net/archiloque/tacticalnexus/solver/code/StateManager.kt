@@ -5,5 +5,5 @@ import net.archiloque.tacticalnexus.solver.database.State
 interface StateManager {
     fun save(state: State)
 
-    fun reachedExit(moves: Array<Int>)
+    fun reachedExit(moves: IntArray)
 }

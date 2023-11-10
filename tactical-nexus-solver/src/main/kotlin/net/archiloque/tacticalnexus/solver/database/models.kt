@@ -20,23 +20,24 @@ fun findNextStates(database: Database): List<State> {
                     it.getInt(1),
                     StateStatus.in_progress,
                     Mappings.BitSetSqlType.getResult(it, 2)!!,
-                    Mappings.BitSetSqlType.getResult(it, 3)!!,
 
+                    it.getInt(3),
                     it.getInt(4),
                     it.getInt(5),
                     it.getInt(6),
+
                     it.getInt(7),
-
                     it.getInt(8),
-                    it.getInt(9),
 
+                    it.getInt(9),
                     it.getInt(10),
                     it.getInt(11),
                     it.getInt(12),
                     it.getInt(13),
-                    it.getInt(14),
 
+                    Mappings.BitSetSqlType.getResult(it, 14)!!,
                     Mappings.IntArraySqlType.getResult(it, 15)!!,
+                    it.getInt(16)
                 )
             }
         }

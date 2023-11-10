@@ -44,7 +44,7 @@ fun main() {
     val initialState = createInitialState(inputTower, playableTower)
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
     if (System.getenv("MOVES") != null) {
-        stateManager.reachedExit(System.getenv("MOVES").split(",").map { Integer.parseInt(it) }.toTypedArray())
+        stateManager.reachedExit(System.getenv("MOVES").split(",").map { Integer.parseInt(it) }.toIntArray())
     }
     stateManager.save(initialState)
 
@@ -91,7 +91,7 @@ private fun processStates(
     database.useConnection { connection ->
         connection.prepareStatement(updateStateQuery).use { statement ->
             statement.setObject(1, StateStatus.processed.name, Types.OTHER)
-            Mappings.IntArraySqlType.setParameter(statement, 2, states.map { it.id }.toTypedArray())
+            Mappings.IntArraySqlType.setParameter(statement, 2, states.map { it.id }.toIntArray())
         }
     }
 }
@@ -106,7 +106,6 @@ fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
     return State(
         -1,
         StateStatus.new,
-        visited,
         reachable,
 
         inputTower.atk(),
@@ -122,6 +121,8 @@ fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
         0,
         0,
 
-        arrayOf(),
+        visited,
+        intArrayOf(),
+        0,
     )
 }

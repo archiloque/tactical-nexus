@@ -3,11 +3,10 @@ package net.archiloque.tacticalnexus.solver.database
 import java.util.BitSet
 
 data class State(
-    var id: Int,
+    val id: Int,
 
     var status: StateStatus,
 
-    var visited: BitSet,
     var reachable: BitSet,
 
     var atk: Int,
@@ -24,5 +23,11 @@ data class State(
     var violetKeys: Int,
     var yellowKeys: Int,
 
-    var moves: Array<Int>,
-)
+    var visited: BitSet,
+    var moves: IntArray,
+    var level: Int,
+) {
+    fun score(): Int {
+        return hp + ((atk + def) * level)
+    }
+}
