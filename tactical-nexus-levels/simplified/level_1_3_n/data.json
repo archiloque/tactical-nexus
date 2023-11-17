@@ -1,0 +1,33 @@
+{
+	"identifier": "level_1_3_n",
+	"uniqueIdentifer": "d3c55d00-6280-11ee-9412-b1a99be23f9d",
+	"x": 512,
+	"y": 304,
+	"width": 240,
+	"height": 240,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"tower": 1,
+		"level": 3,
+		"nexus": true
+	},
+	"layers": [],
+	"entities": {
+		"staircase": [
+			{
+				"id": "staircase",
+				"iid": "01245a80-6280-11ee-9412-0b4b4b3e10ca",
+				"layer": "main",
+				"x": 0,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "down"
+				}
+			}
+		]
+	}
+}

@@ -31,7 +31,7 @@ class DefaultStateManager(
                 if (stateScore > maxScore) {
                     maxScore = stateScore
                     maxScoreMoves = state.moves
-                    println("Found best score at $maxScore: ${maxScoreMoves.joinToString(", ")}")
+                    println("Found best score at $maxScore: ${maxScoreMoves.joinToString(",")}")
                 }
             }
         }

@@ -9,7 +9,8 @@
 	"neighbourLevels": [],
 	"customFields": {
 		"tower": 1,
-		"level": 6
+		"level": 6,
+		"nexus": false
 	},
 	"layers": [],
 	"entities": {
@@ -635,7 +636,7 @@
 				"height": 16,
 				"color": 14957380,
 				"customFields": {
-					"item": "guard_potion"
+					"item": "power_potion"
 				}
 			},
 			{

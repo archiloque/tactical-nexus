@@ -1,0 +1,167 @@
+{
+	"__header__": {
+		"fileType": "LDtk Project JSON",
+		"app": "LDtk",
+		"doc": "https://ldtk.io/json",
+		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
+		"appAuthor": "Sebastien 'deepnight' Benard",
+		"appVersion": "1.4.1",
+		"url": "https://ldtk.io"
+	},
+	"identifier": "level_1_2_n",
+	"iid": "75876300-6280-11ee-9412-abd9120d8528",
+	"uid": 45,
+	"worldX": 256,
+	"worldY": 304,
+	"worldDepth": 0,
+	"pxWid": 240,
+	"pxHei": 240,
+	"__bgColor": "#696A79",
+	"bgColor": null,
+	"useAutoIdentifier": false,
+	"bgRelPath": null,
+	"bgPos": null,
+	"bgPivotX": 0.5,
+	"bgPivotY": 0.5,
+	"__smartColor": "#ADADB5",
+	"__bgPos": null,
+	"externalRelPath": null,
+	"fieldInstances": [
+		{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+		{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+		{ "__identifier": "nexus", "__type": "Bool", "__value": true, "__tile": null, "defUid": 43, "realEditorValues": [{
+			"id": "V_Bool",
+			"params": [ true ]
+		}] }
+	],
+	"layerInstances": [
+		{
+			"__identifier": "score",
+			"__type": "Entities",
+			"__cWid": 15,
+			"__cHei": 15,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "75878a10-6280-11ee-9412-41808d9021b7",
+			"levelId": 45,
+			"layerDefUid": 39,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 1950453,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
+		},
+		{
+			"__identifier": "main",
+			"__type": "Entities",
+			"__cWid": 15,
+			"__cHei": 15,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "75878a11-6280-11ee-9412-5be116e19aac",
+			"levelId": 45,
+			"layerDefUid": 3,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 753932,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": [
+				{
+					"__identifier": "staircase",
+					"__grid": [14,0],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#181425",
+					"__worldX": 480,
+					"__worldY": 304,
+					"iid": "8f95c430-6280-11ee-9412-09d1d436b083",
+					"width": 16,
+					"height": 16,
+					"defUid": 16,
+					"px": [224,0],
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "down", "__tile": null, "defUid": 20, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["down"]
+					}] }]
+				},
+				{
+					"__identifier": "staircase",
+					"__grid": [0,14],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#181425",
+					"__worldX": 256,
+					"__worldY": 528,
+					"iid": "9c688ad0-6280-11ee-9412-5f71c17b24da",
+					"width": 16,
+					"height": 16,
+					"defUid": 16,
+					"px": [0,224],
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["up"]
+					}] }]
+				},
+				{
+					"__identifier": "wall",
+					"__grid": [0,13],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
+					"__smartColor": "#0099DB",
+					"__worldX": 256,
+					"__worldY": 512,
+					"iid": "a01713e0-6280-11ee-9412-1d968b60195c",
+					"width": 16,
+					"height": 16,
+					"defUid": 5,
+					"px": [0,208],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [1,14],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 272,
+					"__worldY": 528,
+					"iid": "a6a08250-6280-11ee-9412-eb414e1612f0",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [16,224],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "burgeoner", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["burgeoner"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 16, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [16] }] }
+					]
+				}
+			]
+		}
+	],
+	"__neighbours": []
+}

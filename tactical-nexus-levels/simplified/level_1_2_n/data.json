@@ -1,0 +1,75 @@
+{
+	"identifier": "level_1_2_n",
+	"uniqueIdentifer": "75876300-6280-11ee-9412-abd9120d8528",
+	"x": 256,
+	"y": 304,
+	"width": 240,
+	"height": 240,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"tower": 1,
+		"level": 2,
+		"nexus": true
+	},
+	"layers": [],
+	"entities": {
+		"staircase": [
+			{
+				"id": "staircase",
+				"iid": "8f95c430-6280-11ee-9412-09d1d436b083",
+				"layer": "main",
+				"x": 224,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "down"
+				}
+			},
+			{
+				"id": "staircase",
+				"iid": "9c688ad0-6280-11ee-9412-5f71c17b24da",
+				"layer": "main",
+				"x": 0,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "up"
+				}
+			}
+		],
+		"wall": [
+			{
+				"id": "wall",
+				"iid": "a01713e0-6280-11ee-9412-1d968b60195c",
+				"layer": "main",
+				"x": 0,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			}
+		],
+		"enemy": [
+			{
+				"id": "enemy",
+				"iid": "a6a08250-6280-11ee-9412-eb414e1612f0",
+				"layer": "main",
+				"x": 16,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "burgeoner",
+					"level": 16
+				}
+			}
+		]
+	}
+}

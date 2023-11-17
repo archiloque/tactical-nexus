@@ -22,7 +22,7 @@ class Enemies {
                     throw RuntimeException("Bad level [${it}]")
                 } else if (it.tower <= 0) {
                     throw RuntimeException("Bad tower  [${it}]")
-                } else if (!itemsIdentifiers.contains(it.drop)) {
+                } else if (it.drop.isNotEmpty() && !itemsIdentifiers.contains(it.drop)) {
                     throw RuntimeException("Unknown item [${it}]")
                 }
             }

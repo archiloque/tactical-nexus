@@ -3,7 +3,8 @@ package net.archiloque.tacticalnexus.solver.entities.input
 import net.archiloque.tacticalnexus.solver.entities.Position
 
 interface Tower {
-    fun levels(): Array<TowerLevel>
+    fun standardLevels(): Array<TowerLevel>
+    fun nexusLevels(): Array<TowerLevel>
 
     fun atk(): Int
     fun def(): Int

@@ -20,40 +20,8 @@ class TowerLevels {
             val towerList = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
             for (tower in towerList) {
                 val levelsForTower = towerLevels.filter { it.levelCustomFields.tower == tower }
-                val levelsIndexForTower = levelsForTower.map { it.levelCustomFields.level }.sorted()
-                var theoricalIndex = 1
-                for (levelIndex in levelsIndexForTower) {
-                    if (levelIndex != theoricalIndex) {
-                        throw RuntimeException("Error in levels list ${levelsIndexForTower.joinToString(", ")}")
-                    }
-                    theoricalIndex++
-                }
-                if (!statsIds.contains(tower)) {
-                    throw RuntimeException("Stats not found for tower [${tower}]")
-                }
-                levelsForTower.forEach { level ->
-                    val levelLevel = level.levelCustomFields.level
-
-                    val downStaircases =
-                        level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.down }
-                            .count()
-                    if (
-                        ((levelLevel == 1) && (downStaircases != 0)) ||
-                        ((levelLevel != 1) && (downStaircases != 1))
-                    ) {
-                        throw RuntimeException("Bad number of down stair cases $downStaircases for level $level")
-                    }
-
-                    val upStaircases =
-                        level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.up }
-                            .count()
-                    if (
-                        ((levelLevel == levelsIndexForTower.size) && (upStaircases != 0)) ||
-                        ((levelLevel != levelsIndexForTower.size) && (upStaircases != 1))
-                    ) {
-                        throw RuntimeException("Bad number of up stair cases $upStaircases for level $level")
-                    }
-                }
+                validateLevelsGroup(statsIds, tower, levelsForTower.filter { it.levelCustomFields.nexus} )
+                validateLevelsGroup(statsIds, tower, levelsForTower.filter { ! it.levelCustomFields.nexus })
 
                 val scores: List<Score> = towerLevels.mapNotNull { towerLevel -> towerLevel.entities.score }.flatten()
                 for(scoreType in ScoreType.entries) {
@@ -78,6 +46,47 @@ class TowerLevels {
                     if (!itemsIdentifiers.contains(itemIdentifier)) {
                         throw RuntimeException("Unknown item [${itemIdentifier}] in level [${level.identifier}] at (${item.x}, ${item.y})")
                     }
+                }
+            }
+        }
+
+        private fun validateLevelsGroup(
+            statsIds: List<Int>,
+            tower: Int,
+            levelsForTower: List<TowerLevel>,
+        ) {
+            val levelsIndexForTower = levelsForTower.map { it.levelCustomFields.level }.sorted()
+            var theoricalIndex = 1
+            for (levelIndex in levelsIndexForTower) {
+                if (levelIndex != theoricalIndex) {
+                    throw RuntimeException("Error in levels list ${levelsIndexForTower.joinToString(", ")}")
+                }
+                theoricalIndex++
+            }
+            if (!statsIds.contains(tower)) {
+                throw RuntimeException("Stats not found for tower [${tower}]")
+            }
+            levelsForTower.forEach { level ->
+                val levelLevel = level.levelCustomFields.level
+
+                val downStaircases =
+                    level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.down }
+                        .count()
+                if (
+                    ((levelLevel == 1) && (downStaircases != 0)) ||
+                    ((levelLevel != 1) && (downStaircases != 1))
+                ) {
+                    throw RuntimeException("Bad number of down stair cases $downStaircases for level $level")
+                }
+
+                val upStaircases =
+                    level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.up }
+                        .count()
+                if (
+                    ((levelLevel == levelsIndexForTower.size) && (upStaircases != 0)) ||
+                    ((levelLevel != levelsIndexForTower.size) && (upStaircases != 1))
+                ) {
+                    throw RuntimeException("Bad number of up stair cases $upStaircases for level $level")
                 }
             }
         }

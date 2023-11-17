@@ -10,7 +10,7 @@ class TowerForTest(
     val def: Int,
     val hp: Int,
 ) : Tower {
-    override fun levels(): Array<TowerLevel> {
+    override fun standardLevels(): Array<TowerLevel> {
         return towerLevels
     }
 

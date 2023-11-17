@@ -13,21 +13,25 @@ DropItem(
     companion object {
         private val items = mutableMapOf<String, DropItem>()
 
-        fun item(item: net.archiloque.tacticalnexus.solver.entities.input.Item): DropItem {
-            var value = items[item.name]
-            return if (value == null) {
-                value = DropItem(
-                    item.atk,
-                    item.def,
-                    item.expBonus,
-                    item.hp,
-                    item.hpBonus,
-                    item.name,
-                )
-                items[item.name] = value
-                value
+        fun item(item: net.archiloque.tacticalnexus.solver.entities.input.Item?): DropItem? {
+            if (item == null) {
+                return null
             } else {
-                value
+                var value = items[item.name]
+                return if (value == null) {
+                    value = DropItem(
+                        item.atk,
+                        item.def,
+                        item.expBonus,
+                        item.hp,
+                        item.hpBonus,
+                        item.name,
+                    )
+                    items[item.name] = value
+                    value
+                } else {
+                    value
+                }
             }
         }
     }

@@ -137,7 +137,7 @@ class TowerPreparer(private val tower: Tower) {
                         aroundPosition(positionToCheck) { newPosition ->
                             if (exploredPositions.add(newPosition)) {
                                 val newEntity =
-                                    tower.levels()[newPosition.level].entities[newPosition.line][newPosition.column]
+                                    tower.standardLevels()[newPosition.level].entities[newPosition.line][newPosition.column]
                                 if (newEntity == null) {
                                     newPositionsToCheck.add(newPosition)
                                 } else if (newEntity.getType() != InputEntityType.Wall) {
@@ -174,7 +174,7 @@ class TowerPreparer(private val tower: Tower) {
     private fun forEachEntity(
         callback: (levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity) -> Unit,
     ) {
-        tower.levels().forEachIndexed { levelIndex, level ->
+        tower.standardLevels().forEachIndexed { levelIndex, level ->
             for (lineIndex in 0..<level.lines) {
                 for (columnIndex in 0..<level.columns) {
                     val inputEntity = level.entities[lineIndex][columnIndex]
@@ -201,7 +201,7 @@ class TowerPreparer(private val tower: Tower) {
             for (positionToCheck in positionsToCheck) {
                 aroundPosition(positionToCheck) { position ->
                     if (exploredPositions.add(position)) {
-                        val entity = tower.levels()[position.level].entities[position.line][position.column]
+                        val entity = tower.standardLevels()[position.level].entities[position.line][position.column]
                         if (entity == null) {
                             newPositionsToCheck.add(position)
                         } else if (
@@ -246,7 +246,7 @@ class TowerPreparer(private val tower: Tower) {
                 aroundPosition(positionToCheck) { newPosition ->
                     if (exploredPositions.add(newPosition)) {
                         val newEntity =
-                            tower.levels()[newPosition.level].entities[newPosition.line][newPosition.column]
+                            tower.standardLevels()[newPosition.level].entities[newPosition.line][newPosition.column]
                         if (newEntity == null) {
                             newPositionsToCheck.add(newPosition)
                         } else if (newEntity.getType() == InputEntityType.Item) {
@@ -277,13 +277,13 @@ class TowerPreparer(private val tower: Tower) {
         if (positionToCheck.column > 0) {
             callback(Position(positionToCheck.level, positionToCheck.line, positionToCheck.column - 1))
         }
-        if (positionToCheck.column < (tower.levels()[positionToCheck.level].columns - 1)) {
+        if (positionToCheck.column < (tower.standardLevels()[positionToCheck.level].columns - 1)) {
             callback(Position(positionToCheck.level, positionToCheck.line, positionToCheck.column + 1))
         }
         if (positionToCheck.line > 0) {
             callback(Position(positionToCheck.level, positionToCheck.line - 1, positionToCheck.column))
         }
-        if (positionToCheck.line < (tower.levels()[positionToCheck.level].lines - 1)) {
+        if (positionToCheck.line < (tower.standardLevels()[positionToCheck.level].lines - 1)) {
             callback(Position(positionToCheck.level, positionToCheck.line + 1, positionToCheck.column))
         }
     }

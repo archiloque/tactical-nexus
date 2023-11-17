@@ -111,7 +111,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
 
     private fun printMove(currentPositions: Array<Position>, previousPosition: Position, tower: Tower) {
         val levelIndex = currentPositions.first().level
-        val level = tower.levels()[levelIndex]
+        val level = tower.standardLevels()[levelIndex]
         for ((lineIndex, line) in level.entities.withIndex()) {
             println(line.mapIndexed { columnIndex, entity ->
                 if (currentPositions.contains(Position(levelIndex, lineIndex, columnIndex))) {
@@ -155,7 +155,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
             PlayEntityType.Enemy -> {
                 val enemy = inputEntity as Enemy
                 enemy.apply(state)
-                enemy.drop.apply(state)
+                enemy.drop?.apply(state)
             }
 
             PlayEntityType.Exit -> {

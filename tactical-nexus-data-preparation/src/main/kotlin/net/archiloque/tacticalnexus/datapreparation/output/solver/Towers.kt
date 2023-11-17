@@ -29,7 +29,6 @@ class Towers {
         private val doorClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Door")
         private val enemyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Enemy")
         private val enemyTypeClass = ClassName(Solver.ENTITIES_PACKAGE, "EnemyType")
-        private val exitClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Exit")
         private val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
         private val keyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Key")
         private val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
@@ -61,31 +60,13 @@ class Towers {
                     .classBuilder(className)
                     .addAnnotation(Generated::class)
                     .addSuperinterface(towerInterfaceClass)
-                    .addProperty(
-                        enemyBuilder(enemies, EnemyType.fighter)
-                    )
-                    .addProperty(
-                        enemyBuilder(enemies, EnemyType.ranger)
-                    )
 
+                for (enemyType in EnemyType.entries) {
+                    towerSpec.addProperty(enemyBuilder(enemies, enemyType))
+                }
 
-                val towerLevelsIndexForTower =
-                    towerLevels.filter { it.levelCustomFields.tower == tower }.map { it.levelCustomFields.level }
-                        .sorted()
-
-                towerSpec.addProperty(createTowerLevels(towerLevelsIndexForTower, towerLevels, tower))
-
-                towerSpec.addFunction(
-                    FunSpec.builder(
-                        "levels",
-                    )
-                        .addModifiers(KModifier.OVERRIDE)
-                        .returns(
-                            Solver.arrayOf(towerLevelClass)
-                        )
-                        .addCode("return levels")
-                        .build()
-                )
+                createTowerLevels(towerLevels, tower, false, towerSpec)
+                createTowerLevels(towerLevels, tower, true, towerSpec)
 
                 addStatFunction(towerSpec, "atk", towerStat.atk)
                 addStatFunction(towerSpec, "def", towerStat.def)
@@ -104,14 +85,27 @@ class Towers {
         }
 
         private fun createTowerLevels(
-            levelsIndexForTower: List<Int>,
             towerLevels: List<TowerLevel>,
             tower: Int,
-        ): PropertySpec {
+            nexus: Boolean,
+            towerSpec: TypeSpec.Builder,
+        ) {
             val levelsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
+
+            val levelsIndexForTower =
+                towerLevels.filter {
+                    val customFields = it.levelCustomFields
+                    (customFields.tower == tower) && (customFields.nexus == nexus)
+                }
+                    .map { it.levelCustomFields.level }
+                    .sorted()
+
             for (levelIndex in levelsIndexForTower) {
                 val level =
-                    towerLevels.find { (it.levelCustomFields.tower == tower) && (it.levelCustomFields.level == levelIndex) }!!
+                    towerLevels.find {
+                        val customFields = it.levelCustomFields
+                        (customFields.tower == tower) && (customFields.level == levelIndex) && (customFields.nexus == nexus)
+                    }!!
                 val entities = mutableListOf<Entity>()
                 addEntities(level.entities.door, entities)
                 addEntities(level.entities.enemy, entities)
@@ -120,19 +114,39 @@ class Towers {
                 addEntities(level.entities.staircase, entities)
                 addEntities(level.entities.playerStartPosition, entities)
                 addEntities(level.entities.wall, entities)
+
                 appendLevelCode(levelsArrayCode, entities)
             }
             levelsArrayCode.add(")")
 
-            val levelsProperty = PropertySpec
-                .builder(
-                    "levels",
-                    Solver.arrayOf(towerLevelClass),
-                    KModifier.PRIVATE
+            val propertyPrefix = if (nexus) {
+                "nexus"
+            } else {
+                "standard"
+            }
+
+            towerSpec.addProperty(
+                PropertySpec
+                    .builder(
+                        "${propertyPrefix}Levels",
+                        Solver.arrayOf(towerLevelClass),
+                        KModifier.PRIVATE
+                    )
+                    .initializer(levelsArrayCode.build())
+                    .build()
+            )
+
+            towerSpec.addFunction(
+                FunSpec.builder(
+                    "${propertyPrefix}Levels",
                 )
-                .initializer(levelsArrayCode.build())
-                .build()
-            return levelsProperty
+                    .addModifiers(KModifier.OVERRIDE)
+                    .returns(
+                        Solver.arrayOf(towerLevelClass)
+                    )
+                    .addCode("return ${propertyPrefix}Levels")
+                    .build()
+            )
         }
 
         private fun addEntities(entities: List<Entity>?, targetList: MutableList<Entity>) {
@@ -162,6 +176,20 @@ class Towers {
                     (scores != null) && scores.any { it.score() == scoreType }
                 }
                 val score = level!!.entities.score!!.first { score -> score.score() == scoreType }
+
+                towerSpec.addProperty(
+                    PropertySpec.builder("${scoreType.name}Score", positionClass)
+                        .addModifiers(KModifier.PRIVATE)
+                        .initializer(
+                            CodeBlock.builder()
+                                .add(
+                                    "%T(${level.levelCustomFields.level - 1}, ${score.x / 16}, ${score.y / 16},)",
+                                    positionClass
+                                )
+                                .build()
+                        )
+                        .build()
+                )
                 towerSpec.addFunction(
                     FunSpec.builder(
                         "${scoreType.name}Score",
@@ -169,8 +197,7 @@ class Towers {
                         .addModifiers(KModifier.OVERRIDE)
                         .returns(positionClass)
                         .addCode(
-                            "return %T(${level.levelCustomFields.level - 1}, ${score.x / 16}, ${score.y / 16},)",
-                            positionClass,
+                            "return ${scoreType.name}Score",
                         )
                         .build()
                 )
@@ -261,8 +288,14 @@ class Towers {
                 if (enemy == null) {
                     enemiesArrayCode.add("null, ")
                 } else {
+                    val dropFormat = if (enemy.drop.isNotEmpty()) {
+                        "Items.${enemy.drop}"
+                    } else {
+                        "null"
+                    }
+
                     enemiesArrayCode.add(
-                        "%T(%T.${enemyType.name}, ${level}, ${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, Items.${enemy.drop}), ",
+                        "%T(%T.${enemyType.name}, ${level}, ${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, $dropFormat,), ",
                         enemyClass,
                         enemyTypeClass
                     )

@@ -9,7 +9,8 @@
 	"neighbourLevels": [],
 	"customFields": {
 		"tower": 1,
-		"level": 2
+		"level": 2,
+		"nexus": false
 	},
 	"layers": [],
 	"entities": {

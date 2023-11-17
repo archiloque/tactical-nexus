@@ -117,7 +117,7 @@ abstract class PlayEntity {
                             elementToAdd.killNoHPLost(state) && (!elementToAdd.shouldLevelUp(state))
                         if (killEnemyNoHpLostAndNoLevelUp) {
                             elementToAdd.apply(state)
-                            elementToAdd.drop.apply(state)
+                            elementToAdd.drop?.apply(state)
                             addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                             didSomethingAutomatic = true
                         } else {

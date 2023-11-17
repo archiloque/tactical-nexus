@@ -28,7 +28,11 @@
 	"externalRelPath": null,
 	"fieldInstances": [
 		{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-		{ "__identifier": "level", "__type": "Int", "__value": 6, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [6] }] }
+		{ "__identifier": "level", "__type": "Int", "__value": 6, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [6] }] },
+		{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+			"id": "V_Bool",
+			"params": [ false ]
+		}] }
 	],
 	"layerInstances": [
 		{
@@ -2560,9 +2564,9 @@
 					"height": 16,
 					"defUid": 11,
 					"px": [144,80],
-					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["guard_potion"]
+						"params": ["power_potion"]
 					}] }]
 				},
 				{

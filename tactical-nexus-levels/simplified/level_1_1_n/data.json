@@ -1,0 +1,46 @@
+{
+	"identifier": "level_1_1_n",
+	"uniqueIdentifer": "ccc8d6e0-6280-11ee-9412-0b41cb8de0d9",
+	"x": 0,
+	"y": 304,
+	"width": 240,
+	"height": 240,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"tower": 1,
+		"level": 1,
+		"nexus": true
+	},
+	"layers": [],
+	"entities": {
+		"player_start_position": [
+			{
+				"id": "player_start_position",
+				"iid": "4f866200-6280-11ee-9412-d79a0fd66669",
+				"layer": "main",
+				"x": 224,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			}
+		],
+		"staircase": [
+			{
+				"id": "staircase",
+				"iid": "54a59210-6280-11ee-9412-51121a9c1a75",
+				"layer": "main",
+				"x": 224,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "up"
+				}
+			}
+		]
+	}
+}

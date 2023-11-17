@@ -18,3 +18,4 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 1;ranger;22;3000;2350;360;256;heavenly_potion
 1;ranger;26;3000;3740;720;324;heavenly_potion
 1;ranger;30;9999;4800;480;400;drop_of_dream_ocean
+1;burgeoner;16;9999;820;10;300;

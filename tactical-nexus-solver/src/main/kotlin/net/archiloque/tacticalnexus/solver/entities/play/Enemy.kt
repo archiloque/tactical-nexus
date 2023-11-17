@@ -20,7 +20,7 @@ class Enemy(
     val atk: Int,
     val def: Int,
     val exp: Int,
-    val drop: DropItem,
+    val drop: DropItem?,
     private val entityIndex: Int,
     val position: Position,
 ) : PlayEntitySinglePosition(entityIndex, position) {
@@ -33,7 +33,14 @@ class Enemy(
     }
 
     override fun description(): Array<PositionedDescription> {
-        return arrayOf(PositionedDescription("Fight lv $level $type and grab the ${drop.name.lowercase()}", position))
+        val dropDescription = if (drop != null) {
+            " and grab the ${drop.name.lowercase()}"
+        } else {
+            ""
+        }
+
+        val description = "Fight lv $level $type$dropDescription"
+        return arrayOf(PositionedDescription(description, position))
     }
 
     override fun toString(): String {
@@ -62,12 +69,12 @@ class Enemy(
                     for (levelUpType in LevelUpType.entries) {
                         val levelUpState = newState(levelUpType.type, newState)
                         applyLevelUp(levelUpState, levelUpType, toLevelUp)
-                        drop.apply(levelUpState)
+                        drop?.apply(levelUpState)
                         stateManager.save(levelUpState)
                     }
                 }
             } else {
-                drop.apply(newState)
+                drop?.apply(newState)
                 if (addNewReachablePositions(
                         entityIndex,
                         newState,

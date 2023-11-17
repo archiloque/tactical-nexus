@@ -15,4 +15,5 @@ data class TowerLevel(
 data class LevelCustomFields(
     @Required @SerialName("tower") val tower: Int,
     @Required @SerialName("level") val level: Int,
+    @Required @SerialName("nexus") val nexus: Boolean,
 )

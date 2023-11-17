@@ -9,7 +9,7 @@ class Enemy(
     val atk: Int,
     val def: Int,
     val exp: Int,
-    val drop: Item,
+    val drop: Item?,
 ) : InputEntity() {
     override fun getType(): InputEntityType {
         return InputEntityType.Enemy
