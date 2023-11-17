@@ -26,8 +26,4 @@ data class State(
     var visited: BitSet,
     var moves: IntArray,
     var level: Int,
-) {
-    fun score(): Int {
-        return hp + ((atk + def) * level)
-    }
-}
+)

@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.datapreparation
+package net.archiloque.tacticalnexus.datapreparation.enums
 
 import kotlinx.serialization.Serializable
 

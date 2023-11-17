@@ -9,7 +9,9 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import java.nio.file.Path
 import javax.annotation.processing.Generated
-import net.archiloque.tacticalnexus.datapreparation.EnemyType
+import kotlin.system.exitProcess
+import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
+import net.archiloque.tacticalnexus.datapreparation.enums.ScoreType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.Door
 import net.archiloque.tacticalnexus.datapreparation.input.level.Enemy
@@ -18,6 +20,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.level.Exit
 import net.archiloque.tacticalnexus.datapreparation.input.level.Item
 import net.archiloque.tacticalnexus.datapreparation.input.level.Key
 import net.archiloque.tacticalnexus.datapreparation.input.level.PlayerStartPosition
+import net.archiloque.tacticalnexus.datapreparation.input.level.Score
 import net.archiloque.tacticalnexus.datapreparation.input.level.Staircase
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 import net.archiloque.tacticalnexus.datapreparation.input.level.Wall
@@ -32,6 +35,7 @@ class Towers {
         private val keyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Key")
         private val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
         private val playerStartPositionClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "PlayerStartPosition")
+        private val positionClass = ClassName(Solver.ENTITIES_PACKAGE, "Position")
         private val staircaseClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Staircase")
         private val towerLevelClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "TowerLevel")
         private val towerInterfaceClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Tower")
@@ -87,6 +91,8 @@ class Towers {
                 addStatFunction(towerSpec, "atk", towerStat.atk)
                 addStatFunction(towerSpec, "def", towerStat.def)
                 addStatFunction(towerSpec, "hp", towerStat.hp)
+
+                addScores(towerSpec, towerLevels)
 
                 val file = FileSpec
                     .builder("${Solver.INPUT_PACKAGE}.towers", className)
@@ -151,6 +157,28 @@ class Towers {
             )
         }
 
+        private fun addScores(towerSpec: TypeSpec.Builder, levels: List<TowerLevel>) {
+            for (scoreType in ScoreType.entries) {
+                val level = levels.find { level ->
+                    val scores = level.entities.score
+                    (scores != null) && scores.any { it.score() == scoreType }
+                }
+                val score = level!!.entities.score!!.first { score -> score.score() == scoreType }
+                towerSpec.addFunction(
+                    FunSpec.builder(
+                        "${scoreType.name}Score",
+                    )
+                        .addModifiers(KModifier.OVERRIDE)
+                        .returns(positionClass)
+                        .addCode(
+                            "return %T(${level.levelCustomFields.level - 1}, ${score.x / 16}, ${score.y / 16},)",
+                            positionClass,
+                        )
+                        .build()
+                )
+            }
+        }
+
         private fun appendLevelCode(levelsArrayCode: CodeBlock.Builder, entities: List<Entity>) {
             val maxX = entities.maxBy { it.x }.x
             val maxY = entities.maxBy { it.y }.y
@@ -203,6 +231,10 @@ class Towers {
 
                             is PlayerStartPosition -> {
                                 levelsArrayCode.add("%T.instance", playerStartPositionClass)
+                            }
+
+                            is Score -> {
+                                exitProcess(0)
                             }
 
                             is Staircase -> {

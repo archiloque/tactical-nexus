@@ -4,6 +4,7 @@ import kotlin.math.max
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
+import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp.Companion.levelUp
 
 enum class FightResult {

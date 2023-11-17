@@ -3,6 +3,7 @@ package net.archiloque.tacticalnexus.solver.input.towers
 import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
+import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Door
 import net.archiloque.tacticalnexus.solver.entities.input.Enemy
 import net.archiloque.tacticalnexus.solver.entities.input.Exit
@@ -599,4 +600,8 @@ public class Tower_1 : Tower {
     override fun def(): Int = 0
 
     override fun hp(): Int = 1_000
+
+    override fun checkScore(): Position = Position(3, 7, 7)
+
+    override fun starScore(): Position = Position(6, 7, 7)
 }

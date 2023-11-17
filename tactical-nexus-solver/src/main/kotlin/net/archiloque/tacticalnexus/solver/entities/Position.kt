@@ -1,4 +1,4 @@
-package net.archiloque.tacticalnexus.solver.entities.play
+package net.archiloque.tacticalnexus.solver.entities
 
 data class Position(
     val level: Int,

@@ -1,7 +1,7 @@
 package net.archiloque.tacticalnexus.datapreparation.input.entities
 
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
-import net.archiloque.tacticalnexus.datapreparation.EnemyType
+import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 
 data class Enemy(
     val tower: Int,

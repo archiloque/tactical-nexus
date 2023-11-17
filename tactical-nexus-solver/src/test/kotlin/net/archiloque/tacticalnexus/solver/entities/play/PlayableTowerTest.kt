@@ -3,6 +3,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
+import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Exit
 import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.input.Staircase
@@ -16,7 +17,7 @@ class PlayableTowerTest {
     @Test
     fun prepareHorizontal() {
         val playableTower =
-            PlayableTower.prepare(
+            TowerPreparer(
                 TowerForTest(
                     arrayOf(
                         TowerLevel(
@@ -45,7 +46,7 @@ class PlayableTowerTest {
                         )
                     ), 0, 0, 0
                 )
-            )
+            ).prepare()
 
         assertEquals(playableTower.entitiesCount, 3)
 
@@ -85,7 +86,7 @@ class PlayableTowerTest {
     @Test
     fun prepareVertical() {
         val playableTower =
-            PlayableTower.prepare(
+            TowerPreparer(
                 TowerForTest(
                     arrayOf(
                         TowerLevel(
@@ -114,7 +115,7 @@ class PlayableTowerTest {
                         )
                     ), 0, 0, 0
                 )
-            )
+            ).prepare()
 
         assertEquals(playableTower.entitiesCount, 3)
 
@@ -162,7 +163,7 @@ class PlayableTowerTest {
         // wwRSw
         // wwwww
         val playableTower =
-            PlayableTower.prepare(
+            TowerPreparer(
                 TowerForTest(
                     arrayOf(
                         TowerLevel(
@@ -191,7 +192,7 @@ class PlayableTowerTest {
                         )
                     ), 0, 0, 0
                 )
-            )
+            ).prepare()
         assertContentEquals(
             playableTower.playEntities,
             arrayOf(

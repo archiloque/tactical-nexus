@@ -3,6 +3,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
+import net.archiloque.tacticalnexus.solver.entities.Position
 
 class Door(val color: KeyOrDoorColor, private val entityIndex: Int, val position: Position) :
     PlayEntitySinglePosition(entityIndex, position) {

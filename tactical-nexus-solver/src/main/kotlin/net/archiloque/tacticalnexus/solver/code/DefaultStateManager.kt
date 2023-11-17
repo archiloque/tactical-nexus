@@ -7,6 +7,7 @@ import net.archiloque.tacticalnexus.solver.database.Mappings
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.readSqlFile
+import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.play.Door
@@ -18,7 +19,6 @@ import net.archiloque.tacticalnexus.solver.entities.play.LevelUpType
 import net.archiloque.tacticalnexus.solver.entities.play.PlayEntity
 import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
-import net.archiloque.tacticalnexus.solver.entities.play.Position
 import org.ktorm.database.Database
 
 class DefaultStateManager(
@@ -39,12 +39,13 @@ class DefaultStateManager(
     private var maxScoreMoves: IntArray = intArrayOf()
 
     override fun save(state: State) {
-        val stateScore = state.score()
+        val stateScore = score(state)
         if (stateScore > maxScore) {
             synchronized(maxScoreLock) {
-                if(stateScore > maxScore) {
+                if (stateScore > maxScore) {
                     maxScore = stateScore
                     maxScoreMoves = state.moves
+                    println("Found best score at $maxScore")
                 }
             }
         }
@@ -62,6 +63,16 @@ class DefaultStateManager(
             connection.prepareStatement(query).use { statement ->
                 statement.setInt(1, stateLockId)
             }
+        }
+    }
+
+    private fun score(state: State): Int {
+        return if(state.visited[playableTower.starScorePosition]) {
+            state.hp + ((state.atk + state.def) * state.level)
+        } else if(state.visited[playableTower.checkScorePosition]) {
+            state.hp + (5 * ((state.atk + state.def) * state.level))
+        } else {
+            0
         }
     }
 
@@ -233,7 +244,7 @@ class DefaultStateManager(
         }
         val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
-            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}, Score: ${currentState.score()}"
+            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}}"
         )
     }
 

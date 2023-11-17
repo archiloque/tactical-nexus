@@ -3,7 +3,7 @@ package net.archiloque.tacticalnexus.datapreparation.input.level
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import net.archiloque.tacticalnexus.datapreparation.EnemyType
+import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 
 @Serializable
 data class Enemy(

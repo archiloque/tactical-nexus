@@ -2,6 +2,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.entities.Position
 
 data class PositionedItem(
     val inputItem: net.archiloque.tacticalnexus.solver.entities.input.Item,

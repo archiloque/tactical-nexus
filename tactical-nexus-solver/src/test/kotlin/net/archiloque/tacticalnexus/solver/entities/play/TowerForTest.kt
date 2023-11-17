@@ -1,7 +1,8 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
-import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
+import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
+import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
 
 class TowerForTest(
     val towerLevels: Array<TowerLevel>,
@@ -23,6 +24,14 @@ class TowerForTest(
 
     override fun hp(): Int {
         return hp
+    }
+
+    override fun checkScore(): Position {
+        return Position(0, 0, 0)
+    }
+
+    override fun starScore(): Position {
+        return Position(0, 0, 0)
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.BitSet
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
+import net.archiloque.tacticalnexus.solver.entities.Position
 
 data class PositionedDescription(val description: String, val position: Position)
 

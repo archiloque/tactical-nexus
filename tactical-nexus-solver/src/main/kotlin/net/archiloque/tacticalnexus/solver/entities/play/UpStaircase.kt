@@ -2,6 +2,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.entities.Position
 
 data class UpStaircase(val entityIndex: Int, val position: Position) : PlayEntitySinglePosition(entityIndex, position) {
 

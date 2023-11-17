@@ -6,6 +6,7 @@ import java.nio.file.Paths
 import java.util.stream.Collectors
 import kotlin.io.path.readText
 import kotlinx.serialization.json.Json
+import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat

@@ -15,6 +15,7 @@ import net.archiloque.tacticalnexus.solver.database.findNextStates
 import net.archiloque.tacticalnexus.solver.database.readSqlFile
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
+import net.archiloque.tacticalnexus.solver.entities.play.TowerPreparer
 import net.archiloque.tacticalnexus.solver.input.towers.Tower_1
 import org.ktorm.database.Database
 import org.ktorm.support.postgresql.PostgreSqlDialect
@@ -39,7 +40,7 @@ fun main() {
     Migrations.run(database)
 
     val inputTower = Tower_1()
-    val playableTower = PlayableTower.prepare(inputTower)
+    val playableTower = TowerPreparer(inputTower).prepare()
     playableTower.printAll()
     val initialState = createInitialState(inputTower, playableTower)
     val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)

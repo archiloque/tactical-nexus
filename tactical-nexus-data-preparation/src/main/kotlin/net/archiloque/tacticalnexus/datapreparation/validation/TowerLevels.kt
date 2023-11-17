@@ -1,7 +1,9 @@
 package net.archiloque.tacticalnexus.datapreparation.validation
 
 import net.archiloque.tacticalnexus.datapreparation.EnemyId
+import net.archiloque.tacticalnexus.datapreparation.enums.ScoreType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
+import net.archiloque.tacticalnexus.datapreparation.input.level.Score
 import net.archiloque.tacticalnexus.datapreparation.input.level.StaircaseDirection
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 
@@ -61,6 +63,14 @@ class TowerLevels {
                         if (exits != null) {
                             throw RuntimeException("Found an exit for level $level $exits")
                         }
+                    }
+                }
+
+                val scores: List<Score> = towerLevels.mapNotNull { towerLevel -> towerLevel.entities.score }.flatten()
+                for(scoreType in ScoreType.entries) {
+                    val scoreNumber = scores.filter { score -> score.score() == scoreType }.size
+                    if(scoreNumber != 1) {
+                        throw RuntimeException("Found $scoreNumber of score of type $scoreType")
                     }
                 }
             }

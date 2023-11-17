@@ -2,6 +2,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Item
 import net.archiloque.tacticalnexus.solver.input.Items
 
