@@ -16,7 +16,6 @@ import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.Door
 import net.archiloque.tacticalnexus.datapreparation.input.level.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.level.Entity
-import net.archiloque.tacticalnexus.datapreparation.input.level.Exit
 import net.archiloque.tacticalnexus.datapreparation.input.level.Item
 import net.archiloque.tacticalnexus.datapreparation.input.level.Key
 import net.archiloque.tacticalnexus.datapreparation.input.level.PlayerStartPosition
@@ -116,7 +115,6 @@ class Towers {
                 val entities = mutableListOf<Entity>()
                 addEntities(level.entities.door, entities)
                 addEntities(level.entities.enemy, entities)
-                addEntities(level.entities.exit, entities)
                 addEntities(level.entities.item, entities)
                 addEntities(level.entities.key, entities)
                 addEntities(level.entities.staircase, entities)
@@ -211,10 +209,6 @@ class Towers {
                                 levelsArrayCode.add(
                                     "${currentEntity.enemyCustomFields.type}s[${currentEntity.enemyCustomFields.level}]"
                                 )
-                            }
-
-                            is Exit -> {
-                                levelsArrayCode.add("%T.instance", exitClass)
                             }
 
                             is Item -> {

@@ -43,19 +43,6 @@
 				}
 			}
 		],
-		"exit": [
-			{
-				"id": "exit",
-				"iid": "2d78b0c0-6280-11ee-b38c-914cd08adf97",
-				"layer": "main",
-				"x": 0,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 7552569,
-				"customFields" : {}
-			}
-		],
 		"item": [
 			{
 				"id": "item",

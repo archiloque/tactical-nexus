@@ -47,7 +47,7 @@
 			"layerDefUid": 39,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
-			"visible": true,
+			"visible": false,
 			"optionalRules": [],
 			"intGridCsv": [],
 			"autoLayerTiles": [],
@@ -118,22 +118,6 @@
 						"id": "V_String",
 						"params": ["down"]
 					}] }]
-				},
-				{
-					"__identifier": "exit",
-					"__grid": [0,7],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 48, "y": 240, "w": 16, "h": 16 },
-					"__smartColor": "#733E39",
-					"__worldX": 1552,
-					"__worldY": 144,
-					"iid": "2d78b0c0-6280-11ee-b38c-914cd08adf97",
-					"width": 16,
-					"height": 16,
-					"defUid": 32,
-					"px": [0,112],
-					"fieldInstances": []
 				},
 				{
 					"__identifier": "item",

@@ -4,7 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import net.archiloque.tacticalnexus.solver.entities.Position
-import net.archiloque.tacticalnexus.solver.entities.input.Exit
 import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.input.Staircase
 import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
@@ -40,7 +39,7 @@ class PlayableTowerTest {
                             arrayOf(
                                 arrayOf(
                                     Staircase.down,
-                                    Exit.instance,
+                                    null,
                                 )
                             )
                         )
@@ -61,7 +60,6 @@ class PlayableTowerTest {
                     )
                 ),
                 UpStaircase(0, Position(0, 0, 5)),
-                Exit(0, Position(1, 0, 1)),
             )
         )
         assertEquals(
@@ -109,7 +107,7 @@ class PlayableTowerTest {
                                     Staircase.down,
                                 ),
                                 arrayOf(
-                                    Exit.instance,
+                                    null,
                                 )
                             )
                         )
@@ -131,7 +129,6 @@ class PlayableTowerTest {
                 ),
 
                 UpStaircase(0, Position(0, 5, 0)),
-                Exit(0, Position(1, 1, 0)),
             )
         )
 
@@ -187,7 +184,7 @@ class PlayableTowerTest {
                             1,
                             2,
                             arrayOf(
-                                arrayOf(Staircase.down, Exit.instance),
+                                arrayOf(Staircase.down, null),
                             )
                         )
                     ), 0, 0, 0
@@ -204,7 +201,6 @@ class PlayableTowerTest {
                     ),
                 ),
                 UpStaircase(0, Position(0, 3, 3)),
-                Exit(0, Position(1, 0, 1)),
             )
         )
 

@@ -50,10 +50,6 @@ class TowerPreparer(private val tower: Tower) {
                     Enemy.enemy(entity, entities.size, position)
                 }
 
-                InputEntityType.Exit -> {
-                    Exit(entities.size, position)
-                }
-
                 InputEntityType.Key -> {
                     entity as net.archiloque.tacticalnexus.solver.entities.input.Key
                     Key(entity.color, entities.size, position)

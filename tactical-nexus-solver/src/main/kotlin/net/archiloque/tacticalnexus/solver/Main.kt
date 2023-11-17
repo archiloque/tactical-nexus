@@ -6,6 +6,7 @@ import java.sql.Types
 import java.util.BitSet
 import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.code.DefaultStateManager
+import net.archiloque.tacticalnexus.solver.code.PathPrinter
 import net.archiloque.tacticalnexus.solver.code.Player
 import net.archiloque.tacticalnexus.solver.database.Mappings
 import net.archiloque.tacticalnexus.solver.database.Migrations
@@ -31,6 +32,16 @@ fun main() {
         maximumPoolSize = Runtime.getRuntime().availableProcessors()
     }
 
+    val inputTower = Tower_1()
+    val playableTower = TowerPreparer(inputTower).prepare()
+    playableTower.printAll()
+    val initialState = createInitialState(inputTower, playableTower)
+    if (System.getenv("MOVES") != null) {
+        val moves = System.getenv("MOVES").split(",").map { Integer.parseInt(it.trim()) }.toIntArray()
+        PathPrinter(inputTower, playableTower, initialState).printMoves(moves)
+        exitProcess(0)
+    }
+
     val database = Database.connect(
         HikariDataSource(config),
         dialect = PostgreSqlDialect(),
@@ -39,14 +50,7 @@ fun main() {
 
     Migrations.run(database)
 
-    val inputTower = Tower_1()
-    val playableTower = TowerPreparer(inputTower).prepare()
-    playableTower.printAll()
-    val initialState = createInitialState(inputTower, playableTower)
-    val stateManager = DefaultStateManager(database, inputTower, playableTower, initialState)
-    if (System.getenv("MOVES") != null) {
-        stateManager.reachedExit(System.getenv("MOVES").split(",").map { Integer.parseInt(it) }.toIntArray())
-    }
+    val stateManager = DefaultStateManager(database, playableTower)
     stateManager.save(initialState)
 
     if (System.getenv("SINGLE") == "true") {

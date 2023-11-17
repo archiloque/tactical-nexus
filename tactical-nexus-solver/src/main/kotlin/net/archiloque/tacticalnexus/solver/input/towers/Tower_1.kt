@@ -6,7 +6,6 @@ import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Door
 import net.archiloque.tacticalnexus.solver.entities.input.Enemy
-import net.archiloque.tacticalnexus.solver.entities.input.Exit
 import net.archiloque.tacticalnexus.solver.entities.input.Key
 import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.input.Staircase
@@ -576,7 +575,7 @@ public class Tower_1 : Tower {
                     null, null, null, null, null, null,
                 ),
                 arrayOf(
-                    Exit.instance, null, null, null, null,
+                    null, null, null, null, null,
                     Items.heavenly_potion, Items.drop_of_dream_ocean, Items.life_crown, Items.drop_of_dream_ocean,
                     Items.heavenly_potion, null, null, null, null, Staircase.down,
                 ),

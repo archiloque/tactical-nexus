@@ -53,17 +53,6 @@ class TowerLevels {
                     ) {
                         throw RuntimeException("Bad number of up stair cases $upStaircases for level $level")
                     }
-
-                    val exits = level.entities.exit
-                    if (levelLevel == levelsIndexForTower.size) {
-                        if ((exits == null) || (exits.count() != 1)) {
-                            throw RuntimeException("Bad number of exists for level $level $exits")
-                        }
-                    } else {
-                        if (exits != null) {
-                            throw RuntimeException("Found an exit for level $level $exits")
-                        }
-                    }
                 }
 
                 val scores: List<Score> = towerLevels.mapNotNull { towerLevel -> towerLevel.entities.score }.flatten()
