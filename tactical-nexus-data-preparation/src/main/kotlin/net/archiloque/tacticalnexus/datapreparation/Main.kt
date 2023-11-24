@@ -9,6 +9,7 @@ import kotlinx.serialization.json.Json
 import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
+import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 import net.archiloque.tacticalnexus.datapreparation.output.solver.Solver
@@ -45,11 +46,12 @@ fun main(args: Array<String>) {
     val itemsIdentifiers = items.map { it.identifier }
     val stats = Stat.parse("../stats.csv")
     val statsIds = stats.map { it.tower }
+    val levels = Level.parse("../levels.csv")
 
     Items.validate(items, itemsIdentifiers)
     Enemies.validate(enemies, itemsIdentifiers)
     Stats.validate(stats)
     TowerLevels.validate(towerLevels, itemsIdentifiers, enemies, statsIds)
 
-    Solver(enemies, items, towerLevels, stats).generate()
+    Solver(enemies, items, towerLevels, stats, levels).generate()
 }

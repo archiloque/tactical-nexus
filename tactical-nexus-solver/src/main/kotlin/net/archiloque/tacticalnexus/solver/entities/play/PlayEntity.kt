@@ -46,13 +46,13 @@ abstract class PlayEntity {
                 status = StateStatus.new,
                 visited = visitedEntities,
                 reachable = reachableEntities,
-                moves = state.moves.plus(entityIndex)
+                moves = state.moves.plus(entityIndex.toShort())
             )
         } else {
             return state.copy(
                 id = -1,
                 status = StateStatus.new,
-                moves = state.moves.plus(entityIndex)
+                moves = state.moves.plus(entityIndex.toShort())
             )
         }
     }
@@ -114,7 +114,7 @@ abstract class PlayEntity {
                     PlayEntityType.Enemy -> {
                         elementToAdd as Enemy
                         val killEnemyNoHpLostAndNoLevelUp =
-                            elementToAdd.killNoHPLost(state) && (!elementToAdd.shouldLevelUp(state))
+                            elementToAdd.killNoHPLost(state) && (!elementToAdd.shouldLevelUp(state, playableTower))
                         if (killEnemyNoHpLostAndNoLevelUp) {
                             elementToAdd.apply(state)
                             elementToAdd.drop?.apply(state)
@@ -191,7 +191,7 @@ abstract class PlayEntity {
         playableTower: PlayableTower,
     ) {
         state.visited.set(positionToAdd)
-        state.moves = state.moves.plus(positionToAdd)
+        state.moves = state.moves.plus(positionToAdd.toShort())
         positionsToAdd.addAll(playableTower.reachable[positionToAdd].asIterable())
     }
 }

@@ -11,7 +11,7 @@
 	"iid": "b601b680-1460-11ee-90d5-bd5e07dd6506",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 47,
+	"nextUid": 49,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": null,
@@ -33,7 +33,7 @@
 	"imageExportMode": "None",
 	"exportLevelBg": true,
 	"pngFilePattern": null,
-	"backupOnSave": false,
+	"backupOnSave": true,
 	"backupLimit": 10,
 	"backupRelPath": null,
 	"levelNamePattern": "Level_%idx",
@@ -796,307 +796,371 @@
 		}
 	] },
 	"levels": [],
-	"worlds": [{ "iid": "b601b681-1460-11ee-90d5-f10b4f3389f3", "identifier": "world", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
-		{
-			"identifier": "level_1_1",
-			"iid": "b601dd90-1460-11ee-90d5-bbabcfbe407d",
-			"uid": 0,
-			"worldX": 16,
-			"worldY": 32,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 176,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_1.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ false ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_2",
-			"iid": "6fe11600-1460-11ee-bd8c-4f8d5296e643",
-			"uid": 21,
-			"worldX": 272,
-			"worldY": 32,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_2.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ false ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_3",
-			"iid": "318f8550-3b70-11ee-b2da-d900cb187319",
-			"uid": 33,
-			"worldX": 528,
-			"worldY": 32,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_3.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 3, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ false ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_4",
-			"iid": "1cfd7cb0-3b70-11ee-b839-5bb4fa6005e2",
-			"uid": 34,
-			"worldX": 784,
-			"worldY": 32,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_4.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 4, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ false ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_5",
-			"iid": "77b39300-3b70-11ee-b839-89cadd75b710",
-			"uid": 35,
-			"worldX": 1040,
-			"worldY": 32,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_5.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 5, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [5] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ false ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_6",
-			"iid": "4b8b8b80-3b70-11ee-a31b-bd320ef22a36",
-			"uid": 36,
-			"worldX": 1296,
-			"worldY": 32,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_6.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 6, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [6] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ false ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_7",
-			"iid": "f49f0290-6280-11ee-b38c-ad3bda426474",
-			"uid": 37,
-			"worldX": 1552,
-			"worldY": 32,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_7.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 7, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [7] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ false ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_1_n",
-			"iid": "ccc8d6e0-6280-11ee-9412-0b41cb8de0d9",
-			"uid": 44,
-			"worldX": 0,
-			"worldY": 304,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_1_n.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": true, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ true ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_2_n",
-			"iid": "75876300-6280-11ee-9412-abd9120d8528",
-			"uid": 45,
-			"worldX": 256,
-			"worldY": 304,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_2_n.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": true, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ true ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		},
-		{
-			"identifier": "level_1_3_n",
-			"iid": "d3c55d00-6280-11ee-9412-b1a99be23f9d",
-			"uid": 46,
-			"worldX": 512,
-			"worldY": 304,
-			"worldDepth": 0,
-			"pxWid": 240,
-			"pxHei": 240,
-			"__bgColor": "#696A79",
-			"bgColor": null,
-			"useAutoIdentifier": false,
-			"bgRelPath": null,
-			"bgPos": null,
-			"bgPivotX": 0.5,
-			"bgPivotY": 0.5,
-			"__smartColor": "#ADADB5",
-			"__bgPos": null,
-			"externalRelPath": "tactical-nexus-levels/level_1_3_n.ldtkl",
-			"fieldInstances": [
-				{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-				{ "__identifier": "level", "__type": "Int", "__value": 3, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
-				{ "__identifier": "nexus", "__type": "Bool", "__value": true, "__tile": null, "defUid": 43, "realEditorValues": [{
-					"id": "V_Bool",
-					"params": [ true ]
-				}] }
-			],
-			"layerInstances": null,
-			"__neighbours": []
-		}
-	] }],
+	"worlds": [
+		{ "iid": "b601b681-1460-11ee-90d5-f10b4f3389f3", "identifier": "tower_1", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
+			{
+				"identifier": "level_1_1",
+				"iid": "b601dd90-1460-11ee-90d5-bbabcfbe407d",
+				"uid": 0,
+				"worldX": 16,
+				"worldY": 32,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 176,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_1.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_2",
+				"iid": "6fe11600-1460-11ee-bd8c-4f8d5296e643",
+				"uid": 21,
+				"worldX": 272,
+				"worldY": 32,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_2.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_3",
+				"iid": "318f8550-3b70-11ee-b2da-d900cb187319",
+				"uid": 33,
+				"worldX": 528,
+				"worldY": 32,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_3.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 3, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_4",
+				"iid": "1cfd7cb0-3b70-11ee-b839-5bb4fa6005e2",
+				"uid": 34,
+				"worldX": 784,
+				"worldY": 32,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_4.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 4, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_5",
+				"iid": "77b39300-3b70-11ee-b839-89cadd75b710",
+				"uid": 35,
+				"worldX": 1040,
+				"worldY": 32,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_5.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 5, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [5] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_6",
+				"iid": "4b8b8b80-3b70-11ee-a31b-bd320ef22a36",
+				"uid": 36,
+				"worldX": 1296,
+				"worldY": 32,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_6.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 6, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [6] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_7",
+				"iid": "f49f0290-6280-11ee-b38c-ad3bda426474",
+				"uid": 37,
+				"worldX": 1552,
+				"worldY": 32,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_7.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 7, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [7] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_1_n",
+				"iid": "ccc8d6e0-6280-11ee-9412-0b41cb8de0d9",
+				"uid": 44,
+				"worldX": 0,
+				"worldY": 304,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_1_n.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": true, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ true ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_2_n",
+				"iid": "75876300-6280-11ee-9412-abd9120d8528",
+				"uid": 45,
+				"worldX": 256,
+				"worldY": 304,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_2_n.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": true, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ true ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_1_3_n",
+				"iid": "d3c55d00-6280-11ee-9412-b1a99be23f9d",
+				"uid": 46,
+				"worldX": 512,
+				"worldY": 304,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_1_3_n.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 1, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 3, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": true, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ true ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			}
+		] },
+		{ "iid": "0fb29250-6280-11ee-b140-a79d59378a9a", "identifier": "tower_2", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
+			{
+				"identifier": "level_2_1",
+				"iid": "0fb29251-6280-11ee-b140-d51b33aa76b8",
+				"uid": 47,
+				"worldX": 0,
+				"worldY": -16,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_2_1.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_2_2",
+				"iid": "b2a383f0-6280-11ee-b140-bfe59581c45f",
+				"uid": 48,
+				"worldX": 256,
+				"worldY": -16,
+				"worldDepth": 0,
+				"pxWid": 256,
+				"pxHei": 256,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_2_2.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			}
+		] }
+	],
 	"dummyWorldIid": "b601b681-1460-11ee-90d5-f10b4f3389f3"
 }

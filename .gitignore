@@ -5,6 +5,7 @@ tactical-nexus-data-preparation/target/
 tactical-nexus-data-preparation/.mvn/
 
 tactical-nexus-levels/**/*.png
+tactical-nexus-levels/backups
 
 
 ### IntelliJ IDEA ###

@@ -1,0 +1,61 @@
+{
+	"identifier": "level_2_2",
+	"uniqueIdentifer": "b2a383f0-6280-11ee-b140-bfe59581c45f",
+	"x": 256,
+	"y": -16,
+	"width": 256,
+	"height": 256,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"tower": 2,
+		"level": 2,
+		"nexus": false
+	},
+	"layers": [],
+	"entities": {
+		"staircase": [
+			{
+				"id": "staircase",
+				"iid": "cd97d850-6280-11ee-b140-c9a4c3ba16d5",
+				"layer": "score",
+				"x": 96,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "down"
+				}
+			}
+		],
+		"score": [
+			{
+				"id": "score",
+				"iid": "d1a01a20-6280-11ee-b140-2f85591daab6",
+				"layer": "score",
+				"x": 16,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"score": "check"
+				}
+			},
+			{
+				"id": "score",
+				"iid": "d3e63990-6280-11ee-b140-b1e755154044",
+				"layer": "score",
+				"x": 64,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"score": "star"
+				}
+			}
+		]
+	}
+}

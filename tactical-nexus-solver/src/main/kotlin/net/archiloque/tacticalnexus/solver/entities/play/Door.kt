@@ -73,23 +73,23 @@ class Door(val color: KeyOrDoorColor, private val entityIndex: Int, val position
     fun apply(state: State) {
         when (color) {
             KeyOrDoorColor.blue -> {
-                state.blueKeys -= 1
+                state.blueKeys = (state.blueKeys - 1).toShort()
             }
 
             KeyOrDoorColor.crimson -> {
-                state.crimsonKeys -= 1
+                state.crimsonKeys = (state.crimsonKeys - 1).toShort()
             }
 
             KeyOrDoorColor.platinum -> {
-                state.platinumKeys -= 1
+                state.platinumKeys = (state.platinumKeys - 1).toShort()
             }
 
             KeyOrDoorColor.violet -> {
-                state.violetKeys -= 1
+                state.violetKeys = (state.violetKeys - 1).toShort()
             }
 
             KeyOrDoorColor.yellow -> {
-                state.yellowKeys -= 1
+                state.yellowKeys = (state.yellowKeys - 1).toShort()
             }
         }
     }

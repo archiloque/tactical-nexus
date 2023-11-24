@@ -14,9 +14,9 @@ Item(
     fun apply(state: State) {
         state.atk += atk
         state.def += def
-        state.expBonus += expBonus
+        state.expBonus = (state.expBonus + expBonus).toShort()
         state.hp += (hp * (100 + state.hpBonus)) / 100
-        state.hpBonus += hpBonus
+        state.hpBonus = (state.hpBonus + hpBonus).toShort()
     }
 
 }

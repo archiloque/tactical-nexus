@@ -26,18 +26,18 @@ fun findNextStates(database: Database): List<State> {
                     it.getInt(5),
                     it.getInt(6),
 
-                    it.getInt(7),
-                    it.getInt(8),
+                    it.getShort(7),
+                    it.getShort(8),
 
-                    it.getInt(9),
-                    it.getInt(10),
-                    it.getInt(11),
-                    it.getInt(12),
-                    it.getInt(13),
+                    it.getShort(9),
+                    it.getShort(10),
+                    it.getShort(11),
+                    it.getShort(12),
+                    it.getShort(13),
 
                     Mappings.BitSetSqlType.getResult(it, 14)!!,
-                    Mappings.IntArraySqlType.getResult(it, 15)!!,
-                    it.getInt(16)
+                    Mappings.ShortArraySqlType.getResult(it, 15)!!,
+                    it.getShort(16)
                 )
             }
         }

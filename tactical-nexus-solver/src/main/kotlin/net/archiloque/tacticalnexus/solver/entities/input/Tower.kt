@@ -12,4 +12,6 @@ interface Tower {
 
     fun checkScore(): Position
     fun starScore(): Position
+
+    fun levels(): Array<Level>
 }

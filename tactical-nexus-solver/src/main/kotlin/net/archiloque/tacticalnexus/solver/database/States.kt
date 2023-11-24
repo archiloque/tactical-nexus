@@ -4,6 +4,7 @@ import org.ktorm.dsl.QueryRowSet
 import org.ktorm.schema.BaseTable
 import org.ktorm.schema.enum
 import org.ktorm.schema.int
+import org.ktorm.schema.short
 
 object States : BaseTable<State>("states") {
     val id = int("id").primaryKey()
@@ -14,22 +15,22 @@ object States : BaseTable<State>("states") {
 
     val reachable = bitSet("reachable")
 
-    val moves = intArray("moves")
+    val moves = shortArray("moves")
 
     val atk = int("atk")
     val def = int("def")
     val exp = int("exp")
-    val level = int("level")
+    val level = short("level")
     val hp = int("hp")
 
-    val expBonus = int("exp_bonus")
-    val hpBonus = int("hp_bonus")
+    val expBonus = short("exp_bonus")
+    val hpBonus = short("hp_bonus")
 
-    val blue_keys = int("blue_keys")
-    val crimson_keys = int("crimson_keys")
-    val platinum_keys = int("platinum_keys")
-    val violet_keys = int("violet_keys")
-    val yellow_keys = int("yellow_keys")
+    val blue_keys = short("blue_keys")
+    val crimson_keys = short("crimson_keys")
+    val platinum_keys = short("platinum_keys")
+    val violet_keys = short("violet_keys")
+    val yellow_keys = short("yellow_keys")
 
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): State {
         return State(

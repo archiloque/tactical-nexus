@@ -14,16 +14,16 @@ data class State(
     var exp: Int,
     var hp: Int,
 
-    var expBonus: Int,
-    var hpBonus: Int,
+    var expBonus: Short,
+    var hpBonus: Short,
 
-    var blueKeys: Int,
-    var crimsonKeys: Int,
-    var platinumKeys: Int,
-    var violetKeys: Int,
-    var yellowKeys: Int,
+    var blueKeys: Short,
+    var crimsonKeys: Short,
+    var platinumKeys: Short,
+    var violetKeys: Short,
+    var yellowKeys: Short,
 
     var visited: BitSet,
-    var moves: IntArray,
-    var level: Int,
+    var moves: ShortArray,
+    var level: Short,
 )

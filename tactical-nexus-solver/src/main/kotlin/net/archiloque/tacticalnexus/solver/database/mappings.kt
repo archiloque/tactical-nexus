@@ -28,6 +28,24 @@ class Mappings {
         }
     }
 
+    object ShortArraySqlType : SqlType<ShortArray>(Types.ARRAY, "short[]") {
+
+        override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: ShortArray) {
+            ps.setObject(index, parameter)
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        override fun doGetResult(rs: ResultSet, index: Int): ShortArray? {
+            val sqlArray = rs.getArray(index) ?: return null
+            try {
+                val objectArray = sqlArray.array as Array<Any>?
+                return objectArray?.map { it as Short }?.toShortArray()
+            } finally {
+                sqlArray.free()
+            }
+        }
+    }
+
     object BitSetSqlType : SqlType<BitSet>(Types.BINARY, "bit varying") {
 
         override fun doSetParameter(ps: PreparedStatement, index: Int, parameter: BitSet) {
@@ -57,6 +75,10 @@ class Mappings {
 
 fun BaseTable<*>.intArray(name: String): Column<IntArray> {
     return registerColumn(name, Mappings.IntArraySqlType)
+}
+
+fun BaseTable<*>.shortArray(name: String): Column<ShortArray> {
+    return registerColumn(name, Mappings.ShortArraySqlType)
 }
 
 fun BaseTable<*>.bitSet(name: String): Column<BitSet> {

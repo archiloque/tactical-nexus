@@ -10,84 +10,86 @@ import net.archiloque.tacticalnexus.solver.entities.play.Enemy
 import net.archiloque.tacticalnexus.solver.entities.play.ItemGroup
 import net.archiloque.tacticalnexus.solver.entities.play.Key
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp
-import net.archiloque.tacticalnexus.solver.entities.play.LevelUpType
 import net.archiloque.tacticalnexus.solver.entities.play.PlayEntity
 import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 
-class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, private val initialState: State,) {
+class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, private val initialState: State) {
     fun printMoves(moves: IntArray) {
-            val currentState = initialState.copy()
+        val currentState = initialState.copy()
 
-            val moveIndexLength = moves.size.toString().length
-            val positionedEntities = moves.filter { it >= 0 }.map { playableTower.playEntities[it] }
-            positionedEntities.map { it.getPositions().map { it.level }.max() }.max().toString().length
-            var index = 1
-            val initialPosition = playableTower.startingPositionPosition
-            var currentLevelUpIndex = 0
-            printStatus(
-                0,
-                moveIndexLength,
-                initialPosition,
-                "Starting"
-            )
-            printMove(arrayOf(initialPosition), initialPosition, tower)
-            println()
-            var lastPosition: Position = initialPosition
-            for (move in moves) {
-                if (move >= 0) {
-                    val positionedEntity = playableTower.playEntities[move]
-                    apply(positionedEntity, currentState)
-                    if (!positionedEntity.isUpStaircase()) {
-                        printStatus(
-                            index,
-                            moveIndexLength,
-                            currentState,
-                            positionedEntity
-                        )
-                        printMove(positionedEntity.getPositions(), lastPosition, tower)
-                    }
-                    println()
-
-                    lastPosition = positionedEntity.getPositions().last()
-                } else {
-                    currentLevelUpIndex++
-                    val levelUp = LevelUp.levelUp(currentState.exp)
-                    val levelUpType = LevelUpType.entries.find { it.type == move }!!
-                    val description = when (levelUpType) {
-                        LevelUpType.atk -> {
-                            "Gain ${levelUp.atk} atk"
-                        }
-
-                        LevelUpType.def -> {
-                            "Gain ${levelUp.def} def"
-                        }
-
-                        LevelUpType.blueKeys -> {
-                            "Gain ${LevelUp.BLUE_KEYS_NUMBER} blue key(s)"
-                        }
-
-                        LevelUpType.crimsonKeys -> {
-                            "Gain ${LevelUp.CRIMSON_KEYS_NUMBER} crimson key(s)"
-                        }
-
-                        LevelUpType.yellowKeys -> {
-                            "Gain ${LevelUp.YELLOW_KEYS_NUMBER} yellow key(s)"
-                        }
-                    }
-                    Enemy.applyLevelUp(currentState, levelUpType, levelUp)
+        val moveIndexLength = moves.size.toString().length
+        val positionedEntities = moves.filter { it >= 0 }.map { playableTower.playEntities[it] }
+        positionedEntities.map { it.getPositions().map { it.level }.max() }.max().toString().length
+        var index = 1
+        val initialPosition = playableTower.startingPositionPosition
+        var currentLevelUpIndex = 0
+        printStatus(
+            0,
+            moveIndexLength,
+            initialPosition,
+            "Starting"
+        )
+        printMove(arrayOf(initialPosition), initialPosition, tower)
+        println()
+        var lastPosition: Position = initialPosition
+        for (move in moves) {
+            if (move >= 0) {
+                val positionedEntity = playableTower.playEntities[move]
+                apply(positionedEntity, currentState)
+                if (!positionedEntity.isUpStaircase()) {
                     printStatus(
                         index,
                         moveIndexLength,
-                        lastPosition,
-                        description
+                        currentState,
+                        positionedEntity
                     )
-                    println()
+                    printMove(positionedEntity.getPositions(), lastPosition, tower)
                 }
-                index++
+                println()
+
+                lastPosition = positionedEntity.getPositions().last()
+            } else {
+                currentLevelUpIndex++
+                val levelUp = LevelUp.levelUp(currentState.exp, playableTower)
+                val level = playableTower.levels[-move - 1]
+
+                val levelUpDescriptionsParts = mutableListOf<String>()
+                val levelUpAtk = Enemy.levelUpAtk(level, levelUp)
+                if (levelUpAtk > 0) {
+                    levelUpDescriptionsParts.add("$levelUpAtk atk")
+                }
+                val levelUpDef = Enemy.levelUpDef(level, levelUp)
+                if (levelUpDef > 0) {
+                    levelUpDescriptionsParts.add("$levelUpDef def")
+                }
+                val levelUpHp = Enemy.levelUpHp(level, levelUp)
+                if (levelUpHp > 0) {
+                    levelUpDescriptionsParts.add("$levelUpHp hp")
+                }
+                if (level.blueKeys > 0) {
+                    levelUpDescriptionsParts.add("${level.blueKeys} blue key(s)")
+                }
+                if (level.crimsonKeys > 0) {
+                    levelUpDescriptionsParts.add("${level.crimsonKeys} crimson key(s)")
+                }
+                if (level.yellowKeys > 0) {
+                    levelUpDescriptionsParts.add("${level.yellowKeys} yellow key(s)")
+                }
+                val description = "Gain ${levelUpDescriptionsParts.joinToString(" and ")}"
+                Enemy.applyLevelUp(currentState, level, levelUp)
+                printStatus(
+                    index,
+                    moveIndexLength,
+                    lastPosition,
+                    description
+                )
+                println()
             }
-            exitProcess(0)
+            index++
         }
+        exitProcess(0)
+    }
 
     private fun printStatus(
         index: Int,
@@ -103,7 +105,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 positionedDescription.description
             )
         }
-        val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
+        val exp = currentState.exp - LevelUp.levelUp(currentState.exp, playableTower).exp
         println(
             "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
         )

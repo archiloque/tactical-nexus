@@ -8,6 +8,7 @@ import com.squareup.kotlinpoet.asClassName
 import java.nio.file.Paths
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
+import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 
@@ -16,6 +17,7 @@ class Solver(
     private val items: List<Item>,
     private val towerLevels: List<TowerLevel>,
     private val stats: List<Stat>,
+    private val levels: List<Level>,
 ) {
     private val generatedPath = Paths.get("../tactical-nexus-solver/src/main/kotlin")
 
@@ -33,6 +35,6 @@ class Solver(
     fun generate() {
         println("Generating data for solver")
         Items.generate(items, generatedPath)
-        Towers.generate(towerLevels, enemies, stats, generatedPath)
+        Towers.generate(towerLevels, enemies, stats, levels, generatedPath)
     }
 }

@@ -20,14 +20,15 @@ class TowerLevels {
             val towerList = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
             for (tower in towerList) {
                 val levelsForTower = towerLevels.filter { it.levelCustomFields.tower == tower }
-                validateLevelsGroup(statsIds, tower, levelsForTower.filter { it.levelCustomFields.nexus} )
-                validateLevelsGroup(statsIds, tower, levelsForTower.filter { ! it.levelCustomFields.nexus })
+                validateLevelsGroup(statsIds, tower, levelsForTower.filter { it.levelCustomFields.nexus })
+                validateLevelsGroup(statsIds, tower, levelsForTower.filter { !it.levelCustomFields.nexus })
 
-                val scores: List<Score> = towerLevels.mapNotNull { towerLevel -> towerLevel.entities.score }.flatten()
-                for(scoreType in ScoreType.entries) {
+                val scores: List<Score> =
+                    levelsForTower.mapNotNull { towerLevel -> towerLevel.entities.score }.flatten()
+                for (scoreType in ScoreType.entries) {
                     val scoreNumber = scores.filter { score -> score.score() == scoreType }.size
-                    if(scoreNumber != 1) {
-                        throw RuntimeException("Found $scoreNumber of score of type $scoreType")
+                    if (scoreNumber != 1) {
+                        throw RuntimeException("Found $scoreNumber of score of type $scoreType for tower $tower")
                     }
                 }
             }

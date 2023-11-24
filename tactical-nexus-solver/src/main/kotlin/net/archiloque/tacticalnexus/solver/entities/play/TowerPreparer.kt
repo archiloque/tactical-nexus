@@ -168,6 +168,7 @@ class TowerPreparer(private val tower: Tower) {
             roomsSingleDoor.toIntArray(),
             entitiesIndexByPosition[tower.checkScore()]!!,
             entitiesIndexByPosition[tower.starScore()]!!,
+            tower.levels(),
         )
     }
 

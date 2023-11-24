@@ -40,11 +40,11 @@ class Key(private val color: KeyOrDoorColor, private val entityIndex: Int, val p
 
     fun apply(state: State) {
         when (color) {
-            KeyOrDoorColor.blue -> state.blueKeys += 1
-            KeyOrDoorColor.crimson -> state.crimsonKeys += 1
-            KeyOrDoorColor.platinum -> state.platinumKeys += 1
-            KeyOrDoorColor.violet -> state.violetKeys += 1
-            KeyOrDoorColor.yellow -> state.yellowKeys += 1
+            KeyOrDoorColor.blue -> state.blueKeys = (state.blueKeys + 1).toShort()
+            KeyOrDoorColor.crimson -> state.crimsonKeys = (state.crimsonKeys + 1).toShort()
+            KeyOrDoorColor.platinum -> state.platinumKeys = (state.platinumKeys + 1).toShort()
+            KeyOrDoorColor.violet -> state.violetKeys = (state.violetKeys + 1).toShort()
+            KeyOrDoorColor.yellow -> state.yellowKeys = (state.yellowKeys + 1).toShort()
         }
     }
 }

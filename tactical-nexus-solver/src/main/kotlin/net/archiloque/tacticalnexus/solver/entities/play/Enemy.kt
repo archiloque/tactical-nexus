@@ -5,6 +5,7 @@ import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.Position
+import net.archiloque.tacticalnexus.solver.entities.input.Level
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp.Companion.levelUp
 
 enum class FightResult {
@@ -53,11 +54,11 @@ class Enemy(
         stateManager: StateManager,
     ) {
         val newState = newState(entityIndex, state)
-        val fromLevelUp = levelUp(newState.exp)
+        val fromLevelUp = levelUp(newState.exp, playableTower)
 
         val fightResult = apply(newState)
         if (fightResult != FightResult.LOOSE) {
-            val toLevelUp = levelUp(newState.exp)
+            val toLevelUp = levelUp(newState.exp, playableTower)
             if (fromLevelUp != toLevelUp) {
                 if (addNewReachablePositions(
                         entityIndex,
@@ -66,9 +67,9 @@ class Enemy(
                         stateManager
                     ) || (fightResult == FightResult.WIN_NO_HP_LOST)
                 ) {
-                    for (levelUpType in LevelUpType.entries) {
-                        val levelUpState = newState(levelUpType.type, newState)
-                        applyLevelUp(levelUpState, levelUpType, toLevelUp)
+                    playableTower.levels.forEachIndexed() { index, level ->
+                        val levelUpState = newState(-index - 1, newState)
+                        applyLevelUp(levelUpState, level, toLevelUp)
                         drop?.apply(levelUpState)
                         stateManager.save(levelUpState)
                     }
@@ -112,8 +113,8 @@ class Enemy(
         return (damagesToEnemy > hp) || ((damagesToPlayer == 0) && (damagesToEnemy > 0))
     }
 
-    fun shouldLevelUp(state: State): Boolean {
-        return levelUp(state.exp) != levelUp(state.exp + this.earnXp(state))
+    fun shouldLevelUp(state: State, playableTower: PlayableTower): Boolean {
+        return levelUp(state.exp, playableTower) != levelUp(state.exp + this.earnXp(state), playableTower)
     }
 
     private fun calculate(state: State): Int? {
@@ -139,32 +140,32 @@ class Enemy(
     companion object {
         fun applyLevelUp(
             state: State,
-            levelUpType: LevelUpType,
+            level: Level,
             levelUp: LevelUp,
         ) {
             state.level = levelUp.level
-            when (levelUpType) {
-                LevelUpType.atk -> {
-                    state.atk += levelUp.atk
-                }
-
-                LevelUpType.def -> {
-                    state.def += levelUp.def
-                }
-
-                LevelUpType.blueKeys -> {
-                    state.blueKeys += LevelUp.BLUE_KEYS_NUMBER
-                }
-
-                LevelUpType.crimsonKeys -> {
-                    state.crimsonKeys += LevelUp.CRIMSON_KEYS_NUMBER
-                }
-
-                LevelUpType.yellowKeys -> {
-                    state.yellowKeys += LevelUp.YELLOW_KEYS_NUMBER
-                }
-            }
+            state.atk += levelUpAtk(level, levelUp)
+            state.def += levelUpDef(level, levelUp)
+            state.hp += levelUpHp(level, levelUp)
+            state.blueKeys = (state.blueKeys + level.blueKeys).toShort()
+            state.crimsonKeys = (state.crimsonKeys + level.crimsonKeys).toShort()
+            state.yellowKeys = (state.yellowKeys + level.yellowKeys).toShort()
         }
+
+        public fun levelUpHp(
+            level: Level,
+            levelUp: LevelUp,
+        ) = level.hpAdd + (level.hpMul * levelUp.level)
+
+        public fun levelUpDef(
+            level: Level,
+            levelUp: LevelUp,
+        ) = level.defAdd + (level.defMul * levelUp.level)
+
+        public fun levelUpAtk(
+            level: Level,
+            levelUp: LevelUp,
+        ) = level.atkAdd + (level.atkMul * levelUp.level)
 
         fun enemy(
             enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy,

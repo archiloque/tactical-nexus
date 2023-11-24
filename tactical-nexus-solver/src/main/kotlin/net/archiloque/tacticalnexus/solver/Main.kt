@@ -127,7 +127,7 @@ fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
         0,
 
         visited,
-        intArrayOf(),
+        shortArrayOf(),
         0,
     )
 }

@@ -12,6 +12,7 @@ import javax.annotation.processing.Generated
 import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.enums.ScoreType
+import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.Door
 import net.archiloque.tacticalnexus.datapreparation.input.level.Enemy
@@ -30,6 +31,7 @@ class Towers {
         private val enemyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Enemy")
         private val enemyTypeClass = ClassName(Solver.ENTITIES_PACKAGE, "EnemyType")
         private val itemsClass = ClassName(Solver.INPUT_PACKAGE, "Items")
+        private val levelClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Level")
         private val keyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Key")
         private val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
         private val playerStartPositionClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "PlayerStartPosition")
@@ -43,6 +45,7 @@ class Towers {
             towerLevels: List<TowerLevel>,
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             stats: List<Stat>,
+            levels: List<Level>,
             generatedPath: Path,
         ) {
             println("Generating levels")
@@ -50,41 +53,59 @@ class Towers {
             val towersList = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
 
             for (tower in towersList) {
-                println("Generating levels for tower $tower")
-
-                val towerStat = stats.find { it.tower == tower }!!
-
-                val className = "Tower_${tower}"
-
-                val towerSpec = TypeSpec
-                    .classBuilder(className)
-                    .addAnnotation(Generated::class)
-                    .addSuperinterface(towerInterfaceClass)
-
-                for (enemyType in EnemyType.entries) {
-                    towerSpec.addProperty(enemyBuilder(enemies, enemyType))
-                }
-
-                createTowerLevels(towerLevels, tower, false, towerSpec)
-                createTowerLevels(towerLevels, tower, true, towerSpec)
-
-                addStatFunction(towerSpec, "atk", towerStat.atk)
-                addStatFunction(towerSpec, "def", towerStat.def)
-                addStatFunction(towerSpec, "hp", towerStat.hp)
-
-                addScores(towerSpec, towerLevels)
-
-                val file = FileSpec
-                    .builder("${Solver.INPUT_PACKAGE}.towers", className)
-                    .addType(
-                        towerSpec
-                            .build()
-                    )
-                file.build().writeTo(generatedPath)
+                generateTower(
+                    tower,
+                    stats.find { it.tower == tower }!!,
+                    enemies,
+                    levels.filter { it.tower == tower },
+                    towerLevels.filter { it.levelCustomFields.tower == tower },
+                    generatedPath
+                )
             }
         }
 
-        private fun createTowerLevels(
+        private fun generateTower(
+            tower: Int,
+            stat: Stat,
+            enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
+            levels: List<Level>,
+            towerLevels: List<TowerLevel>,
+            generatedPath: Path,
+        ) {
+            println("Generating levels for tower $tower")
+
+            val className = "Tower_${tower}"
+
+            val towerSpec = TypeSpec
+                .classBuilder(className)
+                .addAnnotation(Generated::class)
+                .addSuperinterface(towerInterfaceClass)
+
+            for (enemyType in EnemyType.entries) {
+                addEnemies(enemies, enemyType, towerSpec)
+            }
+
+            addLevels(levels, towerSpec)
+
+            addTowerLevels(towerLevels, tower, false, towerSpec)
+            addTowerLevels(towerLevels, tower, true, towerSpec)
+
+            addStatFunction(towerSpec, "atk", stat.atk)
+            addStatFunction(towerSpec, "def", stat.def)
+            addStatFunction(towerSpec, "hp", stat.hp)
+
+            addScores(towerSpec, towerLevels)
+
+            val file = FileSpec
+                .builder("${Solver.INPUT_PACKAGE}.towers", className)
+                .addType(
+                    towerSpec
+                        .build()
+                )
+            file.build().writeTo(generatedPath)
+        }
+
+        private fun addTowerLevels(
             towerLevels: List<TowerLevel>,
             tower: Int,
             nexus: Boolean,
@@ -93,10 +114,7 @@ class Towers {
             val levelsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
 
             val levelsIndexForTower =
-                towerLevels.filter {
-                    val customFields = it.levelCustomFields
-                    (customFields.tower == tower) && (customFields.nexus == nexus)
-                }
+                towerLevels.filter { it.levelCustomFields.nexus == nexus }
                     .map { it.levelCustomFields.level }
                     .sorted()
 
@@ -104,7 +122,7 @@ class Towers {
                 val level =
                     towerLevels.find {
                         val customFields = it.levelCustomFields
-                        (customFields.tower == tower) && (customFields.level == levelIndex) && (customFields.nexus == nexus)
+                        (customFields.level == levelIndex) && (customFields.nexus == nexus)
                     }!!
                 val entities = mutableListOf<Entity>()
                 addEntities(level.entities.door, entities)
@@ -115,7 +133,7 @@ class Towers {
                 addEntities(level.entities.playerStartPosition, entities)
                 addEntities(level.entities.wall, entities)
 
-                appendLevelCode(levelsArrayCode, entities)
+                addTowerLevel(levelsArrayCode, entities)
             }
             levelsArrayCode.add(")")
 
@@ -204,7 +222,7 @@ class Towers {
             }
         }
 
-        private fun appendLevelCode(levelsArrayCode: CodeBlock.Builder, entities: List<Entity>) {
+        private fun addTowerLevel(levelsArrayCode: CodeBlock.Builder, entities: List<Entity>) {
             val maxX = entities.maxBy { it.x }.x
             val maxY = entities.maxBy { it.y }.y
             val maxLine = maxY / 16
@@ -277,36 +295,76 @@ class Towers {
             levelsArrayCode.add(")), ")
         }
 
-        private fun enemyBuilder(
+        private fun addEnemies(
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             enemyType: EnemyType,
-        ): PropertySpec {
-            val enemiesArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
-            val maxEnemyLevel = enemies.filter { it.type == enemyType }.maxOf { it.level }
-            for (level in 0..maxEnemyLevel) {
-                val enemy = enemies.find { (it.type == enemyType) && (it.level == level) }
-                if (enemy == null) {
-                    enemiesArrayCode.add("null, ")
-                } else {
-                    val dropFormat = if (enemy.drop.isNotEmpty()) {
-                        "Items.${enemy.drop}"
+            towerSpec: TypeSpec.Builder,
+        ) {
+            val enemiesForType = enemies.filter { it.type == enemyType }
+            if (enemiesForType.isNotEmpty()) {
+                val maxEnemyLevel = enemiesForType.maxOf { it.level }
+                val enemiesArrayCode = CodeBlock.Builder().add("%M(\n", Solver.arrayOf)
+                for (level in 0..maxEnemyLevel) {
+                    val enemy = enemiesForType.find { it.level == level }
+                    if (enemy == null) {
+                        enemiesArrayCode.add("null,\n")
                     } else {
-                        "null"
-                    }
+                        enemiesArrayCode.add(
+                            "%T(%T.${enemyType.name}, ${level}, ${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, ",
+                            enemyClass,
+                            enemyTypeClass
+                        )
 
-                    enemiesArrayCode.add(
-                        "%T(%T.${enemyType.name}, ${level}, ${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, $dropFormat,), ",
-                        enemyClass,
-                        enemyTypeClass
-                    )
+                        if (enemy.drop.isNotEmpty()) {
+                            enemiesArrayCode.add("%T.${enemy.drop}", itemsClass)
+                        } else {
+                            enemiesArrayCode.add("null")
+                        }
+                        enemiesArrayCode.add("),\n")
+                    }
                 }
+                enemiesArrayCode.add(")")
+                towerSpec.addProperty(
+                    PropertySpec
+                        .builder("${enemyType.name}s", Solver.arrayOf(enemyClass.copy(nullable = true)))
+                        .addModifiers(KModifier.PRIVATE)
+                        .initializer(enemiesArrayCode.build())
+                        .build()
+                )
             }
-            enemiesArrayCode.add(")")
-            return PropertySpec
-                .builder("${enemyType.name}s", Solver.arrayOf(enemyClass.copy(nullable = true)))
-                .addModifiers(KModifier.PRIVATE)
-                .initializer(enemiesArrayCode.build())
-                .build()
+        }
+
+        private fun addLevels(
+            levels: List<Level>,
+            towerSpec: TypeSpec.Builder,
+        ) {
+            val levelsArrayCode = CodeBlock.Builder().add("%M(\n", Solver.arrayOf)
+            for (level in levels) {
+                levelsArrayCode.add(
+                    "%T(${level.atkAdd}, ${level.atkMul}, ${level.defAdd}, ${level.defMul}, ${level.hpAdd}, ${level.hpMul}, ${level.blueKey}, ${level.crimsonKey}, ${level.yellowKey}),\n",
+                    levelClass,
+                )
+            }
+            levelsArrayCode.add(")")
+            towerSpec.addProperty(
+                PropertySpec
+                    .builder("levels", Solver.arrayOf(levelClass.copy()))
+                    .addModifiers(KModifier.PRIVATE)
+                    .initializer(levelsArrayCode.build())
+                    .build()
+            )
+
+            towerSpec.addFunction(
+                FunSpec.builder(
+                    "levels",
+                )
+                    .addModifiers(KModifier.OVERRIDE)
+                    .returns(
+                        Solver.arrayOf(levelClass)
+                    )
+                    .addCode("return levels")
+                    .build()
+            )
         }
 
         private data class Position(

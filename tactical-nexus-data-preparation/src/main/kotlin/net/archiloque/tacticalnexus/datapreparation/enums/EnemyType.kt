@@ -4,7 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class EnemyType() {
-   burgeoner,
+    burgeoner,
     fighter,
-    ranger
+    ranger,
+    slasher,
 }
