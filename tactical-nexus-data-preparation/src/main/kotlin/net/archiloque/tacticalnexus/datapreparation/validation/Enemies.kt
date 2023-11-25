@@ -1,6 +1,7 @@
 package net.archiloque.tacticalnexus.datapreparation.validation
 
 import net.archiloque.tacticalnexus.datapreparation.EnemyId
+import net.archiloque.tacticalnexus.datapreparation.enums.KeyOrDoorColor
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 import net.archiloque.tacticalnexus.datapreparation.validation.Validator.Companion.checkDuplicates
 
@@ -12,7 +13,7 @@ class Enemies {
             enemies.forEach {
                 if (it.atk <= 0) {
                     throw RuntimeException("Bad atk [${it}]")
-                } else if (it.def <= 0) {
+                } else if (it.def < 0) {
                     throw RuntimeException("Bad def [${it}]")
                 } else if (it.hp <= 0) {
                     throw RuntimeException("Bad hp [${it}]")
@@ -22,8 +23,18 @@ class Enemies {
                     throw RuntimeException("Bad level [${it}]")
                 } else if (it.tower <= 0) {
                     throw RuntimeException("Bad tower  [${it}]")
-                } else if (it.drop.isNotEmpty() && !itemsIdentifiers.contains(it.drop)) {
-                    throw RuntimeException("Unknown item [${it}]")
+                } else if (it.drop.isNotEmpty()) {
+                    val drop = it.drop
+                    if (itemsIdentifiers.contains(drop)) {
+
+                    } else {
+                        if (drop.endsWith(Enemy.KEY_SUFFIX) && KeyOrDoorColor.values()
+                                .any { it.name.equals(drop.substring(0, drop.length - Enemy.KEY_SUFFIX.length)) }
+                        ) {
+                        } else {
+                            throw RuntimeException("Unknown item [${it}]")
+                        }
+                    }
                 }
             }
             val towers = enemies.map { it.tower }.toSet()

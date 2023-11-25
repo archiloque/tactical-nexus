@@ -56,7 +56,7 @@ class Towers {
                 generateTower(
                     tower,
                     stats.find { it.tower == tower }!!,
-                    enemies,
+                    enemies.filter { it.tower == tower },
                     levels.filter { it.tower == tower },
                     towerLevels.filter { it.levelCustomFields.tower == tower },
                     generatedPath
@@ -201,7 +201,7 @@ class Towers {
                         .initializer(
                             CodeBlock.builder()
                                 .add(
-                                    "%T(${level.levelCustomFields.level - 1}, ${score.x / 16}, ${score.y / 16},)",
+                                    "%T(${level.levelCustomFields.level - 1}, ${score.y / 16}, ${score.x / 16},)",
                                     positionClass
                                 )
                                 .build()
@@ -316,9 +316,20 @@ class Towers {
                         )
 
                         if (enemy.drop.isNotEmpty()) {
-                            enemiesArrayCode.add("%T.${enemy.drop}", itemsClass)
+                            if (enemy.drop.endsWith(net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy.KEY_SUFFIX)) {
+                                enemiesArrayCode.add(
+                                    "null, %T.${
+                                        enemy.drop.substring(
+                                            0,
+                                            enemy.drop.length - net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy.KEY_SUFFIX.length
+                                        )
+                                    }", keyOrDoorColorClass
+                                )
+                            } else {
+                                enemiesArrayCode.add("%T.${enemy.drop}, null", itemsClass)
+                            }
                         } else {
-                            enemiesArrayCode.add("null")
+                            enemiesArrayCode.add("null, null")
                         }
                         enemiesArrayCode.add("),\n")
                     }

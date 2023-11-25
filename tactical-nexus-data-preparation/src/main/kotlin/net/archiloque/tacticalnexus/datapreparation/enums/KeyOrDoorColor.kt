@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 enum class KeyOrDoorColor() {
     blue,
     crimson,
+    greenblue,
     platinum,
     violet,
     yellow,

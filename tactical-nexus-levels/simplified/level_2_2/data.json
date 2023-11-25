@@ -56,6 +56,34 @@
 					"score": "star"
 				}
 			}
+		],
+		"item": [
+			{
+				"id": "item",
+				"iid": "31dd5ef0-8990-11ee-a188-f7c7e88c692c",
+				"layer": "main",
+				"x": 16,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "blue_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "37533a80-8990-11ee-a188-156919198339",
+				"layer": "main",
+				"x": 64,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "blue_potion"
+				}
+			}
 		]
 	}
 }

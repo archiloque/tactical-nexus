@@ -1,5 +1,6 @@
 package net.archiloque.tacticalnexus.solver.code
 
+import java.sql.PreparedStatement
 import java.sql.Types
 import kotlinx.coroutines.sync.Mutex
 import net.archiloque.tacticalnexus.solver.database.Mappings
@@ -66,23 +67,10 @@ class DefaultStateManager(
         database.useConnection { connection ->
             connection.prepareStatement(deleteStateQuery).use { statement ->
                 Mappings.BitSetSqlType.setParameter(statement, 1, state.reachable)
+                insertStateCommonParams(statement, state, 2)
 
-                statement.setInt(2, state.atk)
-                statement.setInt(3, state.def)
-                statement.setInt(4, state.exp)
-                statement.setInt(5, state.hp)
-
-                statement.setShort(6, state.expBonus)
-                statement.setShort(7, state.hpBonus)
-
-                statement.setShort(8, state.blueKeys)
-                statement.setShort(9, state.crimsonKeys)
-                statement.setShort(10, state.platinumKeys)
-                statement.setShort(11, state.violetKeys)
-                statement.setShort(12, state.yellowKeys)
-
-                statement.setObject(1, StateStatus.in_progress.name, Types.OTHER)
-                statement.setInt(14, stateId)
+                statement.setObject(14, StateStatus.in_progress.name, Types.OTHER)
+                statement.setInt(15, stateId)
             }
         }
     }
@@ -94,38 +82,14 @@ class DefaultStateManager(
 
                 Mappings.BitSetSqlType.setParameter(statement, 2, state.reachable)
 
-                statement.setObject(3, state.atk)
-                statement.setInt(4, state.def)
-                statement.setInt(5, state.exp)
-                statement.setInt(6, state.hp)
+                insertStateCommonParams(statement, state, 3)
 
-                statement.setShort(7, state.expBonus)
-                statement.setShort(8, state.hpBonus)
+                Mappings.BitSetSqlType.setParameter(statement, 15, state.visited)
+                Mappings.ShortArraySqlType.setParameter(statement, 16, state.moves)
+                statement.setShort(17, state.level)
 
-                statement.setShort(9, state.blueKeys)
-                statement.setShort(10, state.crimsonKeys)
-                statement.setShort(11, state.platinumKeys)
-                statement.setShort(12, state.violetKeys)
-                statement.setShort(13, state.yellowKeys)
-
-                Mappings.BitSetSqlType.setParameter(statement, 14, state.visited)
-                Mappings.ShortArraySqlType.setParameter(statement, 15, state.moves)
-                statement.setShort(16, state.level)
-
-                Mappings.BitSetSqlType.setParameter(statement, 17, state.reachable)
-                statement.setInt(18, state.atk)
-                statement.setInt(19, state.def)
-                statement.setInt(20, state.exp)
-                statement.setInt(21, state.hp)
-
-                statement.setShort(22, state.expBonus)
-                statement.setShort(23, state.hpBonus)
-
-                statement.setShort(24, state.blueKeys)
-                statement.setShort(25, state.crimsonKeys)
-                statement.setShort(26, state.platinumKeys)
-                statement.setShort(27, state.violetKeys)
-                statement.setShort(28, state.yellowKeys)
+                Mappings.BitSetSqlType.setParameter(statement, 18, state.reachable)
+                insertStateCommonParams(statement, state, 19)
                 val resultSet = statement.executeQuery()
                 if (resultSet.next()) {
                     // The state has been inserted
@@ -135,5 +99,26 @@ class DefaultStateManager(
                 }
             }
         }
+    }
+
+    private fun insertStateCommonParams(
+        statement: PreparedStatement,
+        state: State,
+        firstParameterIndex: Int,
+    ) {
+        statement.setObject(firstParameterIndex, state.atk)
+        statement.setInt(firstParameterIndex + 1, state.def)
+        statement.setInt(firstParameterIndex + 2, state.exp)
+        statement.setInt(firstParameterIndex + 3, state.hp)
+
+        statement.setShort(firstParameterIndex + 4, state.expBonus)
+        statement.setShort(firstParameterIndex + 5, state.hpBonus)
+
+        statement.setShort(firstParameterIndex + 6, state.blueKeys)
+        statement.setShort(firstParameterIndex + 7, state.crimsonKeys)
+        statement.setShort(firstParameterIndex + 8, state.greenblueKeys)
+        statement.setShort(firstParameterIndex + 9, state.platinumKeys)
+        statement.setShort(firstParameterIndex + 10, state.violetKeys)
+        statement.setShort(firstParameterIndex + 11, state.yellowKeys)
     }
 }

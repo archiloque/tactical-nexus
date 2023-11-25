@@ -15,6 +15,8 @@ data class Enemy(
     val hp: Int,
 ) {
     companion object {
+        const val KEY_SUFFIX = "_key"
+
         fun parse(filePath: String): List<Enemy> {
             println("Reading enemies at [${filePath}]")
             var result: List<Enemy> = mutableListOf()

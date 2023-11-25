@@ -13,6 +13,7 @@ INSERT INTO
 
 		blue_keys,
 		crimson_keys,
+		greenblue_keys,
 		platinum_keys,
 		violet_keys,
 		yellow_keys,
@@ -22,6 +23,7 @@ INSERT INTO
 		level
 	)
 SELECT
+	?,
 	?,
 	?,
 	?,
@@ -53,6 +55,7 @@ WHERE
 			and exp_bonus >= ?
 			and hp_bonus >= ?
 			and blue_keys >= ?
+			and greenblue_keys >= ?
 			and crimson_keys >= ?
 			and platinum_keys >= ?
 			and violet_keys >= ?
@@ -66,6 +69,7 @@ WHERE
 		exp_bonus,
 		hp_bonus,
 		blue_keys,
+		greenblue_keys,
 		crimson_keys,
 		platinum_keys,
 		violet_keys,

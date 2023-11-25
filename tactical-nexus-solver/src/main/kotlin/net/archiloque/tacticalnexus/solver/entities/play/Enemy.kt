@@ -4,6 +4,7 @@ import kotlin.math.max
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
+import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Level
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp.Companion.levelUp
@@ -22,6 +23,7 @@ class Enemy(
     val def: Int,
     val exp: Int,
     val drop: DropItem?,
+    val key: KeyOrDoorColor?,
     private val entityIndex: Int,
     val position: Position,
 ) : PlayEntitySinglePosition(entityIndex, position) {
@@ -36,6 +38,8 @@ class Enemy(
     override fun description(): Array<PositionedDescription> {
         val dropDescription = if (drop != null) {
             " and grab the ${drop.name.lowercase()}"
+        } else if (key != null) {
+            " and grab the ${key.humanName} key"
         } else {
             ""
         }
@@ -70,12 +74,12 @@ class Enemy(
                     playableTower.levels.forEachIndexed() { index, level ->
                         val levelUpState = newState(-index - 1, newState)
                         applyLevelUp(levelUpState, level, toLevelUp)
-                        drop?.apply(levelUpState)
+                        dropApply(levelUpState)
                         stateManager.save(levelUpState)
                     }
                 }
             } else {
-                drop?.apply(newState)
+                dropApply(newState)
                 if (addNewReachablePositions(
                         entityIndex,
                         newState,
@@ -86,6 +90,13 @@ class Enemy(
                     stateManager.save(newState)
                 }
             }
+        }
+    }
+
+    fun dropApply(state: State) {
+        drop?.apply(state)
+        if (key != null) {
+            Key.apply(state, key)
         }
     }
 
@@ -180,6 +191,7 @@ class Enemy(
                 enemy.def,
                 enemy.exp,
                 DropItem.item(enemy.drop),
+                enemy.key,
                 itemIndex,
                 position
             )

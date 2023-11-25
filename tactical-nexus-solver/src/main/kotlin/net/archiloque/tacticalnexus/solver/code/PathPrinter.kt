@@ -157,7 +157,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
             PlayEntityType.Enemy -> {
                 val enemy = inputEntity as Enemy
                 enemy.apply(state)
-                enemy.drop?.apply(state)
+                enemy.dropApply(state)
             }
 
             PlayEntityType.Exit -> {

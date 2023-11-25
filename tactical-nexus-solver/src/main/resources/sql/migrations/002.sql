@@ -14,6 +14,7 @@ CREATE TABLE states
 
     blue_keys SMALLINT NOT NULL,
     crimson_keys SMALLINT NOT NULL,
+    greenblue_keys SMALLINT NOT NULL,
     platinum_keys SMALLINT NOT NULL,
     violet_keys SMALLINT NOT NULL,
     yellow_keys SMALLINT NOT NULL,

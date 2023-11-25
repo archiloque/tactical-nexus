@@ -39,12 +39,19 @@ class Key(private val color: KeyOrDoorColor, private val entityIndex: Int, val p
     }
 
     fun apply(state: State) {
-        when (color) {
-            KeyOrDoorColor.blue -> state.blueKeys = (state.blueKeys + 1).toShort()
-            KeyOrDoorColor.crimson -> state.crimsonKeys = (state.crimsonKeys + 1).toShort()
-            KeyOrDoorColor.platinum -> state.platinumKeys = (state.platinumKeys + 1).toShort()
-            KeyOrDoorColor.violet -> state.violetKeys = (state.violetKeys + 1).toShort()
-            KeyOrDoorColor.yellow -> state.yellowKeys = (state.yellowKeys + 1).toShort()
+        apply(state, color)
+    }
+
+    companion object {
+        fun apply(state: State, keyColor: KeyOrDoorColor) {
+            when (keyColor) {
+                KeyOrDoorColor.blue -> state.blueKeys = (state.blueKeys + 1).toShort()
+                KeyOrDoorColor.crimson -> state.crimsonKeys = (state.crimsonKeys + 1).toShort()
+                KeyOrDoorColor.greenblue -> state.greenblueKeys = (state.greenblueKeys + 1).toShort()
+                KeyOrDoorColor.platinum -> state.platinumKeys = (state.platinumKeys + 1).toShort()
+                KeyOrDoorColor.violet -> state.violetKeys = (state.violetKeys + 1).toShort()
+                KeyOrDoorColor.yellow -> state.yellowKeys = (state.yellowKeys + 1).toShort()
+            }
         }
     }
 }

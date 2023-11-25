@@ -27,6 +27,7 @@ object States : BaseTable<State>("states") {
     val hpBonus = short("hp_bonus")
 
     val blue_keys = short("blue_keys")
+    val green_blue_keys = short("greenblue_keys")
     val crimson_keys = short("crimson_keys")
     val platinum_keys = short("platinum_keys")
     val violet_keys = short("violet_keys")
@@ -54,6 +55,7 @@ object States : BaseTable<State>("states") {
 
             blueKeys = row[blue_keys]!!,
             crimsonKeys = row[crimson_keys]!!,
+            greenblueKeys = row[green_blue_keys]!!,
             platinumKeys = row[platinum_keys]!!,
             violetKeys = row[violet_keys]!!,
             yellowKeys = row[yellow_keys]!!,

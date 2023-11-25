@@ -4,5 +4,6 @@ enum class EnemyType() {
     burgeoner,
     fighter,
     ranger,
+    shadow,
     slasher,
 }

@@ -1,4 +1,5 @@
 Tower;Type;Level;HP;ATK;DEF;EXP;Drop
+1;burgeoner;16;9999;820;10;300;
 1;fighter;1;120;55;25;2;guard_piece
 1;fighter;3;320;110;40;5;guard_piece
 1;fighter;5;600;145;65;10;guard_gem
@@ -18,4 +19,9 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 1;ranger;22;3000;2350;360;256;heavenly_potion
 1;ranger;26;3000;3740;720;324;heavenly_potion
 1;ranger;30;9999;4800;480;400;drop_of_dream_ocean
-1;burgeoner;16;9999;820;10;300;
+2;burgeoner;5;2500;100;0;20;
+2;fighter;1;200;100;0;2;guard_piece
+2;ranger;3;200;100;0;2;red_potion
+2;ranger;6;200;200;100;5;red_potion
+2;shadow;3;100;200;0;4;yellow_key
+2;slasher;1;300;200;0;4;power_piece
