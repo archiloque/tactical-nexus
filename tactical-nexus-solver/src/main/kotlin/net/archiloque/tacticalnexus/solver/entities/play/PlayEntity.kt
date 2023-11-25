@@ -136,7 +136,12 @@ abstract class PlayEntity {
         if (!didSomethingAutomatic) {
             when (getType()) {
                 PlayEntityType.Enemy -> {
-                    return checkNewEntities(newEntities, state, playableTower, stateManager)
+                    this as Enemy
+                    return if (this.key != null) {
+                        true
+                    } else {
+                        checkNewEntities(newEntities, state, playableTower, stateManager)
+                    }
                 }
 
                 PlayEntityType.Door -> {
