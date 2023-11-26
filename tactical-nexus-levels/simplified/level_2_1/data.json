@@ -1022,6 +1022,19 @@
 				"customFields": {
 					"key_or_door_color": "greenblue"
 				}
+			},
+			{
+				"id": "key",
+				"iid": "26fbb950-8990-11ee-a188-bfe3dc3965af",
+				"layer": "score",
+				"x": 160,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 15389866,
+				"customFields": {
+					"key_or_door_color": "yellow"
+				}
 			}
 		],
 		"door": [
@@ -1898,6 +1911,19 @@
 				"color": 14957380,
 				"customFields": {
 					"item": "blue_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "3ff723e0-8990-11ee-a188-e5cd5983f5d1",
+				"layer": "score",
+				"x": 176,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "guard_gem"
 				}
 			}
 		],

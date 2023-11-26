@@ -36,6 +36,31 @@
 	],
 	"layerInstances": [
 		{
+			"__identifier": "main",
+			"__type": "Entities",
+			"__cWid": 15,
+			"__cHei": 15,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "0fb2b960-6280-11ee-b140-65580be22fb5",
+			"levelId": 47,
+			"layerDefUid": 3,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 3818614,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
+		},
+		{
 			"__identifier": "score",
 			"__type": "Entities",
 			"__cWid": 15,
@@ -3321,33 +3346,46 @@
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [1] }] }
 					]
+				},
+				{
+					"__identifier": "key",
+					"__grid": [10,3],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 384, "y": 112, "w": 16, "h": 16 },
+					"__smartColor": "#EAD4AA",
+					"__worldX": 160,
+					"__worldY": 32,
+					"iid": "26fbb950-8990-11ee-a188-bfe3dc3965af",
+					"width": 16,
+					"height": 16,
+					"defUid": 27,
+					"px": [160,48],
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "yellow", "__tile": null, "defUid": 28, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["yellow"]
+					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [11,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 176,
+					"__worldY": 96,
+					"iid": "3ff723e0-8990-11ee-a188-e5cd5983f5d1",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [176,112],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_gem", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["guard_gem"]
+					}] }]
 				}
 			]
-		},
-		{
-			"__identifier": "main",
-			"__type": "Entities",
-			"__cWid": 15,
-			"__cHei": 15,
-			"__gridSize": 16,
-			"__opacity": 1,
-			"__pxTotalOffsetX": 0,
-			"__pxTotalOffsetY": 0,
-			"__tilesetDefUid": null,
-			"__tilesetRelPath": null,
-			"iid": "0fb2b960-6280-11ee-b140-65580be22fb5",
-			"levelId": 47,
-			"layerDefUid": 3,
-			"pxOffsetX": 0,
-			"pxOffsetY": 0,
-			"visible": true,
-			"optionalRules": [],
-			"intGridCsv": [],
-			"autoLayerTiles": [],
-			"seed": 3818614,
-			"overrideTilesetUid": null,
-			"gridTiles": [],
-			"entityInstances": []
 		}
 	],
 	"__neighbours": []

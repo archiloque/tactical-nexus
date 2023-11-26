@@ -36,51 +36,6 @@
 	],
 	"layerInstances": [
 		{
-			"__identifier": "score",
-			"__type": "Entities",
-			"__cWid": 15,
-			"__cHei": 15,
-			"__gridSize": 16,
-			"__opacity": 1,
-			"__pxTotalOffsetX": 0,
-			"__pxTotalOffsetY": 0,
-			"__tilesetDefUid": null,
-			"__tilesetRelPath": null,
-			"iid": "4d9c1e43-6280-11ee-a1f6-8f1e757eafe4",
-			"levelId": 37,
-			"layerDefUid": 39,
-			"pxOffsetX": 0,
-			"pxOffsetY": 0,
-			"visible": false,
-			"optionalRules": [],
-			"intGridCsv": [],
-			"autoLayerTiles": [],
-			"seed": 8954765,
-			"overrideTilesetUid": null,
-			"gridTiles": [],
-			"entityInstances": [
-				{
-					"__identifier": "score",
-					"__grid": [7,7],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#F77622",
-					"__worldX": 1664,
-					"__worldY": 144,
-					"iid": "f87489b0-6280-11ee-a1f6-497d9d04c344",
-					"width": 16,
-					"height": 16,
-					"defUid": 41,
-					"px": [112,112],
-					"fieldInstances": [{ "__identifier": "score", "__type": "LocalEnum.score", "__value": "star", "__tile": null, "defUid": 42, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["star"]
-					}] }]
-				}
-			]
-		},
-		{
 			"__identifier": "main",
 			"__type": "Entities",
 			"__cWid": 15,
@@ -368,6 +323,51 @@
 					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "life_crown", "__tile": null, "defUid": 12, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["life_crown"]
+					}] }]
+				}
+			]
+		},
+		{
+			"__identifier": "score",
+			"__type": "Entities",
+			"__cWid": 15,
+			"__cHei": 15,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "4d9c1e43-6280-11ee-a1f6-8f1e757eafe4",
+			"levelId": 37,
+			"layerDefUid": 39,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": false,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 8954765,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": [
+				{
+					"__identifier": "score",
+					"__grid": [7,7],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#F77622",
+					"__worldX": 1664,
+					"__worldY": 144,
+					"iid": "f87489b0-6280-11ee-a1f6-497d9d04c344",
+					"width": 16,
+					"height": 16,
+					"defUid": 41,
+					"px": [112,112],
+					"fieldInstances": [{ "__identifier": "score", "__type": "LocalEnum.score", "__value": "star", "__tile": null, "defUid": 42, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["star"]
 					}] }]
 				}
 			]

@@ -14,21 +14,6 @@
 	},
 	"layers": [],
 	"entities": {
-		"score": [
-			{
-				"id": "score",
-				"iid": "f87489b0-6280-11ee-a1f6-497d9d04c344",
-				"layer": "score",
-				"x": 112,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"score": "star"
-				}
-			}
-		],
 		"staircase": [
 			{
 				"id": "staircase",
@@ -212,6 +197,21 @@
 				"color": 14957380,
 				"customFields": {
 					"item": "life_crown"
+				}
+			}
+		],
+		"score": [
+			{
+				"id": "score",
+				"iid": "f87489b0-6280-11ee-a1f6-497d9d04c344",
+				"layer": "score",
+				"x": 112,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"score": "star"
 				}
 			}
 		]

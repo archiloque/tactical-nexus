@@ -39,7 +39,7 @@ class TowerLevels {
                 level.entities.enemy?.forEach { enemy ->
                     val enemyId = EnemyId(enemy.type(), enemy.level())
                     if (!enemiesIds.contains(enemyId)) {
-                        throw RuntimeException("Unknown enemy [${enemyId}] in level [${level.identifier}] at (${enemy.x}, ${enemy.y})")
+                        throw RuntimeException("Unknown enemy ${enemyId.type} lv ${enemyId.level} in level [${level.identifier}] at (${enemy.x}, ${enemy.y})")
                     }
                 }
                 level.entities.item?.forEach { item ->
