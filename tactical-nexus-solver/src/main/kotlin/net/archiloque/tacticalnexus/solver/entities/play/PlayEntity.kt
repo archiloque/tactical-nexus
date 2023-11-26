@@ -82,15 +82,8 @@ abstract class PlayEntity {
                         didSomethingAutomatic = true
                     }
 
-                    PlayEntityType.Key -> {
-                        elementToAdd as Key
-                        elementToAdd.apply(state)
-                        addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
-                        didSomethingAutomatic = true
-                    }
-
-                    PlayEntityType.ItemGroup -> {
-                        elementToAdd as ItemGroup
+                    PlayEntityType.GoodiesGroup -> {
+                        elementToAdd as GoodiesGroup
                         elementToAdd.apply(state)
                         addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
                         didSomethingAutomatic = true

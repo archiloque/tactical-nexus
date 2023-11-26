@@ -7,8 +7,7 @@ import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.play.Door
 import net.archiloque.tacticalnexus.solver.entities.play.Enemy
-import net.archiloque.tacticalnexus.solver.entities.play.ItemGroup
-import net.archiloque.tacticalnexus.solver.entities.play.Key
+import net.archiloque.tacticalnexus.solver.entities.play.GoodiesGroup
 import net.archiloque.tacticalnexus.solver.entities.play.LevelUp
 import net.archiloque.tacticalnexus.solver.entities.play.PlayEntity
 import net.archiloque.tacticalnexus.solver.entities.play.PlayEntityType
@@ -163,14 +162,9 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
             PlayEntityType.Exit -> {
             }
 
-            PlayEntityType.ItemGroup -> {
-                val item = inputEntity as ItemGroup
+            PlayEntityType.GoodiesGroup -> {
+                val item = inputEntity as GoodiesGroup
                 item.apply(state)
-            }
-
-            PlayEntityType.Key -> {
-                val key = inputEntity as Key
-                key.apply(state)
             }
 
             PlayEntityType.UpStaircase -> {

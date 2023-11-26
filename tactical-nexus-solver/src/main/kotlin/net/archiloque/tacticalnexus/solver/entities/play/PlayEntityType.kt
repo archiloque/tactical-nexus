@@ -4,7 +4,6 @@ enum class PlayEntityType() {
     Door,
     Enemy,
     Exit,
-    ItemGroup,
-    Key,
+    GoodiesGroup,
     UpStaircase,
 }

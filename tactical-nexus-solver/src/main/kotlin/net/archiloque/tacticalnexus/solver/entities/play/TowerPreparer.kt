@@ -4,6 +4,7 @@ import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntity
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Item
+import net.archiloque.tacticalnexus.solver.entities.input.Key
 import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.input.Staircase
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
@@ -15,23 +16,38 @@ class TowerPreparer(private val tower: Tower) {
     private val entitiesIndexByPosition = mutableMapOf<Position, Int>()
 
     fun prepare(): PlayableTower {
-        findItemGroups()
+        findGoodiesGroups()
         findStandardEntities()
         return findOtherEntities()
     }
 
-    private fun findItemGroups(
+    private fun findGoodiesGroups(
     ) {
         forEachEntity() { levelIndex: Int, lineIndex: Int, columnIndex: Int, initialEntity: InputEntity ->
-            if (initialEntity.getType() == InputEntityType.Item) {
-                initialEntity as Item
-                val initialItemPosition = Position(levelIndex, lineIndex, columnIndex)
-                if (!entitiesPositions.containsKey(initialItemPosition)) {
-                    findItemGroup(
-                        initialItemPosition,
-                        initialEntity,
-                    )
+            when (initialEntity.getType()) {
+                InputEntityType.Item -> {
+                    initialEntity as Item
+                    val initialItemPosition = Position(levelIndex, lineIndex, columnIndex)
+                    if (!entitiesPositions.containsKey(initialItemPosition)) {
+                        findGoodiesGroup(
+                            initialItemPosition,
+                            initialEntity,
+                            null
+                        )
+                    }
                 }
+                InputEntityType.Key -> {
+                    initialEntity as net.archiloque.tacticalnexus.solver.entities.input.Key
+                    val initialItemPosition = Position(levelIndex, lineIndex, columnIndex)
+                    if (!entitiesPositions.containsKey(initialItemPosition)) {
+                        findGoodiesGroup(
+                            initialItemPosition,
+                            null,
+                            initialEntity,
+                        )
+                    }
+                }
+                else -> {}
             }
         }
     }
@@ -49,20 +65,13 @@ class TowerPreparer(private val tower: Tower) {
                     entity as net.archiloque.tacticalnexus.solver.entities.input.Enemy
                     Enemy.enemy(entity, entities.size, position)
                 }
-
-                InputEntityType.Key -> {
-                    entity as net.archiloque.tacticalnexus.solver.entities.input.Key
-                    Key(entity.color, entities.size, position)
-                }
-
                 else -> {
                     null
                 }
             }
             if (playEntity != null) {
-                entitiesIndexByPosition[position] = entities.size
+                registerElement(position, playEntity)
                 entities.add(playEntity)
-                entitiesPositions[position] = playEntity
             }
         }
     }
@@ -82,11 +91,9 @@ class TowerPreparer(private val tower: Tower) {
                             val position = Position(levelIndex, lineIndex, columnIndex)
                             val upStaircaseEntity = UpStaircase(entities.size, position)
 
-                            entitiesIndexByPosition[position] = entities.size
+                            registerElement(position, upStaircaseEntity)
                             upStaircasesIndexByLevel[levelIndex] = entities.size
                             entities.add(upStaircaseEntity)
-                            entitiesPositions[position] = upStaircaseEntity
-
                         }
 
                         Staircase.StaircaseDirection.down -> {
@@ -121,8 +128,8 @@ class TowerPreparer(private val tower: Tower) {
 
         val roomsSingleDoor = mutableListOf<Int>()
         entities.forEach { entity ->
-            if (entity.getType() == PlayEntityType.ItemGroup) {
-                entity as ItemGroup
+            if (entity.getType() == PlayEntityType.GoodiesGroup) {
+                entity as GoodiesGroup
 
                 var positionsToCheck = mutableSetOf<Position>()
                 val exploredPositions = mutableSetOf<Position>()
@@ -225,21 +232,33 @@ class TowerPreparer(private val tower: Tower) {
         return reachableEntities.sorted().toIntArray()
     }
 
-    private fun findItemGroup(
-        initialItemPosition: Position,
-        initialEntity: Item,
+    private fun findGoodiesGroup(
+        initialElementPosition: Position,
+        initialItem: Item?,
+        initialKey: Key?,
     ) {
         var positionsToCheck = mutableSetOf<Position>()
         val exploredPositions = mutableSetOf<Position>()
         val foundItems = mutableSetOf<PositionedItem>()
-        positionsToCheck.add(initialItemPosition)
-        exploredPositions.add(initialItemPosition)
-        foundItems.add(
-            PositionedItem(
-                initialEntity,
-                initialItemPosition
+        val foundKeys = mutableSetOf<PositionedKey>()
+        positionsToCheck.add(initialElementPosition)
+        exploredPositions.add(initialElementPosition)
+
+        if(initialItem != null) {
+            foundItems.add(
+                PositionedItem(
+                    initialItem,
+                    initialElementPosition
+                )
             )
-        )
+        } else {
+            foundKeys.add(
+                PositionedKey(
+                    initialKey!!.color,
+                    initialElementPosition
+                )
+            )
+        }
 
         while (positionsToCheck.isNotEmpty()) {
             val newPositionsToCheck = mutableSetOf<Position>()
@@ -250,15 +269,30 @@ class TowerPreparer(private val tower: Tower) {
                             tower.standardLevels()[newPosition.level].entities[newPosition.line][newPosition.column]
                         if (newEntity == null) {
                             newPositionsToCheck.add(newPosition)
-                        } else if (newEntity.getType() == InputEntityType.Item) {
-                            newEntity as Item
-                            foundItems.add(
-                                PositionedItem(
-                                    newEntity,
-                                    newPosition
-                                )
-                            )
-                            newPositionsToCheck.add(newPosition)
+                        } else {
+                            when(newEntity.getType()) {
+                                InputEntityType.Item -> {
+                                    newEntity as Item
+                                    foundItems.add(
+                                        PositionedItem(
+                                            newEntity,
+                                            newPosition
+                                        )
+                                    )
+                                    newPositionsToCheck.add(newPosition)
+                                }
+                                InputEntityType.Key -> {
+                                    newEntity as net.archiloque.tacticalnexus.solver.entities.input.Key
+                                    foundKeys.add(
+                                        PositionedKey(
+                                            newEntity.color,
+                                            newPosition
+                                        )
+                                    )
+                                    newPositionsToCheck.add(newPosition)
+                                }
+                                else -> {}
+                            }
                         }
                     }
                 }
@@ -266,12 +300,26 @@ class TowerPreparer(private val tower: Tower) {
             positionsToCheck = newPositionsToCheck
         }
 
-        val itemGroup = ItemGroup(entities.size, foundItems.toTypedArray())
+        val goodiesGroup = GoodiesGroup(
+            entities.size,
+            foundItems.toTypedArray(),
+            foundKeys.toTypedArray(),
+            )
         for (foundItem in foundItems) {
-            entitiesPositions[foundItem.position] = itemGroup
-            entitiesIndexByPosition[foundItem.position] = entities.size
+            registerElement(foundItem.position, goodiesGroup)
         }
-        entities.add(itemGroup)
+        for (foundKey in foundKeys) {
+            registerElement(foundKey.position, goodiesGroup)
+        }
+        entities.add(goodiesGroup)
+    }
+
+    private fun registerElement(
+        position: Position,
+        playEntity: PlayEntity,
+    ) {
+        entitiesPositions[position] = playEntity
+        entitiesIndexByPosition[position] = entities.size
     }
 
     private fun aroundPosition(positionToCheck: Position, callback: (position: Position) -> Unit) {

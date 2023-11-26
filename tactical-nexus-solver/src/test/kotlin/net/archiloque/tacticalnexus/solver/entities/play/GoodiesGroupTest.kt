@@ -6,10 +6,10 @@ import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Item
 import net.archiloque.tacticalnexus.solver.input.Items
 
-class ItemGroupTest {
+class GoodiesGroupTest {
 
-    private fun createGroup(vararg items: Item): ItemGroup {
-        return ItemGroup(0, items.map { PositionedItem(it, Position(0, 0, 0)) }.toTypedArray())
+    private fun createGroup(vararg items: Item): GoodiesGroup {
+        return GoodiesGroup(0, items.map { PositionedItem(it, Position(0, 0, 0)) }.toTypedArray())
     }
 
     @Test

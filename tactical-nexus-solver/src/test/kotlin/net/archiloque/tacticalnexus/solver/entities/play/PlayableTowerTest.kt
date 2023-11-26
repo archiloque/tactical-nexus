@@ -52,7 +52,7 @@ class PlayableTowerTest {
         assertContentEquals(
             playableTower.playEntities,
             arrayOf(
-                ItemGroup(
+                GoodiesGroup(
                     0,
                     arrayOf(
                         PositionedItem(Items.blue_potion, Position(0, 0, 2)),
@@ -120,7 +120,7 @@ class PlayableTowerTest {
         assertContentEquals(
             playableTower.playEntities,
             arrayOf(
-                ItemGroup(
+                GoodiesGroup(
                     0,
                     arrayOf(
                         PositionedItem(Items.blue_potion, Position(0, 2, 0)),
@@ -193,7 +193,7 @@ class PlayableTowerTest {
         assertContentEquals(
             playableTower.playEntities,
             arrayOf(
-                ItemGroup(
+                GoodiesGroup(
                     0,
                     arrayOf(
                         PositionedItem(Items.blue_potion, Position(0, 2, 2)),

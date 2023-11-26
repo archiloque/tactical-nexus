@@ -96,7 +96,18 @@ class Enemy(
     fun dropApply(state: State) {
         drop?.apply(state)
         if (key != null) {
-            Key.apply(state, key)
+            apply(state, key)
+        }
+    }
+
+    private fun apply(state: State, keyColor: KeyOrDoorColor) {
+        when (keyColor) {
+            KeyOrDoorColor.blue -> state.blueKeys = (state.blueKeys + 1).toShort()
+            KeyOrDoorColor.crimson -> state.crimsonKeys = (state.crimsonKeys + 1).toShort()
+            KeyOrDoorColor.greenblue -> state.greenblueKeys = (state.greenblueKeys + 1).toShort()
+            KeyOrDoorColor.platinum -> state.platinumKeys = (state.platinumKeys + 1).toShort()
+            KeyOrDoorColor.violet -> state.violetKeys = (state.violetKeys + 1).toShort()
+            KeyOrDoorColor.yellow -> state.yellowKeys = (state.yellowKeys + 1).toShort()
         }
     }
 
