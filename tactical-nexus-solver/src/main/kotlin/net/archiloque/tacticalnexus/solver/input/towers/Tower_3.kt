@@ -1,9 +1,6 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.`annotation`.processing.Generated
-import kotlin.Array
-import kotlin.Int
-import kotlin.arrayOf
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.Direction
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
@@ -28,12 +25,36 @@ public class Tower_3 : Tower {
                 arrayOf(
                     arrayOf(
                         Items.blue_potion, Door(KeyOrDoorColor.crimson),
-                        PlayerStartPosition.instance, OneWay(Direction.right), Key(KeyOrDoorColor.yellow), null, null,
-                        null, null, null, null, null, null, null, null,
+                        PlayerStartPosition.instance, Items.guard_potion, OneWay(Direction.right),
+                        Key(KeyOrDoorColor.yellow), null, null, null, null, null, null, null, null, null,
                     ),
                     arrayOf(
-                        Wall.instance, Wall.instance,
-                        Door(KeyOrDoorColor.yellow), Wall.instance, Key(KeyOrDoorColor.crimson), null, null, null,
+                        Wall.instance, Wall.instance, Door(KeyOrDoorColor.yellow), Wall.instance,
+                        Wall.instance, Key(KeyOrDoorColor.crimson), null, null, null, null, null, null, null, null,
+                        null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null,
                         null, null, null, null, null, null, null,
                     ),
                     arrayOf(
@@ -63,30 +84,6 @@ public class Tower_3 : Tower {
                     arrayOf(
                         null,
                         null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null,
                     ),
                 )
             ),
@@ -94,9 +91,9 @@ public class Tower_3 : Tower {
 
     private val nexusLevels: Array<TowerLevel> = arrayOf()
 
-    private val checkScore: Position = Position(0, 0, 4)
+    private val checkScore: Position = Position(0, 0, 5)
 
-    private val starScore: Position = Position(0, 1, 4)
+    private val starScore: Position = Position(0, 1, 5)
 
     override fun levels(): Array<Level> = levels
 

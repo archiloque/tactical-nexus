@@ -66,7 +66,7 @@ class DefaultStateManager(
     private fun deleteLowerStates(state: State, stateId: Int) {
         database.useConnection { connection ->
             connection.prepareStatement(deleteStateQuery).use { statement ->
-                Mappings.BitSetSqlType.setParameter(statement, 1, state.reachable)
+                Mappings.BitSetSqlType.setParameter(statement, 1, state.visited)
                 insertStateCommonParams(statement, state, 2)
 
                 statement.setObject(14, StateStatus.in_progress.name, Types.OTHER)
@@ -80,15 +80,15 @@ class DefaultStateManager(
             connection.prepareStatement(insertStateQuery).use { statement ->
                 statement.setObject(1, StateStatus.new.name, Types.OTHER)
 
-                Mappings.BitSetSqlType.setParameter(statement, 2, state.reachable)
+                Mappings.BitSetSqlType.setParameter(statement, 2, state.visited)
 
                 insertStateCommonParams(statement, state, 3)
 
-                Mappings.BitSetSqlType.setParameter(statement, 15, state.visited)
+                Mappings.BitSetSqlType.setParameter(statement, 15, state.reachable)
                 Mappings.ShortArraySqlType.setParameter(statement, 16, state.moves)
                 statement.setShort(17, state.level)
 
-                Mappings.BitSetSqlType.setParameter(statement, 18, state.reachable)
+                Mappings.BitSetSqlType.setParameter(statement, 18, state.visited)
                 insertStateCommonParams(statement, state, 19)
                 val resultSet = statement.executeQuery()
                 if (resultSet.next()) {

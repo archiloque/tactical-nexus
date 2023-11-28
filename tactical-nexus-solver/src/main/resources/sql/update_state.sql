@@ -1,3 +1,3 @@
 UPDATE states
-    SET status = ?, reachable = NULL, moves = NULL
+    SET status = ?, visited = NULL, moves = NULL
     WHERE ID in (?)

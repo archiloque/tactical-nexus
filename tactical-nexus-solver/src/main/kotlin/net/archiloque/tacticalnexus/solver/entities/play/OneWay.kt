@@ -25,6 +25,17 @@ class OneWay(private val direction: Direction, private val entityIndex: Int, val
         playableTower: PlayableTower,
         stateManager: StateManager,
     ) {
-        TODO()
+        val newState = newState(entityIndex, state)
+        // clear all reachable states
+        newState.reachable.clear()
+        if (addNewReachablePositions(
+                entityIndex,
+                newState,
+                playableTower,
+                stateManager
+            )
+        ) {
+            stateManager.save(newState)
+        }
     }
 }

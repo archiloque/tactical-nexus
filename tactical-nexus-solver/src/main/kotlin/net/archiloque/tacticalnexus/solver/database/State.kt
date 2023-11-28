@@ -7,7 +7,7 @@ data class State(
 
     var status: StateStatus,
 
-    var reachable: BitSet,
+    var visited: BitSet,
 
     var atk: Int,
     var def: Int,
@@ -24,7 +24,7 @@ data class State(
     var violetKeys: Short,
     var yellowKeys: Short,
 
-    var visited: BitSet,
+    var reachable: BitSet,
     var moves: ShortArray,
     var level: Short,
 )

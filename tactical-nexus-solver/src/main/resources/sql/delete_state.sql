@@ -1,5 +1,5 @@
 DELETE FROM STATES WHERE
-    reachable = ? and
+    visited = ? and
 
     atk >= ? and
     def >= ? and

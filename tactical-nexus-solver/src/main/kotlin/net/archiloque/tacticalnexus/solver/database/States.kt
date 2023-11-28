@@ -9,18 +9,11 @@ import org.ktorm.schema.short
 object States : BaseTable<State>("states") {
     val id = int("id").primaryKey()
 
-    val status = enum<StateStatus>("status")
-
     val visited = bitSet("visited")
-
-    val reachable = bitSet("reachable")
-
-    val moves = shortArray("moves")
 
     val atk = int("atk")
     val def = int("def")
     val exp = int("exp")
-    val level = short("level")
     val hp = int("hp")
 
     val expBonus = short("exp_bonus")
@@ -33,21 +26,21 @@ object States : BaseTable<State>("states") {
     val violet_keys = short("violet_keys")
     val yellow_keys = short("yellow_keys")
 
+    val status = enum<StateStatus>("status")
+
+    val reachable = bitSet("reachable")
+    val moves = shortArray("moves")
+    val level = short("level")
+
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): State {
         return State(
             id = row[id]!!,
 
-            status = row[status]!!,
-
             visited = row[visited]!!,
-            reachable = row[reachable]!!,
-
-            moves = row[moves]!!,
 
             atk = row[atk]!!,
             def = row[def]!!,
             exp = row[exp]!!,
-            level = row[level]!!,
             hp = row[hp]!!,
 
             expBonus = row[expBonus]!!,
@@ -59,6 +52,12 @@ object States : BaseTable<State>("states") {
             platinumKeys = row[platinum_keys]!!,
             violetKeys = row[violet_keys]!!,
             yellowKeys = row[yellow_keys]!!,
+
+            status = row[status]!!,
+
+            reachable = row[reachable]!!,
+            moves = row[moves]!!,
+            level = row[level]!!,
         )
     }
 }

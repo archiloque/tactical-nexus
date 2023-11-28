@@ -2,7 +2,7 @@ INSERT INTO
 	states(
 		status,
 
-		reachable,
+		visited,
 
 		atk,
 		def,
@@ -18,7 +18,7 @@ INSERT INTO
 		violet_keys,
 		yellow_keys,
 
-		visited,
+		reachable,
 		moves,
 		level
 	)
@@ -47,7 +47,7 @@ WHERE
 		FROM
 			states
 		WHERE
-			reachable = ?
+			visited = ?
 			and atk >= ?
 			and def >= ?
 			and exp >= ?
@@ -61,7 +61,7 @@ WHERE
 			and violet_keys >= ?
 			and yellow_keys >= ?
 	) ON CONFLICT(
-		reachable,
+		visited,
 		atk,
 		def,
 		exp,

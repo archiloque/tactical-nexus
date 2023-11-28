@@ -73,10 +73,6 @@ class Mappings {
     }
 }
 
-fun BaseTable<*>.intArray(name: String): Column<IntArray> {
-    return registerColumn(name, Mappings.IntArraySqlType)
-}
-
 fun BaseTable<*>.shortArray(name: String): Column<ShortArray> {
     return registerColumn(name, Mappings.ShortArraySqlType)
 }

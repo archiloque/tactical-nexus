@@ -194,8 +194,8 @@ class TowerPreparer(private val tower: Tower) {
         callback: (levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity) -> Unit,
     ) {
         tower.standardLevels().forEachIndexed { levelIndex, level ->
-            for (lineIndex in 0.. LEVEL_DIMENSION_CELLS) {
-                for (columnIndex in 0.. LEVEL_DIMENSION_CELLS) {
+            for (lineIndex in 0..LEVEL_DIMENSION_CELLS) {
+                for (columnIndex in 0..LEVEL_DIMENSION_CELLS) {
                     val inputEntity = level.entities[lineIndex][columnIndex]
                     if (inputEntity != null) {
                         callback(levelIndex, lineIndex, columnIndex, inputEntity)

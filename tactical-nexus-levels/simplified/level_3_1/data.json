@@ -32,7 +32,7 @@
 				"id": "one_way",
 				"iid": "086f5580-8990-11ee-b204-3dcbcbc4147f",
 				"layer": "main",
-				"x": 48,
+				"x": 64,
 				"y": 0,
 				"width": 16,
 				"height": 16,
@@ -75,7 +75,7 @@
 				"id": "wall",
 				"iid": "1707c0f0-8990-11ee-b204-1b80cc083b1a",
 				"layer": "main",
-				"x": 48,
+				"x": 64,
 				"y": 16,
 				"width": 16,
 				"height": 16,
@@ -103,60 +103,17 @@
 				"height": 16,
 				"color": 39387,
 				"customFields" : {}
-			}
-		],
-		"key": [
-			{
-				"id": "key",
-				"iid": "93c507d0-8990-11ee-b204-bd15160e0fe4",
-				"layer": "main",
-				"x": 64,
-				"y": 0,
-				"width": 16,
-				"height": 16,
-				"color": 15389866,
-				"customFields": {
-					"key_or_door_color": "yellow"
-				}
 			},
 			{
-				"id": "key",
-				"iid": "9410dde0-8990-11ee-b204-8fc3ca4bf2f6",
+				"id": "wall",
+				"iid": "5cd66d40-8990-11ee-bb22-4dbb7f077fe0",
 				"layer": "main",
-				"x": 64,
+				"x": 48,
 				"y": 16,
 				"width": 16,
 				"height": 16,
-				"color": 15389866,
-				"customFields": {
-					"key_or_door_color": "crimson"
-				}
-			},
-			{
-				"id": "key",
-				"iid": "b87c23b0-8990-11ee-b204-ef09e14b4a2f",
-				"layer": "main",
-				"x": 64,
-				"y": 0,
-				"width": 16,
-				"height": 16,
-				"color": 15389866,
-				"customFields": {
-					"key_or_door_color": "yellow"
-				}
-			},
-			{
-				"id": "key",
-				"iid": "b93ab8c0-8990-11ee-b204-7544e6a03b68",
-				"layer": "main",
-				"x": 64,
-				"y": 16,
-				"width": 16,
-				"height": 16,
-				"color": 15389866,
-				"customFields": {
-					"key_or_door_color": "crimson"
-				}
+				"color": 39387,
+				"customFields" : {}
 			}
 		],
 		"item": [
@@ -172,6 +129,47 @@
 				"customFields": {
 					"item": "blue_potion"
 				}
+			},
+			{
+				"id": "item",
+				"iid": "5ebe8e30-8990-11ee-bb22-fb2dfe3d9af1",
+				"layer": "main",
+				"x": 48,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "guard_potion"
+				}
+			}
+		],
+		"key": [
+			{
+				"id": "key",
+				"iid": "b87c23b0-8990-11ee-b204-ef09e14b4a2f",
+				"layer": "main",
+				"x": 80,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 15389866,
+				"customFields": {
+					"key_or_door_color": "yellow"
+				}
+			},
+			{
+				"id": "key",
+				"iid": "b93ab8c0-8990-11ee-b204-7544e6a03b68",
+				"layer": "main",
+				"x": 80,
+				"y": 16,
+				"width": 16,
+				"height": 16,
+				"color": 15389866,
+				"customFields": {
+					"key_or_door_color": "crimson"
+				}
 			}
 		],
 		"score": [
@@ -179,7 +177,7 @@
 				"id": "score",
 				"iid": "286bcf80-8990-11ee-b204-8be3293239f4",
 				"layer": "score",
-				"x": 64,
+				"x": 80,
 				"y": 0,
 				"width": 16,
 				"height": 16,
@@ -192,7 +190,7 @@
 				"id": "score",
 				"iid": "2a78dd90-8990-11ee-b204-23fde0bb987d",
 				"layer": "score",
-				"x": 64,
+				"x": 80,
 				"y": 16,
 				"width": 16,
 				"height": 16,
