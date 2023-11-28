@@ -1,15 +1,20 @@
 package net.archiloque.tacticalnexus.datapreparation.validation
 
-class Validator {
+abstract class Validator {
 
-    companion object {
-        fun checkDuplicates(elements: Map<Any, List<Any>>) {
-            elements.forEach {
-                    (t, u),
-                ->
-                if (u.size > 1) {
-                    throw RuntimeException("Duplicated element [${t}]")
-                }
+    var hadError: Boolean = false
+
+    fun foundError(message: String) {
+        System.err.println(message)
+        hadError = true
+    }
+
+    fun checkDuplicates(elements: Map<Any, List<Any>>) {
+        elements.forEach {
+                (t, u),
+            ->
+            if (u.size > 1) {
+                foundError("Duplicated element [${t}]")
             }
         }
     }

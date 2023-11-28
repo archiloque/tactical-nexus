@@ -10,6 +10,8 @@ import com.squareup.kotlinpoet.TypeSpec
 import java.nio.file.Path
 import javax.annotation.processing.Generated
 import kotlin.system.exitProcess
+import net.archiloque.tacticalnexus.datapreparation.LEVEL_DIMENSION_CELLS
+import net.archiloque.tacticalnexus.datapreparation.PIXELS_PER_CELL
 import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.enums.ScoreType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
@@ -19,6 +21,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.level.Enemy
 import net.archiloque.tacticalnexus.datapreparation.input.level.Entity
 import net.archiloque.tacticalnexus.datapreparation.input.level.Item
 import net.archiloque.tacticalnexus.datapreparation.input.level.Key
+import net.archiloque.tacticalnexus.datapreparation.input.level.OneWay
 import net.archiloque.tacticalnexus.datapreparation.input.level.PlayerStartPosition
 import net.archiloque.tacticalnexus.datapreparation.input.level.Score
 import net.archiloque.tacticalnexus.datapreparation.input.level.Staircase
@@ -27,6 +30,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.level.Wall
 
 class Towers {
     companion object {
+        private val directionClass = ClassName(Solver.ENTITIES_PACKAGE, "Direction")
         private val doorClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Door")
         private val enemyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Enemy")
         private val enemyTypeClass = ClassName(Solver.ENTITIES_PACKAGE, "EnemyType")
@@ -34,6 +38,7 @@ class Towers {
         private val levelClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Level")
         private val keyClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Key")
         private val keyOrDoorColorClass = ClassName(Solver.ENTITIES_PACKAGE, "KeyOrDoorColor")
+        private val oneWayClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "OneWay")
         private val playerStartPositionClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "PlayerStartPosition")
         private val positionClass = ClassName(Solver.ENTITIES_PACKAGE, "Position")
         private val staircaseClass = ClassName(Solver.INPUT_ENTITIES_PACKAGE, "Staircase")
@@ -87,8 +92,8 @@ class Towers {
 
             addLevels(levels, towerSpec)
 
-            addTowerLevels(towerLevels, tower, false, towerSpec)
-            addTowerLevels(towerLevels, tower, true, towerSpec)
+            addTowerLevels(towerLevels, false, towerSpec)
+            addTowerLevels(towerLevels, true, towerSpec)
 
             addStatFunction(towerSpec, "atk", stat.atk)
             addStatFunction(towerSpec, "def", stat.def)
@@ -107,7 +112,6 @@ class Towers {
 
         private fun addTowerLevels(
             towerLevels: List<TowerLevel>,
-            tower: Int,
             nexus: Boolean,
             towerSpec: TypeSpec.Builder,
         ) {
@@ -124,16 +128,7 @@ class Towers {
                         val customFields = it.levelCustomFields
                         (customFields.level == levelIndex) && (customFields.nexus == nexus)
                     }!!
-                val entities = mutableListOf<Entity>()
-                addEntities(level.entities.door, entities)
-                addEntities(level.entities.enemy, entities)
-                addEntities(level.entities.item, entities)
-                addEntities(level.entities.key, entities)
-                addEntities(level.entities.staircase, entities)
-                addEntities(level.entities.playerStartPosition, entities)
-                addEntities(level.entities.wall, entities)
-
-                addTowerLevel(levelsArrayCode, entities)
+                addTowerLevel(levelsArrayCode, level.allEntities())
             }
             levelsArrayCode.add(")")
 
@@ -167,14 +162,6 @@ class Towers {
             )
         }
 
-        private fun addEntities(entities: List<Entity>?, targetList: MutableList<Entity>) {
-            if (entities != null) {
-                for (entity in entities) {
-                    targetList.addAll(entities)
-                }
-            }
-        }
-
         private fun addStatFunction(towerSpec: TypeSpec.Builder, name: String, value: Int) {
             towerSpec.addFunction(
                 FunSpec.builder(
@@ -201,7 +188,7 @@ class Towers {
                         .initializer(
                             CodeBlock.builder()
                                 .add(
-                                    "%T(${level.levelCustomFields.level - 1}, ${score.y / 16}, ${score.x / 16},)",
+                                    "%T(${level.levelCustomFields.level - 1}, ${score.y / PIXELS_PER_CELL}, ${score.x / PIXELS_PER_CELL},)",
                                     positionClass
                                 )
                                 .build()
@@ -223,20 +210,15 @@ class Towers {
         }
 
         private fun addTowerLevel(levelsArrayCode: CodeBlock.Builder, entities: List<Entity>) {
-            val maxX = entities.maxBy { it.x }.x
-            val maxY = entities.maxBy { it.y }.y
-            val maxLine = maxY / 16
-            val maxColumn = maxX / 16
-
             val entitiesByPosition = mutableMapOf<Position, Entity>()
             for (entity in entities) {
-                entitiesByPosition[Position(entity.y / 16, entity.x / 16)] = entity
+                entitiesByPosition[Position(entity.y / PIXELS_PER_CELL, entity.x / PIXELS_PER_CELL)] = entity
             }
 
-            levelsArrayCode.add("%T(${maxLine + 1}, ${maxColumn + 1}, %M(", towerLevelClass, Solver.arrayOf)
-            for (line in 0..maxLine) {
+            levelsArrayCode.add("%T(%M(", towerLevelClass, Solver.arrayOf)
+            for (line in 0..LEVEL_DIMENSION_CELLS) {
                 levelsArrayCode.add("%M(", Solver.arrayOf)
-                for (column in 0..maxColumn) {
+                for (column in 0..LEVEL_DIMENSION_CELLS) {
                     val currentEntity = entitiesByPosition[Position(line, column)]
                     if (currentEntity == null) {
                         levelsArrayCode.add("null")
@@ -244,7 +226,7 @@ class Towers {
                         when (currentEntity) {
                             is Door -> {
                                 levelsArrayCode.add(
-                                    "%T(%T.${currentEntity.keyOrDoorCustomFields.color})",
+                                    "%T(%T.${currentEntity.color()})",
                                     doorClass,
                                     keyOrDoorColorClass
                                 )
@@ -252,19 +234,27 @@ class Towers {
 
                             is Enemy -> {
                                 levelsArrayCode.add(
-                                    "${currentEntity.enemyCustomFields.type}s[${currentEntity.enemyCustomFields.level}]"
+                                    "${currentEntity.type()}s[${currentEntity.level()}]"
                                 )
                             }
 
                             is Item -> {
-                                levelsArrayCode.add("%T.${currentEntity.itemCustomFields.item}", itemsClass)
+                                levelsArrayCode.add("%T.${currentEntity.identifier()}", itemsClass)
                             }
 
                             is Key -> {
                                 levelsArrayCode.add(
-                                    "%T(%T.${currentEntity.keyOrDoorCustomFields.color})",
+                                    "%T(%T.${currentEntity.color()})",
                                     keyClass,
                                     keyOrDoorColorClass
+                                )
+                            }
+
+                            is OneWay -> {
+                                levelsArrayCode.add(
+                                    "%T(%T.${currentEntity.direction()})",
+                                    oneWayClass,
+                                    directionClass
                                 )
                             }
 
@@ -278,7 +268,7 @@ class Towers {
 
                             is Staircase -> {
                                 levelsArrayCode.add(
-                                    "%T.${currentEntity.staircaseCustomFields.direction}",
+                                    "%T.${currentEntity.direction()}",
                                     staircaseClass
                                 )
                             }

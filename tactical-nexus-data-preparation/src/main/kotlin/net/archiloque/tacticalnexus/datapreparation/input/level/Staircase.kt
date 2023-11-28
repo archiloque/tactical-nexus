@@ -9,7 +9,11 @@ data class Staircase(
     override val x: Int,
     override val y: Int,
     @SerialName("customFields") @Required val staircaseCustomFields: StaircaseCustomFields,
-) : Entity
+) : Entity {
+    fun direction(): StaircaseDirection {
+        return staircaseCustomFields.direction
+    }
+}
 
 @Serializable
 data class StaircaseCustomFields(

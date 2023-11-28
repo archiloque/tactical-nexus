@@ -1,16 +1,18 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
+import net.archiloque.tacticalnexus.solver.entities.Direction
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntity
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Item
 import net.archiloque.tacticalnexus.solver.entities.input.Key
-import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
 import net.archiloque.tacticalnexus.solver.entities.input.Staircase
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
-import net.archiloque.tacticalnexus.solver.entities.input.Wall
+
+const val LEVEL_DIMENSION_CELLS = 14
 
 class TowerPreparer(private val tower: Tower) {
+
     private val entities = mutableListOf<PlayEntity>()
     private val entitiesPositions = mutableMapOf<Position, PlayEntity>()
     private val entitiesIndexByPosition = mutableMapOf<Position, Int>()
@@ -36,6 +38,7 @@ class TowerPreparer(private val tower: Tower) {
                         )
                     }
                 }
+
                 InputEntityType.Key -> {
                     initialEntity as net.archiloque.tacticalnexus.solver.entities.input.Key
                     val initialItemPosition = Position(levelIndex, lineIndex, columnIndex)
@@ -47,6 +50,7 @@ class TowerPreparer(private val tower: Tower) {
                         )
                     }
                 }
+
                 else -> {}
             }
         }
@@ -65,6 +69,12 @@ class TowerPreparer(private val tower: Tower) {
                     entity as net.archiloque.tacticalnexus.solver.entities.input.Enemy
                     Enemy.enemy(entity, entities.size, position)
                 }
+
+                InputEntityType.OneWay -> {
+                    entity as net.archiloque.tacticalnexus.solver.entities.input.OneWay
+                    OneWay(entity.direction, entities.size, position)
+                }
+
                 else -> {
                     null
                 }
@@ -84,6 +94,11 @@ class TowerPreparer(private val tower: Tower) {
 
         forEachEntity() { levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity ->
             when (entity.getType()) {
+
+                InputEntityType.PlayerStartPosition -> {
+                    startingPositionPosition = Position(levelIndex, lineIndex, columnIndex)
+                }
+
                 InputEntityType.Staircase -> {
                     entity as Staircase
                     when (entity.direction) {
@@ -101,10 +116,6 @@ class TowerPreparer(private val tower: Tower) {
                                 Position(levelIndex, lineIndex, columnIndex)
                         }
                     }
-                }
-
-                InputEntityType.PlayerStartPosition -> {
-                    startingPositionPosition = Position(levelIndex, lineIndex, columnIndex)
                 }
 
                 else -> {
@@ -141,7 +152,7 @@ class TowerPreparer(private val tower: Tower) {
                 while (positionsToCheck.isNotEmpty()) {
                     val newPositionsToCheck = mutableSetOf<Position>()
                     for (positionToCheck in positionsToCheck) {
-                        aroundPosition(positionToCheck) { newPosition ->
+                        aroundPosition(positionToCheck) { newPosition, _ ->
                             if (exploredPositions.add(newPosition)) {
                                 val newEntity =
                                     tower.standardLevels()[newPosition.level].entities[newPosition.line][newPosition.column]
@@ -183,8 +194,8 @@ class TowerPreparer(private val tower: Tower) {
         callback: (levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity) -> Unit,
     ) {
         tower.standardLevels().forEachIndexed { levelIndex, level ->
-            for (lineIndex in 0..<level.lines) {
-                for (columnIndex in 0..<level.columns) {
+            for (lineIndex in 0.. LEVEL_DIMENSION_CELLS) {
+                for (columnIndex in 0.. LEVEL_DIMENSION_CELLS) {
                     val inputEntity = level.entities[lineIndex][columnIndex]
                     if (inputEntity != null) {
                         callback(levelIndex, lineIndex, columnIndex, inputEntity)
@@ -207,22 +218,44 @@ class TowerPreparer(private val tower: Tower) {
         while (positionsToCheck.isNotEmpty()) {
             val newPositionsToCheck = mutableSetOf<Position>()
             for (positionToCheck in positionsToCheck) {
-                aroundPosition(positionToCheck) { position ->
+                aroundPosition(positionToCheck) { position, direction ->
                     if (exploredPositions.add(position)) {
                         val entity = tower.standardLevels()[position.level].entities[position.line][position.column]
                         if (entity == null) {
                             newPositionsToCheck.add(position)
-                        } else if (
-                            !(
-                                    // Can't reach:
-                                    // - walls
-                                    // - starting position
-                                    // - down staircase
-                                    (entity == Wall.instance) || (entity == PlayerStartPosition.instance) ||
-                                            ((entity.getType() == InputEntityType.Staircase) && ((entity as Staircase).direction == Staircase.StaircaseDirection.down)))
-                        ) {
-                            val entityIndex = entitiesIndexByPosition[position]!!
-                            reachableEntities.add(entityIndex)
+                        } else {
+                            when (entity.getType()) {
+                                InputEntityType.OneWay -> {
+                                    entity as net.archiloque.tacticalnexus.solver.entities.input.OneWay
+                                    if (entity.direction == direction) {
+                                        reachableEntities.add(entitiesIndexByPosition[position]!!)
+                                    }
+                                }
+
+                                InputEntityType.PlayerStartPosition -> {
+                                    newPositionsToCheck.add(position)
+                                }
+
+                                InputEntityType.Staircase -> {
+                                    // Ignore down staircase
+                                    entity as Staircase
+                                    when (entity.direction) {
+                                        Staircase.StaircaseDirection.up -> {
+                                            reachableEntities.add(entitiesIndexByPosition[position]!!)
+                                        }
+
+                                        Staircase.StaircaseDirection.down -> {
+                                        }
+                                    }
+                                }
+
+                                InputEntityType.Wall -> {
+                                }
+
+                                else -> {
+                                    reachableEntities.add(entitiesIndexByPosition[position]!!)
+                                }
+                            }
                         }
                     }
                 }
@@ -244,7 +277,7 @@ class TowerPreparer(private val tower: Tower) {
         positionsToCheck.add(initialElementPosition)
         exploredPositions.add(initialElementPosition)
 
-        if(initialItem != null) {
+        if (initialItem != null) {
             foundItems.add(
                 PositionedItem(
                     initialItem,
@@ -263,14 +296,14 @@ class TowerPreparer(private val tower: Tower) {
         while (positionsToCheck.isNotEmpty()) {
             val newPositionsToCheck = mutableSetOf<Position>()
             for (positionToCheck in positionsToCheck) {
-                aroundPosition(positionToCheck) { newPosition ->
+                aroundPosition(positionToCheck) { newPosition, _ ->
                     if (exploredPositions.add(newPosition)) {
                         val newEntity =
                             tower.standardLevels()[newPosition.level].entities[newPosition.line][newPosition.column]
                         if (newEntity == null) {
                             newPositionsToCheck.add(newPosition)
                         } else {
-                            when(newEntity.getType()) {
+                            when (newEntity.getType()) {
                                 InputEntityType.Item -> {
                                     newEntity as Item
                                     foundItems.add(
@@ -281,6 +314,7 @@ class TowerPreparer(private val tower: Tower) {
                                     )
                                     newPositionsToCheck.add(newPosition)
                                 }
+
                                 InputEntityType.Key -> {
                                     newEntity as net.archiloque.tacticalnexus.solver.entities.input.Key
                                     foundKeys.add(
@@ -291,6 +325,7 @@ class TowerPreparer(private val tower: Tower) {
                                     )
                                     newPositionsToCheck.add(newPosition)
                                 }
+
                                 else -> {}
                             }
                         }
@@ -304,7 +339,7 @@ class TowerPreparer(private val tower: Tower) {
             entities.size,
             foundItems.toTypedArray(),
             foundKeys.toTypedArray(),
-            )
+        )
         for (foundItem in foundItems) {
             registerElement(foundItem.position, goodiesGroup)
         }
@@ -322,18 +357,21 @@ class TowerPreparer(private val tower: Tower) {
         entitiesIndexByPosition[position] = entities.size
     }
 
-    private fun aroundPosition(positionToCheck: Position, callback: (position: Position) -> Unit) {
+    private fun aroundPosition(
+        positionToCheck: Position,
+        callback: (position: Position, direction: Direction) -> Unit,
+    ) {
         if (positionToCheck.column > 0) {
-            callback(Position(positionToCheck.level, positionToCheck.line, positionToCheck.column - 1))
+            callback(Position(positionToCheck.level, positionToCheck.line, positionToCheck.column - 1), Direction.left)
         }
-        if (positionToCheck.column < (tower.standardLevels()[positionToCheck.level].columns - 1)) {
-            callback(Position(positionToCheck.level, positionToCheck.line, positionToCheck.column + 1))
+        if (positionToCheck.column < LEVEL_DIMENSION_CELLS) {
+            callback(Position(positionToCheck.level, positionToCheck.line, positionToCheck.column + 1), Direction.right)
         }
         if (positionToCheck.line > 0) {
-            callback(Position(positionToCheck.level, positionToCheck.line - 1, positionToCheck.column))
+            callback(Position(positionToCheck.level, positionToCheck.line - 1, positionToCheck.column), Direction.up)
         }
-        if (positionToCheck.line < (tower.standardLevels()[positionToCheck.level].lines - 1)) {
-            callback(Position(positionToCheck.level, positionToCheck.line + 1, positionToCheck.column))
+        if (positionToCheck.line < LEVEL_DIMENSION_CELLS) {
+            callback(Position(positionToCheck.level, positionToCheck.line + 1, positionToCheck.column), Direction.down)
         }
     }
 }

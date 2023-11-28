@@ -159,16 +159,17 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 enemy.dropApply(state)
             }
 
-            PlayEntityType.Exit -> {
-            }
-
             PlayEntityType.GoodiesGroup -> {
                 val item = inputEntity as GoodiesGroup
                 item.apply(state)
             }
 
+            PlayEntityType.OneWay -> {
+            }
+
             PlayEntityType.UpStaircase -> {
             }
+
         }
     }
 }

@@ -17,7 +17,13 @@ class PlayableTower(
     fun printAll() {
         for (entityIndex in 0..<entitiesCount) {
             val playEntity = playEntities[entityIndex]
-            println("$entityIndex $playEntity")
+            val reachableByEntity = reachable[entityIndex]
+            val canReach = if (reachableByEntity.isEmpty()) {
+                "nothing"
+            } else {
+                reachableByEntity.joinToString(", ")
+            }
+            println("$entityIndex $playEntity can reach $canReach")
         }
     }
 }

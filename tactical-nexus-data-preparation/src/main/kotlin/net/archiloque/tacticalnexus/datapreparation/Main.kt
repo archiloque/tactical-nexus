@@ -5,6 +5,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.stream.Collectors
 import kotlin.io.path.readText
+import kotlin.system.exitProcess
 import kotlinx.serialization.json.Json
 import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
@@ -48,10 +49,13 @@ fun main(args: Array<String>) {
     val statsIds = stats.map { it.tower }
     val levels = Level.parse("../levels.csv")
 
-    Items.validate(items, itemsIdentifiers)
-    Enemies.validate(enemies, itemsIdentifiers)
-    Stats.validate(stats)
-    TowerLevels.validate(towerLevels, itemsIdentifiers, enemies, statsIds)
+    val hadError = Items().validate(items, itemsIdentifiers) ||
+            Enemies().validate(enemies, itemsIdentifiers) ||
+            Stats().validate(stats) ||
+            TowerLevels().validate(towerLevels, itemsIdentifiers, enemies, statsIds)
+    if (hadError) {
+        exitProcess(-1)
+    }
 
     Solver(enemies, items, towerLevels, stats, levels).generate()
 }
