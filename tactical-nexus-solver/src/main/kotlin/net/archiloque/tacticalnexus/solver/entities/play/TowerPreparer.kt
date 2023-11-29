@@ -132,29 +132,53 @@ class TowerPreparer(private val tower: Tower) {
             )
         }.toTypedArray()
 
+        var reachableByStartingPosition = findReacheableEntities(arrayOf(startingPositionPosition!!))
+
+        // Replace the up and down stairs by all the combined entities they can reach
         for (level in 0..<(tower.standardLevels().size - 1)) {
             val upStairCaseEntityIndex = upStaircasesIndexByLevel[level]!!
             val dowStairCaseEntityIndex = downStaircasesIndexByLevel[level + 1]!!
             val reachableElements =
                 reachableEntities[upStairCaseEntityIndex] + reachableEntities[dowStairCaseEntityIndex]
-            reachableEntities.forEachIndexed { index, elements ->
+            reachableEntities.forEachIndexed { elementIndex, elements ->
                 val upStairIndex = elements.indexOf(upStairCaseEntityIndex)
                 val downStairIndex = elements.indexOf(dowStairCaseEntityIndex)
                 if ((upStairIndex != -1) || (downStairIndex != -1)) {
-                    val patchedElements = mutableListOf<Int>()
+                    val patchedElements = mutableSetOf<Int>()
                     patchedElements.addAll(elements.asList())
                     if (upStairIndex != -1) {
-                        patchedElements.removeAt(upStairIndex)
-                        patchedElements.addAll(reachableElements.asList() - index)
+                        patchedElements.remove(upStairCaseEntityIndex)
+                        patchedElements.addAll(reachableElements.asList() - elementIndex)
                     } else {
-                        patchedElements.removeAt(downStairIndex)
-                        patchedElements.addAll(reachableElements.asList() - index)
+                        patchedElements.remove(dowStairCaseEntityIndex)
+                        patchedElements.addAll(reachableElements.asList() - elementIndex)
                     }
-                    patchedElements.sort()
-                    reachableEntities[index] = patchedElements.toIntArray()
+                    val patchedArray = patchedElements.toIntArray()
+                    patchedArray.sort()
+                    reachableEntities[elementIndex] = patchedArray
                 }
             }
+
+            val upStairIndex = reachableByStartingPosition.indexOf(upStairCaseEntityIndex)
+            val downStairIndex = reachableByStartingPosition.indexOf(dowStairCaseEntityIndex)
+            if ((upStairIndex != -1) || (downStairIndex != -1)) {
+                val patchedElements = mutableSetOf<Int>()
+                patchedElements.addAll(reachableByStartingPosition.asList())
+                if (upStairIndex != -1) {
+                    patchedElements.remove(upStairCaseEntityIndex)
+                    patchedElements.addAll(reachableElements.asList())
+                } else {
+                    patchedElements.remove(dowStairCaseEntityIndex)
+                    patchedElements.addAll(reachableElements.asList())
+                }
+                val patchedArray = patchedElements.toIntArray()
+                patchedArray.sort()
+                reachableByStartingPosition = patchedArray
+            }
+
+
         }
+
 
         val roomsSingleDoor = mutableListOf<Int>()
         entities.forEach { entity ->
@@ -200,7 +224,7 @@ class TowerPreparer(private val tower: Tower) {
             entities.size,
             entities.toTypedArray(),
             startingPositionPosition!!,
-            findReacheableEntities(arrayOf(startingPositionPosition!!)),
+            reachableByStartingPosition,
             reachableEntities,
             roomsSingleDoor.toIntArray(),
             entitiesIndexByPosition[tower.checkScore()]!!,

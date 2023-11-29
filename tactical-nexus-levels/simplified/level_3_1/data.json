@@ -19,7 +19,7 @@
 				"id": "player_start_position",
 				"iid": "fe10ea40-8990-11ee-b204-2591fbcb3fae",
 				"layer": "main",
-				"x": 64,
+				"x": 48,
 				"y": 0,
 				"width": 16,
 				"height": 16,
@@ -65,18 +65,7 @@
 				"id": "wall",
 				"iid": "7b4e3380-8990-11ee-bb22-c18103867c2f",
 				"layer": "main",
-				"x": 96,
-				"y": 0,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields" : {}
-			},
-			{
-				"id": "wall",
-				"iid": "7ba35860-8990-11ee-bb22-d520f3871151",
-				"layer": "main",
-				"x": 96,
+				"x": 80,
 				"y": 16,
 				"width": 16,
 				"height": 16,
@@ -104,17 +93,6 @@
 				"height": 16,
 				"color": 39387,
 				"customFields" : {}
-			},
-			{
-				"id": "wall",
-				"iid": "17119d20-8990-11ee-bb22-bb93925dc97d",
-				"layer": "main",
-				"x": 80,
-				"y": 16,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields" : {}
 			}
 		],
 		"door": [
@@ -133,15 +111,15 @@
 			},
 			{
 				"id": "door",
-				"iid": "1b796410-8990-11ee-bb22-917e715842fd",
+				"iid": "9ab7f610-8990-11ee-90f6-7d629dfacbbd",
 				"layer": "main",
-				"x": 32,
+				"x": 64,
 				"y": 0,
 				"width": 16,
 				"height": 16,
 				"color": 14984818,
 				"customFields": {
-					"key_or_door_color": "violet"
+					"key_or_door_color": "crimson"
 				}
 			}
 		],
@@ -178,15 +156,15 @@
 		"key": [
 			{
 				"id": "key",
-				"iid": "1f687890-8990-11ee-bb22-efacde226249",
+				"iid": "96714bb0-8990-11ee-90f6-83d40409c71b",
 				"layer": "main",
-				"x": 48,
+				"x": 32,
 				"y": 0,
 				"width": 16,
 				"height": 16,
 				"color": 15389866,
 				"customFields": {
-					"key_or_door_color": "violet"
+					"key_or_door_color": "crimson"
 				}
 			}
 		]

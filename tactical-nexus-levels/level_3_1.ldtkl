@@ -61,18 +61,18 @@
 			"entityInstances": [
 				{
 					"__identifier": "player_start_position",
-					"__grid": [4,0],
+					"__grid": [3,0],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": { "tilesetUid": 31, "x": 0, "y": 48, "w": 16, "h": 16 },
 					"__smartColor": "#BE4A2F",
-					"__worldX": 64,
+					"__worldX": 48,
 					"__worldY": 0,
 					"iid": "fe10ea40-8990-11ee-b204-2591fbcb3fae",
 					"width": 16,
 					"height": 16,
 					"defUid": 4,
-					"px": [64,0],
+					"px": [48,0],
 					"fieldInstances": []
 				},
 				{
@@ -182,34 +182,18 @@
 				},
 				{
 					"__identifier": "wall",
-					"__grid": [6,0],
+					"__grid": [5,1],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
 					"__smartColor": "#0099DB",
-					"__worldX": 96,
-					"__worldY": 0,
+					"__worldX": 80,
+					"__worldY": 16,
 					"iid": "7b4e3380-8990-11ee-bb22-c18103867c2f",
 					"width": 16,
 					"height": 16,
 					"defUid": 5,
-					"px": [96,0],
-					"fieldInstances": []
-				},
-				{
-					"__identifier": "wall",
-					"__grid": [6,1],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
-					"__smartColor": "#0099DB",
-					"__worldX": 96,
-					"__worldY": 16,
-					"iid": "7ba35860-8990-11ee-bb22-d520f3871151",
-					"width": 16,
-					"height": 16,
-					"defUid": 5,
-					"px": [96,16],
+					"px": [80,16],
 					"fieldInstances": []
 				},
 				{
@@ -245,57 +229,41 @@
 					"fieldInstances": []
 				},
 				{
-					"__identifier": "wall",
-					"__grid": [5,1],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
-					"__smartColor": "#0099DB",
-					"__worldX": 80,
-					"__worldY": 16,
-					"iid": "17119d20-8990-11ee-bb22-bb93925dc97d",
-					"width": 16,
-					"height": 16,
-					"defUid": 5,
-					"px": [80,16],
-					"fieldInstances": []
-				},
-				{
-					"__identifier": "door",
-					"__grid": [2,0],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 384, "y": 128, "w": 16, "h": 16 },
-					"__smartColor": "#E4A672",
-					"__worldX": 32,
-					"__worldY": 0,
-					"iid": "1b796410-8990-11ee-bb22-917e715842fd",
-					"width": 16,
-					"height": 16,
-					"defUid": 29,
-					"px": [32,0],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "violet", "__tile": null, "defUid": 30, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["violet"]
-					}] }]
-				},
-				{
 					"__identifier": "key",
-					"__grid": [3,0],
+					"__grid": [2,0],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": { "tilesetUid": 31, "x": 384, "y": 112, "w": 16, "h": 16 },
 					"__smartColor": "#EAD4AA",
-					"__worldX": 48,
+					"__worldX": 32,
 					"__worldY": 0,
-					"iid": "1f687890-8990-11ee-bb22-efacde226249",
+					"iid": "96714bb0-8990-11ee-90f6-83d40409c71b",
 					"width": 16,
 					"height": 16,
 					"defUid": 27,
-					"px": [48,0],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "violet", "__tile": null, "defUid": 28, "realEditorValues": [{
+					"px": [32,0],
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "crimson", "__tile": null, "defUid": 28, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["violet"]
+						"params": ["crimson"]
+					}] }]
+				},
+				{
+					"__identifier": "door",
+					"__grid": [4,0],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 384, "y": 128, "w": 16, "h": 16 },
+					"__smartColor": "#E4A672",
+					"__worldX": 64,
+					"__worldY": 0,
+					"iid": "9ab7f610-8990-11ee-90f6-7d629dfacbbd",
+					"width": 16,
+					"height": 16,
+					"defUid": 29,
+					"px": [64,0],
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "crimson", "__tile": null, "defUid": 30, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["crimson"]
 					}] }]
 				}
 			]

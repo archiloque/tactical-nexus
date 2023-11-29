@@ -78,28 +78,6 @@
 			},
 			{
 				"id": "wall",
-				"iid": "83e2db40-8990-11ee-bb22-f350f885e92c",
-				"layer": "main",
-				"x": 64,
-				"y": 48,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields" : {}
-			},
-			{
-				"id": "wall",
-				"iid": "84922e10-8990-11ee-bb22-efd37e270fde",
-				"layer": "main",
-				"x": 48,
-				"y": 48,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields" : {}
-			},
-			{
-				"id": "wall",
 				"iid": "84e61a70-8990-11ee-bb22-2dc412c50b8c",
 				"layer": "main",
 				"x": 32,

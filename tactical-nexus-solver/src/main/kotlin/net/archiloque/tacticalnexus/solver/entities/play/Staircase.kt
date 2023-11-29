@@ -29,6 +29,7 @@ data class Staircase(val direction: StaircaseDirection, val entityIndex: Int, va
         playableTower: PlayableTower,
         stateManager: StateManager,
     ) {
+        TODO()
         val newState = newState(entityIndex, state)
         if (addNewReachablePositions(
                 entityIndex,
