@@ -8,6 +8,7 @@ import net.archiloque.tacticalnexus.solver.entities.Direction
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Door
+import net.archiloque.tacticalnexus.solver.entities.input.Enemy
 import net.archiloque.tacticalnexus.solver.entities.input.Key
 import net.archiloque.tacticalnexus.solver.entities.input.Level
 import net.archiloque.tacticalnexus.solver.entities.input.OneWay
@@ -20,6 +21,9 @@ import net.archiloque.tacticalnexus.solver.input.Items
 
 @Generated
 public class Tower_3 : Tower {
+    private val enemies: Array<Enemy> = arrayOf(
+    )
+
     private val levels: Array<Level> = arrayOf(
     )
 

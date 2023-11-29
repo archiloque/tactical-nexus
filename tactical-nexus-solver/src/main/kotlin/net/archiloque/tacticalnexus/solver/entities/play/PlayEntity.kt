@@ -8,7 +8,7 @@ import net.archiloque.tacticalnexus.solver.entities.Position
 
 data class PositionedDescription(val description: String, val position: Position)
 
-abstract class PlayEntity(val entityIndex :Int) {
+abstract class PlayEntity(val entityIndex: Int) {
 
     abstract fun getType(): PlayEntityType
 

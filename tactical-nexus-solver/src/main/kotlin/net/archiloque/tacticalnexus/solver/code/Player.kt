@@ -28,7 +28,7 @@ class Player {
                         positionedEntity.play(state, playableTower, stateManager)
                         return
                     }
-                } else if ((positionedEntity.getType()== PlayEntityType.Enemy) && ((positionedEntity as Enemy).killNoHPLost(
+                } else if ((positionedEntity.getType() == PlayEntityType.Enemy) && ((positionedEntity as Enemy).killNoHPLost(
                         state
                     ))
                 ) {

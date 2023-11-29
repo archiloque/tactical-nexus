@@ -181,7 +181,7 @@ class Enemy(
         fun levelUpAtk(
             level: Level,
             levelUp: LevelUp,
-        ) = (levelUp.level + 1 + level.atkAdd) * level.atkAdd
+        ) = (levelUp.level + 1 + level.atkAdd) * level.atkMul
 
         fun enemy(
             enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy,

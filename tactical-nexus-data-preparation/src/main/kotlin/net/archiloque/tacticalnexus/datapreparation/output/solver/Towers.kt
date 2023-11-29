@@ -12,7 +12,6 @@ import javax.annotation.processing.Generated
 import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.datapreparation.LEVEL_DIMENSION_CELLS
 import net.archiloque.tacticalnexus.datapreparation.PIXELS_PER_CELL
-import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.enums.ScoreType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
@@ -86,14 +85,12 @@ class Towers {
                 .addAnnotation(Generated::class)
                 .addSuperinterface(towerInterfaceClass)
 
-            for (enemyType in EnemyType.entries) {
-                addEnemies(enemies, enemyType, towerSpec)
-            }
+            addEnemies(enemies, towerSpec)
 
             addLevels(levels, towerSpec)
 
-            addTowerLevels(towerLevels, false, towerSpec)
-            addTowerLevels(towerLevels, true, towerSpec)
+            addTowerLevels(towerLevels, false, towerSpec, enemies)
+            addTowerLevels(towerLevels, true, towerSpec, enemies)
 
             addStatFunction(towerSpec, "atk", stat.atk)
             addStatFunction(towerSpec, "def", stat.def)
@@ -114,6 +111,7 @@ class Towers {
             towerLevels: List<TowerLevel>,
             nexus: Boolean,
             towerSpec: TypeSpec.Builder,
+            enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
         ) {
             val levelsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
 
@@ -128,7 +126,7 @@ class Towers {
                         val customFields = it.levelCustomFields
                         (customFields.level == levelIndex) && (customFields.nexus == nexus)
                     }!!
-                addTowerLevel(levelsArrayCode, level.allEntities())
+                addTowerLevel(levelsArrayCode, level.allEntities(), enemies)
             }
             levelsArrayCode.add(")")
 
@@ -209,7 +207,11 @@ class Towers {
             }
         }
 
-        private fun addTowerLevel(levelsArrayCode: CodeBlock.Builder, entities: List<Entity>) {
+        private fun addTowerLevel(
+            levelsArrayCode: CodeBlock.Builder,
+            entities: List<Entity>,
+            enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>
+        ) {
             val entitiesByPosition = mutableMapOf<Position, Entity>()
             for (entity in entities) {
                 entitiesByPosition[Position(entity.y / PIXELS_PER_CELL, entity.x / PIXELS_PER_CELL)] = entity
@@ -233,8 +235,9 @@ class Towers {
                             }
 
                             is Enemy -> {
+                                val enemyIndex = enemies.indexOfFirst { (it.type == currentEntity.type()) && (it.level == currentEntity.level()) }
                                 levelsArrayCode.add(
-                                    "${currentEntity.type()}s[${currentEntity.level()}]"
+                                    "enemies[${enemyIndex}]"
                                 )
                             }
 
@@ -287,52 +290,44 @@ class Towers {
 
         private fun addEnemies(
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
-            enemyType: EnemyType,
             towerSpec: TypeSpec.Builder,
         ) {
-            val enemiesForType = enemies.filter { it.type == enemyType }
-            if (enemiesForType.isNotEmpty()) {
-                val maxEnemyLevel = enemiesForType.maxOf { it.level }
-                val enemiesArrayCode = CodeBlock.Builder().add("%M(\n", Solver.arrayOf)
-                for (level in 0..maxEnemyLevel) {
-                    val enemy = enemiesForType.find { it.level == level }
-                    if (enemy == null) {
-                        enemiesArrayCode.add("null,\n")
-                    } else {
-                        enemiesArrayCode.add(
-                            "%T(%T.${enemyType.name}, ${level}, ${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, ",
-                            enemyClass,
-                            enemyTypeClass
-                        )
-
-                        if (enemy.drop.isNotEmpty()) {
-                            if (enemy.drop.endsWith(net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy.KEY_SUFFIX)) {
-                                enemiesArrayCode.add(
-                                    "null, %T.${
-                                        enemy.drop.substring(
-                                            0,
-                                            enemy.drop.length - net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy.KEY_SUFFIX.length
-                                        )
-                                    }", keyOrDoorColorClass
-                                )
-                            } else {
-                                enemiesArrayCode.add("%T.${enemy.drop}, null", itemsClass)
-                            }
-                        } else {
-                            enemiesArrayCode.add("null, null")
-                        }
-                        enemiesArrayCode.add("),\n")
-                    }
-                }
-                enemiesArrayCode.add(")")
-                towerSpec.addProperty(
-                    PropertySpec
-                        .builder("${enemyType.name}s", Solver.arrayOf(enemyClass.copy(nullable = true)))
-                        .addModifiers(KModifier.PRIVATE)
-                        .initializer(enemiesArrayCode.build())
-                        .build()
+            val enemiesArrayCode = CodeBlock.Builder().add("%M(\n", Solver.arrayOf)
+            for (enemy in enemies) {
+                enemiesArrayCode.add(
+                    "%T(%T.${enemy.type}, ${enemy.level}, ${enemy.hp}, ${enemy.atk}, ${enemy.def}, ${enemy.exp}, ",
+                    enemyClass,
+                    enemyTypeClass
                 )
+
+                if (enemy.drop.isNotEmpty()) {
+                    if (enemy.drop.endsWith(net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy.KEY_SUFFIX)) {
+                        enemiesArrayCode.add(
+                            "null, %T.${
+                                enemy.drop.substring(
+                                    0,
+                                    enemy.drop.length - net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy.KEY_SUFFIX.length
+                                )
+                            }", keyOrDoorColorClass
+                        )
+                    } else {
+                        enemiesArrayCode.add("%T.${enemy.drop}, null", itemsClass)
+                    }
+                } else {
+                    enemiesArrayCode.add("null, null")
+                }
+                enemiesArrayCode.add("),\n")
+
             }
+            enemiesArrayCode.add(")")
+            towerSpec.addProperty(
+                PropertySpec
+                    .builder("enemies", Solver.arrayOf(enemyClass.copy(nullable = false)))
+                    .addModifiers(KModifier.PRIVATE)
+                    .initializer(enemiesArrayCode.build())
+                    .build()
+            )
+
         }
 
         private fun addLevels(
