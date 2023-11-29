@@ -8,8 +8,7 @@ import net.archiloque.tacticalnexus.solver.entities.Position
 
 data class PositionedDescription(val description: String, val position: Position)
 
-abstract class PlayEntity {
-    abstract fun entityIndex(): Int
+abstract class PlayEntity(val entityIndex :Int) {
 
     abstract fun getType(): PlayEntityType
 
@@ -22,18 +21,6 @@ abstract class PlayEntity {
         playableTower: PlayableTower,
         stateManager: StateManager,
     )
-
-    open fun isEnemy(): Boolean {
-        return false
-    }
-
-    open fun isDoor(): Boolean {
-        return false
-    }
-
-    open fun isUpStaircase(): Boolean {
-        return false
-    }
 
     fun newState(entityIndex: Int, state: State): State {
         if (entityIndex >= 0) {
@@ -58,7 +45,6 @@ abstract class PlayEntity {
     }
 
     fun addNewReachablePositions(
-        entityIndex: Int,
         state: State,
         playableTower: PlayableTower,
         stateManager: StateManager,
@@ -94,7 +80,7 @@ abstract class PlayEntity {
 
                     PlayEntityType.Door -> {
                         entityToAdd as Door
-                        if ((playableTower.roomsSingleDoor.indexOf(entityToAdd.entityIndex()) != -1) && entityToAdd.canApply(
+                        if ((playableTower.roomsSingleDoor.indexOf(entityToAdd.entityIndex) != -1) && entityToAdd.canApply(
                                 state
                             )
                         ) {
@@ -134,6 +120,7 @@ abstract class PlayEntity {
                 PlayEntityType.Enemy -> {
                     this as Enemy
                     return if (this.key != null) {
+                        // Obtaining akey as drop for an enemy is a valid move by itself
                         true
                     } else {
                         checkNewEntities(newEntities, state, playableTower, stateManager)

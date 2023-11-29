@@ -1,0 +1,48 @@
+{
+	"identifier": "level_2_5",
+	"uniqueIdentifer": "40bc93b0-8990-11ee-90f6-19b617defd52",
+	"x": 0,
+	"y": 0,
+	"width": 240,
+	"height": 240,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"tower": 2,
+		"level": 1,
+		"nexus": false
+	},
+	"layers": [],
+	"entities": {
+		"staircase": [
+			{
+				"id": "staircase",
+				"iid": "81002540-8990-11ee-90f6-9f2580bb2932",
+				"layer": "score",
+				"x": 112,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "up"
+				}
+			}
+		],
+		"item": [
+			{
+				"id": "item",
+				"iid": "8540b520-8990-11ee-90f6-4d8558ba57f2",
+				"layer": "score",
+				"x": 160,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "heavenly_potion"
+				}
+			}
+		]
+	}
+}

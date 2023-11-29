@@ -11,7 +11,7 @@
 	"iid": "b601b680-1460-11ee-90d5-bd5e07dd6506",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 55,
+	"nextUid": 57,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": null,
@@ -1180,11 +1180,11 @@
 		] },
 		{ "iid": "0fb29250-6280-11ee-b140-a79d59378a9a", "identifier": "tower_2", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
 			{
-				"identifier": "level_2_1",
+				"identifier": "level_2_6",
 				"iid": "0fb29251-6280-11ee-b140-d51b33aa76b8",
 				"uid": 47,
-				"worldX": 0,
-				"worldY": -16,
+				"worldX": 272,
+				"worldY": 0,
 				"worldDepth": 0,
 				"pxWid": 240,
 				"pxHei": 240,
@@ -1197,37 +1197,7 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_1.ldtkl",
-				"fieldInstances": [
-					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
-					{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
-					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
-						"id": "V_Bool",
-						"params": [ false ]
-					}] }
-				],
-				"layerInstances": null,
-				"__neighbours": []
-			},
-			{
-				"identifier": "level_2_2",
-				"iid": "b2a383f0-6280-11ee-b140-bfe59581c45f",
-				"uid": 48,
-				"worldX": 256,
-				"worldY": -16,
-				"worldDepth": 0,
-				"pxWid": 240,
-				"pxHei": 240,
-				"__bgColor": "#696A79",
-				"bgColor": null,
-				"useAutoIdentifier": false,
-				"bgRelPath": null,
-				"bgPos": null,
-				"bgPivotX": 0.5,
-				"bgPivotY": 0.5,
-				"__smartColor": "#ADADB5",
-				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_2.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_6.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
@@ -1240,11 +1210,11 @@
 				"__neighbours": []
 			},
 			{
-				"identifier": "level_2_3",
-				"iid": "df755ef0-8990-11ee-a188-85f01e28d097",
-				"uid": 49,
-				"worldX": 512,
-				"worldY": -16,
+				"identifier": "level_2_7",
+				"iid": "b2a383f0-6280-11ee-b140-bfe59581c45f",
+				"uid": 48,
+				"worldX": 544,
+				"worldY": 0,
 				"worldDepth": 0,
 				"pxWid": 240,
 				"pxHei": 240,
@@ -1257,10 +1227,100 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_3.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_7.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 3, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_2_9",
+				"iid": "df755ef0-8990-11ee-a188-85f01e28d097",
+				"uid": 49,
+				"worldX": 1088,
+				"worldY": 0,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_2_9.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 5, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [5] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_2_8",
+				"iid": "5eabf1e0-8990-11ee-90f6-0ff2b0cb67a6",
+				"uid": 55,
+				"worldX": 816,
+				"worldY": 0,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_2_8.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 4, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_2_5",
+				"iid": "40bc93b0-8990-11ee-90f6-19b617defd52",
+				"uid": 56,
+				"worldX": 0,
+				"worldY": 0,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_2_5.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
 					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
 						"id": "V_Bool",
 						"params": [ false ]

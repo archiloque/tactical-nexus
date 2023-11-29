@@ -22,22 +22,18 @@ class Enemy(
     val atk: Int,
     val def: Int,
     val exp: Int,
-    private val drop: DropItem?,
+    private val item: DropItem?,
     val key: KeyOrDoorColor?,
-    private val entityIndex: Int,
-    val position: Position,
+    entityIndex: Int,
+    private val position: Position,
 ) : PlayEntitySinglePosition(entityIndex, position) {
     override fun getType(): PlayEntityType {
         return PlayEntityType.Enemy
     }
 
-    override fun isEnemy(): Boolean {
-        return true
-    }
-
     override fun description(): Array<PositionedDescription> {
-        val dropDescription = if (drop != null) {
-            " and grab the ${drop.name.lowercase()}"
+        val dropDescription = if (item != null) {
+            " and grab the ${item.name.lowercase()}"
         } else if (key != null) {
             " and grab the ${key.humanName} key"
         } else {
@@ -65,7 +61,6 @@ class Enemy(
             val toLevelUp = levelUp(newState.exp)
             if (fromLevelUp != toLevelUp) {
                 if (addNewReachablePositions(
-                        entityIndex,
                         newState,
                         playableTower,
                         stateManager
@@ -81,7 +76,6 @@ class Enemy(
             } else {
                 dropApply(newState)
                 if (addNewReachablePositions(
-                        entityIndex,
                         newState,
                         playableTower,
                         stateManager
@@ -94,7 +88,7 @@ class Enemy(
     }
 
     fun dropApply(state: State) {
-        drop?.apply(state)
+        item?.apply(state)
         if (key != null) {
             apply(state, key)
         }
@@ -174,20 +168,20 @@ class Enemy(
             state.yellowKeys = (state.yellowKeys + level.yellowKeys).toShort()
         }
 
-        public fun levelUpHp(
+        fun levelUpHp(
             level: Level,
             levelUp: LevelUp,
-        ) = level.hpAdd + (level.hpMul * levelUp.level)
+        ) = (levelUp.level + 1 + level.hpAdd) * level.hpMul
 
-        public fun levelUpDef(
+        fun levelUpDef(
             level: Level,
             levelUp: LevelUp,
-        ) = level.defAdd + (level.defMul * levelUp.level)
+        ) = (levelUp.level + 1 + level.defAdd) * level.defMul
 
-        public fun levelUpAtk(
+        fun levelUpAtk(
             level: Level,
             levelUp: LevelUp,
-        ) = level.atkAdd + (level.atkMul * levelUp.level)
+        ) = (levelUp.level + 1 + level.atkAdd) * level.atkAdd
 
         fun enemy(
             enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy,

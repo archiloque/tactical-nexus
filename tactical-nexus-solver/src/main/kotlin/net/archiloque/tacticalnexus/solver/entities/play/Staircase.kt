@@ -5,12 +5,8 @@ import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.StaircaseDirection
 
-data class Staircase(val direction: StaircaseDirection, val entityIndex: Int, val position: Position) :
+class Staircase(private val direction: StaircaseDirection, entityIndex: Int, private val position: Position) :
     PlayEntitySinglePosition(entityIndex, position) {
-
-    override fun isUpStaircase(): Boolean {
-        return true
-    }
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.UpStaircase
@@ -32,7 +28,6 @@ data class Staircase(val direction: StaircaseDirection, val entityIndex: Int, va
         TODO()
         val newState = newState(entityIndex, state)
         if (addNewReachablePositions(
-                entityIndex,
                 newState,
                 playableTower,
                 stateManager

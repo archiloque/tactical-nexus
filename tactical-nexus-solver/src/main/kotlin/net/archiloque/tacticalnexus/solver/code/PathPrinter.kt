@@ -36,15 +36,13 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
             if (move >= 0) {
                 val positionedEntity = playableTower.playEntities[move]
                 apply(positionedEntity, currentState)
-                if (!positionedEntity.isUpStaircase()) {
-                    printStatus(
-                        index,
-                        moveIndexLength,
-                        currentState,
-                        positionedEntity
-                    )
-                    printMove(positionedEntity.getPositions(), lastPosition, tower)
-                }
+                printStatus(
+                    index,
+                    moveIndexLength,
+                    currentState,
+                    positionedEntity
+                )
+                printMove(positionedEntity.getPositions(), lastPosition, tower)
                 println()
 
                 lastPosition = positionedEntity.getPositions().last()

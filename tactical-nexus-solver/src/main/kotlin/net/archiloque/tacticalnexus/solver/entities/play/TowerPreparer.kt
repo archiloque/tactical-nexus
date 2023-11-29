@@ -213,7 +213,7 @@ class TowerPreparer(private val tower: Tower) {
 
                 if ((entitiesAroundType.size == 1) && (entitiesAroundType.first() == InputEntityType.Door)) {
                     val doorEntity = entities.indexOfFirst { playEntity ->
-                        (playEntity.isDoor()) && playEntity.getPositions().first() == entitiesAroundPosition.first()
+                        (playEntity.getType() == PlayEntityType.Door) && playEntity.getPositions().first() == entitiesAroundPosition.first()
                     }
                     roomsSingleDoor.add(doorEntity)
                 }

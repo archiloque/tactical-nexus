@@ -6,10 +6,10 @@ import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
 
 class GoodiesGroup(
-    private val entityIndex: Int,
+    entityIndex: Int,
     private val items: Array<PositionedItem>,
     private val keys: Array<PositionedKey>,
-) : PlayEntity() {
+) : PlayEntity(entityIndex) {
 
     val item = Item(
         items.sumOf { it.inputItem.atk },
@@ -32,10 +32,6 @@ class GoodiesGroup(
 
     private val positions = (items.map { it.position } + keys.map { it.position })
         .toTypedArray()
-
-    override fun entityIndex(): Int {
-        return entityIndex
-    }
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.GoodiesGroup
@@ -60,7 +56,6 @@ class GoodiesGroup(
         val newState = newState(entityIndex, state)
         apply(newState)
         if (addNewReachablePositions(
-                entityIndex,
                 newState,
                 playableTower,
                 stateManager

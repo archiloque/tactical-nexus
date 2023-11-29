@@ -35,7 +35,7 @@ public class Tower_2 : Tower {
         Enemy(EnemyType.fighter, 3, 300, 200, 0, 5, Items.guard_piece, null),
         null,
         null,
-        null,
+        Enemy(EnemyType.fighter, 6, 600, 300, 100, 10, Items.guard_gem, null),
         null,
         null,
         null,
@@ -74,6 +74,19 @@ public class Tower_2 : Tower {
         null,
         null,
         Enemy(EnemyType.ranger, 23, 2000, 1000, 100, 47, Items.life_potion, null),
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        Enemy(EnemyType.ranger, 32, 2000, 1600, 200, 70, Items.life_potion, null),
+        null,
+        null,
+        null,
+        Enemy(EnemyType.ranger, 36, 3000, 2200, 400, 100, Items.heavenly_potion, null),
     )
 
     private val shadows: Array<Enemy?> = arrayOf(
@@ -86,6 +99,58 @@ public class Tower_2 : Tower {
         null,
         null,
         Enemy(EnemyType.shadow, 8, 500, 300, 100, 16, null, KeyOrDoorColor.blue),
+        null,
+        null,
+        null,
+        null,
+        null,
+        Enemy(EnemyType.shadow, 14, 600, 700, 100, 36, null, KeyOrDoorColor.crimson),
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        Enemy(EnemyType.shadow, 60, 7000, 4000, 100, 250, null, KeyOrDoorColor.blue),
     )
 
     private val slashers: Array<Enemy?> = arrayOf(
@@ -106,263 +171,418 @@ public class Tower_2 : Tower {
         Level(0, 0, 0, 0, 0, 0, 2, 0, 0),
     )
 
-    private val standardLevels: Array<TowerLevel> =
-        arrayOf(
-            TowerLevel(
+    private val standardLevels: Array<TowerLevel> = arrayOf(
+        TowerLevel(
+            arrayOf(
                 arrayOf(
-                    arrayOf(
-                        Key(KeyOrDoorColor.yellow), Wall.instance,
-                        Key(KeyOrDoorColor.blue), Items.guard_gem, Wall.instance, Key(KeyOrDoorColor.yellow),
-                        fighters[1], fighters[1], Key(KeyOrDoorColor.yellow), Wall.instance, Items.power_gem,
-                        Items.blue_potion, Wall.instance, Key(KeyOrDoorColor.yellow), Items.golden_feather,
-                    ),
-                    arrayOf(
-                        Items.power_gem, Wall.instance, Items.power_gem, Items.blue_potion, Wall.instance,
-                        slashers[1], null, Items.guard_gem, fighters[1], Wall.instance, null, fighters[1],
-                        Door(KeyOrDoorColor.blue), rangers[6], Items.guard_gem,
-                    ),
-                    arrayOf(
-                        Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Key(KeyOrDoorColor.yellow),
-                        Door(KeyOrDoorColor.yellow), null, fighters[1], null, null, Wall.instance, Wall.instance,
-                        Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Wall.instance,
-                    ),
-                    arrayOf(
-                        slashers[1], null, null, fighters[1], Wall.instance, fighters[1], null,
-                        Items.blue_potion, null, Wall.instance, Key(KeyOrDoorColor.yellow), Items.red_potion,
-                        Wall.instance, Key(KeyOrDoorColor.yellow), Items.guard_deck,
-                    ),
-                    arrayOf(
-                        Items.guard_gem, null,
-                        null, null, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Items.blue_potion,
-                        Door(KeyOrDoorColor.yellow), Items.red_potion, Items.guard_gem, Wall.instance, shadows[3],
-                        Key(KeyOrDoorColor.yellow),
-                    ),
-                    arrayOf(
-                        null, null, Items.red_potion, null, Wall.instance,
-                        null, Key(KeyOrDoorColor.blue), null, Key(KeyOrDoorColor.yellow), Wall.instance,
-                        Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Door(KeyOrDoorColor.blue),
-                        Wall.instance,
-                    ),
-                    arrayOf(
-                        Wall.instance, Wall.instance, Wall.instance,
-                        Door(KeyOrDoorColor.yellow), Wall.instance, Items.blue_potion, null,
-                        Key(KeyOrDoorColor.crimson), null, Wall.instance, fighters[1], null, Wall.instance,
-                        Key(KeyOrDoorColor.violet), null,
-                    ),
-                    arrayOf(
-                        null, null, Wall.instance,
-                        Key(KeyOrDoorColor.yellow), Wall.instance, shadows[3], Wall.instance, Wall.instance,
-                        Door(KeyOrDoorColor.yellow), Wall.instance, null, Items.guard_gem,
-                        Door(KeyOrDoorColor.yellow), Items.power_gem, Items.blue_potion,
-                    ),
-                    arrayOf(
-                        null,
-                        PlayerStartPosition.instance, null, null, Wall.instance, fighters[1], Wall.instance, null,
-                        null, Wall.instance, Wall.instance, Door(KeyOrDoorColor.yellow), Door(KeyOrDoorColor.blue),
-                        Door(KeyOrDoorColor.yellow), Wall.instance,
-                    ),
-                    arrayOf(
-                        null, null, Wall.instance,
-                        Wall.instance, Door(KeyOrDoorColor.yellow), null, Items.power_gem, fighters[1], null,
-                        Wall.instance, Key(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.yellow),
-                        Door(KeyOrDoorColor.crimson), Items.power_potion, Items.guard_potion,
-                    ),
-                    arrayOf(
-                        Wall.instance, Wall.instance, Wall.instance, Items.power_card,
-                        Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Items.blue_potion, null,
-                        Wall.instance, Key(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.yellow), Wall.instance,
-                        Items.guard_potion, Items.power_potion,
-                    ),
-                    arrayOf(
-                        Door(KeyOrDoorColor.violet),
-                        Door(KeyOrDoorColor.crimson), Door(KeyOrDoorColor.crimson), Wall.instance,
-                        Door(KeyOrDoorColor.yellow), Wall.instance, null, null, Items.blue_potion, Wall.instance,
-                        Wall.instance, Door(KeyOrDoorColor.blue), Wall.instance, Door(KeyOrDoorColor.yellow),
-                        Wall.instance,
-                    ),
-                    arrayOf(
-                        Door(KeyOrDoorColor.violet), Wall.instance,
-                        Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue),
-                        Wall.instance, null, Items.power_gem, Items.guard_gem, Wall.instance, fighters[1],
-                        slashers[1], Items.power_potion, shadows[3], fighters[1],
-                    ),
-                    arrayOf(
-                        Items.life_crown,
-                        Wall.instance, Wall.instance, Items.guard_deck, Wall.instance, burgeoners[5],
-                        Door(KeyOrDoorColor.violet), rangers[3], null, Wall.instance, null, Items.power_potion,
-                        Items.blue_potion, Items.guard_potion, null,
-                    ),
-                    arrayOf(
-                        Key(KeyOrDoorColor.greenblue),
-                        Wall.instance, null, Door(KeyOrDoorColor.greenblue), Staircase.up, Items.heavenly_potion,
-                        Wall.instance, null, shadows[3], Wall.instance, fighters[1], null, Items.guard_potion, null,
-                        fighters[1],
-                    ),
-                )
-            ),
-            TowerLevel(
+                    null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null,
+                ),
                 arrayOf(
-                    arrayOf(
-                        Key(KeyOrDoorColor.yellow), Items.guard_piece,
-                        Items.power_piece, Key(KeyOrDoorColor.yellow), Door(KeyOrDoorColor.blue),
-                        Door(KeyOrDoorColor.blue), Key(KeyOrDoorColor.crimson), Door(KeyOrDoorColor.blue),
-                        Key(KeyOrDoorColor.yellow), slashers[3], Door(KeyOrDoorColor.crimson),
-                        Door(KeyOrDoorColor.crimson), Key(KeyOrDoorColor.violet), Wall.instance,
-                        Key(KeyOrDoorColor.greenblue),
-                    ),
-                    arrayOf(
-                        Items.power_piece, Items.life_potion,
-                        Items.guard_potion, Items.guard_piece, Wall.instance, Wall.instance, Wall.instance,
-                        Wall.instance, slashers[3], Key(KeyOrDoorColor.blue), Items.life_potion, Wall.instance,
-                        Wall.instance, Items.guard_potion, Door(KeyOrDoorColor.crimson),
-                    ),
-                    arrayOf(
-                        Items.guard_piece,
-                        Items.power_potion, Items.life_potion, Items.power_piece, Wall.instance, Items.guard_gem,
-                        Items.guard_gem, Door(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.yellow), fighters[3],
-                        Wall.instance, Items.heavenly_potion, Items.heavenly_potion, Wall.instance,
-                        Door(KeyOrDoorColor.blue),
-                    ),
-                    arrayOf(
-                        Key(KeyOrDoorColor.yellow), Items.power_piece,
-                        Items.guard_piece, rangers[6], Wall.instance, Items.power_gem, Items.power_gem, Wall.instance,
-                        slashers[3], slashers[3], Wall.instance, Items.guard_card, Items.guard_card, Wall.instance,
-                        Door(KeyOrDoorColor.yellow),
-                    ),
-                    arrayOf(
-                        Wall.instance, Wall.instance, Wall.instance,
-                        Door(KeyOrDoorColor.yellow), shadows[3], Wall.instance, Wall.instance, Items.power_gem,
-                        Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.yellow), null, Wall.instance,
-                        Door(KeyOrDoorColor.violet), Wall.instance, slashers[3],
-                    ),
-                    arrayOf(
-                        Items.heavenly_potion,
-                        Items.heavenly_potion, Door(KeyOrDoorColor.crimson), shadows[3], Door(KeyOrDoorColor.yellow),
-                        Items.guard_gem, null, rangers[6], Items.guard_gem, slashers[6], Door(KeyOrDoorColor.blue),
-                        Items.red_potion, Items.red_potion, burgeoners[5], burgeoners[5],
-                    ),
-                    arrayOf(
-                        Wall.instance,
-                        Wall.instance, Wall.instance, shadows[8], shadows[3], null, null, null, fighters[3], null,
-                        null, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
-                    ),
-                    arrayOf(
-                        Items.life_potion, Door(KeyOrDoorColor.blue), Items.power_potion,
-                        Door(KeyOrDoorColor.blue), Items.guard_gem, null, Wall.instance, Door(KeyOrDoorColor.crimson),
-                        null, fighters[3], null, Wall.instance, Items.power_card, Door(KeyOrDoorColor.crimson),
-                        Items.guard_deck,
-                    ),
-                    arrayOf(
-                        Wall.instance, Wall.instance, Wall.instance, shadows[8], null,
-                        Wall.instance, Key(KeyOrDoorColor.blue), Items.power_card, Wall.instance, Items.guard_gem,
-                        slashers[1], Wall.instance, Door(KeyOrDoorColor.blue), Items.power_card,
-                        Door(KeyOrDoorColor.crimson),
-                    ),
-                    arrayOf(
-                        Items.power_potion, Door(KeyOrDoorColor.yellow),
-                        Items.blue_potion, Door(KeyOrDoorColor.yellow), null, Wall.instance, Key(KeyOrDoorColor.blue),
-                        Key(KeyOrDoorColor.blue), Wall.instance, slashers[3], Items.power_gem,
-                        Door(KeyOrDoorColor.yellow), Items.blue_potion, Door(KeyOrDoorColor.blue), Items.guard_card,
-                    ),
-                    arrayOf(
-                        Wall.instance, Wall.instance, Wall.instance, null, rangers[6], Items.power_gem,
-                        Wall.instance, Wall.instance, null, Items.power_gem, slashers[3], Wall.instance,
-                        Wall.instance, Wall.instance, Wall.instance,
-                    ),
-                    arrayOf(
-                        Items.guard_gem, slashers[1], null,
-                        slashers[1], rangers[3], Wall.instance, Items.guard_gem, Items.guard_gem, slashers[6],
-                        Items.power_gem, Items.power_gem, fighters[3], fighters[3], Wall.instance,
-                        Items.golden_feather,
-                    ),
-                    arrayOf(
-                        fighters[1], null, fighters[1], null, rangers[3], null,
-                        Door(KeyOrDoorColor.blue), Items.guard_gem, shadows[8], slashers[1], null, Wall.instance,
-                        slashers[3], Wall.instance, rangers[23],
-                    ),
-                    arrayOf(
-                        null, fighters[1], Wall.instance,
-                        Wall.instance, Wall.instance, burgeoners[5], Wall.instance, Wall.instance, Wall.instance,
-                        slashers[1], Wall.instance, Wall.instance, slashers[3], Wall.instance, fighters[17],
-                    ),
-                    arrayOf(
-                        slashers[1], null, OneWay(Direction.left), null, Staircase.down,
-                        Door(KeyOrDoorColor.greenblue), Staircase.up, null, fighters[3], slashers[1],
-                        Key(KeyOrDoorColor.yellow), Wall.instance, rangers[6], shadows[8], Items.golden_feather,
-                    ),
-                )
-            ),
-            TowerLevel(
+                    null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                ),
                 arrayOf(
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, Items.guard_gem,
-                        Items.guard_gem, null, null, null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, Staircase.down, null, null, null, null, null,
-                        null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null,
-                    ),
-                )
-            ),
-        )
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null,
+                    Items.heavenly_potion, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null,
+                    null, null, null, Staircase.up, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null,
+                ),
+            )
+        ),
+        TowerLevel(
+            arrayOf(
+                arrayOf(
+                    Key(KeyOrDoorColor.yellow),
+                    Wall.instance, Key(KeyOrDoorColor.blue), Items.guard_gem, Wall.instance,
+                    Key(KeyOrDoorColor.yellow), fighters[1], fighters[1], Key(KeyOrDoorColor.yellow),
+                    Wall.instance, Items.power_gem, Items.blue_potion, Wall.instance, Key(KeyOrDoorColor.yellow),
+                    Items.golden_feather,
+                ),
+                arrayOf(
+                    Items.power_gem, Wall.instance, Items.power_gem,
+                    Items.blue_potion, Wall.instance, slashers[1], null, Items.guard_gem, fighters[1],
+                    Wall.instance, null, fighters[1], Door(KeyOrDoorColor.blue), rangers[6], Items.guard_gem,
+                ),
+                arrayOf(
+                    Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Key(KeyOrDoorColor.yellow),
+                    Door(KeyOrDoorColor.yellow), null, fighters[1], null, null, Wall.instance, Wall.instance,
+                    Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    slashers[1], null, null, fighters[1], Wall.instance, fighters[1], null,
+                    Items.blue_potion, null, Wall.instance, Key(KeyOrDoorColor.yellow), Items.red_potion,
+                    Wall.instance, Key(KeyOrDoorColor.yellow), Items.guard_card,
+                ),
+                arrayOf(
+                    Items.guard_gem, null,
+                    null, null, Wall.instance, Wall.instance, Wall.instance, Wall.instance, Items.blue_potion,
+                    Door(KeyOrDoorColor.yellow), Items.red_potion, Items.guard_gem, Wall.instance, shadows[3],
+                    Key(KeyOrDoorColor.yellow),
+                ),
+                arrayOf(
+                    null, null, Items.red_potion, null, Wall.instance,
+                    null, Key(KeyOrDoorColor.blue), null, Key(KeyOrDoorColor.yellow), Wall.instance,
+                    Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Door(KeyOrDoorColor.blue),
+                    Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance,
+                    Door(KeyOrDoorColor.yellow), Wall.instance, Items.blue_potion, null,
+                    Key(KeyOrDoorColor.crimson), null, Wall.instance, fighters[1], null, Wall.instance,
+                    Key(KeyOrDoorColor.violet), null,
+                ),
+                arrayOf(
+                    null, null, Wall.instance,
+                    Key(KeyOrDoorColor.yellow), Wall.instance, shadows[3], Wall.instance, Wall.instance,
+                    Door(KeyOrDoorColor.yellow), Wall.instance, null, Items.guard_gem,
+                    Door(KeyOrDoorColor.yellow), Items.power_gem, Items.blue_potion,
+                ),
+                arrayOf(
+                    null,
+                    PlayerStartPosition.instance, null, null, Wall.instance, fighters[1], Wall.instance, null,
+                    null, Wall.instance, Wall.instance, Door(KeyOrDoorColor.yellow), Door(KeyOrDoorColor.blue),
+                    Door(KeyOrDoorColor.yellow), Wall.instance,
+                ),
+                arrayOf(
+                    null, null, Wall.instance,
+                    Wall.instance, Door(KeyOrDoorColor.yellow), null, Items.power_gem, fighters[1], null,
+                    Wall.instance, Key(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.yellow),
+                    Door(KeyOrDoorColor.crimson), Items.power_potion, Items.guard_potion,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance, Items.power_card,
+                    Door(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Items.blue_potion, null,
+                    Wall.instance, Key(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.yellow), Wall.instance,
+                    Items.guard_potion, Items.power_potion,
+                ),
+                arrayOf(
+                    Door(KeyOrDoorColor.violet),
+                    Door(KeyOrDoorColor.crimson), Door(KeyOrDoorColor.crimson), Wall.instance,
+                    Door(KeyOrDoorColor.yellow), Wall.instance, null, null, Items.blue_potion, Wall.instance,
+                    Wall.instance, Door(KeyOrDoorColor.blue), Wall.instance, Door(KeyOrDoorColor.yellow),
+                    Wall.instance,
+                ),
+                arrayOf(
+                    Door(KeyOrDoorColor.violet), Wall.instance,
+                    Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue),
+                    Wall.instance, null, Items.power_gem, Items.guard_gem, Wall.instance, fighters[1],
+                    slashers[1], Items.power_potion, shadows[3], fighters[1],
+                ),
+                arrayOf(
+                    Items.life_crown,
+                    Wall.instance, Wall.instance, Items.guard_deck, Wall.instance, burgeoners[5],
+                    Door(KeyOrDoorColor.violet), rangers[3], null, Wall.instance, null, Items.power_potion,
+                    Items.blue_potion, Items.guard_potion, null,
+                ),
+                arrayOf(
+                    Key(KeyOrDoorColor.greenblue),
+                    Wall.instance, Staircase.down, Door(KeyOrDoorColor.greenblue), Staircase.up,
+                    Items.heavenly_potion, Wall.instance, null, shadows[3], Wall.instance, fighters[1], null,
+                    Items.guard_potion, null, fighters[1],
+                ),
+            )
+        ),
+        TowerLevel(
+            arrayOf(
+                arrayOf(
+                    Key(KeyOrDoorColor.yellow), Items.guard_piece, Items.power_piece,
+                    Key(KeyOrDoorColor.yellow), Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.blue),
+                    Key(KeyOrDoorColor.crimson), Door(KeyOrDoorColor.blue), Key(KeyOrDoorColor.yellow),
+                    slashers[3], Door(KeyOrDoorColor.crimson), Door(KeyOrDoorColor.crimson),
+                    Key(KeyOrDoorColor.violet), Wall.instance, Key(KeyOrDoorColor.greenblue),
+                ),
+                arrayOf(
+                    Items.power_piece, Items.life_potion, Items.guard_potion, Items.guard_piece,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, slashers[3],
+                    Key(KeyOrDoorColor.blue), Items.life_potion, Wall.instance, Wall.instance, Items.guard_potion,
+                    Door(KeyOrDoorColor.crimson),
+                ),
+                arrayOf(
+                    Items.guard_piece, Items.power_potion,
+                    Items.life_potion, Items.power_piece, Wall.instance, Items.guard_gem, Items.guard_gem,
+                    Door(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.yellow), fighters[3], Wall.instance,
+                    Items.heavenly_potion, Items.heavenly_potion, Wall.instance, Door(KeyOrDoorColor.blue),
+                ),
+                arrayOf(
+                    Key(KeyOrDoorColor.yellow), Items.power_piece, Items.guard_piece, rangers[6],
+                    Wall.instance, Items.power_gem, Items.power_gem, Wall.instance, slashers[3], slashers[3],
+                    Wall.instance, Items.guard_card, Items.guard_card, Wall.instance, Door(KeyOrDoorColor.yellow),
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance, Door(KeyOrDoorColor.yellow),
+                    shadows[3], Wall.instance, Wall.instance, Items.power_gem, Door(KeyOrDoorColor.blue),
+                    Door(KeyOrDoorColor.yellow), null, Wall.instance, Door(KeyOrDoorColor.violet), Wall.instance,
+                    slashers[3],
+                ),
+                arrayOf(
+                    Items.heavenly_potion, Items.heavenly_potion,
+                    Door(KeyOrDoorColor.crimson), shadows[3], Door(KeyOrDoorColor.yellow), Items.guard_gem, null,
+                    rangers[6], Items.guard_gem, slashers[6], Door(KeyOrDoorColor.blue), Items.red_potion,
+                    Items.red_potion, burgeoners[5], burgeoners[5],
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance,
+                    Wall.instance, shadows[8], shadows[3], null, null, null, fighters[3], null, null,
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Items.life_potion,
+                    Door(KeyOrDoorColor.blue), Items.power_potion, Door(KeyOrDoorColor.blue), Items.guard_gem,
+                    null, Wall.instance, Door(KeyOrDoorColor.crimson), null, fighters[3], null, Wall.instance,
+                    Items.power_card, Door(KeyOrDoorColor.crimson), Items.guard_deck,
+                ),
+                arrayOf(
+                    Wall.instance,
+                    Wall.instance, Wall.instance, shadows[8], null, Wall.instance, Key(KeyOrDoorColor.blue),
+                    Items.power_card, Wall.instance, Items.guard_gem, slashers[1], Wall.instance,
+                    Door(KeyOrDoorColor.blue), Items.power_card, Door(KeyOrDoorColor.crimson),
+                ),
+                arrayOf(
+                    Items.power_potion, Door(KeyOrDoorColor.yellow), Items.blue_potion,
+                    Door(KeyOrDoorColor.yellow), null, Wall.instance, Key(KeyOrDoorColor.blue),
+                    Key(KeyOrDoorColor.blue), Wall.instance, slashers[3], Items.power_gem,
+                    Door(KeyOrDoorColor.yellow), Items.blue_potion, Door(KeyOrDoorColor.blue), Items.guard_card,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance, null, rangers[6], Items.power_gem,
+                    Wall.instance, Wall.instance, null, Items.power_gem, slashers[3], Wall.instance,
+                    Wall.instance, Wall.instance, Wall.instance,
+                ),
+                arrayOf(
+                    Items.guard_gem, slashers[1], null,
+                    slashers[1], rangers[3], Wall.instance, Items.guard_gem, Items.guard_gem, slashers[6],
+                    Items.power_gem, Items.power_gem, fighters[3], fighters[3], Wall.instance,
+                    Items.golden_feather,
+                ),
+                arrayOf(
+                    fighters[1], null, fighters[1], null, rangers[3], null,
+                    Door(KeyOrDoorColor.blue), Items.guard_gem, shadows[8], slashers[1], null, Wall.instance,
+                    slashers[3], Wall.instance, rangers[23],
+                ),
+                arrayOf(
+                    null, fighters[1], Wall.instance,
+                    Wall.instance, Wall.instance, burgeoners[5], Wall.instance, Wall.instance, Wall.instance,
+                    slashers[1], Wall.instance, Wall.instance, slashers[3], Wall.instance, fighters[17],
+                ),
+                arrayOf(
+                    slashers[1], null, OneWay(Direction.left), null, Staircase.down,
+                    Door(KeyOrDoorColor.greenblue), Staircase.up, null, fighters[3], slashers[1],
+                    Key(KeyOrDoorColor.yellow), Wall.instance, rangers[6], shadows[8], Items.golden_feather,
+                ),
+            )
+        ),
+        TowerLevel(
+            arrayOf(
+                arrayOf(
+                    Items.blue_potion, Key(KeyOrDoorColor.blue),
+                    Key(KeyOrDoorColor.yellow), Items.red_potion, Wall.instance, Key(KeyOrDoorColor.crimson),
+                    Key(KeyOrDoorColor.crimson), Wall.instance, Door(KeyOrDoorColor.crimson), Items.power_gem,
+                    Key(KeyOrDoorColor.yellow), Wall.instance, Items.power_potion, Items.guard_potion,
+                    Items.power_potion,
+                ),
+                arrayOf(
+                    Key(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.crimson),
+                    Items.guard_card, Key(KeyOrDoorColor.blue), Wall.instance, Key(KeyOrDoorColor.blue),
+                    Key(KeyOrDoorColor.blue), rangers[36], rangers[6], Wall.instance, Items.guard_card,
+                    Wall.instance, Items.guard_potion, Items.life_crown, Items.guard_potion,
+                ),
+                arrayOf(
+                    Key(KeyOrDoorColor.blue), Items.power_card, Items.heavenly_potion,
+                    Key(KeyOrDoorColor.yellow), Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                    slashers[1], Wall.instance, Key(KeyOrDoorColor.crimson), Wall.instance, Items.power_potion,
+                    Items.guard_potion, Items.power_potion,
+                ),
+                arrayOf(
+                    Items.life_potion,
+                    Key(KeyOrDoorColor.yellow), Key(KeyOrDoorColor.blue), shadows[60],
+                    Door(KeyOrDoorColor.violet), rangers[6], null, Items.power_gem, slashers[1], null,
+                    Wall.instance, Wall.instance, Wall.instance, Door(KeyOrDoorColor.violet), Wall.instance,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance, null,
+                    Items.power_gem, rangers[6], Items.power_gem, rangers[6], slashers[6], null, fighters[3],
+                    rangers[32], Items.power_gem,
+                ),
+                arrayOf(
+                    Items.power_potion, Items.guard_potion,
+                    Wall.instance, Items.power_gem, Items.guard_gem, Door(KeyOrDoorColor.yellow), rangers[6],
+                    Items.power_gem, fighters[6], Items.guard_gem, rangers[6], slashers[3], fighters[3],
+                    Items.power_gem, Items.guard_gem,
+                ),
+                arrayOf(
+                    Items.power_potion, slashers[3],
+                    Door(KeyOrDoorColor.yellow), Items.guard_gem, Items.power_gem, Wall.instance, null,
+                    rangers[6], Items.guard_gem, fighters[6], Items.guard_gem, Door(KeyOrDoorColor.yellow),
+                    Items.power_gem, Wall.instance, null,
+                ),
+                arrayOf(
+                    Wall.instance, Door(KeyOrDoorColor.yellow),
+                    Door(KeyOrDoorColor.blue), Door(KeyOrDoorColor.yellow), Wall.instance,
+                    Key(KeyOrDoorColor.yellow), shadows[8], null, rangers[6], Items.guard_gem, Wall.instance,
+                    Door(KeyOrDoorColor.yellow), Wall.instance, Items.life_potion, rangers[23],
+                ),
+                arrayOf(
+                    Items.power_gem, Items.guard_gem, Door(KeyOrDoorColor.yellow), slashers[3],
+                    Items.power_potion, Wall.instance, null, slashers[3], null, Wall.instance, fighters[1],
+                    slashers[1], Wall.instance, Items.life_potion, Items.life_potion,
+                ),
+                arrayOf(
+                    Items.guard_gem,
+                    Items.power_gem, Wall.instance, Items.power_potion, Items.guard_potion, Wall.instance, null,
+                    null, Wall.instance, slashers[1], fighters[1], Wall.instance, Wall.instance, Wall.instance,
+                    Wall.instance,
+                ),
+                arrayOf(
+                    Door(KeyOrDoorColor.yellow), Wall.instance, Items.life_potion,
+                    Wall.instance, Wall.instance, Items.power_potion, slashers[6], burgeoners[5], Wall.instance,
+                    slashers[3], Door(KeyOrDoorColor.crimson), Items.life_potion, Items.guard_potion, fighters[6],
+                    Items.power_potion,
+                ),
+                arrayOf(
+                    Items.power_piece, fighters[3], Door(KeyOrDoorColor.yellow),
+                    Items.red_potion, Items.red_potion, Door(KeyOrDoorColor.yellow), slashers[6], burgeoners[5],
+                    Wall.instance, Items.power_gem, Wall.instance, shadows[14], Door(KeyOrDoorColor.yellow),
+                    Wall.instance, slashers[6],
+                ),
+                arrayOf(
+                    Items.power_piece, Items.power_piece, Wall.instance,
+                    Items.guard_gem, Wall.instance, Items.blue_potion, Wall.instance, burgeoners[5],
+                    Wall.instance, slashers[3], Wall.instance, Items.power_gem, Items.heavenly_potion,
+                    Door(KeyOrDoorColor.blue), Items.red_potion,
+                ),
+                arrayOf(
+                    Wall.instance, Wall.instance,
+                    Items.power_card, Wall.instance, Items.red_potion, Items.power_gem, Wall.instance,
+                    Key(KeyOrDoorColor.crimson), Wall.instance, Items.power_gem, fighters[3], Wall.instance,
+                    Door(KeyOrDoorColor.crimson), Wall.instance, rangers[6],
+                ),
+                arrayOf(
+                    Key(KeyOrDoorColor.crimson), fighters[6], Door(KeyOrDoorColor.crimson),
+                    Key(KeyOrDoorColor.yellow), slashers[6], null, Staircase.down, Door(KeyOrDoorColor.crimson),
+                    Staircase.up, Wall.instance, Items.guard_gem, fighters[3], Items.blue_potion, rangers[6],
+                    Items.blue_potion,
+                ),
+            )
+        ),
+        TowerLevel(
+            arrayOf(
+                arrayOf(
+                    null, null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null,
+                    Items.guard_gem, Items.guard_gem, null, null, null, null, null, null, null, null, null, null,
+                    null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, Staircase.down, null, null, null,
+                    null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null,
+                ),
+                arrayOf(
+                    null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                ),
+            )
+        ),
+    )
 
     private val nexusLevels: Array<TowerLevel> = arrayOf()
 
-    private val checkScore: Position = Position(2, 4, 1)
+    private val checkScore: Position = Position(4, 4, 1)
 
-    private val starScore: Position = Position(2, 4, 2)
+    private val starScore: Position = Position(4, 4, 2)
 
     override fun levels(): Array<Level> = levels
 

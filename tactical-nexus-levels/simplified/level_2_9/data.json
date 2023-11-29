@@ -1,15 +1,15 @@
 {
-	"identifier": "level_2_3",
+	"identifier": "level_2_9",
 	"uniqueIdentifer": "df755ef0-8990-11ee-a188-85f01e28d097",
-	"x": 512,
-	"y": -16,
+	"x": 1088,
+	"y": 0,
 	"width": 240,
 	"height": 240,
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
 		"tower": 2,
-		"level": 3,
+		"level": 5,
 		"nexus": false
 	},
 	"layers": [],

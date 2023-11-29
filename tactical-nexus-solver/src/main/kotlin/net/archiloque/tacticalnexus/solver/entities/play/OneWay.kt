@@ -5,7 +5,7 @@ import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.Direction
 import net.archiloque.tacticalnexus.solver.entities.Position
 
-class OneWay(private val direction: Direction, private val entityIndex: Int, val position: Position) :
+class OneWay(private val direction: Direction, entityIndex: Int, private val position: Position) :
     PlayEntitySinglePosition(entityIndex, position) {
 
     override fun getType(): PlayEntityType {
@@ -31,7 +31,6 @@ class OneWay(private val direction: Direction, private val entityIndex: Int, val
         // register we took this one way
         newState.oneWays = newState.oneWays.plus(entityIndex.toShort())
         if (addNewReachablePositions(
-                entityIndex,
                 newState,
                 playableTower,
                 stateManager

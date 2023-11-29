@@ -1,15 +1,15 @@
 {
-	"identifier": "level_2_1",
+	"identifier": "level_2_6",
 	"uniqueIdentifer": "0fb29251-6280-11ee-b140-d51b33aa76b8",
-	"x": 0,
-	"y": -16,
+	"x": 272,
+	"y": 0,
 	"width": 240,
 	"height": 240,
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
 		"tower": 2,
-		"level": 1,
+		"level": 2,
 		"nexus": false
 	},
 	"layers": [],
@@ -1416,6 +1416,19 @@
 				"customFields": {
 					"direction": "up"
 				}
+			},
+			{
+				"id": "staircase",
+				"iid": "7e31ea10-8990-11ee-90f6-df769d61625c",
+				"layer": "score",
+				"x": 32,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "down"
+				}
 			}
 		],
 		"item": [
@@ -1767,7 +1780,7 @@
 				"height": 16,
 				"color": 14957380,
 				"customFields": {
-					"item": "guard_deck"
+					"item": "guard_card"
 				}
 			},
 			{

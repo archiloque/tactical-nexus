@@ -5,12 +5,8 @@ import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
 
-class Door(private val color: KeyOrDoorColor, private val entityIndex: Int, val position: Position) :
+class Door(private val color: KeyOrDoorColor, entityIndex: Int, private val position: Position) :
     PlayEntitySinglePosition(entityIndex, position) {
-
-    override fun isDoor(): Boolean {
-        return true
-    }
 
     override fun getType(): PlayEntityType {
         return PlayEntityType.Door
@@ -36,7 +32,6 @@ class Door(private val color: KeyOrDoorColor, private val entityIndex: Int, val 
         val newState = newState(entityIndex, state)
         apply(newState)
         if (addNewReachablePositions(
-                entityIndex,
                 newState,
                 playableTower,
                 stateManager
