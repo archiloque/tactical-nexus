@@ -17,20 +17,20 @@ object States : BaseTable<State>("states") {
     val hp = int("hp")
 
     val expBonus = short("exp_bonus")
-    val hpBonus = short("hp_bonus")
+    private val hpBonus = short("hp_bonus")
 
-    val blue_keys = short("blue_keys")
-    val green_blue_keys = short("green_blue_keys")
-    val crimson_keys = short("crimson_keys")
-    val platinum_keys = short("platinum_keys")
-    val violet_keys = short("violet_keys")
-    val yellow_keys = short("yellow_keys")
+    private val blue_keys = short("blue_keys")
+    private val green_blue_keys = short("green_blue_keys")
+    private val crimson_keys = short("crimson_keys")
+    private val platinum_keys = short("platinum_keys")
+    private val violet_keys = short("violet_keys")
+    private val yellow_keys = short("yellow_keys")
 
-    val status = enum<StateStatus>("status")
+    private val status = enum<StateStatus>("status")
 
     val reachable = bitSet("reachable")
     val moves = shortArray("moves")
-    val oneWays = shortArray("one_ways")
+    private val oneWays = shortArray("one_ways")
     val level = short("level")
 
     override fun doCreateEntity(row: QueryRowSet, withReferences: Boolean): State {

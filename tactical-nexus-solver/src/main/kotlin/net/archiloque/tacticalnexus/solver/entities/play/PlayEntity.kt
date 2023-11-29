@@ -192,9 +192,9 @@ abstract class PlayEntity {
         entitiesIndexToAdd: MutableList<Int>,
     ) {
         // Check if we reached a one way we visited before
-        for(oneWay in state.oneWays) {
+        for (oneWay in state.oneWays) {
             val oneWayIndex = entitiesIndexToAdd.indexOf(oneWay.toInt())
-            if((entityIndex.toShort() != oneWay) && (oneWayIndex != -1)) {
+            if ((entityIndex.toShort() != oneWay) && (oneWayIndex != -1)) {
                 entitiesIndexToAdd.removeAt(oneWayIndex)
                 // In this case we need to find all the available positions for all the thing we already visited
 
@@ -210,11 +210,11 @@ abstract class PlayEntity {
                 entitiesIndexChecked.addAll(entitiesIndexToAdd)
                 entitiesIndexToCheck.addAll(entitiesIndexToAdd)
 
-                while(entitiesIndexToCheck.isNotEmpty()) {
+                while (entitiesIndexToCheck.isNotEmpty()) {
                     val entityIndexToCheck = entitiesIndexToCheck.removeAt(entitiesIndexToCheck.lastIndex)
-                    if(state.visited.get(entityIndexToCheck)) {
-                        for(reachableEntityIndex in playableTower.reachable[entityIndexToCheck]) {
-                            if(! entitiesIndexChecked.contains(reachableEntityIndex)) {
+                    if (state.visited.get(entityIndexToCheck)) {
+                        for (reachableEntityIndex in playableTower.reachable[entityIndexToCheck]) {
+                            if (!entitiesIndexChecked.contains(reachableEntityIndex)) {
                                 entitiesIndexChecked.add(reachableEntityIndex)
                                 entitiesIndexToCheck.add(reachableEntityIndex)
                             }

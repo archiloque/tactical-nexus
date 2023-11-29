@@ -96,8 +96,7 @@ class TowerLevels : Validator() {
                 }
 
                 val upStaircases =
-                    level.entities.staircase!!.filter { it.staircaseCustomFields.direction == StaircaseDirection.up }
-                        .count()
+                    level.entities.staircase!!.count { it.staircaseCustomFields.direction == StaircaseDirection.up }
                 if (
                     ((levelLevel == levelsIndexForTower.size) && (upStaircases != 0)) ||
                     ((levelLevel != levelsIndexForTower.size) && (upStaircases != 1))

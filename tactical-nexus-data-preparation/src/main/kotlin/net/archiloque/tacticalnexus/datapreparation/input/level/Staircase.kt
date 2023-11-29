@@ -21,7 +21,7 @@ data class StaircaseCustomFields(
 )
 
 @Serializable
-enum class StaircaseDirection() {
+enum class StaircaseDirection {
     up,
     down
 }

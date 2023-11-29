@@ -1,6 +1,6 @@
 package net.archiloque.tacticalnexus.solver.entities.play
 
-enum class PlayEntityType() {
+enum class PlayEntityType {
     Door,
     Enemy,
     OneWay,

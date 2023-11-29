@@ -26,7 +26,7 @@ class TowerPreparer(private val tower: Tower) {
 
     private fun findGoodiesGroups(
     ) {
-        forEachEntity() { levelIndex: Int, lineIndex: Int, columnIndex: Int, initialEntity: InputEntity ->
+        forEachEntity { levelIndex: Int, lineIndex: Int, columnIndex: Int, initialEntity: InputEntity ->
             when (initialEntity.getType()) {
                 InputEntityType.Item -> {
                     initialEntity as Item
@@ -58,7 +58,7 @@ class TowerPreparer(private val tower: Tower) {
     }
 
     private fun findStandardEntities() {
-        forEachEntity() { levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity ->
+        forEachEntity { levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity ->
             val position = Position(levelIndex, lineIndex, columnIndex)
             val playEntity = when (entity.getType()) {
                 InputEntityType.Door -> {
@@ -94,7 +94,7 @@ class TowerPreparer(private val tower: Tower) {
         val upStaircasesIndexByLevel = mutableMapOf<Int, Int>()
         val downStaircasesIndexByLevel = mutableMapOf<Int, Int>()
 
-        forEachEntity() { levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity ->
+        forEachEntity { levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity ->
             when (entity.getType()) {
 
                 InputEntityType.PlayerStartPosition -> {
@@ -177,9 +177,7 @@ class TowerPreparer(private val tower: Tower) {
             }
 
 
-
-            }
-
+        }
 
 
         val roomsSingleDoor = mutableListOf<Int>()

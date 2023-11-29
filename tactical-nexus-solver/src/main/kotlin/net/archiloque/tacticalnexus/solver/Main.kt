@@ -17,7 +17,7 @@ import net.archiloque.tacticalnexus.solver.database.readSqlFile
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 import net.archiloque.tacticalnexus.solver.entities.play.TowerPreparer
-import net.archiloque.tacticalnexus.solver.input.towers.Tower_3
+import net.archiloque.tacticalnexus.solver.input.towers.Tower_2
 import org.ktorm.database.Database
 import org.ktorm.support.postgresql.PostgreSqlDialect
 
@@ -32,7 +32,7 @@ fun main() {
         maximumPoolSize = Runtime.getRuntime().availableProcessors()
     }
 
-    val inputTower = Tower_3()
+    val inputTower = Tower_2()
     val playableTower = TowerPreparer(inputTower).prepare()
     playableTower.printAll()
     val initialState = createInitialState(inputTower, playableTower)
@@ -66,7 +66,7 @@ fun main() {
         val availableProcessors = Runtime.getRuntime().availableProcessors()
         for (i in 0..<(availableProcessors - 1)) {
             Thread {
-                println("Staring thread ${i}")
+                println("Staring thread $i")
                 while (true) {
                     val states = findNextStates(database)
                     if (states.isNotEmpty()) {

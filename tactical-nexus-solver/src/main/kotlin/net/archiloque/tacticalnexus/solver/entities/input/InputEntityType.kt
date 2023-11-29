@@ -1,6 +1,6 @@
 package net.archiloque.tacticalnexus.solver.entities.input
 
-enum class InputEntityType() {
+enum class InputEntityType {
     Door,
     Enemy,
     Item,

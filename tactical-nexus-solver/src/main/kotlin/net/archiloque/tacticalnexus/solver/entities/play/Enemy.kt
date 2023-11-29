@@ -22,7 +22,7 @@ class Enemy(
     val atk: Int,
     val def: Int,
     val exp: Int,
-    val drop: DropItem?,
+    private val drop: DropItem?,
     val key: KeyOrDoorColor?,
     private val entityIndex: Int,
     val position: Position,
@@ -71,7 +71,7 @@ class Enemy(
                         stateManager
                     ) || (fightResult == FightResult.WIN_NO_HP_LOST)
                 ) {
-                    playableTower.levels.forEachIndexed() { index, level ->
+                    playableTower.levels.forEachIndexed { index, level ->
                         val levelUpState = newState(-index - 1, newState)
                         applyLevelUp(levelUpState, level, toLevelUp)
                         dropApply(levelUpState)

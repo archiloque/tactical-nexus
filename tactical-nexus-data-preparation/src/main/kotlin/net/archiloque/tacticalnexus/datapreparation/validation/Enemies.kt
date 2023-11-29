@@ -24,8 +24,8 @@ class Enemies : Validator() {
             } else if (it.drop.isNotEmpty()) {
                 val drop = it.drop
                 if (!itemsIdentifiers.contains(drop)) {
-                    if (!drop.endsWith(Enemy.KEY_SUFFIX) || !KeyOrDoorColor.values()
-                            .any { it.name.equals(drop.substring(0, drop.length - Enemy.KEY_SUFFIX.length)) }
+                    if (!drop.endsWith(Enemy.KEY_SUFFIX) || !KeyOrDoorColor.entries
+                            .any { it.name == drop.substring(0, drop.length - Enemy.KEY_SUFFIX.length) }
                     ) {
                         foundError("Unknown item [${it}]")
                     }

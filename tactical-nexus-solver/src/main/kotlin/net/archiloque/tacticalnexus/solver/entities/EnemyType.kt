@@ -1,6 +1,6 @@
 package net.archiloque.tacticalnexus.solver.entities
 
-enum class EnemyType() {
+enum class EnemyType {
     burgeoner,
     fighter,
     ranger,

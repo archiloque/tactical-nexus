@@ -3,7 +3,7 @@ package net.archiloque.tacticalnexus.datapreparation.enums
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class ScoreType() {
+enum class ScoreType {
     check,
 
     // crown,

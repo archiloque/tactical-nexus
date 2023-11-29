@@ -19,7 +19,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
 
         val moveIndexLength = moves.size.toString().length
         val positionedEntities = moves.filter { it >= 0 }.map { playableTower.playEntities[it] }
-        positionedEntities.map { it.getPositions().map { it.level }.max() }.max().toString().length
+        positionedEntities.maxOfOrNull { it.getPositions().map { it.level }.max() }.toString().length
         var index = 1
         val initialPosition = playableTower.startingPositionPosition
         var currentLevelUpIndex = 0
