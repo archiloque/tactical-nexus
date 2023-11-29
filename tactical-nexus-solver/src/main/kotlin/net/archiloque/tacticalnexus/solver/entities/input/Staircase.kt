@@ -1,5 +1,7 @@
 package net.archiloque.tacticalnexus.solver.entities.input
 
+import net.archiloque.tacticalnexus.solver.entities.StaircaseDirection
+
 class Staircase private constructor(val direction: StaircaseDirection) : InputEntity() {
     companion object {
         val up = Staircase(StaircaseDirection.up)
@@ -10,8 +12,4 @@ class Staircase private constructor(val direction: StaircaseDirection) : InputEn
         return InputEntityType.Staircase
     }
 
-    enum class StaircaseDirection() {
-        up,
-        down
-    }
 }

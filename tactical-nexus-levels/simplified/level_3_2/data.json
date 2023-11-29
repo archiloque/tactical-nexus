@@ -1,0 +1,220 @@
+{
+	"identifier": "level_3_2",
+	"uniqueIdentifer": "fe1291e0-8990-11ee-bb22-9d790523c145",
+	"x": 256,
+	"y": 0,
+	"width": 240,
+	"height": 240,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"tower": 3,
+		"level": 2,
+		"nexus": false
+	},
+	"layers": [],
+	"entities": {
+		"score": [
+			{
+				"id": "score",
+				"iid": "2a78dd90-8990-11ee-b204-23fde0bb987d",
+				"layer": "main",
+				"x": 32,
+				"y": 16,
+				"width": 16,
+				"height": 16,
+				"color": 14120515,
+				"customFields": {
+					"score": "star"
+				}
+			},
+			{
+				"id": "score",
+				"iid": "95f7c340-8990-11ee-bb22-0b32f748ec6a",
+				"layer": "main",
+				"x": 32,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields": {
+					"score": "check"
+				}
+			}
+		],
+		"wall": [
+			{
+				"id": "wall",
+				"iid": "811aba90-8990-11ee-bb22-2fbf4b7c50ef",
+				"layer": "main",
+				"x": 64,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "817b2a10-8990-11ee-bb22-85d8eca2e55e",
+				"layer": "main",
+				"x": 64,
+				"y": 32,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "81cca570-8990-11ee-bb22-7f3e9a5670d7",
+				"layer": "main",
+				"x": 64,
+				"y": 16,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "83e2db40-8990-11ee-bb22-f350f885e92c",
+				"layer": "main",
+				"x": 64,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "84922e10-8990-11ee-bb22-efd37e270fde",
+				"layer": "main",
+				"x": 48,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "84e61a70-8990-11ee-bb22-2dc412c50b8c",
+				"layer": "main",
+				"x": 32,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "853265b0-8990-11ee-bb22-d91539b4e6bf",
+				"layer": "main",
+				"x": 16,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "85e477a0-8990-11ee-bb22-8d9d669aff2b",
+				"layer": "main",
+				"x": 0,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "3f3586f0-8990-11ee-bb22-5d92f8fb6efa",
+				"layer": "score",
+				"x": 16,
+				"y": 16,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			}
+		],
+		"staircase": [
+			{
+				"id": "staircase",
+				"iid": "1a5f7160-8990-11ee-bb22-fd266759d988",
+				"layer": "score",
+				"x": 0,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "down"
+				}
+			}
+		],
+		"door": [
+			{
+				"id": "door",
+				"iid": "3750f550-8990-11ee-bb22-a1658ea67e5c",
+				"layer": "score",
+				"x": 0,
+				"y": 16,
+				"width": 16,
+				"height": 16,
+				"color": 14984818,
+				"customFields": {
+					"key_or_door_color": "platinum"
+				}
+			}
+		],
+		"one_way": [
+			{
+				"id": "one_way",
+				"iid": "3b4539f0-8990-11ee-bb22-5de9f668916f",
+				"layer": "score",
+				"x": 16,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 14984818,
+				"customFields": {
+					"direction": "right"
+				}
+			}
+		],
+		"key": [
+			{
+				"id": "key",
+				"iid": "43f16150-8990-11ee-bb22-c53f8b1a6b19",
+				"layer": "score",
+				"x": 32,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 15389866,
+				"customFields": {
+					"key_or_door_color": "platinum"
+				}
+			},
+			{
+				"id": "key",
+				"iid": "4609e110-8990-11ee-bb22-afd8e431a88e",
+				"layer": "score",
+				"x": 32,
+				"y": 16,
+				"width": 16,
+				"height": 16,
+				"color": 15389866,
+				"customFields": {
+					"key_or_door_color": "yellow"
+				}
+			}
+		]
+	}
+}

@@ -2,6 +2,7 @@ package net.archiloque.tacticalnexus.solver.entities.play
 
 import net.archiloque.tacticalnexus.solver.entities.Direction
 import net.archiloque.tacticalnexus.solver.entities.Position
+import net.archiloque.tacticalnexus.solver.entities.StaircaseDirection
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntity
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Item
@@ -40,7 +41,7 @@ class TowerPreparer(private val tower: Tower) {
                 }
 
                 InputEntityType.Key -> {
-                    initialEntity as net.archiloque.tacticalnexus.solver.entities.input.Key
+                    initialEntity as Key
                     val initialItemPosition = Position(levelIndex, lineIndex, columnIndex)
                     if (!entitiesPositions.containsKey(initialItemPosition)) {
                         findGoodiesGroup(
@@ -89,8 +90,9 @@ class TowerPreparer(private val tower: Tower) {
     private fun findOtherEntities(
     ): PlayableTower {
         var startingPositionPosition: Position? = null
+
         val upStaircasesIndexByLevel = mutableMapOf<Int, Int>()
-        val downStaircasesPositionByLevel = mutableMapOf<Int, Position>()
+        val downStaircasesIndexByLevel = mutableMapOf<Int, Int>()
 
         forEachEntity() { levelIndex: Int, lineIndex: Int, columnIndex: Int, entity: InputEntity ->
             when (entity.getType()) {
@@ -101,21 +103,22 @@ class TowerPreparer(private val tower: Tower) {
 
                 InputEntityType.Staircase -> {
                     entity as Staircase
-                    when (entity.direction) {
-                        Staircase.StaircaseDirection.up -> {
-                            val position = Position(levelIndex, lineIndex, columnIndex)
-                            val upStaircaseEntity = UpStaircase(entities.size, position)
+                    val position = Position(levelIndex, lineIndex, columnIndex)
+                    val staircaseEntity =
+                        Staircase(entity.direction, entities.size, position)
 
-                            registerElement(position, upStaircaseEntity)
+                    registerElement(position, staircaseEntity)
+
+                    when (entity.direction) {
+                        StaircaseDirection.up -> {
                             upStaircasesIndexByLevel[levelIndex] = entities.size
-                            entities.add(upStaircaseEntity)
                         }
 
-                        Staircase.StaircaseDirection.down -> {
-                            downStaircasesPositionByLevel[levelIndex] =
-                                Position(levelIndex, lineIndex, columnIndex)
+                        StaircaseDirection.down -> {
+                            downStaircasesIndexByLevel[levelIndex] = entities.size
                         }
                     }
+                    entities.add(staircaseEntity)
                 }
 
                 else -> {
@@ -129,12 +132,28 @@ class TowerPreparer(private val tower: Tower) {
             )
         }.toTypedArray()
 
-        // Up staircase use the reachable entities of the corresponding down staircase
-        upStaircasesIndexByLevel.forEach { (levelIndex, upStaircaseIndex) ->
-            val downStaircasePosition = downStaircasesPositionByLevel[levelIndex + 1]!!
-            val reachableByDownStaircase =
-                findReacheableEntities(arrayOf(downStaircasePosition))
-            reachableEntities[upStaircaseIndex] = reachableByDownStaircase
+        for (level in 0..<(tower.standardLevels().size - 1)) {
+            val upStairCaseEntityIndex = upStaircasesIndexByLevel[level]!!
+            val dowStairCaseEntityIndex = downStaircasesIndexByLevel[level + 1]!!
+            val reachableElements =
+                reachableEntities[upStairCaseEntityIndex] + reachableEntities[dowStairCaseEntityIndex]
+            reachableEntities.forEachIndexed { index, elements ->
+                val upStairIndex = elements.indexOf(upStairCaseEntityIndex)
+                val downStairIndex = elements.indexOf(dowStairCaseEntityIndex)
+                if ((upStairIndex != -1) || (downStairIndex != -1)) {
+                    val patchedElements = mutableListOf<Int>()
+                    patchedElements.addAll(elements.asList())
+                    if (upStairIndex != -1) {
+                        patchedElements.removeAt(upStairIndex)
+                        patchedElements.addAll(reachableElements.asList() - index)
+                    } else {
+                        patchedElements.removeAt(downStairIndex)
+                        patchedElements.addAll(reachableElements.asList() - index)
+                    }
+                    patchedElements.sort()
+                    reachableEntities[index] = patchedElements.toIntArray()
+                }
+            }
         }
 
         val roomsSingleDoor = mutableListOf<Int>()
@@ -236,19 +255,6 @@ class TowerPreparer(private val tower: Tower) {
                                     newPositionsToCheck.add(position)
                                 }
 
-                                InputEntityType.Staircase -> {
-                                    // Ignore down staircase
-                                    entity as Staircase
-                                    when (entity.direction) {
-                                        Staircase.StaircaseDirection.up -> {
-                                            reachableEntities.add(entitiesIndexByPosition[position]!!)
-                                        }
-
-                                        Staircase.StaircaseDirection.down -> {
-                                        }
-                                    }
-                                }
-
                                 InputEntityType.Wall -> {
                                 }
 
@@ -316,7 +322,7 @@ class TowerPreparer(private val tower: Tower) {
                                 }
 
                                 InputEntityType.Key -> {
-                                    newEntity as net.archiloque.tacticalnexus.solver.entities.input.Key
+                                    newEntity as Key
                                     foundKeys.add(
                                         PositionedKey(
                                             newEntity.color,

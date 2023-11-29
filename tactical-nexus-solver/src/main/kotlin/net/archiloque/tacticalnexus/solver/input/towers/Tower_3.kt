@@ -1,6 +1,9 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.annotation.processing.Generated
+import javax.`annotation`.processing.Generated
+import kotlin.Array
+import kotlin.Int
+import kotlin.arrayOf
 import net.archiloque.tacticalnexus.solver.entities.Direction
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
@@ -9,6 +12,7 @@ import net.archiloque.tacticalnexus.solver.entities.input.Key
 import net.archiloque.tacticalnexus.solver.entities.input.Level
 import net.archiloque.tacticalnexus.solver.entities.input.OneWay
 import net.archiloque.tacticalnexus.solver.entities.input.PlayerStartPosition
+import net.archiloque.tacticalnexus.solver.entities.input.Staircase
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
 import net.archiloque.tacticalnexus.solver.entities.input.TowerLevel
 import net.archiloque.tacticalnexus.solver.entities.input.Wall
@@ -24,66 +28,131 @@ public class Tower_3 : Tower {
             TowerLevel(
                 arrayOf(
                     arrayOf(
-                        Items.blue_potion, Door(KeyOrDoorColor.crimson),
-                        PlayerStartPosition.instance, Items.guard_potion, OneWay(Direction.right),
-                        Key(KeyOrDoorColor.yellow), null, null, null, null, null, null, null, null, null,
+                        Items.blue_potion, Door(KeyOrDoorColor.yellow),
+                        Door(KeyOrDoorColor.violet), Key(KeyOrDoorColor.violet), PlayerStartPosition.instance,
+                        Staircase.up, Wall.instance, null, null, null, null, null, null, null, null,
                     ),
                     arrayOf(
-                        Wall.instance, Wall.instance, Door(KeyOrDoorColor.yellow), Wall.instance,
-                        Wall.instance, Key(KeyOrDoorColor.crimson), null, null, null, null, null, null, null, null,
-                        null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        Wall.instance, Wall.instance, Wall.instance, Wall.instance, Wall.instance,
+                        Wall.instance, Wall.instance, null, null, null, null, null, null, null, null,
                     ),
                     arrayOf(
                         null,
                         null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null,
+                    ),
+                )
+            ),
+            TowerLevel(
+                arrayOf(
+                    arrayOf(
+                        Staircase.down, OneWay(Direction.right),
+                        Key(KeyOrDoorColor.platinum), null, Wall.instance, null, null, null, null, null, null, null,
+                        null, null, null,
+                    ),
+                    arrayOf(
+                        Door(KeyOrDoorColor.platinum), Wall.instance,
+                        Key(KeyOrDoorColor.yellow), null, Wall.instance, null, null, null, null, null, null, null,
+                        null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, Wall.instance, null, null, null, null,
+                        null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        Wall.instance, Wall.instance, Wall.instance,
+                        Wall.instance, Wall.instance, null, null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null,
                     ),
                 )
             ),
@@ -91,9 +160,9 @@ public class Tower_3 : Tower {
 
     private val nexusLevels: Array<TowerLevel> = arrayOf()
 
-    private val checkScore: Position = Position(0, 0, 5)
+    private val checkScore: Position = Position(1, 1, 0)
 
-    private val starScore: Position = Position(0, 1, 5)
+    private val starScore: Position = Position(1, 1, 2)
 
     override fun levels(): Array<Level> = levels
 

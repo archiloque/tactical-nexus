@@ -59,7 +59,7 @@ class PlayableTowerTest {
                         PositionedItem(Items.red_potion, Position(0, 0, 3))
                     )
                 ),
-                UpStaircase(0, Position(0, 0, 5)),
+                Staircase(0, Position(0, 0, 5)),
             )
         )
         assertEquals(
@@ -128,7 +128,7 @@ class PlayableTowerTest {
                     ),
                 ),
 
-                UpStaircase(0, Position(0, 5, 0)),
+                Staircase(0, Position(0, 5, 0)),
             )
         )
 
@@ -200,7 +200,7 @@ class PlayableTowerTest {
                         PositionedItem(Items.red_potion, Position(0, 3, 2))
                     ),
                 ),
-                UpStaircase(0, Position(0, 3, 3)),
+                Staircase(0, Position(0, 3, 3)),
             )
         )
 

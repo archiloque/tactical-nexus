@@ -3,8 +3,10 @@ package net.archiloque.tacticalnexus.solver.entities.play
 import net.archiloque.tacticalnexus.solver.code.StateManager
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.entities.Position
+import net.archiloque.tacticalnexus.solver.entities.StaircaseDirection
 
-data class UpStaircase(val entityIndex: Int, val position: Position) : PlayEntitySinglePosition(entityIndex, position) {
+data class Staircase(val direction: StaircaseDirection, val entityIndex: Int, val position: Position) :
+    PlayEntitySinglePosition(entityIndex, position) {
 
     override fun isUpStaircase(): Boolean {
         return true
@@ -19,7 +21,7 @@ data class UpStaircase(val entityIndex: Int, val position: Position) : PlayEntit
     }
 
     override fun toString(): String {
-        return "Up staircase at $position and index $entityIndex"
+        return "Staircase $direction at $position and index $entityIndex"
     }
 
     override fun play(
