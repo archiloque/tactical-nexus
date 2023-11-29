@@ -57,7 +57,7 @@ class Door(val color: KeyOrDoorColor, private val entityIndex: Int, val position
             }
 
             KeyOrDoorColor.greenblue -> {
-                return state.greenblueKeys >= 1
+                return state.greenBlueKeys >= 1
             }
 
             KeyOrDoorColor.platinum -> {
@@ -85,7 +85,7 @@ class Door(val color: KeyOrDoorColor, private val entityIndex: Int, val position
             }
 
             KeyOrDoorColor.greenblue -> {
-                state.greenblueKeys = (state.greenblueKeys - 1).toShort()
+                state.greenBlueKeys = (state.greenBlueKeys - 1).toShort()
             }
 
             KeyOrDoorColor.platinum -> {

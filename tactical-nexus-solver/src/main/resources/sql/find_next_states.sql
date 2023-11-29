@@ -29,12 +29,13 @@ WHERE
 
     blue_keys,
     crimson_keys,
-    greenblue_keys,
+    green_blue_keys,
     platinum_keys,
     violet_keys,
     yellow_keys,
 
     reachable,
     moves,
+    one_ways,
 
     level

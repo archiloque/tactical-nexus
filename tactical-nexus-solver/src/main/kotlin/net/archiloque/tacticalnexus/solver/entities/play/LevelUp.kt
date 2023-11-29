@@ -10,17 +10,17 @@ data class LevelUp(
     companion object {
         private val levelUps = Collections.synchronizedList(mutableListOf(LevelUp(0, 0, 0)))
 
-        fun levelUp(exp: Int, playableTower: PlayableTower): LevelUp {
+        fun levelUp(exp: Int): LevelUp {
             val nexLevelUpExp = levelUps.indexOfFirst { it.exp > exp }
             return if (nexLevelUpExp == -1) {
-                createLevelsUp(exp, playableTower)
-                levelUp(exp, playableTower)
+                createLevelsUp(exp)
+                levelUp(exp)
             } else {
                 levelUps[nexLevelUpExp - 1]
             }
         }
 
-        private fun createLevelsUp(exp: Int, playableTower: PlayableTower) {
+        private fun createLevelsUp(exp: Int) {
             synchronized(Enemy) {
                 var maxLevel = levelUps.last()
                 while (maxLevel.exp <= exp) {

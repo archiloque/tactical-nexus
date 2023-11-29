@@ -38,7 +38,8 @@ fun findNextStates(database: Database): List<State> {
 
                     Mappings.BitSetSqlType.getResult(it, 15)!!,
                     Mappings.ShortArraySqlType.getResult(it, 16)!!,
-                    it.getShort(17)
+                    Mappings.ShortArraySqlType.getResult(it, 17)!!,
+                    it.getShort(18)
                 )
             }
         }

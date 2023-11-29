@@ -86,10 +86,11 @@ class DefaultStateManager(
 
                 Mappings.BitSetSqlType.setParameter(statement, 15, state.reachable)
                 Mappings.ShortArraySqlType.setParameter(statement, 16, state.moves)
-                statement.setShort(17, state.level)
+                Mappings.ShortArraySqlType.setParameter(statement, 17, state.oneWays)
+                statement.setShort(18, state.level)
 
-                Mappings.BitSetSqlType.setParameter(statement, 18, state.visited)
-                insertStateCommonParams(statement, state, 19)
+                Mappings.BitSetSqlType.setParameter(statement, 19, state.visited)
+                insertStateCommonParams(statement, state, 20)
                 val resultSet = statement.executeQuery()
                 if (resultSet.next()) {
                     // The state has been inserted
@@ -116,7 +117,7 @@ class DefaultStateManager(
 
         statement.setShort(firstParameterIndex + 6, state.blueKeys)
         statement.setShort(firstParameterIndex + 7, state.crimsonKeys)
-        statement.setShort(firstParameterIndex + 8, state.greenblueKeys)
+        statement.setShort(firstParameterIndex + 8, state.greenBlueKeys)
         statement.setShort(firstParameterIndex + 9, state.platinumKeys)
         statement.setShort(firstParameterIndex + 10, state.violetKeys)
         statement.setShort(firstParameterIndex + 11, state.yellowKeys)

@@ -177,7 +177,9 @@ class TowerPreparer(private val tower: Tower) {
             }
 
 
-        }
+
+            }
+
 
 
         val roomsSingleDoor = mutableListOf<Int>()

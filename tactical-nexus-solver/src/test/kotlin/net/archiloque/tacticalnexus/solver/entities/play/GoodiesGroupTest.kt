@@ -9,7 +9,7 @@ import net.archiloque.tacticalnexus.solver.input.Items
 class GoodiesGroupTest {
 
     private fun createGroup(vararg items: Item): GoodiesGroup {
-        return GoodiesGroup(0, items.map { PositionedItem(it, Position(0, 0, 0)) }.toTypedArray())
+        return GoodiesGroup(0, items.map { PositionedItem(it, Position(0, 0, 0))}.toTypedArray(), arrayOf())
     }
 
     @Test

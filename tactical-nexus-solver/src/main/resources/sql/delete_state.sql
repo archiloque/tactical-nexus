@@ -9,7 +9,7 @@ DELETE FROM STATES WHERE
     hp_bonus <= ? and
     blue_keys <= ? and
     crimson_keys <= ? and
-    greenblue_keys <= ? and
+    green_blue_keys <= ? and
     platinum_keys <= ? and
     violet_keys <= ? and
     yellow_keys <= ? and

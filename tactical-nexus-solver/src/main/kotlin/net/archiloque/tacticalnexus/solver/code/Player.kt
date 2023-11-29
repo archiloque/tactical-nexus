@@ -18,7 +18,7 @@ class Player {
                 val positionedEntity = playableTower.playEntities[reachableEntityIndexFirst]
 
                 if ((positionedEntity.isDoor()) && (playableTower.roomsSingleDoor.indexOf(
-                        positionedEntity.entityIndex()
+                        positionedEntity.entityIndex().toInt()
                     ) != -1)
                 ) {
                     positionedEntity as Door

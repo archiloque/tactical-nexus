@@ -19,12 +19,13 @@ data class State(
 
     var blueKeys: Short,
     var crimsonKeys: Short,
-    var greenblueKeys: Short,
+    var greenBlueKeys: Short,
     var platinumKeys: Short,
     var violetKeys: Short,
     var yellowKeys: Short,
 
     var reachable: BitSet,
     var moves: ShortArray,
+    var oneWays: ShortArray,
     var level: Short,
 )

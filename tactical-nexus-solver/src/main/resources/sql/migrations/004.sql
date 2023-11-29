@@ -11,7 +11,7 @@ CREATE UNIQUE INDEX states_duplicates
     hp_bonus,
 
     blue_keys,
-    greenblue_keys,
+    green_blue_keys,
     crimson_keys,
     platinum_keys,
     violet_keys,

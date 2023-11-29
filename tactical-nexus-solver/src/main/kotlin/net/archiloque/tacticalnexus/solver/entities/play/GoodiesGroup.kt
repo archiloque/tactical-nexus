@@ -74,7 +74,7 @@ class GoodiesGroup(
         item.apply(state)
         state.blueKeys = (state.blueKeys + blueKeys).toShort()
         state.crimsonKeys = (state.crimsonKeys + crimsonKeys).toShort()
-        state.greenblueKeys = (state.greenblueKeys + greenBlueKeys).toShort()
+        state.greenBlueKeys = (state.greenBlueKeys + greenBlueKeys).toShort()
         state.platinumKeys = (state.platinumKeys + platinumKeys).toShort()
         state.violetKeys = (state.violetKeys + violetKeys).toShort()
         state.yellowKeys = (state.yellowKeys + yellowKeys).toShort()

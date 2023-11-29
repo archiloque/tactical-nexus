@@ -71,57 +71,60 @@ abstract class PlayEntity {
         // - doors that leads to items rooms with a single exit
         var didSomethingAutomatic = false
         val newEntities = mutableListOf<PlayEntity>()
-        val positionsToAdd = playableTower.reachable[entityIndex].toMutableList()
-        while (positionsToAdd.isNotEmpty()) {
-            val positionToAdd = positionsToAdd.removeAt(positionsToAdd.lastIndex)
-            val elementToAdd = playableTower.playEntities[positionToAdd]
-            if ((!state.visited.get(positionToAdd)) && (!state.reachable.get(positionToAdd))) {
-                when (elementToAdd.getType()) {
+        val entitiesIndexToAdd = playableTower.reachable[entityIndex].toMutableList()
+
+        processOneWays(entityIndex, state, playableTower, entitiesIndexToAdd)
+
+        while (entitiesIndexToAdd.isNotEmpty()) {
+            val entityIndexToAdd = entitiesIndexToAdd.removeAt(entitiesIndexToAdd.lastIndex)
+            val entityToAdd = playableTower.playEntities[entityIndexToAdd]
+            if ((!state.visited.get(entityIndexToAdd)) && (!state.reachable.get(entityIndexToAdd))) {
+                when (entityToAdd.getType()) {
                     PlayEntityType.UpStaircase -> {
-                        addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                        addNewPosition(state, entityIndexToAdd, entitiesIndexToAdd, playableTower)
                         didSomethingAutomatic = true
                     }
 
                     PlayEntityType.GoodiesGroup -> {
-                        elementToAdd as GoodiesGroup
-                        elementToAdd.apply(state)
-                        addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                        entityToAdd as GoodiesGroup
+                        entityToAdd.apply(state)
+                        addNewPosition(state, entityIndexToAdd, entitiesIndexToAdd, playableTower)
                         didSomethingAutomatic = true
                     }
 
                     PlayEntityType.Door -> {
-                        elementToAdd as Door
-                        if ((playableTower.roomsSingleDoor.indexOf(elementToAdd.entityIndex()) != -1) && elementToAdd.canApply(
+                        entityToAdd as Door
+                        if ((playableTower.roomsSingleDoor.indexOf(entityToAdd.entityIndex()) != -1) && entityToAdd.canApply(
                                 state
                             )
                         ) {
-                            elementToAdd.apply(state)
-                            addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                            entityToAdd.apply(state)
+                            addNewPosition(state, entityIndexToAdd, entitiesIndexToAdd, playableTower)
                             didSomethingAutomatic = true
                         } else {
-                            state.reachable.set(positionToAdd)
-                            newEntities.add(elementToAdd)
+                            state.reachable.set(entityIndexToAdd)
+                            newEntities.add(entityToAdd)
                         }
                     }
 
                     PlayEntityType.Enemy -> {
-                        elementToAdd as Enemy
+                        entityToAdd as Enemy
                         val killEnemyNoHpLostAndNoLevelUp =
-                            elementToAdd.killNoHPLost(state) && (!elementToAdd.shouldLevelUp(state, playableTower))
+                            entityToAdd.killNoHPLost(state) && (!entityToAdd.shouldLevelUp(state))
                         if (killEnemyNoHpLostAndNoLevelUp) {
-                            elementToAdd.apply(state)
-                            elementToAdd.dropApply(state)
-                            addNewPosition(state, positionToAdd, positionsToAdd, playableTower)
+                            entityToAdd.apply(state)
+                            entityToAdd.dropApply(state)
+                            addNewPosition(state, entityIndexToAdd, entitiesIndexToAdd, playableTower)
                             didSomethingAutomatic = true
                         } else {
-                            state.reachable.set(positionToAdd)
-                            newEntities.add(elementToAdd)
+                            state.reachable.set(entityIndexToAdd)
+                            newEntities.add(entityToAdd)
                         }
                     }
 
                     else -> {
-                        state.reachable.set(positionToAdd)
-                        newEntities.add(elementToAdd)
+                        state.reachable.set(entityIndexToAdd)
+                        newEntities.add(entityToAdd)
                     }
                 }
             }
@@ -179,6 +182,48 @@ abstract class PlayEntity {
             }
         } else {
             return true
+        }
+    }
+
+    private fun processOneWays(
+        entityIndex: Int,
+        state: State,
+        playableTower: PlayableTower,
+        entitiesIndexToAdd: MutableList<Int>,
+    ) {
+        // Check if we reached a one way we visited before
+        for(oneWay in state.oneWays) {
+            val oneWayIndex = entitiesIndexToAdd.indexOf(oneWay.toInt())
+            if((entityIndex.toShort() != oneWay) && (oneWayIndex != -1)) {
+                entitiesIndexToAdd.removeAt(oneWayIndex)
+                // In this case we need to find all the available positions for all the thing we already visited
+
+                // First remove the one way from the ones to check
+                val oneWays = state.oneWays.toMutableList()
+                oneWays.remove(oneWay)
+                state.oneWays = oneWays.toShortArray()
+
+                val entitiesIndexChecked = mutableListOf<Int>()
+                entitiesIndexChecked.add(oneWay.toInt())
+
+                val entitiesIndexToCheck = mutableListOf<Int>()
+                entitiesIndexChecked.addAll(entitiesIndexToAdd)
+                entitiesIndexToCheck.addAll(entitiesIndexToAdd)
+
+                while(entitiesIndexToCheck.isNotEmpty()) {
+                    val entityIndexToCheck = entitiesIndexToCheck.removeAt(entitiesIndexToCheck.lastIndex)
+                    if(state.visited.get(entityIndexToCheck)) {
+                        for(reachableEntityIndex in playableTower.reachable[entityIndexToCheck]) {
+                            if(! entitiesIndexChecked.contains(reachableEntityIndex)) {
+                                entitiesIndexChecked.add(reachableEntityIndex)
+                                entitiesIndexToCheck.add(reachableEntityIndex)
+                            }
+                        }
+                    } else {
+                        entitiesIndexToAdd.add(entityIndexToCheck)
+                    }
+                }
+            }
         }
     }
 

@@ -129,6 +129,7 @@ fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
 
         reachable,
         shortArrayOf(),
+        shortArrayOf(),
         0,
     )
 }

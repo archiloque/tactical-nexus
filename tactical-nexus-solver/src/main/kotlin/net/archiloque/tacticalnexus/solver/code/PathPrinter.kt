@@ -50,7 +50,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 lastPosition = positionedEntity.getPositions().last()
             } else {
                 currentLevelUpIndex++
-                val levelUp = LevelUp.levelUp(currentState.exp, playableTower)
+                val levelUp = LevelUp.levelUp(currentState.exp)
                 val level = playableTower.levels[-move - 1]
 
                 val levelUpDescriptionsParts = mutableListOf<String>()
@@ -104,7 +104,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 positionedDescription.description
             )
         }
-        val exp = currentState.exp - LevelUp.levelUp(currentState.exp, playableTower).exp
+        val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
             "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
         )

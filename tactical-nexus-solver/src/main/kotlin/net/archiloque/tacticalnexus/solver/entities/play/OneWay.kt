@@ -28,6 +28,8 @@ class OneWay(private val direction: Direction, private val entityIndex: Int, val
         val newState = newState(entityIndex, state)
         // clear all reachable states
         newState.reachable.clear()
+        // register we took this one way
+        newState.oneWays = newState.oneWays.plus(entityIndex.toShort())
         if (addNewReachablePositions(
                 entityIndex,
                 newState,

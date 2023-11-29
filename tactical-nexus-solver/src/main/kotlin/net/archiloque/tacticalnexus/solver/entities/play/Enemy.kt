@@ -58,11 +58,11 @@ class Enemy(
         stateManager: StateManager,
     ) {
         val newState = newState(entityIndex, state)
-        val fromLevelUp = levelUp(newState.exp, playableTower)
+        val fromLevelUp = levelUp(newState.exp)
 
         val fightResult = apply(newState)
         if (fightResult != FightResult.LOOSE) {
-            val toLevelUp = levelUp(newState.exp, playableTower)
+            val toLevelUp = levelUp(newState.exp)
             if (fromLevelUp != toLevelUp) {
                 if (addNewReachablePositions(
                         entityIndex,
@@ -104,7 +104,7 @@ class Enemy(
         when (keyColor) {
             KeyOrDoorColor.blue -> state.blueKeys = (state.blueKeys + 1).toShort()
             KeyOrDoorColor.crimson -> state.crimsonKeys = (state.crimsonKeys + 1).toShort()
-            KeyOrDoorColor.greenblue -> state.greenblueKeys = (state.greenblueKeys + 1).toShort()
+            KeyOrDoorColor.greenblue -> state.greenBlueKeys = (state.greenBlueKeys + 1).toShort()
             KeyOrDoorColor.platinum -> state.platinumKeys = (state.platinumKeys + 1).toShort()
             KeyOrDoorColor.violet -> state.violetKeys = (state.violetKeys + 1).toShort()
             KeyOrDoorColor.yellow -> state.yellowKeys = (state.yellowKeys + 1).toShort()
@@ -135,8 +135,8 @@ class Enemy(
         return (damagesToEnemy > hp) || ((damagesToPlayer == 0) && (damagesToEnemy > 0))
     }
 
-    fun shouldLevelUp(state: State, playableTower: PlayableTower): Boolean {
-        return levelUp(state.exp, playableTower) != levelUp(state.exp + this.earnXp(state), playableTower)
+    fun shouldLevelUp(state: State): Boolean {
+        return levelUp(state.exp) != levelUp(state.exp + this.earnXp(state))
     }
 
     private fun calculate(state: State): Int? {
