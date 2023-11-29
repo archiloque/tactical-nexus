@@ -187,7 +187,7 @@ class TowerPreparer(private val tower: Tower) {
 
                 var positionsToCheck = mutableSetOf<Position>()
                 val exploredPositions = mutableSetOf<Position>()
-                val entitiesAroundType = mutableSetOf<InputEntityType>()
+                val entitiesAround = mutableSetOf<InputEntity>()
                 val entitiesAroundPosition = mutableSetOf<Position>()
                 positionsToCheck.addAll(entity.getPositions())
                 exploredPositions.addAll(entity.getPositions())
@@ -202,7 +202,7 @@ class TowerPreparer(private val tower: Tower) {
                                 if (newEntity == null) {
                                     newPositionsToCheck.add(newPosition)
                                 } else if (newEntity.getType() != InputEntityType.Wall) {
-                                    entitiesAroundType.add(newEntity.getType())
+                                    entitiesAround.add(newEntity)
                                     entitiesAroundPosition.add(newPosition)
                                 }
                             }
@@ -211,7 +211,7 @@ class TowerPreparer(private val tower: Tower) {
                     positionsToCheck = newPositionsToCheck
                 }
 
-                if ((entitiesAroundType.size == 1) && (entitiesAroundType.first() == InputEntityType.Door)) {
+                if ((entitiesAround.size == 1) && (entitiesAround.first().getType() == InputEntityType.Door)) {
                     val doorEntity = entities.indexOfFirst { playEntity ->
                         (playEntity.getType() == PlayEntityType.Door) && playEntity.getPositions()
                             .first() == entitiesAroundPosition.first()

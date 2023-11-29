@@ -8,7 +8,7 @@
 		"appVersion": "1.4.1",
 		"url": "https://ldtk.io"
 	},
-	"identifier": "level_2_7",
+	"identifier": "level_2_3",
 	"iid": "b2a383f0-6280-11ee-b140-bfe59581c45f",
 	"uid": 48,
 	"worldX": 544,
@@ -3874,6 +3874,25 @@
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 5, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [5] }] }
 					]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [10,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 704,
+					"__worldY": 64,
+					"iid": "0e274290-8990-11ee-8d3a-13d6a5ed70fa",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [160,64],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_gem", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["guard_gem"]
+					}] }]
 				}
 			]
 		}

@@ -28,7 +28,6 @@ class Door(private val color: KeyOrDoorColor, entityIndex: Int, private val posi
         if (!canApply(state)) {
             return
         }
-
         val newState = newState(entityIndex, state)
         apply(newState)
         if (addNewReachablePositions(

@@ -1,7 +1,7 @@
 {
 	"identifier": "level_2_5",
-	"uniqueIdentifer": "40bc93b0-8990-11ee-90f6-19b617defd52",
-	"x": 0,
+	"uniqueIdentifer": "df755ef0-8990-11ee-a188-85f01e28d097",
+	"x": 1088,
 	"y": 0,
 	"width": 240,
 	"height": 240,
@@ -9,7 +9,7 @@
 	"neighbourLevels": [],
 	"customFields": {
 		"tower": 2,
-		"level": 1,
+		"level": 5,
 		"nexus": false
 	},
 	"layers": [],
@@ -17,30 +17,71 @@
 		"staircase": [
 			{
 				"id": "staircase",
-				"iid": "81002540-8990-11ee-90f6-9f2580bb2932",
-				"layer": "score",
-				"x": 112,
+				"iid": "3968de00-8990-11ee-a188-0712aca91239",
+				"layer": "main",
+				"x": 48,
 				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 1578021,
 				"customFields": {
-					"direction": "up"
+					"direction": "down"
 				}
 			}
 		],
 		"item": [
 			{
 				"id": "item",
-				"iid": "8540b520-8990-11ee-90f6-4d8558ba57f2",
-				"layer": "score",
-				"x": 160,
-				"y": 80,
+				"iid": "3d963400-8990-11ee-a188-bd4b43484f78",
+				"layer": "main",
+				"x": 16,
+				"y": 64,
 				"width": 16,
 				"height": 16,
 				"color": 14957380,
 				"customFields": {
-					"item": "heavenly_potion"
+					"item": "guard_gem"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "41c81de0-8990-11ee-a188-bf881cef91e7",
+				"layer": "main",
+				"x": 32,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "guard_gem"
+				}
+			}
+		],
+		"score": [
+			{
+				"id": "score",
+				"iid": "48263690-8990-11ee-a188-475531e18f2c",
+				"layer": "score",
+				"x": 16,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields": {
+					"score": "check"
+				}
+			},
+			{
+				"id": "score",
+				"iid": "4a094e70-8990-11ee-a188-69074ca9e8ba",
+				"layer": "score",
+				"x": 32,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 14120515,
+				"customFields": {
+					"score": "star"
 				}
 			}
 		]

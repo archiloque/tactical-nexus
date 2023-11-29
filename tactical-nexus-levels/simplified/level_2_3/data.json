@@ -1,5 +1,5 @@
 {
-	"identifier": "level_2_7",
+	"identifier": "level_2_3",
 	"uniqueIdentifer": "b2a383f0-6280-11ee-b140-bfe59581c45f",
 	"x": 544,
 	"y": 0,
@@ -2559,6 +2559,19 @@
 				"color": 14957380,
 				"customFields": {
 					"item": "guard_potion"
+				}
+			},
+			{
+				"id": "item",
+				"iid": "0e274290-8990-11ee-8d3a-13d6a5ed70fa",
+				"layer": "score",
+				"x": 160,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "guard_gem"
 				}
 			}
 		],

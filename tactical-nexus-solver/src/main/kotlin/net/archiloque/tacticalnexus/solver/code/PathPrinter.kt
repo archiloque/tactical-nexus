@@ -17,7 +17,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
     fun printMoves(moves: IntArray) {
         val currentState = initialState.copy()
 
-        val moveIndexLength = moves.size.toString().length
+        moves.size.toString().length
         val positionedEntities = moves.filter { it >= 0 }.map { playableTower.playEntities[it] }
         positionedEntities.maxOfOrNull { it.getPositions().map { it.level }.max() }.toString().length
         var index = 1
@@ -25,7 +25,6 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
         var currentLevelUpIndex = 0
         printStatus(
             0,
-            moveIndexLength,
             initialPosition,
             "Starting"
         )
@@ -38,7 +37,6 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 apply(positionedEntity, currentState)
                 printStatus(
                     index,
-                    moveIndexLength,
                     currentState,
                     positionedEntity
                 )
@@ -77,7 +75,6 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 Enemy.applyLevelUp(currentState, level, levelUp)
                 printStatus(
                     index,
-                    moveIndexLength,
                     lastPosition,
                     description
                 )
@@ -90,14 +87,12 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
 
     private fun printStatus(
         index: Int,
-        moveIndexLength: Int,
         currentState: State,
         entity: PlayEntity,
     ) {
         entity.description().forEach { positionedDescription ->
             printStatus(
                 index,
-                moveIndexLength,
                 positionedDescription.position,
                 positionedDescription.description
             )
@@ -128,17 +123,10 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
 
     private fun printStatus(
         index: Int,
-        moveIndexLength: Int,
         position: Position,
         description: String,
     ) {
-        println(
-            "${index.toString().padStart(moveIndexLength)} (${
-                position.level.toString().padStart(3)
-            }, ${position.line.toString().padStart(2)}, ${
-                position.column.toString().padStart(2)
-            }) $description"
-        )
+        println("$index (${position.level}, ${position.line}, ${position.column}) $description")
     }
 
     private fun apply(

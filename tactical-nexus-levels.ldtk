@@ -1180,7 +1180,7 @@
 		] },
 		{ "iid": "0fb29250-6280-11ee-b140-a79d59378a9a", "identifier": "tower_2", "defaultLevelWidth": 256, "defaultLevelHeight": 256, "worldGridWidth": 256, "worldGridHeight": 256, "worldLayout": "Free", "levels": [
 			{
-				"identifier": "level_2_6",
+				"identifier": "level_2_2",
 				"iid": "0fb29251-6280-11ee-b140-d51b33aa76b8",
 				"uid": 47,
 				"worldX": 272,
@@ -1197,7 +1197,7 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_6.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_2.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
@@ -1210,7 +1210,7 @@
 				"__neighbours": []
 			},
 			{
-				"identifier": "level_2_7",
+				"identifier": "level_2_3",
 				"iid": "b2a383f0-6280-11ee-b140-bfe59581c45f",
 				"uid": 48,
 				"worldX": 544,
@@ -1227,7 +1227,7 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_7.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_3.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 3, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
@@ -1240,7 +1240,7 @@
 				"__neighbours": []
 			},
 			{
-				"identifier": "level_2_9",
+				"identifier": "level_2_5",
 				"iid": "df755ef0-8990-11ee-a188-85f01e28d097",
 				"uid": 49,
 				"worldX": 1088,
@@ -1257,7 +1257,7 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_9.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_5.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 5, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [5] }] },
@@ -1270,7 +1270,7 @@
 				"__neighbours": []
 			},
 			{
-				"identifier": "level_2_8",
+				"identifier": "level_2_4",
 				"iid": "5eabf1e0-8990-11ee-90f6-0ff2b0cb67a6",
 				"uid": 55,
 				"worldX": 816,
@@ -1287,7 +1287,7 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_8.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_4.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 4, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
@@ -1300,7 +1300,7 @@
 				"__neighbours": []
 			},
 			{
-				"identifier": "level_2_5",
+				"identifier": "level_2_1",
 				"iid": "40bc93b0-8990-11ee-90f6-19b617defd52",
 				"uid": 56,
 				"worldX": 0,
@@ -1317,7 +1317,7 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_5.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_1.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
