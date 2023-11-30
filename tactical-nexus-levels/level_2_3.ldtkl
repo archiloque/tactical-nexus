@@ -3123,6 +3123,25 @@
 						"id": "V_String",
 						"params": ["power_potion"]
 					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [7,14],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 656,
+					"__worldY": 224,
+					"iid": "a259b670-8990-11ee-807e-17c05df4b72b",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [112,224],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["power_potion"]
+					}] }]
 				}
 			]
 		},

@@ -11,7 +11,7 @@
 	"iid": "b601b680-1460-11ee-90d5-bd5e07dd6506",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 57,
+	"nextUid": 58,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": null,
@@ -1240,10 +1240,10 @@
 				"__neighbours": []
 			},
 			{
-				"identifier": "level_2_5",
+				"identifier": "level_2_6",
 				"iid": "df755ef0-8990-11ee-a188-85f01e28d097",
 				"uid": 49,
-				"worldX": 1088,
+				"worldX": 1360,
 				"worldY": 0,
 				"worldDepth": 0,
 				"pxWid": 240,
@@ -1257,10 +1257,10 @@
 				"bgPivotY": 0.5,
 				"__smartColor": "#ADADB5",
 				"__bgPos": null,
-				"externalRelPath": "tactical-nexus-levels/level_2_5.ldtkl",
+				"externalRelPath": "tactical-nexus-levels/level_2_6.ldtkl",
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
-					{ "__identifier": "level", "__type": "Int", "__value": 5, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [5] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 6, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [6] }] },
 					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
 						"id": "V_Bool",
 						"params": [ false ]
@@ -1321,6 +1321,36 @@
 				"fieldInstances": [
 					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 					{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+						"id": "V_Bool",
+						"params": [ false ]
+					}] }
+				],
+				"layerInstances": null,
+				"__neighbours": []
+			},
+			{
+				"identifier": "level_2_5",
+				"iid": "fe7a27a0-8990-11ee-807e-c797adc7a4c4",
+				"uid": 57,
+				"worldX": 1088,
+				"worldY": 0,
+				"worldDepth": 0,
+				"pxWid": 240,
+				"pxHei": 240,
+				"__bgColor": "#696A79",
+				"bgColor": null,
+				"useAutoIdentifier": false,
+				"bgRelPath": null,
+				"bgPos": null,
+				"bgPivotX": 0.5,
+				"bgPivotY": 0.5,
+				"__smartColor": "#ADADB5",
+				"__bgPos": null,
+				"externalRelPath": "tactical-nexus-levels/level_2_5.ldtkl",
+				"fieldInstances": [
+					{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+					{ "__identifier": "level", "__type": "Int", "__value": 5, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [5] }] },
 					{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
 						"id": "V_Bool",
 						"params": [ false ]

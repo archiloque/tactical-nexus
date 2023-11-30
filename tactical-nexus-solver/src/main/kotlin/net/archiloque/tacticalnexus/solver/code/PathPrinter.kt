@@ -28,9 +28,9 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
             initialPosition,
             "Starting"
         )
-        printMove(arrayOf(initialPosition), initialPosition, tower)
+        var lastPositions: Array<Position> = arrayOf(initialPosition)
+        printMove(lastPositions, lastPositions, tower)
         println()
-        var lastPosition: Position = initialPosition
         for (move in moves) {
             if (move >= 0) {
                 val positionedEntity = playableTower.playEntities[move]
@@ -40,10 +40,10 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                     currentState,
                     positionedEntity
                 )
-                printMove(positionedEntity.getPositions(), lastPosition, tower)
+                printMove(positionedEntity.getPositions(), lastPositions, tower)
                 println()
 
-                lastPosition = positionedEntity.getPositions().last()
+                lastPositions = positionedEntity.getPositions()
             } else {
                 currentLevelUpIndex++
                 val levelUp = LevelUp.levelUp(currentState.exp)
@@ -75,7 +75,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 Enemy.applyLevelUp(currentState, level, levelUp)
                 printStatus(
                     index,
-                    lastPosition,
+                    lastPositions.last(),
                     description
                 )
                 println()
@@ -103,14 +103,15 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
         )
     }
 
-    private fun printMove(currentPositions: Array<Position>, previousPosition: Position, tower: Tower) {
+    private fun printMove(currentPositions: Array<Position>, previousPositions: Array<Position>, tower: Tower) {
         val levelIndex = currentPositions.first().level
         val level = tower.standardLevels()[levelIndex]
         for ((lineIndex, line) in level.entities.withIndex()) {
             println(line.mapIndexed { columnIndex, entity ->
-                if (currentPositions.contains(Position(levelIndex, lineIndex, columnIndex))) {
+                val position = Position(levelIndex, lineIndex, columnIndex)
+                if (currentPositions.contains(position)) {
                     'X'
-                } else if ((levelIndex == previousPosition.level) && (lineIndex == previousPosition.line) && (columnIndex == previousPosition.column)) {
+                } else if (previousPositions.contains(position)) {
                     '□'
                 } else if ((entity != null) && (entity.getType() == InputEntityType.Wall)) {
                     '#'

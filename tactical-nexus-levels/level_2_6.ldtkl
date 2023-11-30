@@ -1,0 +1,187 @@
+{
+	"__header__": {
+		"fileType": "LDtk Project JSON",
+		"app": "LDtk",
+		"doc": "https://ldtk.io/json",
+		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
+		"appAuthor": "Sebastien 'deepnight' Benard",
+		"appVersion": "1.4.1",
+		"url": "https://ldtk.io"
+	},
+	"identifier": "level_2_6",
+	"iid": "df755ef0-8990-11ee-a188-85f01e28d097",
+	"uid": 49,
+	"worldX": 1360,
+	"worldY": 0,
+	"worldDepth": 0,
+	"pxWid": 240,
+	"pxHei": 240,
+	"__bgColor": "#696A79",
+	"bgColor": null,
+	"useAutoIdentifier": false,
+	"bgRelPath": null,
+	"bgPos": null,
+	"bgPivotX": 0.5,
+	"bgPivotY": 0.5,
+	"__smartColor": "#ADADB5",
+	"__bgPos": null,
+	"externalRelPath": null,
+	"fieldInstances": [
+		{ "__identifier": "tower", "__type": "Int", "__value": 2, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+		{ "__identifier": "level", "__type": "Int", "__value": 6, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [6] }] },
+		{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
+			"id": "V_Bool",
+			"params": [ false ]
+		}] }
+	],
+	"layerInstances": [
+		{
+			"__identifier": "main",
+			"__type": "Entities",
+			"__cWid": 15,
+			"__cHei": 15,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "df755ef2-8990-11ee-a188-bd949e1b5850",
+			"levelId": 49,
+			"layerDefUid": 3,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 2682405,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": [
+				{
+					"__identifier": "staircase",
+					"__grid": [3,8],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#181425",
+					"__worldX": 1408,
+					"__worldY": 128,
+					"iid": "3968de00-8990-11ee-a188-0712aca91239",
+					"width": 16,
+					"height": 16,
+					"defUid": 16,
+					"px": [48,128],
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "down", "__tile": null, "defUid": 20, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["down"]
+					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [1,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 1376,
+					"__worldY": 64,
+					"iid": "3d963400-8990-11ee-a188-bd4b43484f78",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [16,64],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_gem", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["guard_gem"]
+					}] }]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [2,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 1392,
+					"__worldY": 64,
+					"iid": "41c81de0-8990-11ee-a188-bf881cef91e7",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [32,64],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_gem", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["guard_gem"]
+					}] }]
+				}
+			]
+		},
+		{
+			"__identifier": "score",
+			"__type": "Entities",
+			"__cWid": 15,
+			"__cHei": 15,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "df755ef1-8990-11ee-a188-57ed811795be",
+			"levelId": 49,
+			"layerDefUid": 39,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 7473900,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": [
+				{
+					"__identifier": "score",
+					"__grid": [1,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#BE4A2F",
+					"__worldX": 1376,
+					"__worldY": 64,
+					"iid": "48263690-8990-11ee-a188-475531e18f2c",
+					"width": 16,
+					"height": 16,
+					"defUid": 41,
+					"px": [16,64],
+					"fieldInstances": [{ "__identifier": "score", "__type": "LocalEnum.score", "__value": "check", "__tile": null, "defUid": 42, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["check"]
+					}] }]
+				},
+				{
+					"__identifier": "score",
+					"__grid": [2,4],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D77643",
+					"__worldX": 1392,
+					"__worldY": 64,
+					"iid": "4a094e70-8990-11ee-a188-69074ca9e8ba",
+					"width": 16,
+					"height": 16,
+					"defUid": 41,
+					"px": [32,64],
+					"fieldInstances": [{ "__identifier": "score", "__type": "LocalEnum.score", "__value": "star", "__tile": null, "defUid": 42, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["star"]
+					}] }]
+				}
+			]
+		}
+	],
+	"__neighbours": []
+}

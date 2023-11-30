@@ -10,8 +10,6 @@ WHERE
             states
         WHERE
             status = ?
-        ORDER BY
-            id DESC
         LIMIT
             25 FOR
         UPDATE

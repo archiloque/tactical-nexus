@@ -2095,6 +2095,19 @@
 			},
 			{
 				"id": "item",
+				"iid": "a259b670-8990-11ee-807e-17c05df4b72b",
+				"layer": "main",
+				"x": 112,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields": {
+					"item": "power_potion"
+				}
+			},
+			{
+				"id": "item",
 				"iid": "0d60e400-8990-11ee-bb22-8979d668b10a",
 				"layer": "score",
 				"x": 0,
