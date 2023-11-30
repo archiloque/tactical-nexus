@@ -168,20 +168,40 @@ class Enemy(
             state.yellowKeys = (state.yellowKeys + level.yellowKeys).toShort()
         }
 
+        private fun levelUp(level: Int, add: Int, mult: Int): Int {
+            if ((add == 0) && (mult <= 1)) {
+                return 0
+            }
+            var result = level
+            if (add > 0) {
+                result += add
+            }
+            if (mult > 1) {
+                result *= mult
+            }
+            return result
+        }
+
         fun levelUpHp(
             level: Level,
             levelUp: LevelUp,
-        ) = (levelUp.level + 1 + level.hpAdd) * level.hpMul
+        ): Int {
+            return levelUp(levelUp.level.toInt(), level.hpAdd, level.hpMul)
+        }
 
         fun levelUpDef(
             level: Level,
             levelUp: LevelUp,
-        ) = (levelUp.level + 1 + level.defAdd) * level.defMul
+        ): Int {
+            return levelUp(levelUp.level.toInt(), level.defAdd, level.defMul)
+        }
 
         fun levelUpAtk(
             level: Level,
             levelUp: LevelUp,
-        ) = (levelUp.level + 1 + level.atkAdd) * level.atkMul
+        ): Int {
+            return levelUp(levelUp.level.toInt(), level.atkAdd, level.atkMul)
+        }
 
         fun enemy(
             enemy: net.archiloque.tacticalnexus.solver.entities.input.Enemy,

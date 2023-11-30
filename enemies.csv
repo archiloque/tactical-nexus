@@ -42,4 +42,4 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 2;slasher;1;100;200;0;2;power_piece
 2;slasher;3;200;300;0;5;power_piece
 2;slasher;6;400;500;0;10;power_gem
-2;slasher;11;800;100;100;18;power_gem
+2;slasher;11;800;600;100;18;power_gem

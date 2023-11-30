@@ -1,6 +1,9 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.annotation.processing.Generated
+import javax.`annotation`.processing.Generated
+import kotlin.Array
+import kotlin.Int
+import kotlin.arrayOf
 import net.archiloque.tacticalnexus.solver.entities.Direction
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
@@ -43,12 +46,12 @@ public class Tower_2 : Tower {
         Enemy(EnemyType.slasher, 1, 100, 200, 0, 2, Items.power_piece, null),
         Enemy(EnemyType.slasher, 3, 200, 300, 0, 5, Items.power_piece, null),
         Enemy(EnemyType.slasher, 6, 400, 500, 0, 10, Items.power_gem, null),
-        Enemy(EnemyType.slasher, 11, 800, 100, 100, 18, Items.power_gem, null),
+        Enemy(EnemyType.slasher, 11, 800, 600, 100, 18, Items.power_gem, null),
     )
 
     private val levels: Array<Level> = arrayOf(
-        Level(4, 0, 0, 0, 0, 0, 0, 0, 0),
-        Level(0, 0, 4, 0, 0, 0, 0, 0, 0),
+        Level(4, 1, 0, 0, 0, 0, 0, 0, 0),
+        Level(0, 0, 4, 1, 0, 0, 0, 0, 0),
         Level(0, 0, 0, 0, 0, 0, 0, 0, 3),
         Level(0, 0, 0, 0, 0, 0, 0, 1, 0),
         Level(0, 0, 0, 0, 0, 0, 2, 0, 0),

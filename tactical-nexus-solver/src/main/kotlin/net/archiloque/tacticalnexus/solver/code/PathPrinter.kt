@@ -22,7 +22,6 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
         positionedEntities.maxOfOrNull { it.getPositions().map { it.level }.max() }.toString().length
         var index = 1
         val initialPosition = playableTower.startingPositionPosition
-        var currentLevelUpIndex = 0
         printStatus(
             0,
             initialPosition,
@@ -45,7 +44,6 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
 
                 lastPositions = positionedEntity.getPositions()
             } else {
-                currentLevelUpIndex++
                 val levelUp = LevelUp.levelUp(currentState.exp)
                 val level = playableTower.levels[-move - 1]
 
@@ -71,7 +69,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 if (level.yellowKeys > 0) {
                     levelUpDescriptionsParts.add("${level.yellowKeys} yellow key(s)")
                 }
-                val description = "Gain ${levelUpDescriptionsParts.joinToString(" and ")}"
+                val description = "Level up: gain ${levelUpDescriptionsParts.joinToString(" and ")}"
                 Enemy.applyLevelUp(currentState, level, levelUp)
                 printStatus(
                     index,

@@ -44,7 +44,7 @@ public class Tower_1 : Tower {
     )
 
     private val levels: Array<Level> = arrayOf(
-        Level(4, 0, 0, 0, 0, 0, 0, 0, 0),
+        Level(4, 1, 0, 0, 0, 0, 0, 0, 0),
         Level(0, 0, 4, 2, 0, 0, 0, 0, 0),
         Level(0, 0, 0, 0, 0, 0, 0, 0, 3),
         Level(0, 0, 0, 0, 0, 0, 0, 1, 0),
