@@ -4087,6 +4087,28 @@
 						"id": "V_String",
 						"params": ["up"]
 					}] }]
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [6,6],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 1184,
+					"__worldY": 96,
+					"iid": "ccd9ec50-8990-11ee-89a3-d7d6c0225bb0",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [96,96],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 6, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [6] }] }
+					]
 				}
 			]
 		},

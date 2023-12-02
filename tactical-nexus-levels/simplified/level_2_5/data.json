@@ -2693,6 +2693,20 @@
 					"type": "burgeoner",
 					"level": 9
 				}
+			},
+			{
+				"id": "enemy",
+				"iid": "ccd9ec50-8990-11ee-89a3-d7d6c0225bb0",
+				"layer": "main",
+				"x": 96,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 6
+				}
 			}
 		],
 		"staircase": [

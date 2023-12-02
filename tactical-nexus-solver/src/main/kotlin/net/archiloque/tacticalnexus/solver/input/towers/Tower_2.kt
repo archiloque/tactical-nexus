@@ -441,7 +441,7 @@ public class Tower_2 : Tower {
                 ),
                 arrayOf(
                     Key(KeyOrDoorColor.yellow),
-                    enemies[5], Items.guard_piece, enemies[11], enemies[19], Items.guard_piece, null,
+                    enemies[5], Items.guard_piece, enemies[11], enemies[19], Items.guard_piece, enemies[5],
                     Key(KeyOrDoorColor.yellow), Wall.instance, enemies[11], Wall.instance, enemies[18],
                     enemies[5], Items.blue_potion, enemies[19],
                 ),
