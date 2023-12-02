@@ -7,6 +7,7 @@ import net.archiloque.tacticalnexus.solver.database.Mappings
 import net.archiloque.tacticalnexus.solver.database.State
 import net.archiloque.tacticalnexus.solver.database.StateStatus
 import net.archiloque.tacticalnexus.solver.database.readSqlFile
+import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.play.PlayableTower
 import org.ktorm.database.Database
 
@@ -114,12 +115,8 @@ class DefaultStateManager(
 
         statement.setShort(firstParameterIndex + 4, state.expBonus)
         statement.setShort(firstParameterIndex + 5, state.hpBonus)
-
-        statement.setShort(firstParameterIndex + 6, state.blueKeys)
-        statement.setShort(firstParameterIndex + 7, state.crimsonKeys)
-        statement.setShort(firstParameterIndex + 8, state.greenBlueKeys)
-        statement.setShort(firstParameterIndex + 9, state.platinumKeys)
-        statement.setShort(firstParameterIndex + 10, state.violetKeys)
-        statement.setShort(firstParameterIndex + 11, state.yellowKeys)
+        KeyOrDoorColor.entries.forEachIndexed { index, keyOrDoorColor ->
+            statement.setShort(firstParameterIndex + 6 + index, state.keys(keyOrDoorColor))
+        }
     }
 }

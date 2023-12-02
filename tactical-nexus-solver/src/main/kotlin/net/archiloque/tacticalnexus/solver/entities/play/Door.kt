@@ -41,31 +41,7 @@ class Door(private val color: KeyOrDoorColor, entityIndex: Int, private val posi
     }
 
     fun canApply(state: State): Boolean {
-        when (color) {
-            KeyOrDoorColor.blue -> {
-                return state.blueKeys >= 1
-            }
-
-            KeyOrDoorColor.crimson -> {
-                return state.crimsonKeys >= 1
-            }
-
-            KeyOrDoorColor.greenblue -> {
-                return state.greenBlueKeys >= 1
-            }
-
-            KeyOrDoorColor.platinum -> {
-                return state.platinumKeys >= 1
-            }
-
-            KeyOrDoorColor.violet -> {
-                return state.violetKeys >= 1
-            }
-
-            KeyOrDoorColor.yellow -> {
-                return state.yellowKeys >= 1
-            }
-        }
+        return state.keys(color) >= 1
     }
 
     fun apply(state: State) {
