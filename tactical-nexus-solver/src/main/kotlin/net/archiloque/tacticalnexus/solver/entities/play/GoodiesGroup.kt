@@ -76,7 +76,7 @@ class GoodiesGroup(
     }
 
     override fun toString(): String {
-        return "Goodies group: ${(items.map { it.toString() } + keys.map { it.toString() }).joinToString(", ")} and index $entityIndex"
+        return "Goodies group: ${(items.map { it.toString() } + keys.map { it.toString() }).joinToString(", ")} with index $entityIndex"
     }
 }
 

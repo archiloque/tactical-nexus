@@ -17,7 +17,7 @@ class Staircase(private val direction: StaircaseDirection, entityIndex: Int, pri
     }
 
     override fun toString(): String {
-        return "Staircase $direction at $position and index $entityIndex"
+        return "Staircase $direction at $position with index $entityIndex"
     }
 
     override fun play(

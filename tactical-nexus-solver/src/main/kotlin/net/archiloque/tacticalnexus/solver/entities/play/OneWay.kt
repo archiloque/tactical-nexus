@@ -17,7 +17,7 @@ class OneWay(private val direction: Direction, entityIndex: Int, private val pos
     }
 
     override fun toString(): String {
-        return "One way going $direction at $position and index $entityIndex"
+        return "One way going $direction at $position with index $entityIndex"
     }
 
     override fun play(

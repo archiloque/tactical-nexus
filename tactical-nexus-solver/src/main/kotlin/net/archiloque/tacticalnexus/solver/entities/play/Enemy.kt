@@ -45,7 +45,7 @@ class Enemy(
     }
 
     override fun toString(): String {
-        return "Enemy $level $type at $position and index $entityIndex"
+        return "Enemy $level $type at $position with index $entityIndex"
     }
 
     override fun play(
