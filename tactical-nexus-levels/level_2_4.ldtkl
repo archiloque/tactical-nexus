@@ -1349,9 +1349,9 @@
 					"height": 16,
 					"defUid": 27,
 					"px": [160,32],
-					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "crimson", "__tile": null, "defUid": 28, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "key_or_door_color", "__type": "LocalEnum.key_or_door_color", "__value": "blue", "__tile": null, "defUid": 28, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["crimson"]
+						"params": ["blue"]
 					}] }]
 				},
 				{
