@@ -2,6 +2,7 @@ package net.archiloque.tacticalnexus.solver.code
 
 import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.solver.database.State
+import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.InputEntityType
 import net.archiloque.tacticalnexus.solver.entities.input.Tower
@@ -98,6 +99,9 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
         val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
             "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
+        )
+        println(
+            "Keys: ${KeyOrDoorColor.entries.joinToString(", ") { "${it.humanName}: ${currentState.keys(it)}" }}"
         )
     }
 

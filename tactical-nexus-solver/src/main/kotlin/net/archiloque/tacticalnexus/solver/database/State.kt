@@ -1,6 +1,7 @@
 package net.archiloque.tacticalnexus.solver.database
 
 import java.util.BitSet
+import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 
 data class State(
     val id: Int,
@@ -28,4 +29,15 @@ data class State(
     var moves: ShortArray,
     var oneWays: ShortArray,
     var level: Short,
-)
+) {
+    fun keys(color: KeyOrDoorColor): Short {
+        return when (color) {
+            KeyOrDoorColor.blue -> blueKeys
+            KeyOrDoorColor.crimson -> crimsonKeys
+            KeyOrDoorColor.greenblue -> greenBlueKeys
+            KeyOrDoorColor.platinum -> platinumKeys
+            KeyOrDoorColor.violet -> violetKeys
+            KeyOrDoorColor.yellow -> yellowKeys
+        }
+    }
+}
