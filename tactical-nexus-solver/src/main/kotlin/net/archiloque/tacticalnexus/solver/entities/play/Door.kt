@@ -17,7 +17,7 @@ class Door(private val color: KeyOrDoorColor, entityIndex: Int, private val posi
     }
 
     override fun toString(): String {
-        return "Door $color at $position with index $entityIndex"
+        return "Door ${color.humanName} at $position with index $entityIndex"
     }
 
     override fun play(

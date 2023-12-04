@@ -44,7 +44,7 @@ class GoodiesGroup(
     override fun description(): Array<PositionedDescription> {
         return (
                 items.map { PositionedDescription("Grab the ${it.inputItem.name.lowercase()}", it.position) } +
-                        keys.map { PositionedDescription("Grab the ${it.color} key", it.position) }
+                        keys.map { PositionedDescription("Grab the ${it.color.humanName} key", it.position) }
                 ).toTypedArray()
     }
 
