@@ -126,13 +126,14 @@ class TowerPreparer(private val tower: Tower) {
             }
         }
 
-        val reachableEntities = entities.map { entity ->
-            findReacheableEntities(
-                entity.getPositions(),
+        val reachableEntities = entities.map { playEntity ->
+            findReachableEntities(
+                playEntity,
+                playEntity.getPositions(),
             )
         }.toTypedArray()
 
-        var reachableByStartingPosition = findReacheableEntities(arrayOf(startingPositionPosition!!))
+        var reachableByStartingPosition = findReachableEntities(null, arrayOf(startingPositionPosition!!))
 
         // Replace the up and down stairs by all the combined entities they can reach
         for (level in 0..<(tower.standardLevels().size - 1)) {
@@ -249,7 +250,8 @@ class TowerPreparer(private val tower: Tower) {
         }
     }
 
-    private fun findReacheableEntities(
+    private fun findReachableEntities(
+        playEntity: PlayEntity?,
         positions: Array<Position>,
     ): IntArray {
         var positionsToCheck = mutableSetOf<Position>()
@@ -257,6 +259,37 @@ class TowerPreparer(private val tower: Tower) {
 
         positionsToCheck.addAll(positions)
         exploredPositions.addAll(positions)
+
+        if ((playEntity != null) && (playEntity.getType() == PlayEntityType.OneWay)) {
+            if (positions.size != 1) {
+                throw IllegalArgumentException("Wrong number of positions: ${positions.size}")
+            } else {
+                val position = positions.first()
+                playEntity as OneWay
+                val directions = Direction.entries - playEntity.direction
+                for (direction in directions) {
+                    exploredPositions.add(
+                        when (direction) {
+                            Direction.down -> {
+                                Position(position.level, position.line + 1, position.column)
+                            }
+
+                            Direction.left -> {
+                                Position(position.level, position.line, position.column - 1)
+                            }
+
+                            Direction.right -> {
+                                Position(position.level, position.line, position.column + 1)
+                            }
+
+                            Direction.up -> {
+                                Position(position.level, position.line - 1, position.column)
+                            }
+                        }
+                    )
+                }
+            }
+        }
 
         val reachableEntities = mutableSetOf<Int>()
         while (positionsToCheck.isNotEmpty()) {

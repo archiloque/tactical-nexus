@@ -1701,7 +1701,7 @@
 			{
 				"id": "enemy",
 				"iid": "a11abb30-8990-11ee-bb22-b13123476a8d",
-				"layer": "score",
+				"layer": "main",
 				"x": 80,
 				"y": 208,
 				"width": 16,
@@ -2109,7 +2109,7 @@
 			{
 				"id": "item",
 				"iid": "0d60e400-8990-11ee-bb22-8979d668b10a",
-				"layer": "score",
+				"layer": "main",
 				"x": 0,
 				"y": 144,
 				"width": 16,
@@ -2122,7 +2122,7 @@
 			{
 				"id": "item",
 				"iid": "103030a0-8990-11ee-bb22-e70f821e1007",
-				"layer": "score",
+				"layer": "main",
 				"x": 32,
 				"y": 144,
 				"width": 16,
@@ -2135,7 +2135,7 @@
 			{
 				"id": "item",
 				"iid": "146aa600-8990-11ee-bb22-ebbfdf85d694",
-				"layer": "score",
+				"layer": "main",
 				"x": 32,
 				"y": 112,
 				"width": 16,
@@ -2148,7 +2148,7 @@
 			{
 				"id": "item",
 				"iid": "174b09a0-8990-11ee-bb22-03f91183c948",
-				"layer": "score",
+				"layer": "main",
 				"x": 0,
 				"y": 112,
 				"width": 16,
@@ -2161,7 +2161,7 @@
 			{
 				"id": "item",
 				"iid": "1b473d80-8990-11ee-bb22-2700f4e9ff44",
-				"layer": "score",
+				"layer": "main",
 				"x": 0,
 				"y": 80,
 				"width": 16,
@@ -2174,7 +2174,7 @@
 			{
 				"id": "item",
 				"iid": "1d773ce0-8990-11ee-bb22-81142dc906c4",
-				"layer": "score",
+				"layer": "main",
 				"x": 16,
 				"y": 80,
 				"width": 16,
@@ -2187,7 +2187,7 @@
 			{
 				"id": "item",
 				"iid": "20b291c0-8990-11ee-bb22-afc6b4b97bf3",
-				"layer": "score",
+				"layer": "main",
 				"x": 80,
 				"y": 32,
 				"width": 16,
@@ -2200,7 +2200,7 @@
 			{
 				"id": "item",
 				"iid": "22ebdff0-8990-11ee-bb22-4791bb58f3db",
-				"layer": "score",
+				"layer": "main",
 				"x": 96,
 				"y": 32,
 				"width": 16,
@@ -2213,7 +2213,7 @@
 			{
 				"id": "item",
 				"iid": "253ef7b0-8990-11ee-bb22-f31d175969d1",
-				"layer": "score",
+				"layer": "main",
 				"x": 80,
 				"y": 48,
 				"width": 16,
@@ -2226,7 +2226,7 @@
 			{
 				"id": "item",
 				"iid": "28cb52c0-8990-11ee-bb22-b93a7e71d1a7",
-				"layer": "score",
+				"layer": "main",
 				"x": 96,
 				"y": 48,
 				"width": 16,
@@ -2239,7 +2239,7 @@
 			{
 				"id": "item",
 				"iid": "2d6ffba0-8990-11ee-bb22-b3424b727fb2",
-				"layer": "score",
+				"layer": "main",
 				"x": 160,
 				"y": 16,
 				"width": 16,
@@ -2252,7 +2252,7 @@
 			{
 				"id": "item",
 				"iid": "324ca470-8990-11ee-bb22-cdb98adba655",
-				"layer": "score",
+				"layer": "main",
 				"x": 176,
 				"y": 32,
 				"width": 16,
@@ -2265,7 +2265,7 @@
 			{
 				"id": "item",
 				"iid": "35a78f40-8990-11ee-bb22-7b62bbf88d9f",
-				"layer": "score",
+				"layer": "main",
 				"x": 192,
 				"y": 32,
 				"width": 16,
@@ -2278,7 +2278,7 @@
 			{
 				"id": "item",
 				"iid": "37957c90-8990-11ee-bb22-4f4d67210b02",
-				"layer": "score",
+				"layer": "main",
 				"x": 176,
 				"y": 48,
 				"width": 16,
@@ -2291,7 +2291,7 @@
 			{
 				"id": "item",
 				"iid": "3da57540-8990-11ee-bb22-0be83a58e199",
-				"layer": "score",
+				"layer": "main",
 				"x": 192,
 				"y": 48,
 				"width": 16,
@@ -2304,7 +2304,7 @@
 			{
 				"id": "item",
 				"iid": "40a19e40-8990-11ee-bb22-7d51b14864b3",
-				"layer": "score",
+				"layer": "main",
 				"x": 192,
 				"y": 80,
 				"width": 16,
@@ -2317,7 +2317,7 @@
 			{
 				"id": "item",
 				"iid": "43d09710-8990-11ee-bb22-b5d5364f21e3",
-				"layer": "score",
+				"layer": "main",
 				"x": 176,
 				"y": 80,
 				"width": 16,
@@ -2330,7 +2330,7 @@
 			{
 				"id": "item",
 				"iid": "48a50280-8990-11ee-bb22-39f44a51cd59",
-				"layer": "score",
+				"layer": "main",
 				"x": 112,
 				"y": 128,
 				"width": 16,
@@ -2343,7 +2343,7 @@
 			{
 				"id": "item",
 				"iid": "4ebdadc0-8990-11ee-bb22-b14053b4ce56",
-				"layer": "score",
+				"layer": "main",
 				"x": 96,
 				"y": 176,
 				"width": 16,
@@ -2356,7 +2356,7 @@
 			{
 				"id": "item",
 				"iid": "50cb7f20-8990-11ee-bb22-4fd9e532e831",
-				"layer": "score",
+				"layer": "main",
 				"x": 112,
 				"y": 176,
 				"width": 16,
@@ -2369,7 +2369,7 @@
 			{
 				"id": "item",
 				"iid": "52a177a0-8990-11ee-bb22-af9170581c49",
-				"layer": "score",
+				"layer": "main",
 				"x": 112,
 				"y": 192,
 				"width": 16,
@@ -2382,7 +2382,7 @@
 			{
 				"id": "item",
 				"iid": "56e47880-8990-11ee-bb22-2b662dba38bc",
-				"layer": "score",
+				"layer": "main",
 				"x": 144,
 				"y": 160,
 				"width": 16,
@@ -2395,7 +2395,7 @@
 			{
 				"id": "item",
 				"iid": "593e6e10-8990-11ee-bb22-137b95db8599",
-				"layer": "score",
+				"layer": "main",
 				"x": 144,
 				"y": 176,
 				"width": 16,
@@ -2408,7 +2408,7 @@
 			{
 				"id": "item",
 				"iid": "5b5f2b30-8990-11ee-bb22-792a83e775f4",
-				"layer": "score",
+				"layer": "main",
 				"x": 160,
 				"y": 176,
 				"width": 16,
@@ -2421,7 +2421,7 @@
 			{
 				"id": "item",
 				"iid": "62087db0-8990-11ee-bb22-2b77733f3666",
-				"layer": "score",
+				"layer": "main",
 				"x": 224,
 				"y": 224,
 				"width": 16,
@@ -2434,7 +2434,7 @@
 			{
 				"id": "item",
 				"iid": "682f80d0-8990-11ee-bb22-53a833bc1b41",
-				"layer": "score",
+				"layer": "main",
 				"x": 224,
 				"y": 176,
 				"width": 16,
@@ -2447,7 +2447,7 @@
 			{
 				"id": "item",
 				"iid": "6f11e4b0-8990-11ee-bb22-f19b17761efa",
-				"layer": "score",
+				"layer": "main",
 				"x": 160,
 				"y": 144,
 				"width": 16,
@@ -2460,7 +2460,7 @@
 			{
 				"id": "item",
 				"iid": "754b5e60-8990-11ee-bb22-b983dfe930a2",
-				"layer": "score",
+				"layer": "main",
 				"x": 112,
 				"y": 64,
 				"width": 16,
@@ -2473,7 +2473,7 @@
 			{
 				"id": "item",
 				"iid": "78b95c00-8990-11ee-bb22-751cf865387d",
-				"layer": "score",
+				"layer": "main",
 				"x": 128,
 				"y": 80,
 				"width": 16,
@@ -2486,7 +2486,7 @@
 			{
 				"id": "item",
 				"iid": "7ef2fcc0-8990-11ee-bb22-236f3e0797ed",
-				"layer": "score",
+				"layer": "main",
 				"x": 144,
 				"y": 128,
 				"width": 16,
@@ -2499,7 +2499,7 @@
 			{
 				"id": "item",
 				"iid": "83e3c9d0-8990-11ee-bb22-e99079f8967c",
-				"layer": "score",
+				"layer": "main",
 				"x": 192,
 				"y": 112,
 				"width": 16,
@@ -2512,7 +2512,7 @@
 			{
 				"id": "item",
 				"iid": "86de4520-8990-11ee-bb22-97047964cc67",
-				"layer": "score",
+				"layer": "main",
 				"x": 208,
 				"y": 128,
 				"width": 16,
@@ -2525,7 +2525,7 @@
 			{
 				"id": "item",
 				"iid": "899e2870-8990-11ee-bb22-67034ee7967e",
-				"layer": "score",
+				"layer": "main",
 				"x": 224,
 				"y": 112,
 				"width": 16,
@@ -2538,7 +2538,7 @@
 			{
 				"id": "item",
 				"iid": "8ccbc1b0-8990-11ee-bb22-d193c3a762a8",
-				"layer": "score",
+				"layer": "main",
 				"x": 192,
 				"y": 144,
 				"width": 16,
@@ -2551,7 +2551,7 @@
 			{
 				"id": "item",
 				"iid": "90067a50-8990-11ee-bb22-519f99430639",
-				"layer": "score",
+				"layer": "main",
 				"x": 224,
 				"y": 144,
 				"width": 16,
@@ -2564,7 +2564,7 @@
 			{
 				"id": "item",
 				"iid": "94492d10-8990-11ee-bb22-d19b948ef962",
-				"layer": "score",
+				"layer": "main",
 				"x": 208,
 				"y": 16,
 				"width": 16,
@@ -2577,7 +2577,7 @@
 			{
 				"id": "item",
 				"iid": "0e274290-8990-11ee-8d3a-13d6a5ed70fa",
-				"layer": "score",
+				"layer": "main",
 				"x": 160,
 				"y": 64,
 				"width": 16,
@@ -2592,7 +2592,7 @@
 			{
 				"id": "one_way",
 				"iid": "568bffa0-8990-11ee-bb22-2b6a6e394524",
-				"layer": "score",
+				"layer": "main",
 				"x": 32,
 				"y": 224,
 				"width": 16,

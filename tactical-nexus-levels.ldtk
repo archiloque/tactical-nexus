@@ -85,7 +85,7 @@
 			"displayOpacity": 1,
 			"inactiveOpacity": 0.6,
 			"hideInList": false,
-			"hideFieldsWhenInactive": true,
+			"hideFieldsWhenInactive": false,
 			"canSelectWhenInactive": true,
 			"renderInWorldView": true,
 			"pxOffsetX": 0,

@@ -58,7 +58,46 @@
 			"seed": 4642431,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
-			"entityInstances": []
+			"entityInstances": [
+				{
+					"__identifier": "item",
+					"__grid": [10,5],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 160,
+					"__worldY": 80,
+					"iid": "8540b520-8990-11ee-90f6-4d8558ba57f2",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [160,80],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "heavenly_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["heavenly_potion"]
+					}] }]
+				},
+				{
+					"__identifier": "staircase",
+					"__grid": [7,8],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#181425",
+					"__worldX": 112,
+					"__worldY": 128,
+					"iid": "81002540-8990-11ee-90f6-9f2580bb2932",
+					"width": 16,
+					"height": 16,
+					"defUid": 16,
+					"px": [112,128],
+					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["up"]
+					}] }]
+				}
+			]
 		},
 		{
 			"__identifier": "score",
@@ -83,46 +122,7 @@
 			"seed": 4935336,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
-			"entityInstances": [
-				{
-					"__identifier": "staircase",
-					"__grid": [7,8],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#181425",
-					"__worldX": 112,
-					"__worldY": 128,
-					"iid": "81002540-8990-11ee-90f6-9f2580bb2932",
-					"width": 16,
-					"height": 16,
-					"defUid": 16,
-					"px": [112,128],
-					"fieldInstances": [{ "__identifier": "direction", "__type": "LocalEnum.stairs_direction", "__value": "up", "__tile": null, "defUid": 20, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["up"]
-					}] }]
-				},
-				{
-					"__identifier": "item",
-					"__grid": [10,5],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
-					"__smartColor": "#E43B44",
-					"__worldX": 160,
-					"__worldY": 80,
-					"iid": "8540b520-8990-11ee-90f6-4d8558ba57f2",
-					"width": 16,
-					"height": 16,
-					"defUid": 11,
-					"px": [160,80],
-					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "heavenly_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["heavenly_potion"]
-					}] }]
-				}
-			]
+			"entityInstances": []
 		}
 	],
 	"__neighbours": []
