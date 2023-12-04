@@ -2707,6 +2707,20 @@
 					"type": "fighter",
 					"level": 6
 				}
+			},
+			{
+				"id": "enemy",
+				"iid": "6b7dc9a0-8990-11ee-9755-0bbeeb09143a",
+				"layer": "main",
+				"x": 112,
+				"y": 32,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 6
+				}
 			}
 		],
 		"staircase": [

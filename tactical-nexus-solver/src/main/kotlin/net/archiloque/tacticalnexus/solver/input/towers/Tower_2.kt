@@ -418,7 +418,7 @@ public class Tower_2 : Tower {
                 arrayOf(
                     Key(KeyOrDoorColor.yellow), Items.life_potion,
                     Key(KeyOrDoorColor.yellow), Wall.instance, enemies[3], Items.guard_gem,
-                    Door(KeyOrDoorColor.blue), null, null, null, Wall.instance, Items.guard_piece,
+                    Door(KeyOrDoorColor.blue), enemies[5], null, null, Wall.instance, Items.guard_piece,
                     Items.red_potion, Items.red_potion, enemies[18],
                 ),
                 arrayOf(
@@ -566,7 +566,7 @@ public class Tower_2 : Tower {
                     enemies[18], Wall.instance, enemies[1], Wall.instance, enemies[26], Wall.instance,
                 ),
                 arrayOf(
-                    Items.guard_piece, Items.red_potion, null, Items.red_potion, enemies[25],
+                    Items.guard_piece, Items.red_potion, enemies[5], Items.red_potion, enemies[25],
                     Items.red_potion, enemies[25], Door(KeyOrDoorColor.yellow), enemies[21],
                     Door(KeyOrDoorColor.blue), enemies[18], Door(KeyOrDoorColor.crimson), enemies[1],
                     Items.red_potion, Items.power_gem,
