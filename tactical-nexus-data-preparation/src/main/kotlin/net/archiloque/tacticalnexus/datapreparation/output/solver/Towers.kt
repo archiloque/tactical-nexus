@@ -13,6 +13,7 @@ import kotlin.system.exitProcess
 import net.archiloque.tacticalnexus.datapreparation.LEVEL_DIMENSION_CELLS
 import net.archiloque.tacticalnexus.datapreparation.PIXELS_PER_CELL
 import net.archiloque.tacticalnexus.datapreparation.enums.ScoreType
+import net.archiloque.tacticalnexus.datapreparation.input.entities.ItemPerTower
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.Door
@@ -47,6 +48,7 @@ class Towers {
 
         fun generate(
             towerLevels: List<TowerLevel>,
+            itemsPerTower: List<ItemPerTower>,
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             stats: List<Stat>,
             levels: List<Level>,
@@ -59,6 +61,7 @@ class Towers {
             for (tower in towersList) {
                 generateTower(
                     tower,
+                    itemsPerTower.filter { it.tower == tower },
                     stats.find { it.tower == tower }!!,
                     enemies.filter { it.tower == tower },
                     levels.filter { it.tower == tower },
@@ -70,6 +73,7 @@ class Towers {
 
         private fun generateTower(
             tower: Int,
+            itemsPerTower: List<ItemPerTower>,
             stat: Stat,
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             levels: List<Level>,
@@ -85,12 +89,14 @@ class Towers {
                 .addAnnotation(Generated::class)
                 .addSuperinterface(towerInterfaceClass)
 
-            addEnemies(enemies, towerSpec)
+            addItems(itemsPerTower, towerSpec)
+
+            addEnemies(enemies, towerSpec, itemsPerTower)
 
             addLevels(levels, towerSpec)
 
-            addTowerLevels(towerLevels, false, towerSpec, enemies)
-            addTowerLevels(towerLevels, true, towerSpec, enemies)
+            addTowerLevels(towerLevels, false, towerSpec, enemies, itemsPerTower)
+            addTowerLevels(towerLevels, true, towerSpec, enemies, itemsPerTower)
 
             addStatFunction(towerSpec, "atk", stat.atk)
             addStatFunction(towerSpec, "def", stat.def)
@@ -107,11 +113,18 @@ class Towers {
             file.build().writeTo(generatedPath)
         }
 
+        private fun addItems(itemsPerTower: List<ItemPerTower>, towerSpec: TypeSpec.Builder) {
+            for(item in itemsPerTower.sortedBy { it.name }) {
+                Items.generateItem(item, "item_", towerSpec, KModifier.PRIVATE)
+            }
+        }
+
         private fun addTowerLevels(
             towerLevels: List<TowerLevel>,
             nexus: Boolean,
             towerSpec: TypeSpec.Builder,
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
+            itemsPerTower: List<ItemPerTower>,
         ) {
             val levelsArrayCode = CodeBlock.Builder().add("%M(", Solver.arrayOf)
 
@@ -126,7 +139,7 @@ class Towers {
                         val customFields = it.levelCustomFields
                         (customFields.level == levelIndex) && (customFields.nexus == nexus)
                     }!!
-                addTowerLevel(levelsArrayCode, level.allEntities(), enemies)
+                addTowerLevel(levelsArrayCode, level.allEntities(), enemies, itemsPerTower)
             }
             levelsArrayCode.add(")")
 
@@ -178,18 +191,22 @@ class Towers {
                     val scores = level.entities.score
                     (scores != null) && scores.any { it.score() == scoreType }
                 }
-                val score = level!!.entities.score!!.first { score -> score.score() == scoreType }
-
+                val scoreBlock = if (level != null) {
+                    val score = level.entities.score!!.first { score -> score.score() == scoreType }
+                    CodeBlock.builder()
+                        .add(
+                            "%T(${level.levelCustomFields.level - 1}, ${score.y / PIXELS_PER_CELL}, ${score.x / PIXELS_PER_CELL},)",
+                            positionClass
+                        )
+                        .build()
+                } else {
+                    CodeBlock.builder().add("null").build()
+                }
                 towerSpec.addProperty(
-                    PropertySpec.builder("${scoreType.name}Score", positionClass)
+                    PropertySpec.builder("${scoreType.name}Score", positionClass.copy(true))
                         .addModifiers(KModifier.PRIVATE)
                         .initializer(
-                            CodeBlock.builder()
-                                .add(
-                                    "%T(${level.levelCustomFields.level - 1}, ${score.y / PIXELS_PER_CELL}, ${score.x / PIXELS_PER_CELL},)",
-                                    positionClass
-                                )
-                                .build()
+                            scoreBlock
                         )
                         .build()
                 )
@@ -198,7 +215,7 @@ class Towers {
                         "${scoreType.name}Score",
                     )
                         .addModifiers(KModifier.OVERRIDE)
-                        .returns(positionClass)
+                        .returns(positionClass.copy(true))
                         .addCode(
                             "return ${scoreType.name}Score",
                         )
@@ -210,7 +227,8 @@ class Towers {
         private fun addTowerLevel(
             levelsArrayCode: CodeBlock.Builder,
             entities: List<Entity>,
-            enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>
+            enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
+            itemsPerTower: List<ItemPerTower>,
         ) {
             val entitiesByPosition = mutableMapOf<Position, Entity>()
             for (entity in entities) {
@@ -235,14 +253,15 @@ class Towers {
                             }
 
                             is Enemy -> {
-                                val enemyIndex = enemies.indexOfFirst { (it.type == currentEntity.type()) && (it.level == currentEntity.level()) }
+                                val enemyIndex =
+                                    enemies.indexOfFirst { (it.type == currentEntity.type()) && (it.level == currentEntity.level()) }
                                 levelsArrayCode.add(
                                     "enemies[${enemyIndex}]"
                                 )
                             }
 
                             is Item -> {
-                                levelsArrayCode.add("%T.${currentEntity.identifier()}", itemsClass)
+                                addItemCode(currentEntity.identifier(), itemsPerTower, levelsArrayCode)
                             }
 
                             is Key -> {
@@ -291,6 +310,7 @@ class Towers {
         private fun addEnemies(
             enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
             towerSpec: TypeSpec.Builder,
+            itemsPerTower: List<ItemPerTower>,
         ) {
             val enemiesArrayCode = CodeBlock.Builder().add("%M(\n", Solver.arrayOf)
             for (enemy in enemies) {
@@ -311,7 +331,8 @@ class Towers {
                             }", keyOrDoorColorClass
                         )
                     } else {
-                        enemiesArrayCode.add("%T.${enemy.drop}, null", itemsClass)
+                        addItemCode(enemy.drop, itemsPerTower, enemiesArrayCode)
+                        enemiesArrayCode.add(", null")
                     }
                 } else {
                     enemiesArrayCode.add("null, null")
@@ -328,6 +349,14 @@ class Towers {
                     .build()
             )
 
+        }
+
+        private fun addItemCode(identifier: String, itemsPerTower: List<ItemPerTower>, codeBlock: CodeBlock.Builder) {
+            if(itemsPerTower.find { it.identifier == identifier } == null) {
+                codeBlock.add("%T.${identifier}", itemsClass)
+            } else {
+                codeBlock.add("item_${identifier}")
+            }
         }
 
         private fun addLevels(

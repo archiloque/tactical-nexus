@@ -815,9 +815,11 @@ public class Tower_1 : Tower {
         ),
     )
 
-    private val checkScore: Position = Position(3, 7, 7)
+    private val checkScore: Position? = Position(3, 7, 7)
 
-    private val starScore: Position = Position(6, 7, 7)
+    private val crownScore: Position? = null
+
+    private val starScore: Position? = Position(6, 7, 7)
 
     override fun levels(): Array<Level> = levels
 
@@ -831,7 +833,9 @@ public class Tower_1 : Tower {
 
     override fun hp(): Int = 1_000
 
-    override fun checkScore(): Position = checkScore
+    override fun checkScore(): Position? = checkScore
 
-    override fun starScore(): Position = starScore
+    override fun crownScore(): Position? = crownScore
+
+    override fun starScore(): Position? = starScore
 }

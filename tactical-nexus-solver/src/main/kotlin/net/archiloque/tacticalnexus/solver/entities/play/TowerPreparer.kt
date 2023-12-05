@@ -222,6 +222,21 @@ class TowerPreparer(private val tower: Tower) {
             }
         }
 
+        val checkIndex = if (tower.checkScore() != null) {
+            entitiesIndexByPosition[tower.checkScore()]!!
+        } else {
+            null
+        }
+        val starIndex = if (tower.starScore() != null) {
+            entitiesIndexByPosition[tower.starScore()]!!
+        } else {
+            null
+        }
+        val crownIndex = if (tower.crownScore() != null) {
+            entitiesIndexByPosition[tower.crownScore()]!!
+        } else {
+            null
+        }
         return PlayableTower(
             entities.size,
             entities.toTypedArray(),
@@ -229,8 +244,9 @@ class TowerPreparer(private val tower: Tower) {
             reachableByStartingPosition,
             reachableEntities,
             roomsSingleDoor.toIntArray(),
-            entitiesIndexByPosition[tower.checkScore()]!!,
-            entitiesIndexByPosition[tower.starScore()]!!,
+            checkIndex,
+            starIndex,
+            crownIndex,
             tower.levels(),
         )
     }

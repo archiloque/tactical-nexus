@@ -8,7 +8,7 @@
 		"appVersion": "1.4.1",
 		"url": "https://ldtk.io"
 	},
-	"identifier": "level_3_2",
+	"identifier": "level_4_2",
 	"iid": "fe1291e0-8990-11ee-bb22-9d790523c145",
 	"uid": 54,
 	"worldX": 256,
@@ -27,7 +27,7 @@
 	"__bgPos": null,
 	"externalRelPath": null,
 	"fieldInstances": [
-		{ "__identifier": "tower", "__type": "Int", "__value": 3, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
+		{ "__identifier": "tower", "__type": "Int", "__value": 4, "__tile": null, "defUid": 23, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
 		{ "__identifier": "level", "__type": "Int", "__value": 2, "__tile": null, "defUid": 24, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 		{ "__identifier": "nexus", "__type": "Bool", "__value": false, "__tile": null, "defUid": 43, "realEditorValues": [{
 			"id": "V_Bool",

@@ -2,23 +2,25 @@ package net.archiloque.tacticalnexus.datapreparation.input.entities
 
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 
-data class Item(
-    val identifier: String,
-    val name: String,
+class ItemPerTower(
+    val tower: Int,
+    identifier: String,
+    name: String,
 
-    val atk: Int,
-    val def: Int,
-    val expBonus: Int,
-    val hp: Int,
-    val hpBonus: Int,
-) {
+    atk: Int,
+    def: Int,
+    expBonus: Int,
+    hp: Int,
+    hpBonus: Int,
+): ItemDefault(identifier, name, atk, def, expBonus, hp, hpBonus) {
     companion object {
-        fun parse(filePath: String): List<Item> {
-            println("Reading items at [${filePath}]")
-            var result: List<Item> = mutableListOf()
+        fun parse(filePath: String): List<ItemPerTower> {
+            println("Reading items per tower at [${filePath}]")
+            var result: List<ItemPerTower> = mutableListOf()
             csvReader { delimiter = ';' }.open(filePath) {
                 result = readAllWithHeaderAsSequence().map {
-                    Item(
+                    ItemPerTower(
+                        it["Tower"]!!.toInt(),
                         it["Identifier"]!!,
                         it["Name"]!!,
                         it["ATK"]!!.toInt(),

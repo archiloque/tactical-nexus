@@ -10,8 +10,9 @@ interface Tower {
     fun def(): Int
     fun hp(): Int
 
-    fun checkScore(): Position
-    fun starScore(): Position
+    fun crownScore(): Position?
+    fun checkScore(): Position?
+    fun starScore(): Position?
 
     fun levels(): Array<Level>
 }

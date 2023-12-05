@@ -10,8 +10,9 @@ class PlayableTower(
     val reachableByStartingPosition: IntArray,
     val reachable: Array<IntArray>,
     val roomsSingleDoor: IntArray,
-    val checkScorePosition: Int,
-    val starScorePosition: Int,
+    val checkScorePosition: Int?,
+    val starScorePosition: Int?,
+    val crownScorePosition: Int?,
     val levels: Array<Level>,
 ) {
     fun printAll() {

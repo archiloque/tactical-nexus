@@ -1,0 +1,9 @@
+Tower;Identifier;Name;ATK;DEF;HP;EXP Bonus;HP Bonus
+3;blue_potion;Blue potion;0;0;80;0;0
+3;drop_of_dream_ocean;Drop of dream ocean;5;5;999;0;0
+3;golden_feather;Golden feather;0;0;0;100;0
+3;guard_potion;Guard potion;0;3;30;0;0
+3;heavenly_potion;Heavenly potion;3;3;300;0;0
+3;life_potion;Life potion;0;0;200;0;0
+3;power_potion;Power potion;3;0;30;0;0
+3;red_potion;Red potion;0;0;20;0;0

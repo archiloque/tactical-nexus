@@ -31,12 +31,16 @@ class TowerForTest(
         return hp
     }
 
+    override fun crownScore(): Position? {
+        TODO("Not yet implemented")
+    }
+
     override fun checkScore(): Position {
-        return Position(0, 0, 0)
+        TODO("Not yet implemented")
     }
 
     override fun starScore(): Position {
-        return Position(0, 0, 0)
+        TODO("Not yet implemented")
     }
 
     override fun levels(): Array<Level> {

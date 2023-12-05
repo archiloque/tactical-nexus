@@ -1,10 +1,10 @@
 package net.archiloque.tacticalnexus.datapreparation.validation
 
-import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
+import net.archiloque.tacticalnexus.datapreparation.input.entities.ItemDefault
 
 class Items : Validator() {
 
-    fun validate(items: List<Item>, itemsIdentifiers: List<String>): Boolean {
+    fun validate(items: List<ItemDefault>, itemsIdentifiers: List<String>): Boolean {
         println("Validating items")
         checkDuplicates(itemsIdentifiers.groupBy { it })
         items.forEach {

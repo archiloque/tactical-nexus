@@ -27,7 +27,7 @@ class TowerLevels : Validator() {
                 levelsForTower.mapNotNull { towerLevel -> towerLevel.entities.score }.flatten()
             for (scoreType in ScoreType.entries) {
                 val scoreNumber = scores.filter { score -> score.score() == scoreType }.size
-                if (scoreNumber != 1) {
+                if (scoreNumber > 1) {
                     foundError("Found $scoreNumber of score of type $scoreType for tower $tower")
                 }
             }

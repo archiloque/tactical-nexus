@@ -55,10 +55,12 @@ class DefaultStateManager(
     }
 
     private fun score(state: State): Int {
-        return if (state.visited[playableTower.starScorePosition]) {
+        return if ((playableTower.starScorePosition != null) && (state.visited[playableTower.starScorePosition])) {
             state.hp + ((state.atk + state.def) * state.level)
-        } else if (state.visited[playableTower.checkScorePosition]) {
+        } else if ((playableTower.checkScorePosition != null) && (state.visited[playableTower.checkScorePosition])) {
             state.hp + (5 * ((state.atk + state.def) * state.level))
+        } else if ((playableTower.crownScorePosition != null) && (state.visited[playableTower.crownScorePosition])) {
+            state.hp + (10 * ((state.atk + state.def) * state.level))
         } else {
             0
         }

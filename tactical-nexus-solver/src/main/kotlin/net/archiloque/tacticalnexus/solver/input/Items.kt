@@ -38,6 +38,8 @@ public class Items {
 
         public val power_potion: Item = Item("Power potion", 3, 0, 0, 300, 0)
 
+        public val pulse_book: Item = Item("Pulse book", 100000, 0, 0, 0, 0)
+
         public val red_potion: Item = Item("Red potion", 0, 0, 0, 200, 0)
     }
 }

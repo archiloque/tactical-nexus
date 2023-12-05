@@ -747,9 +747,11 @@ public class Tower_2 : Tower {
 
     private val nexusLevels: Array<TowerLevel> = arrayOf()
 
-    private val checkScore: Position = Position(7, 4, 1)
+    private val checkScore: Position? = Position(7, 4, 1)
 
-    private val starScore: Position = Position(7, 4, 2)
+    private val crownScore: Position? = null
+
+    private val starScore: Position? = Position(7, 4, 2)
 
     override fun levels(): Array<Level> = levels
 
@@ -763,7 +765,9 @@ public class Tower_2 : Tower {
 
     override fun hp(): Int = 1_000
 
-    override fun checkScore(): Position = checkScore
+    override fun checkScore(): Position? = checkScore
 
-    override fun starScore(): Position = starScore
+    override fun crownScore(): Position? = crownScore
+
+    override fun starScore(): Position? = starScore
 }

@@ -9,7 +9,8 @@ import kotlin.system.exitProcess
 import kotlinx.serialization.json.Json
 import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
-import net.archiloque.tacticalnexus.datapreparation.input.entities.Item
+import net.archiloque.tacticalnexus.datapreparation.input.entities.ItemDefault
+import net.archiloque.tacticalnexus.datapreparation.input.entities.ItemPerTower
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
@@ -42,14 +43,15 @@ fun main(args: Array<String>) {
         val towerLevel = json.decodeFromString<TowerLevel>(it.readText())
         towerLevel
     }
-    val enemies = Enemy.parse("../enemies.csv")
-    val items = Item.parse("../items.csv")
-    val itemsIdentifiers = items.map { it.identifier }
-    val stats = Stat.parse("../stats.csv")
+    val enemies = Enemy.parse("../enemies_per_tower.csv")
+    val itemsPerTower = ItemPerTower.parse("../items_per_tower.csv")
+    val itemsDefault = ItemDefault.parse("../items_default.csv")
+    val itemsIdentifiers = itemsDefault.map { it.identifier }
+    val stats = Stat.parse("../stats_per_tower.csv")
     val statsIds = stats.map { it.tower }
-    val levels = Level.parse("../levels.csv")
+    val levels = Level.parse("../levels_per_tower.csv")
 
-    val hadError = Items().validate(items, itemsIdentifiers) ||
+    val hadError = Items().validate(itemsDefault, itemsIdentifiers) ||
             Enemies().validate(enemies, itemsIdentifiers) ||
             Stats().validate(stats) ||
             TowerLevels().validate(towerLevels, itemsIdentifiers, enemies, statsIds)
@@ -57,5 +59,5 @@ fun main(args: Array<String>) {
         exitProcess(-1)
     }
 
-    Solver(enemies, items, towerLevels, stats, levels).generate()
+    Solver(enemies, itemsDefault, itemsPerTower, towerLevels, stats, levels).generate()
 }
