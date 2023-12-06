@@ -30,6 +30,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
         )
         var lastPositions: Array<Position> = arrayOf(initialPosition)
         printMove(lastPositions, lastPositions, tower)
+        var currentLevel = 1
         println()
         for (move in moves) {
             if (move >= 0) {
@@ -45,7 +46,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
 
                 lastPositions = positionedEntity.getPositions()
             } else {
-                val levelUp = LevelUp.levelUp(currentState.exp)
+                val levelUp = LevelUp.levelUps[currentLevel]
                 val level = playableTower.levels[-move - 1]
 
                 val levelUpDescriptionsParts = mutableListOf<String>()
@@ -78,6 +79,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                     description
                 )
                 println()
+                currentLevel++
             }
             index++
         }
@@ -98,7 +100,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
         }
         val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
-            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp mult: ${currentState.expMult}, HP mult: ${currentState.hpMult}"
+            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, HP mult: ${currentState.hpMult}, Exp mult: ${currentState.expMult}"
         )
         println(
             "Keys: ${KeyOrDoorColor.entries.joinToString(", ") { "${it.humanName}: ${currentState.keys(it)}" }}"
