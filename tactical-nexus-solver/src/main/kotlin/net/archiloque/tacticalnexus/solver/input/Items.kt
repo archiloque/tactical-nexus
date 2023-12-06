@@ -38,7 +38,9 @@ public class Items {
 
         public val power_potion: Item = Item("Power potion", 3, 0, 0, 1, 300, 0, 1)
 
-        public val pulse_book: Item = Item("Pulse book", 50, 0, 0, 1, 0, 0, 1)
+        public val pulse_book_shield: Item = Item("Pulse book <Shield>", 0, 50, 0, 1, 0, 0, 1)
+
+        public val pulse_book_sword: Item = Item("Pulse book <Sword>", 50, 0, 0, 1, 0, 0, 1)
 
         public val red_potion: Item = Item("Red potion", 0, 0, 0, 1, 200, 0, 1)
     }

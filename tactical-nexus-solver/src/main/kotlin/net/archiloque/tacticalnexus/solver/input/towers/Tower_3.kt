@@ -56,7 +56,7 @@ public class Tower_3 : Tower {
         Enemy(EnemyType.fighter, 32, 2000, 280, 150, 12, Items.guard_card, null),
         Enemy(EnemyType.fighter, 40, 3000, 450, 250, 15, Items.guard_deck, null),
         Enemy(EnemyType.fighter, 45, 6000, 900, 350, 19, Items.guard_deck, null),
-        Enemy(EnemyType.fighter, 65, 16000, 1400, 600, 200, Items.pulse_book, null),
+        Enemy(EnemyType.fighter, 65, 16000, 1400, 600, 200, Items.pulse_book_shield, null),
         Enemy(EnemyType.ranger, 1, 20, 15, 0, 3, item_red_potion, null),
         Enemy(EnemyType.ranger, 3, 20, 30, 10, 4, item_red_potion, null),
         Enemy(EnemyType.ranger, 5, 80, 40, 10, 5, item_blue_potion, null),
@@ -80,7 +80,7 @@ public class Tower_3 : Tower {
         Enemy(EnemyType.slasher, 32, 1200, 400, 75, 12, Items.power_card, null),
         Enemy(EnemyType.slasher, 40, 2500, 650, 140, 15, Items.power_deck, null),
         Enemy(EnemyType.slasher, 45, 4000, 1200, 210, 19, Items.power_deck, null),
-        Enemy(EnemyType.slasher, 60, 8000, 1850, 300, 200, Items.pulse_book, null),
+        Enemy(EnemyType.slasher, 60, 8000, 1850, 300, 200, Items.pulse_book_sword, null),
     )
 
     private val levels: Array<Level> = arrayOf(

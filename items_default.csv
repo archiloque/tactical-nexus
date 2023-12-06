@@ -15,5 +15,6 @@ power_deck;Power deck;15;0;0;0;1;0;1
 power_gem;Power gem;2;0;0;0;1;0;1
 power_piece;Power piece;1;0;0;0;1;0;1
 power_potion;Power potion;3;0;300;0;1;0;1
-pulse_book;Pulse book;50;0;0;0;1;0;1
+pulse_book_shield;Pulse book <Shield>;0;50;0;0;1;0;1
+pulse_book_sword;Pulse book <Sword>;50;0;0;0;1;0;1
 red_potion;Red potion;0;0;200;0;1;0;1

@@ -70,7 +70,7 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 3;fighter;32;2000;280;150;12;guard_card
 3;fighter;40;3000;450;250;15;guard_deck
 3;fighter;45;6000;900;350;19;guard_deck
-3;fighter;65;16000;1400;600;200;pulse_book
+3;fighter;65;16000;1400;600;200;pulse_book_shield
 3;ranger;1;20;15;0;3;red_potion
 3;ranger;3;20;30;10;4;red_potion
 3;ranger;5;80;40;10;5;blue_potion
@@ -94,5 +94,5 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 3;slasher;32;1200;400;75;12;power_card
 3;slasher;40;2500;650;140;15;power_deck
 3;slasher;45;4000;1200;210;19;power_deck
-3;slasher;60;8000;1850;300;200;pulse_book
+3;slasher;60;8000;1850;300;200;pulse_book_sword
 4;fighter;1;1;1;0;10000;
