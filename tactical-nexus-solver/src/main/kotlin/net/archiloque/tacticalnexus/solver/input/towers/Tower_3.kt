@@ -105,7 +105,7 @@ public class Tower_3 : Tower {
                     ),
                     arrayOf(
                         enemies[43], enemies[43], enemies[42], enemies[30],
-                        Items.guard_deck, enemies[22], enemies[34], enemies[21], enemies[34], enemies[46],
+                        Items.power_deck, enemies[22], enemies[34], enemies[21], enemies[34], enemies[46],
                         enemies[32], enemies[21], enemies[21], enemies[33], enemies[8],
                     ),
                     arrayOf(
