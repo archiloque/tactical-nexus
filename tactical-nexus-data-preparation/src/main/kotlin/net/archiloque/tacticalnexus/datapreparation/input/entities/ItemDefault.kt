@@ -8,9 +8,11 @@ open class ItemDefault(
 
     val atk: Int,
     val def: Int,
-    val expBonus: Int,
+    val expBonusAdd: Int,
+    val expBonusMul: Int,
     val hp: Int,
-    val hpBonus: Int,
+    val hpBonusAdd: Int,
+    val hpBonusMul: Int,
 ) {
     companion object {
         fun parse(filePath: String): List<ItemDefault> {
@@ -23,9 +25,11 @@ open class ItemDefault(
                         it["Name"]!!,
                         it["ATK"]!!.toInt(),
                         it["DEF"]!!.toInt(),
-                        it["EXP Bonus"]!!.toInt(),
+                        it["EXP Bonus Add"]!!.toInt(),
+                        it["EXP Bonus Mul"]!!.toInt(),
                         it["HP"]!!.toInt(),
-                        it["HP Bonus"]!!.toInt(),
+                        it["HP Bonus Add"]!!.toInt(),
+                        it["HP Bonus Mul"]!!.toInt(),
                     )
                 }.toList()
             }

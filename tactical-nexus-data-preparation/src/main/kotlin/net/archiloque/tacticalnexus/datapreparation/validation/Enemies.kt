@@ -11,17 +11,23 @@ class Enemies : Validator() {
         enemies.forEach {
             if (it.atk <= 0) {
                 foundError("Bad atk [${it}], should be >= 0")
-            } else if (it.def < 0) {
+            }
+            if (it.def < 0) {
                 foundError("Bad def [${it}], should be > 0")
-            } else if (it.hp <= 0) {
+            }
+            if (it.hp <= 0) {
                 foundError("Bad hp [${it}], should be >= 0")
-            } else if (it.exp <= 0) {
+            }
+            if (it.exp <= 0) {
                 foundError("Bad exp [${it}], should be > 0")
-            } else if (it.level <= 0) {
+            }
+            if (it.level <= 0) {
                 foundError("Bad level [${it}], should be > 0")
-            } else if (it.tower <= 0) {
+            }
+            if (it.tower <= 0) {
                 foundError("Bad tower  [${it}], should be > 0")
-            } else if (it.drop.isNotEmpty()) {
+            }
+            if (it.drop.isNotEmpty()) {
                 val drop = it.drop
                 if (!itemsIdentifiers.contains(drop)) {
                     if (!drop.endsWith(Enemy.KEY_SUFFIX) || !KeyOrDoorColor.entries

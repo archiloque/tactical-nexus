@@ -9,10 +9,12 @@ class ItemPerTower(
 
     atk: Int,
     def: Int,
-    expBonus: Int,
+    expBonusAdd: Int,
+    expBonusMul: Int,
     hp: Int,
-    hpBonus: Int,
-): ItemDefault(identifier, name, atk, def, expBonus, hp, hpBonus) {
+    hpBonusAdd: Int,
+    hpBonusMul: Int,
+): ItemDefault(identifier, name, atk, def, expBonusAdd, expBonusMul, hp, hpBonusAdd, hpBonusMul) {
     companion object {
         fun parse(filePath: String): List<ItemPerTower> {
             println("Reading items per tower at [${filePath}]")
@@ -25,9 +27,12 @@ class ItemPerTower(
                         it["Name"]!!,
                         it["ATK"]!!.toInt(),
                         it["DEF"]!!.toInt(),
-                        it["EXP Bonus"]!!.toInt(),
+                        it["EXP Bonus Add"]!!.toInt(),
+                        it["EXP Bonus Mul"]!!.toInt(),
                         it["HP"]!!.toInt(),
-                        it["HP Bonus"]!!.toInt(),
+                        it["HP Bonus Add"]!!.toInt(),
+                        it["HP Bonus Mul"]!!.toInt(),
+
                     )
                 }.toList()
             }

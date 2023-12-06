@@ -1,6 +1,9 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.annotation.processing.Generated
+import javax.`annotation`.processing.Generated
+import kotlin.Array
+import kotlin.Int
+import kotlin.arrayOf
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Enemy
@@ -14,21 +17,23 @@ import net.archiloque.tacticalnexus.solver.input.Items
 
 @Generated
 public class Tower_3 : Tower {
-    private val item_blue_potion: Item = Item("Blue potion", 0, 0, 0, 80, 0)
+    private val item_blue_potion: Item = Item("Blue potion", 0, 0, 0, 1, 80, 0, 1)
 
-    private val item_drop_of_dream_ocean: Item = Item("Drop of dream ocean", 5, 5, 0, 999, 0)
+    private val item_drop_of_dream_ocean: Item = Item("Drop of dream ocean", 5, 5, 0, 1, 999, 0, 1)
 
-    private val item_golden_feather: Item = Item("Golden feather", 0, 0, 100, 0, 0)
+    private val item_golden_feather: Item = Item("Golden feather", 0, 0, 0, 2, 0, 0, 1)
 
-    private val item_guard_potion: Item = Item("Guard potion", 0, 3, 0, 30, 0)
+    private val item_guard_potion: Item = Item("Guard potion", 0, 3, 0, 1, 30, 0, 1)
 
-    private val item_heavenly_potion: Item = Item("Heavenly potion", 3, 3, 0, 300, 0)
+    private val item_heavenly_potion: Item = Item("Heavenly potion", 3, 3, 0, 1, 300, 0, 1)
 
-    private val item_life_potion: Item = Item("Life potion", 0, 0, 0, 200, 0)
+    private val item_life_crown: Item = Item("Life Crown", 0, 0, 0, 1, 0, 100, 1)
 
-    private val item_power_potion: Item = Item("Power potion", 3, 0, 0, 30, 0)
+    private val item_life_potion: Item = Item("Life potion", 0, 0, 0, 1, 200, 0, 1)
 
-    private val item_red_potion: Item = Item("Red potion", 0, 0, 0, 20, 0)
+    private val item_power_potion: Item = Item("Power potion", 3, 0, 0, 1, 30, 0, 1)
+
+    private val item_red_potion: Item = Item("Red potion", 0, 0, 0, 1, 20, 0, 1)
 
     private val enemies: Array<Enemy> = arrayOf(
         Enemy(EnemyType.burgeoner, 3, 100, 15, 0, 30, null, null),
@@ -92,24 +97,24 @@ public class Tower_3 : Tower {
             TowerLevel(
                 arrayOf(
                     arrayOf(
-                        item_golden_feather, Wall.instance, Items.life_crown,
+                        item_golden_feather, Wall.instance, item_life_crown,
                         enemies[43], Wall.instance, item_golden_feather, null, item_golden_feather, null,
-                        Items.life_crown, Wall.instance, item_golden_feather, enemies[9], enemies[45],
-                        Items.life_crown,
+                        item_life_crown, Wall.instance, item_golden_feather, enemies[9], enemies[45], item_life_crown,
                     ),
                     arrayOf(
-                        enemies[7], enemies[19], enemies[19], enemies[42], enemies[31],
-                        enemies[47], enemies[22], enemies[11], enemies[46], enemies[23], enemies[32], Wall.instance,
-                        enemies[21], Wall.instance, enemies[45],
+                        enemies[7], enemies[19], enemies[19], enemies[42], enemies[31], enemies[47],
+                        enemies[22], enemies[11], enemies[46], enemies[23], enemies[32], Wall.instance, enemies[21],
+                        Wall.instance, enemies[45],
                     ),
                     arrayOf(
-                        enemies[43], enemies[43], enemies[42],
-                        enemies[30], Items.guard_deck, enemies[22], enemies[34], enemies[21], enemies[34],
-                        enemies[46], enemies[32], enemies[21], enemies[21], enemies[33], enemies[8],
+                        enemies[43], enemies[43], enemies[42], enemies[30],
+                        Items.guard_deck, enemies[22], enemies[34], enemies[21], enemies[34], enemies[46],
+                        enemies[32], enemies[21], enemies[21], enemies[33], enemies[8],
                     ),
                     arrayOf(
-                        enemies[19], enemies[18], enemies[30], enemies[31], item_heavenly_potion, enemies[45],
-                        enemies[22], item_drop_of_dream_ocean, enemies[22], enemies[21], enemies[45], Wall.instance,
+                        enemies[19],
+                        enemies[18], enemies[30], enemies[31], item_heavenly_potion, enemies[45], enemies[22],
+                        item_drop_of_dream_ocean, enemies[22], enemies[21], enemies[45], Wall.instance,
                         item_life_potion, Wall.instance, item_life_potion,
                     ),
                     arrayOf(
@@ -118,7 +123,7 @@ public class Tower_3 : Tower {
                         enemies[21], enemies[44], enemies[20], enemies[32], enemies[44], enemies[20],
                     ),
                     arrayOf(
-                        Items.life_crown, enemies[41], item_power_potion, enemies[13], item_guard_potion,
+                        item_life_crown, enemies[41], item_power_potion, enemies[13], item_guard_potion,
                         enemies[26], item_red_potion, enemies[10], item_red_potion, enemies[25], Wall.instance,
                         item_power_potion, enemies[8], enemies[14], item_life_potion,
                     ),
@@ -135,7 +140,7 @@ public class Tower_3 : Tower {
                     ),
                     arrayOf(
                         Wall.instance,
-                        enemies[14], enemies[13], Items.power_gem, enemies[37], Items.guard_piece, enemies[12],
+                        enemies[38], enemies[13], Items.guard_gem, enemies[37], Items.guard_piece, enemies[12],
                         enemies[24], enemies[36], Items.guard_gem, enemies[15], enemies[38], enemies[26], enemies[26],
                         Wall.instance,
                     ),
@@ -146,7 +151,7 @@ public class Tower_3 : Tower {
                     ),
                     arrayOf(
                         enemies[28], Wall.instance, enemies[17], enemies[17], item_heavenly_potion,
-                        Wall.instance, enemies[16], enemies[15], enemies[40], Items.life_crown, enemies[43],
+                        Wall.instance, enemies[16], enemies[15], enemies[40], item_life_crown, enemies[43],
                         enemies[19], enemies[31], enemies[19], Wall.instance,
                     ),
                     arrayOf(
@@ -168,8 +173,7 @@ public class Tower_3 : Tower {
                     arrayOf(
                         enemies[16], enemies[16], item_life_potion, enemies[29],
                         Wall.instance, item_life_potion, Wall.instance, item_golden_feather, Wall.instance,
-                        Items.life_crown, enemies[43], Wall.instance, Items.guard_deck, Wall.instance,
-                        Items.life_crown,
+                        item_life_crown, enemies[43], Wall.instance, Items.guard_deck, Wall.instance, item_life_crown,
                     ),
                 )
             ),

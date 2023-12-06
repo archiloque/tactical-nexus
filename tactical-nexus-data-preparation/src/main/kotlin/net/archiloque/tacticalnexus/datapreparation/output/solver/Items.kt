@@ -45,7 +45,7 @@ class Items {
             modifier: KModifier,
         ) {
             val initializerCode = CodeBlock.Builder().add(
-                "%T(%S, ${item.atk}, ${item.def}, ${item.expBonus}, ${item.hp}, ${item.hpBonus},)",
+                "%T(%S, ${item.atk}, ${item.def}, ${item.expBonusAdd}, ${item.expBonusMul}, ${item.hp}, ${item.hpBonusAdd}, ${item.hpBonusMul})",
                 itemClass,
                 item.name,
             ).build()

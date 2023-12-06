@@ -16,7 +16,8 @@ import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 import net.archiloque.tacticalnexus.datapreparation.output.solver.Solver
 import net.archiloque.tacticalnexus.datapreparation.validation.Enemies
-import net.archiloque.tacticalnexus.datapreparation.validation.Items
+import net.archiloque.tacticalnexus.datapreparation.validation.ItemsDefault
+import net.archiloque.tacticalnexus.datapreparation.validation.ItemsPerTower
 import net.archiloque.tacticalnexus.datapreparation.validation.Stats
 import net.archiloque.tacticalnexus.datapreparation.validation.TowerLevels
 
@@ -51,7 +52,8 @@ fun main(args: Array<String>) {
     val statsIds = stats.map { it.tower }
     val levels = Level.parse("../levels_per_tower.csv")
 
-    val hadError = Items().validate(itemsDefault, itemsIdentifiers) ||
+    val hadError = ItemsDefault().validateDefault(itemsDefault, itemsIdentifiers) ||
+            ItemsPerTower().validatePerTower(itemsPerTower, itemsIdentifiers) ||
             Enemies().validate(enemies, itemsIdentifiers) ||
             Stats().validate(stats) ||
             TowerLevels().validate(towerLevels, itemsIdentifiers, enemies, statsIds)

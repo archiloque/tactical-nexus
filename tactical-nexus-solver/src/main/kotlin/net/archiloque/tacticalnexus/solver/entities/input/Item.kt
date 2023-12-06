@@ -4,9 +4,11 @@ class Item(
     val name: String,
     val atk: Int,
     val def: Int,
-    val expBonus: Int,
+    val expBonusAdd: Int,
+    val expBonusMul: Int,
     val hp: Int,
-    val hpBonus: Int,
+    val hpBonusAdd: Int,
+    val hpBonusMul: Int,
 ) : InputEntity() {
     override fun getType(): InputEntityType {
         return InputEntityType.Item
