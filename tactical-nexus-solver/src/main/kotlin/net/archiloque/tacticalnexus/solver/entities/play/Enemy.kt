@@ -58,23 +58,22 @@ class Enemy(
 
         val fightResult = apply(newState)
         if (fightResult != FightResult.LOOSE) {
+            dropApply(newState)
             val toLevelUp = levelUp(newState.exp)
             if (fromLevelUp != toLevelUp) {
-                if (addNewReachablePositions(
-                        newState,
-                        playableTower,
-                        stateManager
-                    ) || (fightResult == FightResult.WIN_NO_HP_LOST)
-                ) {
-                    playableTower.levels.forEachIndexed { index, level ->
-                        val levelUpState = newState(-index - 1, newState)
-                        applyLevelUp(levelUpState, level, toLevelUp)
-                        dropApply(levelUpState)
+                playableTower.levels.forEachIndexed { levelUpIndex, level ->
+                    val levelUpState = newState(-levelUpIndex - 1, newState)
+                    applyLevelUp(levelUpState, level, toLevelUp)
+                    if (addNewReachablePositions(
+                            levelUpState,
+                            playableTower,
+                            stateManager
+                        ) || (fightResult == FightResult.WIN_NO_HP_LOST)
+                    ) {
                         stateManager.save(levelUpState)
                     }
                 }
             } else {
-                dropApply(newState)
                 if (addNewReachablePositions(
                         newState,
                         playableTower,
@@ -169,7 +168,7 @@ class Enemy(
         }
 
         private fun levelUp(level: Int, add: Int, mult: Int): Int {
-            if ((add == 0) && (mult <= 1)) {
+            if ((add == 0) && (mult < 1)) {
                 return 0
             }
             var result = level

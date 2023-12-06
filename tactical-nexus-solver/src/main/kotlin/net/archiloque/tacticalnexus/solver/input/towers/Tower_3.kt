@@ -86,7 +86,7 @@ public class Tower_3 : Tower {
     private val levels: Array<Level> = arrayOf(
         Level(0, 1, 0, 0, 0, 0, 0, 0, 0),
         Level(0, 0, 0, 1, 0, 0, 0, 0, 0),
-        Level(0, 0, 0, 1, 0, 50, 0, 0, 0),
+        Level(0, 0, 0, 0, 0, 50, 0, 0, 0),
     )
 
     private val standardLevels: Array<TowerLevel> =

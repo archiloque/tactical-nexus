@@ -120,7 +120,7 @@ abstract class PlayEntity(val entityIndex: Int) {
                 PlayEntityType.Enemy -> {
                     this as Enemy
                     return if (this.key != null) {
-                        // Obtaining akey as drop for an enemy is a valid move by itself
+                        // Obtaining a key as drop for an enemy is a valid move by itself
                         true
                     } else {
                         checkNewEntities(newEntities, state, playableTower, stateManager)
