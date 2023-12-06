@@ -159,7 +159,7 @@ public class Tower_3 : Tower {
                     ),
                     arrayOf(
                         enemies[40], Wall.instance, item_golden_feather,
-                        Wall.instance, enemies[41], Wall.instance, enemies[29], enemies[16], enemies[28],
+                        Wall.instance, enemies[41], Wall.instance, enemies[27], enemies[16], enemies[28],
                         item_life_potion, enemies[44], enemies[31], item_heavenly_potion, enemies[32], Wall.instance,
                     ),
                     arrayOf(
