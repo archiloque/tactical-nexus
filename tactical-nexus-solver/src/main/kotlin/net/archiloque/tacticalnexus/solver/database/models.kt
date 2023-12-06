@@ -26,8 +26,8 @@ fun findNextStates(database: Database): List<State> {
                     it.getInt(5),
                     it.getInt(6),
 
-                    it.getShort(7),
-                    it.getShort(8),
+                    it.getInt(7),
+                    it.getInt(8),
 
                     it.getShort(9),
                     it.getShort(10),

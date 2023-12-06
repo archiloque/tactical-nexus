@@ -15,8 +15,8 @@ data class State(
     var exp: Int,
     var hp: Int,
 
-    var expMult: Short,
-    var hpMult: Short,
+    var expMult: Int,
+    var hpMult: Int,
 
     var blueKeys: Short,
     var crimsonKeys: Short,

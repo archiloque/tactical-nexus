@@ -9,8 +9,8 @@ CREATE TABLE states
     exp INTEGER NOT NULL,
     hp INTEGER NOT NULL,
 
-    exp_mult SMALLINT NOT NULL,
-    hp_mult SMALLINT NOT NULL,
+    exp_mult INTEGER NOT NULL,
+    hp_mult INTEGER NOT NULL,
 
     blue_keys SMALLINT NOT NULL,
     crimson_keys SMALLINT NOT NULL,

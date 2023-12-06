@@ -115,8 +115,8 @@ class DefaultStateManager(
         statement.setInt(firstParameterIndex + 2, state.exp)
         statement.setInt(firstParameterIndex + 3, state.hp)
 
-        statement.setShort(firstParameterIndex + 4, state.expMult)
-        statement.setShort(firstParameterIndex + 5, state.hpMult)
+        statement.setInt(firstParameterIndex + 4, state.expMult)
+        statement.setInt(firstParameterIndex + 5, state.hpMult)
         KeyOrDoorColor.entries.forEachIndexed { index, keyOrDoorColor ->
             statement.setShort(firstParameterIndex + 6 + index, state.keys(keyOrDoorColor))
         }
