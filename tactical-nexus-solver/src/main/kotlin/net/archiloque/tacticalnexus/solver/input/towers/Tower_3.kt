@@ -170,7 +170,7 @@ public class Tower_3 : Tower {
                     arrayOf(
                         enemies[16], enemies[16], item_life_potion,
                         enemies[29], Wall.instance, item_life_potion, Wall.instance, item_golden_feather,
-                        Wall.instance, item_life_crown, enemies[43], Wall.instance, Items.guard_deck, Wall.instance,
+                        Wall.instance, item_life_crown, enemies[43], Wall.instance, Items.power_deck, Wall.instance,
                         item_life_crown,
                     ),
                 )

@@ -2789,9 +2789,9 @@
 					"height": 16,
 					"defUid": 11,
 					"px": [192,224],
-					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "guard_deck", "__tile": null, "defUid": 12, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "power_deck", "__tile": null, "defUid": 12, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["guard_deck"]
+						"params": ["power_deck"]
 					}] }]
 				},
 				{
