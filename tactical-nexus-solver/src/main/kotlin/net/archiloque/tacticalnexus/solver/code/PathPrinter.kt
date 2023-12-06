@@ -57,7 +57,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
                 if (levelUpDef > 0) {
                     levelUpDescriptionsParts.add("$levelUpDef def")
                 }
-                val levelUpHp = Enemy.levelUpHp(level, levelUp)
+                val levelUpHp = Enemy.levelUpHp(level, levelUp, currentState)
                 if (levelUpHp > 0) {
                     levelUpDescriptionsParts.add("$levelUpHp hp")
                 }
@@ -98,7 +98,7 @@ class PathPrinter(private val tower: Tower, val playableTower: PlayableTower, pr
         }
         val exp = currentState.exp - LevelUp.levelUp(currentState.exp).exp
         println(
-            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp bonus: ${currentState.expBonus}, HP bonus: ${currentState.hpBonus}"
+            "Hp: ${currentState.hp}, Atk: ${currentState.atk}, Def: ${currentState.def}, Exp: ${exp}, Exp mult: ${currentState.expMult}, HP mult: ${currentState.hpMult}"
         )
         println(
             "Keys: ${KeyOrDoorColor.entries.joinToString(", ") { "${it.humanName}: ${currentState.keys(it)}" }}"

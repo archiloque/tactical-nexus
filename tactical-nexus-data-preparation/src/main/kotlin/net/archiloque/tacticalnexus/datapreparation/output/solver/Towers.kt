@@ -114,7 +114,7 @@ class Towers {
         }
 
         private fun addItems(itemsPerTower: List<ItemPerTower>, towerSpec: TypeSpec.Builder) {
-            for(item in itemsPerTower.sortedBy { it.name }) {
+            for (item in itemsPerTower.sortedBy { it.name }) {
                 Items.generateItem(item, "item_", towerSpec, KModifier.PRIVATE)
             }
         }
@@ -352,7 +352,7 @@ class Towers {
         }
 
         private fun addItemCode(identifier: String, itemsPerTower: List<ItemPerTower>, codeBlock: CodeBlock.Builder) {
-            if(itemsPerTower.find { it.identifier == identifier } == null) {
+            if (itemsPerTower.find { it.identifier == identifier } == null) {
                 codeBlock.add("%T.${identifier}", itemsClass)
             } else {
                 codeBlock.add("item_${identifier}")

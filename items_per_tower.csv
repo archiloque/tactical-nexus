@@ -1,4 +1,4 @@
-Tower;Identifier;Name;ATK;DEF;HP;EXP Bonus Add;EXP Bonus Mul;HP Bonus Add;HP Bonus Mul
+Tower;Identifier;Name;ATK;DEF;HP;EXP Mult Add;EXP Mult Mul;HP Mult Add;HP Mult Mul
 3;blue_potion;Blue potion;0;0;80;0;1;0;1
 3;drop_of_dream_ocean;Drop of dream ocean;5;5;999;0;1;0;1
 3;golden_feather;Golden feather;0;0;0;0;2;0;1

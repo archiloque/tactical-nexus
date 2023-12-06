@@ -1,9 +1,6 @@
 package net.archiloque.tacticalnexus.solver.input.towers
 
-import javax.`annotation`.processing.Generated
-import kotlin.Array
-import kotlin.Int
-import kotlin.arrayOf
+import javax.annotation.processing.Generated
 import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Enemy
@@ -166,14 +163,15 @@ public class Tower_3 : Tower {
                         item_life_potion, enemies[44], enemies[31], item_heavenly_potion, enemies[32], Wall.instance,
                     ),
                     arrayOf(
-                        enemies[40], Wall.instance, Wall.instance, enemies[29], null, enemies[18],
-                        enemies[40], enemies[4], enemies[40], enemies[42], enemies[43], enemies[32], enemies[33],
-                        enemies[20], enemies[35],
+                        enemies[40], Wall.instance, Wall.instance, enemies[29], item_heavenly_potion,
+                        enemies[18], enemies[40], enemies[4], enemies[40], enemies[42], enemies[43], enemies[32],
+                        enemies[33], enemies[20], enemies[35],
                     ),
                     arrayOf(
-                        enemies[16], enemies[16], item_life_potion, enemies[29],
-                        Wall.instance, item_life_potion, Wall.instance, item_golden_feather, Wall.instance,
-                        item_life_crown, enemies[43], Wall.instance, Items.guard_deck, Wall.instance, item_life_crown,
+                        enemies[16], enemies[16], item_life_potion,
+                        enemies[29], Wall.instance, item_life_potion, Wall.instance, item_golden_feather,
+                        Wall.instance, item_life_crown, enemies[43], Wall.instance, Items.guard_deck, Wall.instance,
+                        item_life_crown,
                     ),
                 )
             ),

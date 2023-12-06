@@ -121,7 +121,7 @@ class Enemy(
         }
     }
 
-    private fun earnXp(state: State) = (exp * (100 + state.expBonus)) / 100
+    private fun earnXp(state: State) = (exp * state.expMult) / 100
 
     fun killNoHPLost(state: State): Boolean {
         val damagesToEnemy = max(state.atk - def, 0)
@@ -162,7 +162,7 @@ class Enemy(
             state.level = levelUp.level
             state.atk += levelUpAtk(level, levelUp)
             state.def += levelUpDef(level, levelUp)
-            state.hp += levelUpHp(level, levelUp)
+            state.hp += levelUpHp(level, levelUp, state)
             state.blueKeys = (state.blueKeys + level.blueKeys).toShort()
             state.crimsonKeys = (state.crimsonKeys + level.crimsonKeys).toShort()
             state.yellowKeys = (state.yellowKeys + level.yellowKeys).toShort()
@@ -185,8 +185,9 @@ class Enemy(
         fun levelUpHp(
             level: Level,
             levelUp: LevelUp,
+            state: State,
         ): Int {
-            return levelUp(levelUp.level.toInt(), level.hpAdd, level.hpMul)
+            return (levelUp(levelUp.level.toInt(), level.hpAdd, level.hpMul) * state.hpMult) / 100
         }
 
         fun levelUpDef(

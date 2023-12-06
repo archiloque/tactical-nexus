@@ -117,8 +117,8 @@ fun createInitialState(inputTower: Tower, playableTower: PlayableTower): State {
         inputTower.def(),
         0,
         inputTower.hp(),
-        0,
-        0,
+        100,
+        100,
 
         0,
         0,

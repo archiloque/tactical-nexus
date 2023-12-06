@@ -16,8 +16,8 @@ object States : BaseTable<State>("states") {
     val exp = int("exp")
     val hp = int("hp")
 
-    val expBonus = short("exp_bonus")
-    private val hpBonus = short("hp_bonus")
+    val expMult = short("exp_mult")
+    private val hpMult = short("hp_mult")
 
     private val blue_keys = short("blue_keys")
     private val green_blue_keys = short("green_blue_keys")
@@ -44,8 +44,8 @@ object States : BaseTable<State>("states") {
             exp = row[exp]!!,
             hp = row[hp]!!,
 
-            expBonus = row[expBonus]!!,
-            hpBonus = row[hpBonus]!!,
+            expMult = row[expMult]!!,
+            hpMult = row[hpMult]!!,
 
             blueKeys = row[blue_keys]!!,
             crimsonKeys = row[crimson_keys]!!,

@@ -6,19 +6,19 @@ open class
 Item(
     open val atk: Int,
     open val def: Int,
-    open val expBonusAdd: Int,
-    open val expBonusMul: Int,
+    open val expMultAdd: Int,
+    open val expMultMul: Int,
     open val hp: Int,
-    open val hpBonusAdd: Int,
-    open val hpBonusMul: Int,
+    open val hpMultAdd: Int,
+    open val hpMultMul: Int,
 ) {
 
     fun apply(state: State) {
         state.atk += atk
         state.def += def
-        state.expBonus = ((state.expBonus + expBonusAdd) * expBonusMul).toShort()
-        state.hp += (hp * (100 + state.hpBonus)) / 100
-        state.hpBonus = ((state.hpBonus + hpBonusAdd) * expBonusMul).toShort()
+        state.expMult = ((state.expMult + expMultAdd) * expMultMul).toShort()
+        state.hp += (hp * state.hpMult) / 100
+        state.hpMult = ((state.hpMult + hpMultAdd) * hpMultMul).toShort()
     }
 
 }

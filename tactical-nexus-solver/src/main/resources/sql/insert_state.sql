@@ -8,8 +8,8 @@ INSERT INTO
 		def,
 		exp,
 		hp,
-		exp_bonus,
-		hp_bonus,
+		exp_mult,
+		hp_mult,
 
 		blue_keys,
 		crimson_keys,
@@ -54,8 +54,8 @@ WHERE
 			and def >= ?
 			and exp >= ?
 			and hp >= ?
-			and exp_bonus >= ?
-			and hp_bonus >= ?
+			and exp_mult >= ?
+			and hp_mult >= ?
 			and blue_keys >= ?
 			and green_blue_keys >= ?
 			and crimson_keys >= ?
@@ -68,8 +68,8 @@ WHERE
 		def,
 		exp,
 		hp,
-		exp_bonus,
-		hp_bonus,
+		exp_mult,
+		hp_mult,
 		blue_keys,
 		green_blue_keys,
 		crimson_keys,

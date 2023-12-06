@@ -5,8 +5,8 @@ DELETE FROM STATES WHERE
     def >= ? and
     exp >= ? and
     hp >= ? and
-    exp_bonus <= ? and
-    hp_bonus <= ? and
+    exp_mult <= ? and
+    hp_mult <= ? and
     blue_keys <= ? and
     crimson_keys <= ? and
     green_blue_keys <= ? and

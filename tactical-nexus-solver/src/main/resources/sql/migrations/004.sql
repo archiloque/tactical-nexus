@@ -7,8 +7,8 @@ CREATE UNIQUE INDEX states_duplicates
     exp,
     hp,
 
-    exp_bonus,
-    hp_bonus,
+    exp_mult,
+    hp_mult,
 
     blue_keys,
     green_blue_keys,

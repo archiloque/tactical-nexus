@@ -4,13 +4,13 @@ class
 DropItem(
     override val atk: Int,
     override val def: Int,
-    override val expBonusAdd: Int,
-    override val expBonusMul: Int,
+    override val expMultAdd: Int,
+    override val expMultMul: Int,
     override val hp: Int,
-    override val hpBonusAdd: Int,
-    override val hpBonusMul: Int,
+    override val hpMultAdd: Int,
+    override val hpMultMul: Int,
     val name: String,
-) : Item(atk, def, expBonusAdd, expBonusMul, hp, hpBonusAdd, hpBonusMul) {
+) : Item(atk, def, expMultAdd, expMultMul, hp, hpMultAdd, hpMultMul) {
 
     companion object {
         private val items = mutableMapOf<String, DropItem>()
@@ -24,11 +24,11 @@ DropItem(
                     value = DropItem(
                         item.atk,
                         item.def,
-                        item.expBonusAdd,
-                        item.expBonusMul,
+                        item.expMultAdd,
+                        item.expMultMul,
                         item.hp,
-                        item.hpBonusAdd,
-                        item.hpBonusMul,
+                        item.hpMultAdd,
+                        item.hpMultMul,
                         item.name,
                     )
                     items[item.name] = value

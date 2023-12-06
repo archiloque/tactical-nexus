@@ -20,20 +20,20 @@ open class ItemsDefault : Validator() {
         if (itemDefault.def < 0) {
             foundError("Bad def [${itemDefault}]")
         }
-        if (itemDefault.expBonusAdd < 0) {
-            foundError("Bad exp add bonus [${itemDefault}]")
+        if (itemDefault.expMultAdd < 0) {
+            foundError("Bad exp mult add bonus [${itemDefault}]")
         }
-        if (itemDefault.expBonusMul <= 0) {
-            foundError("Bad exp mul bonus [${itemDefault}]")
+        if (itemDefault.expMultMul <= 0) {
+            foundError("Bad exp mult mul bonus [${itemDefault}]")
         }
         if (itemDefault.hp < 0) {
             foundError("Bad hp [${itemDefault}]")
         }
-        if (itemDefault.hpBonusAdd < 0) {
-            foundError("Bad hp add bonus [${itemDefault}]")
+        if (itemDefault.hpMultAdd < 0) {
+            foundError("Bad hp mult add bonus [${itemDefault}]")
         }
-        if (itemDefault.hpBonusMul <= 0) {
-            foundError("Bad hp mul bonus [${itemDefault}]")
+        if (itemDefault.hpMultMul <= 0) {
+            foundError("Bad hp mult mul bonus [${itemDefault}]")
         }
     }
 

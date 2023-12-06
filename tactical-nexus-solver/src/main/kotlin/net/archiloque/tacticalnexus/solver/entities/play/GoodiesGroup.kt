@@ -14,11 +14,11 @@ class GoodiesGroup(
     val item = Item(
         items.sumOf { it.inputItem.atk },
         items.sumOf { it.inputItem.def },
-        items.sumOf { it.inputItem.expBonusAdd },
-        items.map { it.inputItem.expBonusMul }.fold(1) { acc, i -> acc * i },
+        items.sumOf { it.inputItem.expMultAdd },
+        items.map { it.inputItem.expMultMul }.fold(1) { acc, i -> acc * i },
         items.sumOf { it.inputItem.hp },
-        items.sumOf { it.inputItem.hpBonusAdd },
-        items.map { it.inputItem.hpBonusMul }.fold(1) { acc, i -> acc * i },
+        items.sumOf { it.inputItem.hpMultAdd },
+        items.map { it.inputItem.hpMultMul }.fold(1) { acc, i -> acc * i },
     )
 
     private val blueKeys = countKeys(KeyOrDoorColor.blue)

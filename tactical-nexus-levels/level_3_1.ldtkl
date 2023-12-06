@@ -4550,6 +4550,25 @@
 						}] },
 						{ "__identifier": "level", "__type": "Int", "__value": 32, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [32] }] }
 					]
+				},
+				{
+					"__identifier": "item",
+					"__grid": [4,13],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 192, "y": 256, "w": 16, "h": 16 },
+					"__smartColor": "#E43B44",
+					"__worldX": 64,
+					"__worldY": 208,
+					"iid": "6f728550-8990-11ee-b8a5-47a759ddd7a5",
+					"width": 16,
+					"height": 16,
+					"defUid": 11,
+					"px": [64,208],
+					"fieldInstances": [{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "heavenly_potion", "__tile": null, "defUid": 12, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["heavenly_potion"]
+					}] }]
 				}
 			]
 		},
