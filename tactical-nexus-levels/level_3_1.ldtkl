@@ -4569,6 +4569,38 @@
 						"id": "V_String",
 						"params": ["heavenly_potion"]
 					}] }]
+				},
+				{
+					"__identifier": "wall",
+					"__grid": [6,0],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
+					"__smartColor": "#0099DB",
+					"__worldX": 96,
+					"__worldY": 0,
+					"iid": "d8621d60-8990-11ee-b8a5-7f5cc8317eed",
+					"width": 16,
+					"height": 16,
+					"defUid": 5,
+					"px": [96,0],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "wall",
+					"__grid": [8,0],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
+					"__smartColor": "#0099DB",
+					"__worldX": 128,
+					"__worldY": 0,
+					"iid": "d95a8720-8990-11ee-b8a5-31076a757af6",
+					"width": 16,
+					"height": 16,
+					"defUid": 5,
+					"px": [128,0],
+					"fieldInstances": []
 				}
 			]
 		},

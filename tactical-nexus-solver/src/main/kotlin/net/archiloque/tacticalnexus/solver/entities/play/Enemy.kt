@@ -61,18 +61,14 @@ class Enemy(
             dropApply(newState)
             val toLevelUp = levelUp(newState.exp)
             if (fromLevelUp != toLevelUp) {
-                playableTower.levels.forEachIndexed { levelUpIndex, level ->
-                    val levelUpState = newState(-levelUpIndex - 1, newState)
-                    applyLevelUp(levelUpState, level, toLevelUp)
-                    if (addNewReachablePositions(
-                            levelUpState,
-                            playableTower,
-                            stateManager
-                        ) || (fightResult == FightResult.WIN_NO_HP_LOST)
-                    ) {
-                        stateManager.save(levelUpState)
-                    }
-                }
+                applyLevelUp(
+                    playableTower,
+                    newState,
+                    fromLevelUp.level.toInt(),
+                    toLevelUp.level.toInt(),
+                    stateManager,
+                    fightResult
+                )
             } else {
                 if (addNewReachablePositions(
                         newState,
@@ -82,6 +78,40 @@ class Enemy(
                 ) {
                     stateManager.save(newState)
                 }
+            }
+        }
+    }
+
+    private fun applyLevelUp(
+        playableTower: PlayableTower,
+        newState: State,
+        fromLevelIndex: Int,
+        toLevelIndex: Int,
+        stateManager: StateManager,
+        fightResult: FightResult,
+    ) {
+        val nextLevelIndex = fromLevelIndex + 1
+        playableTower.levels.forEachIndexed { levelUpIndex, level ->
+            val levelUpState = newState(-levelUpIndex - 1, newState)
+            applyLevelUp(levelUpState, level, LevelUp.levelUps[nextLevelIndex])
+            if (nextLevelIndex == toLevelIndex) {
+                if (addNewReachablePositions(
+                        levelUpState,
+                        playableTower,
+                        stateManager
+                    ) || (fightResult == FightResult.WIN_NO_HP_LOST)
+                ) {
+                    stateManager.save(levelUpState)
+                }
+            } else {
+                applyLevelUp(
+                    playableTower,
+                    levelUpState,
+                    nextLevelIndex,
+                    toLevelIndex,
+                    stateManager,
+                    fightResult
+                )
             }
         }
     }

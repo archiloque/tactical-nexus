@@ -265,6 +265,60 @@
 					"defUid": 5,
 					"px": [16,16],
 					"fieldInstances": []
+				},
+				{
+					"__identifier": "enemy",
+					"__grid": [3,0],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 48, "y": 432, "w": 16, "h": 16 },
+					"__smartColor": "#181425",
+					"__worldX": 304,
+					"__worldY": 0,
+					"iid": "07875bf0-8990-11ee-b8a5-2116181f19ef",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [48,0],
+					"fieldInstances": [
+						{ "__identifier": "type", "__type": "LocalEnum.enemy", "__value": "fighter", "__tile": null, "defUid": 10, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fighter"]
+						}] },
+						{ "__identifier": "level", "__type": "Int", "__value": 1, "__tile": null, "defUid": 22, "realEditorValues": [{ "id": "V_Int", "params": [1] }] }
+					]
+				},
+				{
+					"__identifier": "wall",
+					"__grid": [3,3],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
+					"__smartColor": "#0099DB",
+					"__worldX": 304,
+					"__worldY": 48,
+					"iid": "71779160-8990-11ee-b8a5-e9ff79daae53",
+					"width": 16,
+					"height": 16,
+					"defUid": 5,
+					"px": [48,48],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "wall",
+					"__grid": [4,3],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": { "tilesetUid": 31, "x": 368, "y": 32, "w": 16, "h": 16 },
+					"__smartColor": "#0099DB",
+					"__worldX": 320,
+					"__worldY": 48,
+					"iid": "721027e0-8990-11ee-b8a5-a9142219dad1",
+					"width": 16,
+					"height": 16,
+					"defUid": 5,
+					"px": [64,48],
+					"fieldInstances": []
 				}
 			]
 		},

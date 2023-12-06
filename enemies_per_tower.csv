@@ -95,3 +95,4 @@ Tower;Type;Level;HP;ATK;DEF;EXP;Drop
 3;slasher;40;2500;650;140;15;power_deck
 3;slasher;45;4000;1200;210;19;power_deck
 3;slasher;60;8000;1850;300;200;pulse_book
+4;fighter;1;1;1;0;10000;

@@ -5,6 +5,7 @@ import kotlin.Array
 import kotlin.Int
 import kotlin.arrayOf
 import net.archiloque.tacticalnexus.solver.entities.Direction
+import net.archiloque.tacticalnexus.solver.entities.EnemyType
 import net.archiloque.tacticalnexus.solver.entities.KeyOrDoorColor
 import net.archiloque.tacticalnexus.solver.entities.Position
 import net.archiloque.tacticalnexus.solver.entities.input.Door
@@ -22,9 +23,11 @@ import net.archiloque.tacticalnexus.solver.input.Items
 @Generated
 public class Tower_4 : Tower {
     private val enemies: Array<Enemy> = arrayOf(
+        Enemy(EnemyType.fighter, 1, 1, 1, 0, 10000, null, null),
     )
 
     private val levels: Array<Level> = arrayOf(
+        Level(4, 1, 0, 0, 0, 0, 0, 0, 0),
     )
 
     private val standardLevels: Array<TowerLevel> =
@@ -99,8 +102,8 @@ public class Tower_4 : Tower {
                 arrayOf(
                     arrayOf(
                         Staircase.down,
-                        OneWay(Direction.right), Key(KeyOrDoorColor.platinum), null, Wall.instance, null, null, null,
-                        null, null, null, null, null, null, null,
+                        OneWay(Direction.right), Key(KeyOrDoorColor.platinum), enemies[0], Wall.instance, null, null,
+                        null, null, null, null, null, null, null, null,
                     ),
                     arrayOf(
                         Door(KeyOrDoorColor.platinum),
@@ -113,14 +116,7 @@ public class Tower_4 : Tower {
                     ),
                     arrayOf(
                         Wall.instance, Wall.instance,
-                        Wall.instance, null, null, null, null, null, null, null, null, null, null, null, null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null,
-                    ),
-                    arrayOf(
-                        null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        Wall.instance, Wall.instance, Wall.instance, null, null, null, null, null, null, null, null,
                         null, null,
                     ),
                     arrayOf(
@@ -158,6 +154,14 @@ public class Tower_4 : Tower {
                     arrayOf(
                         null, null, null, null,
                         null, null, null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null,
+                    ),
+                    arrayOf(
+                        null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null,
                     ),
                 )
             ),

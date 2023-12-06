@@ -8,7 +8,7 @@ data class LevelUp(
     val exp: Int,
 ) {
     companion object {
-        private val levelUps = Collections.synchronizedList(mutableListOf(LevelUp(0, 0, 0)))
+        val levelUps = Collections.synchronizedList(mutableListOf(LevelUp(0, 0, 0)))
 
         fun levelUp(exp: Int): LevelUp {
             val nexLevelUpExp = levelUps.indexOfFirst { it.exp > exp }

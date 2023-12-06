@@ -91,6 +91,28 @@
 				"height": 16,
 				"color": 39387,
 				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "71779160-8990-11ee-b8a5-e9ff79daae53",
+				"layer": "main",
+				"x": 48,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "721027e0-8990-11ee-b8a5-a9142219dad1",
+				"layer": "main",
+				"x": 64,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
 			}
 		],
 		"door": [
@@ -163,6 +185,22 @@
 				"color": 1578021,
 				"customFields": {
 					"direction": "down"
+				}
+			}
+		],
+		"enemy": [
+			{
+				"id": "enemy",
+				"iid": "07875bf0-8990-11ee-b8a5-2116181f19ef",
+				"layer": "main",
+				"x": 48,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"type": "fighter",
+					"level": 1
 				}
 			}
 		],

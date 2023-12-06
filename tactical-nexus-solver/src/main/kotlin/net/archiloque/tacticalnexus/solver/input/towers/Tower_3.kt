@@ -95,23 +95,23 @@ public class Tower_3 : Tower {
                 arrayOf(
                     arrayOf(
                         item_golden_feather, Wall.instance, item_life_crown,
-                        enemies[43], Wall.instance, item_golden_feather, null, item_golden_feather, null,
-                        item_life_crown, Wall.instance, item_golden_feather, enemies[9], enemies[45], item_life_crown,
+                        enemies[43], Wall.instance, item_golden_feather, Wall.instance, item_golden_feather,
+                        Wall.instance, item_life_crown, Wall.instance, item_golden_feather, enemies[9], enemies[45],
+                        item_life_crown,
                     ),
                     arrayOf(
-                        enemies[7], enemies[19], enemies[19], enemies[42], enemies[31], enemies[47],
-                        enemies[22], enemies[11], enemies[46], enemies[23], enemies[32], Wall.instance, enemies[21],
-                        Wall.instance, enemies[45],
+                        enemies[7], enemies[19], enemies[19], enemies[42], enemies[31],
+                        enemies[47], enemies[22], enemies[11], enemies[46], enemies[23], enemies[32], Wall.instance,
+                        enemies[21], Wall.instance, enemies[45],
                     ),
                     arrayOf(
-                        enemies[43], enemies[43], enemies[42], enemies[30],
-                        Items.power_deck, enemies[22], enemies[34], enemies[21], enemies[34], enemies[46],
-                        enemies[32], enemies[21], enemies[21], enemies[33], enemies[8],
+                        enemies[43], enemies[43], enemies[42],
+                        enemies[30], Items.power_deck, enemies[22], enemies[34], enemies[21], enemies[34],
+                        enemies[46], enemies[32], enemies[21], enemies[21], enemies[33], enemies[8],
                     ),
                     arrayOf(
-                        enemies[19],
-                        enemies[18], enemies[30], enemies[31], item_heavenly_potion, enemies[45], enemies[22],
-                        item_drop_of_dream_ocean, enemies[22], enemies[21], enemies[45], Wall.instance,
+                        enemies[19], enemies[18], enemies[30], enemies[31], item_heavenly_potion, enemies[45],
+                        enemies[22], item_drop_of_dream_ocean, enemies[22], enemies[21], enemies[45], Wall.instance,
                         item_life_potion, Wall.instance, item_life_potion,
                     ),
                     arrayOf(

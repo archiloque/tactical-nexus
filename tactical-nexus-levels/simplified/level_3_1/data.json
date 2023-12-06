@@ -390,6 +390,28 @@
 				"height": 16,
 				"color": 39387,
 				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "d8621d60-8990-11ee-b8a5-7f5cc8317eed",
+				"layer": "main",
+				"x": 96,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
+			},
+			{
+				"id": "wall",
+				"iid": "d95a8720-8990-11ee-b8a5-31076a757af6",
+				"layer": "main",
+				"x": 128,
+				"y": 0,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields" : {}
 			}
 		],
 		"item": [
