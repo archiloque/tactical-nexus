@@ -1,0 +1,24 @@
+= Rules implemented
+
+For each move the code will consider all reachable tiles, it will try all of them unless one of these rules can be applied.
+
+== Things to do in priority
+
+When one of these can be applied, it will be the only possible choice, it means several moves can be taken automaticaly.
+
+* Pick power up and keys
+* Open doors that leads to rooms containing only power up and keys
+* Kill enemies when it can be done without losing any hit point
+* If opening a door or killing an enemy gives access to a single item, act on it, so for example if several enemies are in a corridor they will be killed one after another
+
+== Forbidden things
+
+These choices can never be taken.
+
+* Try to fight an enemy that kills you
+* Kill an enemy if it doesn't give access to a tile that was unreachable before, except if the enemy's drop is a key
+* Opening a door if it doesn't give access to a tile that was unreachable before
+
+== TODO
+
+* When levelling up, don't take any level up that gives you key if you already have enough of this type for the whole tower
