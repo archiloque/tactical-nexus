@@ -54,7 +54,7 @@ class Towers {
             levels: List<Level>,
             generatedPath: Path,
         ) {
-            println("Generating levels")
+            println("Generating towers")
 
             val towersList = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
 
@@ -185,6 +185,7 @@ class Towers {
             )
         }
 
+        @OptIn(ExperimentalStdlibApi::class)
         private fun addScores(towerSpec: TypeSpec.Builder, levels: List<TowerLevel>) {
             for (scoreType in ScoreType.entries) {
                 val level = levels.find { level ->

@@ -6,6 +6,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy
 
 class Enemies : Validator() {
 
+    @OptIn(ExperimentalStdlibApi::class)
     fun validate(enemies: List<Enemy>, itemsIdentifiers: List<String>): Boolean {
         println("Validating enemies")
         enemies.forEach {

@@ -10,6 +10,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
 
 class TowerLevels : Validator() {
 
+    @OptIn(ExperimentalStdlibApi::class)
     fun validate(
         towerLevels: List<TowerLevel>,
         itemsIdentifiers: List<String>,

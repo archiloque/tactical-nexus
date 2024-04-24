@@ -50,6 +50,7 @@
                     <compilerPlugins>
                         <plugin>kotlinx-serialization</plugin>
                     </compilerPlugins>
+                    <apiVersion>1.8</apiVersion>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -64,7 +65,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>net.archiloque.tacticalnexussataprepartion.MainKt</mainClass>
+                    <mainClass>net.archiloque.tacticalnexus.datapreparation.MainKt</mainClass>
                 </configuration>
             </plugin>
         </plugins>

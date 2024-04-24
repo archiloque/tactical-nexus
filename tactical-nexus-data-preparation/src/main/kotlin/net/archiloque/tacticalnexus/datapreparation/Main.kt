@@ -14,6 +14,7 @@ import net.archiloque.tacticalnexus.datapreparation.input.entities.ItemPerTower
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Level
 import net.archiloque.tacticalnexus.datapreparation.input.entities.Stat
 import net.archiloque.tacticalnexus.datapreparation.input.level.TowerLevel
+import net.archiloque.tacticalnexus.datapreparation.output.game.Game
 import net.archiloque.tacticalnexus.datapreparation.output.solver.Solver
 import net.archiloque.tacticalnexus.datapreparation.validation.Enemies
 import net.archiloque.tacticalnexus.datapreparation.validation.ItemsDefault
@@ -62,4 +63,5 @@ fun main(args: Array<String>) {
     }
 
     Solver(enemies, itemsDefault, itemsPerTower, towerLevels, stats, levels).generate()
+    Game(enemies, itemsDefault, itemsPerTower, towerLevels, stats, levels).generate()
 }
