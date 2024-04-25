@@ -7,6 +7,7 @@ data class Enemy(
     val tower: Int,
     val type: EnemyType,
     val level: Int,
+    val name: String,
 
     val atk: Int,
     val def: Int,
@@ -26,6 +27,7 @@ data class Enemy(
                         it["Tower"]!!.toInt(),
                         EnemyType.valueOf(it["Type"]!!),
                         it["Level"]!!.toInt(),
+                        it["Name"]!!,
 
                         it["ATK"]!!.toInt(),
                         it["DEF"]!!.toInt(),

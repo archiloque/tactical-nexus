@@ -17,14 +17,15 @@ data class Enemy(
 ) {
     companion object {
         fun fromInput(input: net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy) : Enemy {
+            val drop = input.drop.replace('_', ' ').replaceFirstChar { it.uppercase() }
             return Enemy(
                 input.type,
                 input.level,
-                "",
+                input.name,
 
                 input.atk,
                 input.def,
-                input.drop,
+                drop,
                 input.exp,
                 input.hp
             )
