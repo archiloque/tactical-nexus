@@ -22,6 +22,7 @@ class Game(
     private val levels: List<Level>,
 ) {
     private val generatedPath = Paths.get("../../tactical-fulcrum/src/data")
+
     @OptIn(ExperimentalSerializationApi::class)
     private val prettyJson = Json { // this returns the JsonBuilder
         prettyPrint = true
@@ -50,13 +51,28 @@ class Game(
         towerIndex: Int,
         itemsPerTower: List<ItemPerTower>,
         stat: Stat,
-        enemies: List<net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy>,
+        enemies: List<Enemy>,
         levels: List<Level>,
         towerLevels: List<TowerLevel>,
         generatedPath: Path,
     ) {
+        val levelsIndexForTower =
+            towerLevels.filter { it.levelCustomFields.nexus == true }
+                .map { it.levelCustomFields.level }
+                .sorted()
+        val filteredTowerLevels = mutableListOf<TowerLevel>()
+        for (levelIndex in levelsIndexForTower) {
+            val level =
+                towerLevels.find {
+                    val customFields = it.levelCustomFields
+                    (customFields.level == levelIndex) && (customFields.nexus == true)
+                }!!
+            filteredTowerLevels.add(level)
+        }
+
         val tower = Tower(
-            enemies.map { net.archiloque.tacticalnexus.datapreparation.output.game.Enemy.fromInput(it) }
+            enemies.map { net.archiloque.tacticalnexus.datapreparation.output.game.Enemy.fromInput(it) },
+            filteredTowerLevels.map { Room.fromInput(it) },
         )
         val filePath = "${generatedPath}/${towerIndex}.json"
         println("Generating [${filePath}]")

@@ -1,11 +1,10 @@
 package net.archiloque.tacticalnexus.datapreparation.output.game
 
 import kotlinx.serialization.Serializable
-import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 
 @Serializable
 data class Enemy(
-    val type: EnemyType,
+    val type: String,
     val level: Int,
     val name: String,
 
@@ -16,10 +15,10 @@ data class Enemy(
     val hp: Int,
 ) {
     companion object {
-        fun fromInput(input: net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy) : Enemy {
+        fun fromInput(input: net.archiloque.tacticalnexus.datapreparation.input.entities.Enemy): Enemy {
             val drop = input.drop.replace('_', ' ').replaceFirstChar { it.uppercase() }
             return Enemy(
-                input.type,
+                input.type.name.replaceFirstChar { it.uppercase() },
                 input.level,
                 input.name,
 

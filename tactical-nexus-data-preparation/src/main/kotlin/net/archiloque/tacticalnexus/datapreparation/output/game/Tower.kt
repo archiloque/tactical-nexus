@@ -5,10 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Tower(
     val enemies: List<Enemy>,
+    val rooms: List<Room>,
 ) {
-    companion object {
-
-
-
-    }
 }

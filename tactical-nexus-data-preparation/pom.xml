@@ -19,7 +19,7 @@
     </parent>
 
     <properties>
-        <serialization.version>1.6.0-RC</serialization.version>
+        <serialization.version>1.6.3</serialization.version>
         <kotlinpoet.version>1.14.2</kotlinpoet.version>
         <kotlin-csv.version>1.9.2</kotlin-csv.version>
     </properties>
