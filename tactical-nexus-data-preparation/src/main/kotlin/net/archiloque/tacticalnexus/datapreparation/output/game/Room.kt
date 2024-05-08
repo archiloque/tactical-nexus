@@ -21,13 +21,15 @@ data class Room(
     val tiles: Array<Array<Tile>>,
 ) {
     companion object {
-        val tiles =
-            Array(LEVEL_DIMENSION_CELLS + 1) { Array<Tile>(LEVEL_DIMENSION_CELLS + 1) { EmptyTile() } }
-
         fun fromInput(input: TowerLevel): Room {
+            val tiles =
+                Array(LEVEL_DIMENSION_CELLS + 1) { Array<Tile>(LEVEL_DIMENSION_CELLS + 1) { EmptyTile() } }
+
             for (entity in input.allEntities()) {
                 val tile = getTile(entity)
-                tiles[entity.y / PIXELS_PER_CELL][entity.x / PIXELS_PER_CELL] = tile
+                val line = entity.y / PIXELS_PER_CELL
+                val column = entity.x / PIXELS_PER_CELL
+                tiles[line][column] = tile
             }
 
             return Room(
@@ -37,17 +39,45 @@ data class Room(
         }
 
         private fun getTile(entity: Entity): Tile {
-            when (entity) {
-                is Door -> return DoorTile(entity.color())
-                is Enemy -> return EnemyTile(entity.type(), entity.level())
-                is Item -> return ItemTile(entity.identifier())
-                is Key -> return KeyTile(entity.color())
-                is OneWay -> return OneWayTile(entity.direction())
-                is PlayerStartPosition -> return PlayerStartPositionTile()
-                is Score -> return ScoreTile(entity.score())
-                is Staircase -> return StaircaseTile(entity.direction())
-                is Wall -> return WallTile()
+            return when (entity) {
+                is Door -> DoorTile(entity.color())
+                is Enemy -> EnemyTile(entity.type().name.replaceFirstChar { c -> c.uppercase() }, entity.level())
+                is Item -> ItemTile(itemTitle(entity.identifier()))
+                is Key -> KeyTile(entity.color())
+                is OneWay -> OneWayTile(entity.direction())
+                is PlayerStartPosition -> PlayerStartPositionTile()
+                is Score -> ScoreTile(entity.score())
+                is Staircase -> StaircaseTile(entity.direction())
+                is Wall -> WallTile()
+            }
+        }
+
+        private fun itemTitle(itemName: String): String {
+            return when (itemName) {
+                "blue_potion" -> "Blue potion"
+                "drop_of_dream_ocean" -> "Drop of dream ocean"
+                "golden_feather" -> "Golden feather"
+                "guard_card" -> "Guard card"
+                "guard_deck" -> "Guard deck"
+                "guard_gem" -> "Guard gem"
+                "guard_piece" -> "Guard piece"
+                "guard_potion" -> "Guard potion"
+                "heavenly_potion" -> "Heavenly potion"
+                "life_crown" -> "Life Crown"
+                "life_potion" -> "Life potion"
+                "power_card" -> "Power card"
+                "power_deck" -> "Power deck"
+                "power_gem" -> "Power gem"
+                "power_piece" -> "Power piece"
+                "power_potion" -> "Power potion"
+                "pulse_book_shield" -> "Pulse book <Shield>"
+                "pulse_book_sword" -> "Pulse book <Sword>"
+                "red_potion" -> "Red potion"
+                else -> {
+                    throw IllegalArgumentException("Unrecognised item: $itemName")
+                }
             }
         }
     }
+
 }

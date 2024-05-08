@@ -32,16 +32,16 @@ class Game(
 
     fun generate() {
         println("Generating data for game")
-        val towersList = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
+        val towerIndexes = towerLevels.map { it.levelCustomFields.tower }.toSet().sorted()
 
-        for (tower in towersList) {
+        for (towerIndex in towerIndexes) {
             generateTower(
-                tower,
-                itemsPerTower.filter { it.tower == tower },
-                stats.find { it.tower == tower }!!,
-                enemies.filter { it.tower == tower },
-                levels.filter { it.tower == tower },
-                towerLevels.filter { it.levelCustomFields.tower == tower },
+                towerIndex,
+                itemsPerTower.filter { it.tower == towerIndex },
+                stats.find { it.tower == towerIndex }!!,
+                enemies.filter { it.tower == towerIndex },
+                levels.filter { it.tower == towerIndex },
+                towerLevels.filter { it.levelCustomFields.tower == towerIndex },
                 generatedPath
             )
         }
@@ -56,8 +56,9 @@ class Game(
         towerLevels: List<TowerLevel>,
         generatedPath: Path,
     ) {
+        println("Generating data for tower $towerIndex")
         val levelsIndexForTower =
-            towerLevels.filter { it.levelCustomFields.nexus == true }
+            towerLevels.filter { it.levelCustomFields.nexus }
                 .map { it.levelCustomFields.level }
                 .sorted()
         val filteredTowerLevels = mutableListOf<TowerLevel>()
@@ -65,7 +66,7 @@ class Game(
             val level =
                 towerLevels.find {
                     val customFields = it.levelCustomFields
-                    (customFields.level == levelIndex) && (customFields.nexus == true)
+                    (customFields.level == levelIndex) && !customFields.nexus
                 }!!
             filteredTowerLevels.add(level)
         }

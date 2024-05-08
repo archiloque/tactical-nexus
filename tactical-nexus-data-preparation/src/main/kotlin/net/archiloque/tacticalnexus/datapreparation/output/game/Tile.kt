@@ -3,7 +3,6 @@ package net.archiloque.tacticalnexus.datapreparation.output.game
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.archiloque.tacticalnexus.datapreparation.enums.Direction
-import net.archiloque.tacticalnexus.datapreparation.enums.EnemyType
 import net.archiloque.tacticalnexus.datapreparation.enums.KeyOrDoorColor
 import net.archiloque.tacticalnexus.datapreparation.enums.ScoreType
 import net.archiloque.tacticalnexus.datapreparation.input.level.StaircaseDirection
@@ -20,7 +19,7 @@ class DoorTile(val color: KeyOrDoorColor) : Tile {
 
 @Serializable
 @SerialName("enemy")
-class EnemyTile(val enemyType: EnemyType, val level: Int) : Tile {
+class EnemyTile(val enemyType: String, val level: Int) : Tile {
 }
 
 @Serializable
